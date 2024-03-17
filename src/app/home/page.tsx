@@ -2,7 +2,7 @@
 
 import fvImg from "@/assets/fv/fv.png";
 import { FlexBox } from "@/components/common/FlexBox";
-import styles from "./Page.module.scss";
+import styles from "./page.module.scss";
 import { Typography } from "@/components/common/Typography";
 import { Icon } from "@/components/common/Icon";
 import Image from "next/image";
