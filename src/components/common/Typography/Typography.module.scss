@@ -1,0 +1,26 @@
+.root {
+  display: inline-block;
+  line-height: 100%;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--color);
+}
+
+.gothic {
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.multiLine {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--line-num);
+}
