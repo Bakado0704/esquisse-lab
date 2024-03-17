@@ -12,19 +12,23 @@
     "format": "npm run lint:eslint -- --fix && prettier --write --list-different src"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
+    "next": "14.1.1",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.1",
+    "sass": "^1.72.0",
     "zod": "^3.17.3"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@svgr/webpack": "^6.2.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "destyle.css": "^4.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.1.1",
     "lint-staged": "^13.2.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "typescript": "^5"
   }
 }
