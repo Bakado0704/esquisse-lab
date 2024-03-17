@@ -1,0 +1,11 @@
+@use "@/styles/mixin" as *;
+
+.sectionWrap {
+  max-width: 108rem;
+  padding: 0 4rem;
+  margin: 0 auto;
+
+  @include mq(md) {
+    padding: 0 1.6rem;
+  }
+}
