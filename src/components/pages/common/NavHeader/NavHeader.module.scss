@@ -1,0 +1,11 @@
+.memberButton {
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--main1);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--accent1);
+  }
+}
