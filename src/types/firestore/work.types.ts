@@ -11,6 +11,6 @@ export const WorkSchema = z.object({
   esquisseIds: z.array(z.string()).optional(),
 });
 
-export type Chat = z.infer<typeof WorkSchema>;
+export type Work = z.infer<typeof WorkSchema>;
 
-export const parseUser = (value: unknown): Chat => WorkSchema.parse(value);
+export const parseUser = (value: unknown): Work => WorkSchema.parse(value);

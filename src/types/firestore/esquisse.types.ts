@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const EsquisseSchema = z.object({
-  wordId: z.string(),
+  workId: z.string(),
   createdAt: z.date(),
   imageUrls: z.array(z.string()).optional(),
   subject: z.string(),
@@ -9,6 +9,7 @@ export const EsquisseSchema = z.object({
   chatIds: z.array(z.string()).optional(),
 });
 
-export type Chat = z.infer<typeof EsquisseSchema>;
+export type Esquisse = z.infer<typeof EsquisseSchema>;
 
-export const parseUser = (value: unknown): Chat => EsquisseSchema.parse(value);
+export const parseUser = (value: unknown): Esquisse =>
+  EsquisseSchema.parse(value);

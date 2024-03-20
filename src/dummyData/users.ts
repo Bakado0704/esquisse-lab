@@ -1,42 +1,36 @@
-export const users = [
+import { User } from "@/types/firestore/user.types";
+
+export const users: User[] = [
   {
-    kado: {
-      name: "Kado Hiroki",
-      lab: "建築環境学研究室",
-      coverImageUrl: "https://example.com/cover.jpg",
-      iconImageUrl: "https://example.com/icon.jpg",
-      detail: "Hello, I'm Kado Hiroki.",
-      works: ["work1", "work2"],
-    },
+    name: "Kado Hiroki",
+    lab: "建築環境学研究室",
+    coverImageUrl: "https://example.com/cover.jpg",
+    iconImageUrl: "https://example.com/icon.jpg",
+    detail: "Hello, I'm Kado Hiroki.",
+    workIds: ["work1", "work2"],
   },
   {
-    hidano: {
-      name: "Hidano Ryotaro",
-      lab: "建築環境学研究室",
-      coverImageUrl: "https://example.com/cover.jpg",
-      iconImageUrl: "https://example.com/icon.jpg",
-      detail: "Hello, I'm Hidano Ryotaro.",
-      works: [],
-    },
+    name: "Hidano Ryotaro",
+    lab: "建築環境学研究室",
+    coverImageUrl: "https://example.com/cover.jpg",
+    iconImageUrl: "https://example.com/icon.jpg",
+    detail: "Hello, I'm Hidano Ryotaro.",
+    workIds: [],
   },
   {
-    konishi: {
-      name: "Konishi Sota",
-      lab: "建築環境学研究室",
-      coverImageUrl: "https://example.com/cover.jpg",
-      iconImageUrl: "https://example.com/icon.jpg",
-      detail: "Hello, I'm Konishi Sota.",
-      works: [],
-    },
+    name: "Konishi Sota",
+    lab: "建築環境学研究室",
+    coverImageUrl: "https://example.com/cover.jpg",
+    iconImageUrl: "https://example.com/icon.jpg",
+    detail: "Hello, I'm Konishi Sota.",
+    workIds: [],
   },
   {
-    sakane: {
-      name: "Sakane Tubasa",
-      lab: "建築環境学研究室",
-      coverImageUrl: "https://example.com/cover.jpg",
-      iconImageUrl: "https://example.com/icon.jpg",
-      detail: "Hello, I'm Sakane Tubasa.",
-      works: [],
-    },
+    name: "Sakane Tubasa",
+    lab: "建築環境学研究室",
+    coverImageUrl: "https://example.com/cover.jpg",
+    iconImageUrl: "https://example.com/icon.jpg",
+    detail: "Hello, I'm Sakane Tubasa.",
+    workIds: [],
   },
 ];
