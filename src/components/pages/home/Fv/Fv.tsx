@@ -4,7 +4,7 @@ import Image from "next/image";
 import fvImg from "@/assets/fv/fv.png";
 import { Typography } from "@/components/common/Typography";
 
-import styles from "./fv.module.scss";
+import styles from "./Fv.module.scss";
 import { Icon } from "@/components/common/Icon";
 
 const Fv = () => {
