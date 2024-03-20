@@ -1,0 +1,57 @@
+.post {
+  padding-top: 2.4rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  > div {
+    > img {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    > .subject {
+      transition: color 0.3s ease;
+    }
+
+    > .description {
+      transition: color 0.3s ease;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    > div {
+      > img {
+        transform: scale(1.1);
+        opacity: 0.8;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      > .subject {
+        color: var(--accent1);
+        transition: color 0.3s ease;
+      }
+
+      > .description {
+        color: var(--accent2);
+        transition: color 0.3s ease;
+      }
+    }
+  }
+}
+
+.imageContainer {
+  aspect-ratio: 1/ 0.6;
+  overflow: hidden;
+}
+
+.viewButton {
+  color: var(--accent1);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--main1);
+  }
+}

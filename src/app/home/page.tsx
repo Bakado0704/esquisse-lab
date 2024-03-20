@@ -1,37 +1,18 @@
 "use client";
 
-import fvImg from "@/assets/fv/fv.png";
-import { FlexBox } from "@/components/common/FlexBox";
-import styles from "./page.module.scss";
-import { Typography } from "@/components/common/Typography";
-import { Icon } from "@/components/common/Icon";
-import Image from "next/image";
-import { Button } from "@/components/common/Button";
+import { Separator } from "@/components/common/Separator";
+import { Fv } from "@/components/pages/home/Fv";
+import { Posts } from "@/components/pages/home/Posts";
+import { getPosts } from "@/libs/getPosts";
 
 export default function Page() {
+  const posts = getPosts();
+
   return (
-    <FlexBox className={styles.container}>
-      <FlexBox className={styles.imageContainer}>
-        <Image
-          src={fvImg}
-          alt="fv"
-          height={1000}
-          style={{ objectFit: "cover" }}
-        />
-      </FlexBox>
-      <FlexBox flexDirection="column" justifyContent="center" gap="2.4rem">
-        <Typography fontSize="9rem" lineHeight="130%" gothic color="w1">
-          Hokudai
-          <br />
-          Esquisse
-          <br />
-          Forum
-        </Typography>
-        <Icon iconName="ArrowLarge" />
-        <Button theme="rectPink" size="large" className={styles.button}>
-          投稿する
-        </Button>
-      </FlexBox>
-    </FlexBox>
+    <>
+      <Fv />
+      <Separator direction="horizontal" marginTop="10.4rem" />
+      <Posts posts={posts} />
+    </>
   );
 }
