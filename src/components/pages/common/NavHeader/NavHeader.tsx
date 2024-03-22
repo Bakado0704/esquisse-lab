@@ -4,8 +4,6 @@ import classNames from "classnames";
 import Image from "next/image";
 
 import logo from "@/assets/logo/esquisse-lab.png";
-import { Button } from "@/components/common/Button";
-import { FlexBox } from "@/components/common/FlexBox";
 
 import styles from "./NavHeader.module.scss";
 
@@ -16,12 +14,12 @@ const NavHeader = () => {
   };
 
   return (
-    <FlexBox justifyContent="space-between" alignItems="center" height="6rem">
+    <div className={styles.headerContainer}>
       <Image src={logo} alt="logo" height={40} />
-      <FlexBox gap="2.4rem" className={styles.PcContainer}>
+      <div className={styles.PcContainer}>
         <button className={styles.memberButton}>Members</button>
-        <Button>ログイン</Button>
-      </FlexBox>
+        <button className={styles.loginButton}>ログイン</button>
+      </div>
       <button
         className={classNames(
           styles.SpContainer,
@@ -33,7 +31,7 @@ const NavHeader = () => {
         <span />
         <span />
       </button>
-    </FlexBox>
+    </div>
   );
 };
 export default NavHeader;
