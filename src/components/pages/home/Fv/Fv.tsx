@@ -19,7 +19,7 @@ const Fv = () => {
         />
       </FlexBox>
       <FlexBox flexDirection="column" justifyContent="center" gap="2.4rem">
-        <Typography fontSize="8rem" lineHeight="130%" gothic color="w1">
+        <Typography fontSize="12rem" gothic color="w1">
           Hokudai
           <br />
           Esquisse
