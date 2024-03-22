@@ -1,10 +1,7 @@
 import Image from "next/image";
 
 import fvImg from "@/assets/fv/fv.png";
-import { Button } from "@/components/common/Button";
-import { FlexBox } from "@/components/common/FlexBox";
-import { Icon } from "@/components/common/Icon";
-import { Typography } from "@/components/common/Typography";
+import { Button, FlexBox, Icon, Typography } from "@/components/common";
 
 import styles from "./Fv.module.scss";
 

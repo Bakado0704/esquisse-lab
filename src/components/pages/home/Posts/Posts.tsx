@@ -2,9 +2,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 
 import postImage from "@/assets/fv/fv.png";
-import { FlexBox } from "@/components/common/FlexBox";
-import { Separator } from "@/components/common/Separator";
-import { Typography } from "@/components/common/Typography";
+import { FlexBox, Separator, Typography } from "@/components/common";
 import { Post } from "@/types/application/post.types";
 
 import { PostIcon } from "./PostIcon";
