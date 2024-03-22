@@ -12,6 +12,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
+        <link rel="stylesheet" href="https://use.typekit.net/ttx3gce.css" />
         <HeaderLayout>{children}</HeaderLayout>
       </body>
     </html>
