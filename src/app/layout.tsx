@@ -1,7 +1,10 @@
-import { HeaderLayout } from "@/components/layout/HeaderLayout";
-import "destyle.css";
-import "@/styles/globals.scss";
+"use client";
 import { Inter } from "next/font/google";
+
+import { HeaderLayout } from "@/components/layout/HeaderLayout";
+
+import "@/styles/globals.scss";
+import "destyle.css";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({

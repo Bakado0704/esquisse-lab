@@ -1,14 +1,15 @@
-import { Typography } from "@/components/common/Typography";
+import { format } from "date-fns";
+import Image from "next/image";
+
 import postImage from "@/assets/fv/fv.png";
 import { FlexBox } from "@/components/common/FlexBox";
-import Image from "next/image";
-import { PostsProps } from "./Posts.types";
-import { Post } from "@/types/application/post.types";
 import { Separator } from "@/components/common/Separator";
+import { Typography } from "@/components/common/Typography";
+import { Post } from "@/types/application/post.types";
 
-import styles from "./Posts.module.scss";
-import { format } from "date-fns";
 import { PostIcon } from "./PostIcon";
+import styles from "./Posts.module.scss";
+import { PostsProps } from "./Posts.types";
 
 const Posts = ({ posts }: PostsProps) => {
   return (

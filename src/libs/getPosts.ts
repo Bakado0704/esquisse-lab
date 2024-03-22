@@ -1,5 +1,5 @@
-import { users } from "@/dummyData/users";
 import { esquisses } from "@/dummyData/esquisses";
+import { users } from "@/dummyData/users";
 import { Post } from "@/types/application/post.types";
 
 export const getPosts: () => Post[] = () => {
