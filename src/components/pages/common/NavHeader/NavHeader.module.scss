@@ -1,10 +1,21 @@
 @use "@/styles/mixin" as *;
 
 .headerContainer {
+  position: fixed;
+  z-index: 10000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--w1);
   height: 6rem;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding: 0 2.4rem;
+
+  @include mq(md) {
+    padding: 0 1.6rem;
+  }
 }
 
 .memberButton {
@@ -39,6 +50,16 @@
   }
 }
 
+.logoImage {
+  width: 26.5rem;
+  height: 4rem;
+
+  @include mq(md) {
+    width: 23.9rem;
+    height: 3.6rem;
+  }
+}
+
 .PcContainer {
   display: flex;
   gap: 2.4rem;
@@ -50,6 +71,7 @@
 
 .SpContainer {
   display: none;
+  z-index: 1000;
 
   @include mq(md) {
     display: block;

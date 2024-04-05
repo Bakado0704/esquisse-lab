@@ -5,6 +5,8 @@ import Image from "next/image";
 
 import logo from "@/assets/logo/esquisse-lab.png";
 
+import { NavMenu } from "../NavMenu";
+
 import styles from "./NavHeader.module.scss";
 
 const NavHeader = () => {
@@ -15,7 +17,8 @@ const NavHeader = () => {
 
   return (
     <div className={styles.headerContainer}>
-      <Image src={logo} alt="logo" height={40} />
+      <NavMenu isMenuOpen={isMenuOpen} />
+      <Image src={logo} alt="logo" height={40} className={styles.logoImage} />
       <div className={styles.PcContainer}>
         <button className={styles.memberButton}>Members</button>
         <button className={styles.loginButton}>ログイン</button>
