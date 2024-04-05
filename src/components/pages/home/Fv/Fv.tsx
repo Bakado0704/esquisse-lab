@@ -12,12 +12,12 @@ const Fv = () => {
         <Image
           src={fvImg}
           alt="fv"
-          height={800}
           style={{ objectFit: "cover" }}
+          className={styles.image}
         />
       </FlexBox>
       <FlexBox flexDirection="column" justifyContent="center" gap="2.4rem">
-        <Typography fontSize="8.4rem" gothic color="w1">
+        <Typography gothic color="w1" className={styles.title}>
           Hokudai
           <br />
           Esquisse
