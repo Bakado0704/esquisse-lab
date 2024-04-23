@@ -1,0 +1,9 @@
+@use "@/styles/mixin" as *;
+
+.container {
+  width: 50%;
+
+  @include mq(md) {
+    width: 100%;
+  }
+}

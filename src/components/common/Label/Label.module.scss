@@ -1,0 +1,19 @@
+.label {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-shrink: 0;
+  height: 2.4rem;
+  padding: 0 1.2rem;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--color);
+  background-color: var(--bg-color);
+}
+
+.large {
+  padding: 0 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}

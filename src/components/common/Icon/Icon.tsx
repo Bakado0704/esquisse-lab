@@ -3,6 +3,7 @@ import { cloneElement } from "react";
 import classNames from "classnames";
 
 import ArrowLarge from "@/assets/image/arrow-large.svg";
+import Attention from "@/assets/image/attention.svg";
 import { CustomCSSProperties } from "@/types/CustomStyle.types";
 
 import styles from "./Icon.module.scss";
@@ -10,7 +11,8 @@ import styles from "./Icon.module.scss";
 import type { IconProps } from "./Icon.types";
 
 const ICONS = {
-  ArrowLarge: <ArrowLarge />,
+  arrowLarge: <ArrowLarge />,
+  attention: <Attention />,
 } as const;
 
 export type IconName = keyof typeof ICONS;

@@ -24,7 +24,7 @@ const Fv = () => {
           <br />
           Forum
         </Typography>
-        <Icon iconName="ArrowLarge" />
+        <Icon iconName="arrowLarge" />
         <Button theme="rectPink" size="large" className={styles.button}>
           投稿する
         </Button>
