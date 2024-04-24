@@ -1,5 +1,7 @@
 import { forwardRef, memo } from "react";
 
+import classNames from "classnames";
+
 import { FlexBox } from "../FlexBox";
 import { Icon } from "../Icon";
 import { InputLabel } from "../InputLabel";
@@ -20,7 +22,7 @@ const getBorderColor = (
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     label,
-    // className,
+    className,
     width = "100%",
     prefix,
     suffix,
@@ -55,6 +57,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               style={{
                 borderColor: getBorderColor(error, warning),
               }}
+              className={classNames(styles.input, className)}
               onKeyDown={(e) => {
                 if (onKeyDown) onKeyDown(e);
                 if (e.key === "Enter") e.preventDefault();

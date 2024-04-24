@@ -1,3 +1,5 @@
+"use client";
+
 import { Separator } from "@/components/common/Separator";
 import { Fv } from "@/components/pages/home/Fv";
 import { Posts } from "@/components/pages/home/Posts";

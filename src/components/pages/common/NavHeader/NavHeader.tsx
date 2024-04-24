@@ -18,22 +18,24 @@ const NavHeader = () => {
   return (
     <div className={styles.headerContainer}>
       <NavMenu isMenuOpen={isMenuOpen} />
-      <Image src={logo} alt="logo" height={40} className={styles.logoImage} />
-      <div className={styles.PcContainer}>
-        <button className={styles.memberButton}>Members</button>
-        <button className={styles.loginButton}>ログイン</button>
+      <div className={styles.headerContainerInner}>
+        <Image src={logo} alt="logo" height={40} className={styles.logoImage} />
+        <div className={styles.PcContainer}>
+          <button className={styles.memberButton}>Members</button>
+          <button className={styles.loginButton}>ログイン</button>
+        </div>
+        <button
+          className={classNames(
+            styles.SpContainer,
+            isMenuOpen ? styles.open : undefined
+          )}
+          onClick={() => onClick()}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
-      <button
-        className={classNames(
-          styles.SpContainer,
-          isMenuOpen ? styles.open : undefined
-        )}
-        onClick={() => onClick()}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
     </div>
   );
 };
