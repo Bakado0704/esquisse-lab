@@ -1,15 +1,17 @@
-import { FlexBox } from "@/components/common";
+import { FlexBox, Icon } from "@/components/common";
 
 import { AuthenticationCard } from "./AuthenticationCard";
+import { Bg } from "./Bg";
 import { ProposeUnit } from "./ProposeUnit";
 import styles from "./Recruit.module.scss";
 
 const Recruit = () => {
   return (
     <FlexBox className={styles.container}>
-      <div className={styles.bg} />
+      <Bg />
       <ProposeUnit />
       <AuthenticationCard />
+      <Icon iconName="bottomCircle" className={styles.bottomCircle} />
     </FlexBox>
   );
 };

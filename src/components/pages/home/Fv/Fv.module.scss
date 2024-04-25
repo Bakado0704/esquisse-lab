@@ -34,6 +34,7 @@
 
 .title {
   font-size: 8.4rem;
+  line-height: 130%;
 
   @include mq(md) {
     font-size: 6.4rem;

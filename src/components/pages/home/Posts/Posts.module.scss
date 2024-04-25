@@ -50,6 +50,7 @@
 .viewButton {
   color: var(--accent1);
   transition: color 0.3s ease;
+  font-weight: 600;
 
   &:hover {
     color: var(--main1);

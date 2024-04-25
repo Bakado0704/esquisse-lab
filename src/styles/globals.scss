@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 :root {
   --max-width: 1100px;
@@ -62,8 +62,8 @@ body,
 button,
 select,
 pre {
-  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Helvetica Neue",
-    Arial, Meiryo, sans-serif;
+  font-family: "Hiragino Sans", "Anton", "Helvetica Neue", Arial, Meiryo,
+    sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -95,7 +95,8 @@ a {
   --main1: #404666;
   --main2: #545974;
   --accent1: #d37e74;
-  --accent2: #e68a82;
+  --accent2: #e5aaaa;
+  --accent3: #e3c8c4;
   --b1: #484848;
   --b2: #828282;
   --b3: #c4c4c4;

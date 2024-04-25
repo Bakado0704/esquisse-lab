@@ -11,14 +11,14 @@ const ProposeUnit = () => {
           <br />
           Kado Team
         </Typography>
-        <Typography lineHeight="150%" color="w1" className={styles.description}>
+        <Typography lineHeight="180%" color="w1" className={styles.description}>
           チーム角は経験豊富な講師を探しています。
           <br />
           チームに加わり、新たな旅に出かけましょう
         </Typography>
       </FlexBox>
 
-      <Button>メンバーを見る</Button>
+      <Button className={styles.button}>メンバーを見る</Button>
     </FlexBox>
   );
 };

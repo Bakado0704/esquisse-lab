@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import ArrowLarge from "@/assets/image/arrow-large.svg";
 import Attention from "@/assets/image/attention.svg";
+import BottomCircle from "@/assets/image/bottom-circle.svg";
 import { CustomCSSProperties } from "@/types/CustomStyle.types";
 
 import styles from "./Icon.module.scss";
@@ -13,6 +14,7 @@ import type { IconProps } from "./Icon.types";
 const ICONS = {
   arrowLarge: <ArrowLarge />,
   attention: <Attention />,
+  bottomCircle: <BottomCircle />,
 } as const;
 
 export type IconName = keyof typeof ICONS;
