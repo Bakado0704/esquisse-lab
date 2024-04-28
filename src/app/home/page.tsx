@@ -1,10 +1,10 @@
 "use client";
 
 import { Separator } from "@/components/common/Separator";
-import { Concept } from "@/components/pages/home/Concept";
+import { Concept } from "@/components/pages/common/Concept";
+import { Recruit } from "@/components/pages/common/Recruit";
 import { Fv } from "@/components/pages/home/Fv";
 import { Posts } from "@/components/pages/home/Posts";
-import { Recruit } from "@/components/pages/home/Recruit";
 import { getPosts } from "@/libs/getPosts";
 
 export default function Page() {
