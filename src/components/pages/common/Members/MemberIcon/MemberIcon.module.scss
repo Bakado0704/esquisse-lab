@@ -1,0 +1,78 @@
+@use "@/styles/mixin" as *;
+
+.icon {
+  position: relative;
+  display: block;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--b3);
+
+  @include mq(md) {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  > span:first-child {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--w1);
+  }
+
+  > span:last-child {
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    border-radius: 50%;
+    background-color: var(--w1);
+  }
+}
+
+.iconContainer {
+  position: relative;
+}
+
+.backgroundOne {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 50%;
+  background-color: var(--w1);
+  z-index: -3;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+
+  @include mq(md) {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.backgroundTwo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background-color: var(--w1);
+  z-index: -3;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+
+  @include mq(md) {
+    width: 16rem;
+    height: 16rem;
+  }
+}
