@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 import { Button, FlexBox, Typography } from "@/components/common";
 import { useMemberContext } from "@/contexts/member.context";
 
@@ -7,6 +9,7 @@ import { MembersProps } from "./Members.types";
 
 const Members = ({ users }: MembersProps) => {
   const { isOpenMember } = useMemberContext();
+  const router = useRouter();
   return (
     <FlexBox id="member" className={styles.container}>
       <div className={styles.bg} />
@@ -51,7 +54,12 @@ const Members = ({ users }: MembersProps) => {
             })}
           </FlexBox>
           <FlexBox justifyContent="center">
-            <Button className={styles.button}>メンバーになる</Button>
+            <Button
+              className={styles.button}
+              onClick={() => router.push("/register")}
+            >
+              メンバーになる
+            </Button>
           </FlexBox>
         </FlexBox>
       )}
