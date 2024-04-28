@@ -1,6 +1,7 @@
 "use client";
 
 import { Separator } from "@/components/common/Separator";
+import { Concept } from "@/components/pages/home/Concept";
 import { Fv } from "@/components/pages/home/Fv";
 import { Posts } from "@/components/pages/home/Posts";
 import { Recruit } from "@/components/pages/home/Recruit";
@@ -15,6 +16,7 @@ export default function Page() {
       <Separator direction="horizontal" marginTop="10.4rem" />
       <Posts posts={posts} />
       <Recruit />
+      <Concept />
     </>
   );
 }
