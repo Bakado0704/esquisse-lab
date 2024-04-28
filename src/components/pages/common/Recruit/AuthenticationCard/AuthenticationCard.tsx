@@ -18,7 +18,12 @@ const AuthenticationUnit = () => {
         </Typography>
         <FlexBox gap="2.4rem" flexDirection="column">
           <Input hideLabel placeholder="Your Email" className={styles.input} />
-          <Input hideLabel placeholder="Password" className={styles.input} />
+          <Input
+            hideLabel
+            type="password"
+            placeholder="Password"
+            className={styles.input}
+          />
         </FlexBox>
         <FlexBox flexDirection="column" className={styles.buttonContainer}>
           <Button className={styles.button}>
