@@ -1,0 +1,23 @@
+@use "@/styles/mixin" as *;
+
+.container {
+  position: relative;
+  padding: 8rem 0 16rem;
+  gap: 8rem 1.6rem;
+  justify-content: space-between;
+
+  @include mq(md) {
+    flex-direction: column;
+  }
+}
+
+.bottomCircle {
+  position: absolute;
+  bottom: -0.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  background: url("/images/home/recruit/bottomCircle.png") no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}

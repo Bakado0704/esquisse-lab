@@ -1,0 +1,18 @@
+@use "@/styles/mixin" as *;
+
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--w1);
+  border: 1px solid var(--w4);
+  border-radius: 0.8rem;
+  padding: 3.2rem;
+
+  @include mq(md) {
+    padding: 1.6rem 1.2rem;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}

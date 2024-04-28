@@ -1,0 +1,131 @@
+.bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100%;
+  background-color: var(--main1);
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bgCircle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--w1);
+  transform: translate(0%, 0%);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.1;
+}
+
+.bgCircle:nth-child(1) {
+  width: 60rem;
+  height: 60rem;
+  top: -20%;
+  left: 72%;
+  z-index: 10;
+  animation-name: animation-first;
+  animation-duration: 32s;
+
+  @keyframes animation-first {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    50% {
+      transform: translate(-25%, -25%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.bgCircle:nth-child(2) {
+  width: 30rem;
+  height: 30rem;
+  top: -10%;
+  right: 72%;
+  z-index: 10;
+  animation-name: animation-second;
+  animation-duration: 32s;
+
+  @keyframes animation-second {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    50% {
+      transform: translate(40%, 40%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.bgCircle:nth-child(3) {
+  width: 100rem;
+  height: 100rem;
+  bottom: -80%;
+  right: 40%;
+  z-index: 10;
+  animation-name: animation-third;
+  animation-duration: 32s;
+
+  @keyframes animation-third {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    50% {
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.bgCircle:nth-child(4) {
+  width: 40rem;
+  height: 40rem;
+  bottom: -20%;
+  left: 60%;
+  z-index: 10;
+  animation-name: animation-fourth;
+  animation-duration: 32s;
+
+  @keyframes animation-fourth {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    50% {
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.bgCircle:nth-child(5) {
+  width: 30rem;
+  height: 30rem;
+  top: 10%;
+  left: 40%;
+  z-index: 10;
+  animation-name: animation-fifth;
+  animation-duration: 32s;
+
+  @keyframes animation-fifth {
+    0% {
+      transform: translate(0%, 0%);
+    }
+    50% {
+      transform: translate(100%, 100%);
+    }
+    100% {
+      transform: translate(0%, 0%);
+    }
+  }
+}
