@@ -6,6 +6,7 @@ export const getPosts: () => Post[] = () => {
   return esquisses.map((esquisse) => {
     const user = users[0];
     return {
+      id: esquisse.id,
       createdAt: esquisse.createdAt,
       workId: esquisse.workId,
       subject: esquisse.subject,

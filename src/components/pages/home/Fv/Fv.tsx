@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import fvImg from "@/assets/fv/fv.png";
 import { Button, FlexBox, Icon, Typography } from "@/components/common";
@@ -6,6 +7,7 @@ import { Button, FlexBox, Icon, Typography } from "@/components/common";
 import styles from "./Fv.module.scss";
 
 const Fv = () => {
+  const router = useRouter();
   return (
     <FlexBox className={styles.container}>
       <FlexBox className={styles.imageContainer}>
@@ -25,7 +27,12 @@ const Fv = () => {
           Forum
         </Typography>
         <Icon iconName="arrowLarge" />
-        <Button theme="rectPink" size="large" className={styles.button}>
+        <Button
+          theme="rectPink"
+          size="large"
+          className={styles.button}
+          onClick={() => router.push("/work/new")}
+        >
           投稿する
         </Button>
       </FlexBox>

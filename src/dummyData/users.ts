@@ -2,6 +2,7 @@ import { User } from "@/types/firestore/user.types";
 
 export const users: User[] = [
   {
+    id: "user1",
     name: "Kado Hiroki",
     lab: "建築環境学研究室",
     coverImageUrl: "https://example.com/cover.jpg",
@@ -10,6 +11,7 @@ export const users: User[] = [
     workIds: ["work1", "work2"],
   },
   {
+    id: "user2",
     name: "Hidano Ryotaro",
     lab: "建築環境学研究室",
     coverImageUrl: "https://example.com/cover.jpg",
@@ -18,6 +20,7 @@ export const users: User[] = [
     workIds: [],
   },
   {
+    id: "user3",
     name: "Konishi Sota",
     lab: "建築環境学研究室",
     coverImageUrl: "https://example.com/cover.jpg",
@@ -26,6 +29,7 @@ export const users: User[] = [
     workIds: [],
   },
   {
+    id: "user4",
     name: "Sakane Tubasa",
     lab: "建築環境学研究室",
     coverImageUrl: "https://example.com/cover.jpg",

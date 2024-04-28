@@ -2,7 +2,7 @@
 import { Inter } from "next/font/google";
 
 import { HeaderLayout } from "@/components/layout/HeaderLayout";
-
+import { MemberProvider } from "@/contexts/member.context";
 import "@/styles/globals.scss";
 import "destyle.css";
 
@@ -15,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <HeaderLayout>{children}</HeaderLayout>
+        <MemberProvider>
+          <HeaderLayout>{children}</HeaderLayout>
+        </MemberProvider>
       </body>
     </html>
   );

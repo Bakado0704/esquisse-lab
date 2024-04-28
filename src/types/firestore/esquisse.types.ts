@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const EsquisseSchema = z.object({
+  id: z.string(),
   workId: z.string(),
   createdAt: z.date(),
   imageUrls: z.array(z.string()).optional(),

@@ -1,7 +1,14 @@
 @use "@/styles/mixin" as *;
 
 .sectionWrap {
+  overflow: scroll;
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+.sectionWrapInner {
   max-width: 108rem;
+  height: 100%;
   padding: 0 4rem;
   margin: 0 auto;
 

@@ -7,13 +7,15 @@ import styles from "./FlexBox.module.scss";
 import type { FlexBoxProps } from "./FlexBox.types";
 
 const FlexBox = forwardRef<HTMLDivElement, FlexBoxProps>((props, ref) => {
-  const { children, className, onClick, ...styleProps } = props;
+  const { id, children, className, onClick, onScroll, ...styleProps } = props;
   return (
     <div
+      id={id}
       ref={ref}
       className={classNames(styles.flex, className)}
       style={{ ...styleProps }}
       onClick={onClick}
+      onScroll={onScroll}
       role="presentation"
     >
       {children}

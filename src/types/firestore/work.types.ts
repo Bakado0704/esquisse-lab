@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const WorkSchema = z.object({
+  id: z.string(),
   uid: z.string(),
   title: z.string(),
   concept: z.string(),

@@ -1,16 +1,18 @@
 import { Button, FlexBox, Typography } from "@/components/common";
+import { useMemberContext } from "@/contexts/member.context";
 
 import { MemberIcon } from "./MemberIcon";
 import styles from "./Members.module.scss";
 import { MembersProps } from "./Members.types";
 
 const Members = ({ users }: MembersProps) => {
+  const { isOpenMember } = useMemberContext();
   return (
-    <FlexBox className={styles.container}>
+    <FlexBox id="member" className={styles.container}>
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {users && (
+      {users && isOpenMember && (
         <FlexBox
           gap="6rem"
           flexDirection="column"

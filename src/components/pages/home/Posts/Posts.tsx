@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import postImage from "@/assets/fv/fv.png";
 import { FlexBox, Separator, Typography } from "@/components/common";
@@ -10,6 +11,7 @@ import styles from "./Posts.module.scss";
 import { PostsProps } from "./Posts.types";
 
 const Posts = ({ posts }: PostsProps) => {
+  const router = useRouter();
   return (
     <FlexBox flexDirection="column" gap="7.2rem" padding="8.4rem 0 7.2rem">
       <FlexBox flexDirection="column" gap="3.2rem">
@@ -24,6 +26,7 @@ const Posts = ({ posts }: PostsProps) => {
                 flexDirection="column"
                 gap="1.8rem"
                 className={styles.post}
+                onClick={() => router.push(`/work/${post.id}`)}
               >
                 <FlexBox width="100%" className={styles.imageContainer}>
                   <Image src={postImage} alt="post" layout="responsive" />
@@ -58,7 +61,7 @@ const Posts = ({ posts }: PostsProps) => {
         </FlexBox>
       </FlexBox>
       <FlexBox justifyContent="center">
-        <button className="">
+        <button onClick={() => router.push("/posts")}>
           <Typography fontSize="3rem" gothic className={styles.viewButton}>
             View All Posts
           </Typography>

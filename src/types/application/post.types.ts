@@ -1,4 +1,5 @@
 export type Post = {
+  id: string;
   createdAt: Date;
   workId: string;
   subject: string;

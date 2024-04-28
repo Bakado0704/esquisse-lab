@@ -2,6 +2,7 @@ import { Work } from "@/types/firestore/work.types";
 
 export const works: Work[] = [
   {
+    id: "work1",
     uid: "kado",
     title: "水害ノ強制作法",
     concept:
@@ -13,6 +14,7 @@ export const works: Work[] = [
     esquisseIds: ["esquisse1", "esquisse2"],
   },
   {
+    id: "work2",
     uid: "kado",
     title: "水害ノ強制作法",
     concept:

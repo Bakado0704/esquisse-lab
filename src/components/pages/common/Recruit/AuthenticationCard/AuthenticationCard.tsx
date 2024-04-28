@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 import {
   Button,
   FlexBox,
@@ -10,6 +12,9 @@ import { Card } from "@/components/common/Card";
 import styles from "./AuthenticationCard.module.scss";
 
 const AuthenticationUnit = () => {
+  const router = useRouter();
+  const onSubmit = () => {};
+
   return (
     <Card fullWidth className={styles.card}>
       <FlexBox gap="4rem" flexDirection="column" className={styles.cardInner}>
@@ -26,13 +31,16 @@ const AuthenticationUnit = () => {
           />
         </FlexBox>
         <FlexBox flexDirection="column" className={styles.buttonContainer}>
-          <Button className={styles.button}>
+          <Button className={styles.button} onClick={() => onSubmit()}>
             <Typography color="w1" fontSize="1.6rem">
               Login
             </Typography>
           </Button>
           <Separator direction="horizontal" />
-          <Button className={styles.accountButton}>
+          <Button
+            className={styles.accountButton}
+            onClick={() => router.push("/register")}
+          >
             <Typography color="w1" fontSize="1.6rem">
               Create a new Account!
             </Typography>
