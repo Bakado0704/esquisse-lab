@@ -35,7 +35,7 @@ const Members = ({ users }: MembersProps) => {
                   gap="1.6rem"
                   className={styles.member}
                 >
-                  <MemberIcon />
+                  <MemberIcon user={user} />
                   <FlexBox flexDirection="column" gap="1rem">
                     <Typography
                       ellipsis

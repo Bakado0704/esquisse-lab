@@ -23,6 +23,7 @@
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
   }
 
   > span:last-child {
@@ -34,11 +35,26 @@
     transform: translate(-50%, 20%);
     border-radius: 50%;
     background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
   }
 }
 
 .iconContainer {
   position: relative;
+  cursor: pointer;
+
+  &:hover {
+    > .icon {
+      > span:first-child {
+        width: 6.5rem;
+        height: 6.5rem;
+      }
+      > span:last-child {
+        width: 11rem;
+        height: 11rem;
+      }
+    }
+  }
 }
 
 .backgroundOne {
