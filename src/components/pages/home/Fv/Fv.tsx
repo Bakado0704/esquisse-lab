@@ -10,13 +10,15 @@ const Fv = () => {
   const router = useRouter();
   return (
     <FlexBox className={styles.container}>
-      <FlexBox className={styles.imageContainer}>
-        <Image
-          src={fvImg}
-          alt="fv"
-          style={{ objectFit: "cover" }}
-          className={styles.image}
-        />
+      <FlexBox className={styles.containerInner}>
+        <FlexBox className={styles.imageContainer}>
+          <Image
+            src={fvImg}
+            alt="fv"
+            style={{ objectFit: "cover" }}
+            className={styles.image}
+          />
+        </FlexBox>
       </FlexBox>
       <FlexBox flexDirection="column" justifyContent="center" gap="2.4rem">
         <Typography gothic color="w1" className={styles.title}>
