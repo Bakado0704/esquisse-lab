@@ -63,46 +63,6 @@
   );
 }
 
-@mixin outlinePinkCommon(
-  $background-color: var(--w1),
-  $color: var(--b1),
-  $borderRadius: 2.4rem
-) {
-  @include common($background-color: $background-color, $color: $color);
-
-  position: relative;
-  border-radius: $borderRadius;
-
-  ::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    border-radius: $borderRadius;
-    background: linear-gradient(270deg, #e162bd 0%, #ff4d8e 100%);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-  }
-
-  span {
-    background: linear-gradient(270deg, #e162bd 0%, #ff4d8e 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-}
-
-.huge {
-  height: 4.4rem;
-  width: 34.2rem;
-
-  span {
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
-}
-
 .large {
   height: 4.4rem;
   width: 18rem;
