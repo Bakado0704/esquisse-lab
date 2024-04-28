@@ -1,5 +1,5 @@
 import { Post } from "@/types/application/post.types";
 
-export type PostsProps = {
-  posts: Post[];
+export type ItemCardProps = {
+  post: Post;
 };

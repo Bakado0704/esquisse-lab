@@ -8,7 +8,7 @@ const HeaderLayout = ({ children }: HeaderLayoutProps) => {
     <div id="scrollContainer" className={styles.sectionWrap}>
       <div className={styles.sectionWrapInner}>
         <NavHeader />
-        {children}
+        <div className={styles.container}>{children}</div>
       </div>
     </div>
   );

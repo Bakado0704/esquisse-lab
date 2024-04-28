@@ -4,14 +4,15 @@ import { useRouter } from "next/navigation";
 
 import postImage from "@/assets/fv/fv.png";
 import { FlexBox, Separator, Typography } from "@/components/common";
+import { getPosts } from "@/libs/getPosts";
 import { Post } from "@/types/application/post.types";
 
 import { PostIcon } from "./PostIcon";
 import styles from "./Posts.module.scss";
-import { PostsProps } from "./Posts.types";
 
-const Posts = ({ posts }: PostsProps) => {
+const Posts = () => {
   const router = useRouter();
+  const posts = getPosts();
   return (
     <FlexBox flexDirection="column" gap="7.2rem" padding="8.4rem 0 7.2rem">
       <FlexBox flexDirection="column" gap="3.2rem">
@@ -26,7 +27,7 @@ const Posts = ({ posts }: PostsProps) => {
                 flexDirection="column"
                 gap="1.8rem"
                 className={styles.post}
-                onClick={() => router.push(`/work/${post.id}`)}
+                onClick={() => router.push(`/work/${post.workId}`)}
               >
                 <FlexBox width="100%" className={styles.imageContainer}>
                   <Image src={postImage} alt="post" layout="responsive" />
@@ -61,7 +62,7 @@ const Posts = ({ posts }: PostsProps) => {
         </FlexBox>
       </FlexBox>
       <FlexBox justifyContent="center">
-        <button onClick={() => router.push("/posts")}>
+        <button onClick={() => router.push("/posts/全投稿")}>
           <Typography fontSize="3rem" gothic className={styles.viewButton}>
             View All Posts
           </Typography>

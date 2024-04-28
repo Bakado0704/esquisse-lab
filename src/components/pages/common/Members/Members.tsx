@@ -2,13 +2,14 @@ import { useRouter } from "next/navigation";
 
 import { Button, FlexBox, Typography } from "@/components/common";
 import { useMemberContext } from "@/contexts/member.context";
+import { getUsers } from "@/libs/getUsers";
 
 import { MemberIcon } from "./MemberIcon";
 import styles from "./Members.module.scss";
-import { MembersProps } from "./Members.types";
 
-const Members = ({ users }: MembersProps) => {
+const Members = () => {
   const { isOpenMember } = useMemberContext();
+  const users = getUsers();
   const router = useRouter();
   return (
     <FlexBox id="member" className={styles.container}>
