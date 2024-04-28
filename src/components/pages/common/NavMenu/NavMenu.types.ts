@@ -1,4 +1,5 @@
 export type NavMenuProps = {
   isMenuOpen: boolean;
-  onMenuClose: () => void;
+  onScrollLogin: () => void;
+  onScrollMember: () => void;
 };

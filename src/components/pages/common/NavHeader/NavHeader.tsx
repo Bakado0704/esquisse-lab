@@ -19,19 +19,23 @@ const NavHeader = () => {
   const onMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const onMenuClose = () => {
+  const onScrollMember = () => {
     setIsOpenMember(true);
     onScroll("member");
     setIsMenuOpen(false);
   };
-  const onMemberOpen = () => {
-    setIsOpenMember(true);
-    onScroll("member");
+  const onScrollLogin = () => {
+    onScroll("login");
+    setIsMenuOpen(false);
   };
 
   return (
     <div className={styles.headerContainer}>
-      <NavMenu isMenuOpen={isMenuOpen} onMenuClose={onMenuClose} />
+      <NavMenu
+        isMenuOpen={isMenuOpen}
+        onScrollMember={onScrollMember}
+        onScrollLogin={onScrollLogin}
+      />
       <div className={styles.headerContainerInner}>
         <div className={styles.logo} onClick={() => router.push("/home")}>
           <Image
@@ -44,11 +48,16 @@ const NavHeader = () => {
         <div className={styles.PcContainer}>
           <button
             className={styles.memberButton}
-            onClick={() => onMemberOpen()}
+            onClick={() => onScrollMember()}
           >
             Members
           </button>
-          <button className={styles.loginButton}>ログイン</button>
+          <button
+            className={styles.loginButton}
+            onClick={() => onScrollLogin()}
+          >
+            ログイン
+          </button>
         </div>
         <button
           className={classNames(

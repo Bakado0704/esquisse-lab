@@ -1,21 +1,13 @@
 import classNames from "classnames";
-import { useRouter } from "next/navigation";
-
-import { onScroll } from "@/hooks/useScroll";
 
 import styles from "./NavMenu.module.scss";
 import { NavMenuProps } from "./NavMenu.types";
 
-const NavMenu = ({ isMenuOpen, onMenuClose }: NavMenuProps) => {
-  const router = useRouter();
-  const onScrollMember = () => {
-    onMenuClose();
-    onScroll("member");
-  };
-  const login = () => {
-    router.push("/login");
-  };
-
+const NavMenu = ({
+  isMenuOpen,
+  onScrollMember,
+  onScrollLogin,
+}: NavMenuProps) => {
   return (
     <div
       className={classNames(
@@ -26,7 +18,7 @@ const NavMenu = ({ isMenuOpen, onMenuClose }: NavMenuProps) => {
       <button className={styles.button} onClick={() => onScrollMember()}>
         Members
       </button>
-      <button className={styles.button} onClick={() => login()}>
+      <button className={styles.button} onClick={() => onScrollLogin()}>
         ログイン
       </button>
     </div>
