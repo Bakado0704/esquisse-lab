@@ -47,7 +47,11 @@ const Concept = () => {
           </FlexBox>
 
           <FlexBox justifyContent="center">
-            <Typography color="main1" className={styles.title}>
+            <Typography
+              color="main1"
+              fontSize="1.2rem"
+              className={styles.title}
+            >
               {concept.title}
             </Typography>
           </FlexBox>

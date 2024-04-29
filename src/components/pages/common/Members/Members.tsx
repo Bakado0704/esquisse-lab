@@ -1,25 +1,30 @@
+import classNames from "classnames";
 import { useRouter } from "next/navigation";
 
 import { Button, FlexBox, Typography } from "@/components/common";
 import { useMemberContext } from "@/contexts/member.context";
+import { getUsers } from "@/libs/getUsers";
 
 import { MemberIcon } from "./MemberIcon";
 import styles from "./Members.module.scss";
-import { MembersProps } from "./Members.types";
 
-const Members = ({ users }: MembersProps) => {
+const Members = () => {
   const { isOpenMember } = useMemberContext();
+  const users = getUsers();
   const router = useRouter();
   return (
     <FlexBox id="member" className={styles.container}>
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {users && isOpenMember && (
+      {users && (
         <FlexBox
           gap="6rem"
           flexDirection="column"
-          className={styles.containerInner}
+          className={classNames(
+            styles.containerInner,
+            isOpenMember && styles.containerInnerOpen
+          )}
         >
           <FlexBox justifyContent="center">
             <Typography color="w1" gothic className={styles.title}>
@@ -40,12 +45,18 @@ const Members = ({ users }: MembersProps) => {
                     <Typography
                       ellipsis
                       color="w1"
-                      fontWeight={600}
                       textAlign="center"
+                      fontSize="1.4rem"
+                      fontWeight={600}
                     >
                       {user.name}
                     </Typography>
-                    <Typography ellipsis color="w1" textAlign="center">
+                    <Typography
+                      ellipsis
+                      color="w1"
+                      textAlign="center"
+                      fontSize="1.2rem"
+                    >
                       {user.lab}
                     </Typography>
                   </FlexBox>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
 
 :root {
   --max-width: 1100px;
@@ -55,6 +55,8 @@ body {
   height: 100dvh;
   overflow-x: hidden;
   font-size: 10px;
+  line-height: 100%;
+  font-weight: 300;
 }
 
 html,
@@ -62,7 +64,7 @@ body,
 button,
 select,
 pre {
-  font-family: "Hiragino Sans", "Anton", sans-serif;
+  font-family: "Hiragino Sans", "Protest Strike", sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
