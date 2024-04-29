@@ -15,7 +15,6 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <script> </script>
         <MemberProvider>
           <HeaderLayout>{children}</HeaderLayout>
         </MemberProvider>

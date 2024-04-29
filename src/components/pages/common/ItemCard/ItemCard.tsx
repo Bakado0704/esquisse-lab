@@ -27,7 +27,7 @@ const AllPosts = ({ post }: ItemCardProps) => {
         gap="0.8rem"
         className={styles.cardDetailContainer}
       >
-        <Typography ellipsis fontWeight={600}>
+        <Typography ellipsis fontSize="1.4rem" fontWeight={600}>
           {post.subject}
         </Typography>
         <FlexBox gap="0.8rem" alignItems="center">

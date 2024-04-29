@@ -51,7 +51,11 @@ const Posts = () => {
                   >
                     {post.subject}
                   </Typography>
-                  <Typography ellipsis className={styles.description}>
+                  <Typography
+                    ellipsis
+                    fontSize="1.4rem"
+                    className={styles.description}
+                  >
                     {post.description}
                   </Typography>
                 </FlexBox>

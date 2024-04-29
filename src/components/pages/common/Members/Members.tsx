@@ -41,12 +41,18 @@ const Members = () => {
                     <Typography
                       ellipsis
                       color="w1"
-                      fontWeight={600}
                       textAlign="center"
+                      fontSize="1.4rem"
+                      fontWeight={600}
                     >
                       {user.name}
                     </Typography>
-                    <Typography ellipsis color="w1" textAlign="center">
+                    <Typography
+                      ellipsis
+                      color="w1"
+                      textAlign="center"
+                      fontSize="1.2rem"
+                    >
                       {user.lab}
                     </Typography>
                   </FlexBox>

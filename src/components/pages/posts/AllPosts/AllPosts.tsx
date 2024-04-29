@@ -15,10 +15,14 @@ const AllPosts = () => {
     <FlexBox gap="3.2rem" flexDirection="column" className={styles.container}>
       <div className={styles.bg} />
       <FlexBox justifyContent="center">
-        <Typography fontWeight={600} color="accent1" fontSize="3.6rem">
+        <Typography
+          fontWeight={600}
+          color="accent1"
+          className={styles.postTitle}
+        >
           {categoryId.charAt(0)}
         </Typography>
-        <Typography fontWeight={600} color="main1" fontSize="3.6rem">
+        <Typography fontWeight={600} color="main1" className={styles.postTitle}>
           {categoryId.slice(1)}
         </Typography>
       </FlexBox>
