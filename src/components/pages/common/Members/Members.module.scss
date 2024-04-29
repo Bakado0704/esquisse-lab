@@ -52,6 +52,13 @@
 
 .containerInner {
   width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+
+.containerInnerOpen {
+  height: 100%;
+  overflow: visible;
 }
 
 .memberContainer {

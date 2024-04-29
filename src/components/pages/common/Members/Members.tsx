@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useRouter } from "next/navigation";
 
 import { Button, FlexBox, Typography } from "@/components/common";
@@ -16,11 +17,14 @@ const Members = () => {
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {users && isOpenMember && (
+      {users && (
         <FlexBox
           gap="6rem"
           flexDirection="column"
-          className={styles.containerInner}
+          className={classNames(
+            styles.containerInner,
+            isOpenMember && styles.containerInnerOpen
+          )}
         >
           <FlexBox justifyContent="center">
             <Typography color="w1" gothic className={styles.title}>
