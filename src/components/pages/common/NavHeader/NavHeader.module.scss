@@ -35,9 +35,11 @@
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--main1);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
     color: var(--accent1);
   }
 }

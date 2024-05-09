@@ -66,8 +66,16 @@ const Posts = () => {
         </FlexBox>
       </FlexBox>
       <FlexBox justifyContent="center">
-        <button onClick={() => router.push("/posts/全投稿")}>
-          <Typography fontSize="3rem" gothic className={styles.viewButton}>
+        <button
+          className={styles.buttonContainer}
+          onClick={() => router.push("/posts/全投稿")}
+        >
+          <Typography
+            fontSize="3rem"
+            fontWeight={600}
+            gothic
+            className={styles.viewButton}
+          >
             View All Posts
           </Typography>
         </button>
