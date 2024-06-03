@@ -8,14 +8,13 @@ import { MemberIconProps } from "./MemberIcon.types";
 const MemberIcon = ({ user }: MemberIconProps) => {
   const router = useRouter();
   return (
-    <FlexBox
-      justifyContent="center"
-      className={styles.iconContainer}
-      onClick={() => router.push(`/member/${user.id}`)}
-    >
+    <FlexBox justifyContent="center" className={styles.iconContainer}>
       <div className={styles.backgroundOne} />
       <div className={styles.backgroundTwo} />
-      <div className={styles.icon}>
+      <div
+        className={styles.icon}
+        onClick={() => router.push(`/user/${user.id}`)}
+      >
         <span />
         <span />
       </div>
