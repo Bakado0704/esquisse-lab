@@ -3,7 +3,7 @@ import { Work } from "@/types/firestore/work.types";
 export const works: Work[] = [
   {
     id: "work1",
-    uid: "kado",
+    uid: "user1",
     title: "水害ノ強制作法",
     concept:
       "我孫子市の自宅の近くにある用水路を、用水路の整備によって失われたものを取り戻す動脈として再生します。",
@@ -15,7 +15,7 @@ export const works: Work[] = [
   },
   {
     id: "work2",
-    uid: "kado",
+    uid: "user1",
     title: "水害ノ強制作法",
     concept:
       "我孫子市の自宅の近くにある用水路を、用水路の整備によって失われたものを取り戻す動脈として再生します。",
