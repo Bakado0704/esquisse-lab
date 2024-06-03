@@ -1,15 +1,11 @@
-import { usePathname } from "next/navigation";
-
 import { FlexBox, Typography } from "@/components/common";
 import { ItemCard } from "@/components/pages/common/ItemCard";
 import { getPosts } from "@/libs/getPosts";
-import { getTag } from "@/libs/getTag";
 
 import styles from "./AllPosts.module.scss";
+import { AllPostsProps } from "./AllPosts.types";
 
-const AllPosts = () => {
-  const pathname = usePathname();
-  const categoryId = getTag(pathname);
+const AllPosts = ({ categoryId }: AllPostsProps) => {
   const posts = getPosts();
   return (
     <FlexBox gap="3.2rem" flexDirection="column" className={styles.container}>
@@ -28,7 +24,15 @@ const AllPosts = () => {
       </FlexBox>
       <FlexBox className={styles.cardContainer}>
         {posts.map((post) => {
-          return <ItemCard key={post.id} post={post} />;
+          return (
+            <ItemCard
+              key={post.id}
+              createdAt={post.createdAt}
+              workId={post.workId}
+              userName={post.userName}
+              subject={post.subject}
+            />
+          );
         })}
       </FlexBox>
     </FlexBox>
