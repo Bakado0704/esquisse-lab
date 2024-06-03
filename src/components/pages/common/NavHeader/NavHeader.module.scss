@@ -86,6 +86,8 @@
 .SpContainer {
   display: none;
   z-index: 1000;
+  border: none;
+  background-color: transparent;
 
   @include mq(md) {
     display: block;
