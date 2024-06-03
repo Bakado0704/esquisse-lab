@@ -1,5 +1,6 @@
-import { Post } from "@/types/application/post.types";
-
 export type ItemCardProps = {
-  post: Post;
+  workId: string;
+  createdAt: Date;
+  subject: string;
+  userName?: string;
 };
