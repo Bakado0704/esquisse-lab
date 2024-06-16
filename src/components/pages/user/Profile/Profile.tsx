@@ -20,11 +20,9 @@ const Profile = ({ user }: ProfileProps) => {
             </Typography>
           </FlexBox>
 
-          <FlexBox flexDirection='column' gap='0.8rem'>
-            <Typography fontSize='1.2rem' fontWeight={600} textAlign='center'>
-              {user.detail}
-            </Typography>
-          </FlexBox>
+          <Typography fontSize='1.2rem' fontWeight={600} textAlign='center'>
+            {user.detail}
+          </Typography>
         </FlexBox>
       </FlexBox>
     </FlexBox>
