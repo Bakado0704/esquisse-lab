@@ -21,7 +21,7 @@ const ProposeUnit = () => {
         </Typography>
       </FlexBox>
 
-      <Button className={styles.button} onClick={onScrollMember}>
+      <Button size='huge' className={styles.button} onClick={onScrollMember}>
         メンバーを見る
       </Button>
     </FlexBox>
