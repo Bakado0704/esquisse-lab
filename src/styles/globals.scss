@@ -35,6 +35,11 @@
     #00000010,
     #00000080
   );
+  --pink-gradient: linear-gradient(
+    270deg,
+    var(--accent1) 0%,
+    var(--accent2) 100%
+  );
 
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
