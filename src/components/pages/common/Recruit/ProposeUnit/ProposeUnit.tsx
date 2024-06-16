@@ -1,15 +1,10 @@
 import { Button, FlexBox, Typography } from '@/components/common';
-import { useMemberContext } from '@/contexts/member.context';
-import { onScroll } from '@/hooks/useScroll';
 
+import { useProposeUnit } from './ProposeUnit.hooks';
 import styles from './ProposeUnit.module.scss';
 
 const ProposeUnit = () => {
-  const { setIsOpenMember } = useMemberContext();
-  const onScrollToMember = () => {
-    setIsOpenMember(true);
-    onScroll('member');
-  };
+  const { onScrollMember } = useProposeUnit();
 
   return (
     <FlexBox flexDirection='column' className={styles.container}>
@@ -26,7 +21,7 @@ const ProposeUnit = () => {
         </Typography>
       </FlexBox>
 
-      <Button className={styles.button} onClick={() => onScrollToMember()}>
+      <Button className={styles.button} onClick={onScrollMember}>
         メンバーを見る
       </Button>
     </FlexBox>

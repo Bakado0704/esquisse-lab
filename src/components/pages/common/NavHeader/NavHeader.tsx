@@ -37,16 +37,10 @@ const NavHeader = () => {
           onClick={() => router.push('/home')}
         />
         <FlexBox className={styles.PcContainer}>
-          <button
-            className={styles.memberButton}
-            onClick={() => onScrollMember()}
-          >
+          <button className={styles.memberButton} onClick={onScrollMember}>
             Members
           </button>
-          <button
-            className={styles.loginButton}
-            onClick={() => onScrollLogin()}
-          >
+          <button className={styles.loginButton} onClick={onScrollLogin}>
             ログイン
           </button>
         </FlexBox>
@@ -56,7 +50,7 @@ const NavHeader = () => {
               styles.menuButton,
               isMenuOpen ? styles.menuButtonOpen : undefined,
             )}
-            onClick={() => onMenuOpen()}
+            onClick={onMenuOpen}
           >
             <span />
             <span />

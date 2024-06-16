@@ -1,24 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
 import { useMemberContext } from '@/contexts/member.context';
 import { onScroll } from '@/hooks/useScroll';
+import { getUsers } from '@/libs/getUsers';
 
 export const useNavHeader = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setIsOpenMember } = useMemberContext();
   const router = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { members, setMembers } = useMemberContext();
+  const users = getUsers();
+
+  useEffect(() => {
+    if (members.length) {
+      onScroll('member', 'top');
+    }
+  }, [members]);
+
   const onMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const onScrollMember = () => {
-    setIsOpenMember(true);
-    onScroll('member');
+    setMembers(users);
     setIsMenuOpen(false);
+    onScroll('member', 'top');
   };
   const onScrollLogin = () => {
-    onScroll('login');
+    onScroll('login', 'top');
     setIsMenuOpen(false);
   };
 
