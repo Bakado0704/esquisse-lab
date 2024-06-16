@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 
+import { Button, FlexBox } from '@/components/common';
+
 import styles from './NavMenu.module.scss';
 import { NavMenuProps } from './NavMenu.types';
 
@@ -9,19 +11,25 @@ const NavMenu = ({
   onScrollLogin,
 }: NavMenuProps) => {
   return (
-    <div
+    <FlexBox
+      flexDirection='column'
+      gap='2.4rem'
       className={classNames(
         styles.container,
         isMenuOpen ? styles.open : undefined,
       )}
     >
-      <button className={styles.button} onClick={() => onScrollMember()}>
-        Members
-      </button>
-      <button className={styles.button} onClick={() => onScrollLogin()}>
-        ログイン
-      </button>
-    </div>
+      <FlexBox justifyContent='left'>
+        <Button theme='textIndigo' onClick={onScrollMember}>
+          Members
+        </Button>
+      </FlexBox>
+      <FlexBox justifyContent='left'>
+        <Button theme='textIndigo' onClick={onScrollLogin}>
+          ログイン
+        </Button>
+      </FlexBox>
+    </FlexBox>
   );
 };
 export default NavMenu;
