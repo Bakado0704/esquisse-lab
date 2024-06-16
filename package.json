@@ -9,9 +9,14 @@
     "lint": "next lint",
     "lint:eslint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --check --ignore-unknown src",
-    "format": "npm run lint:eslint -- --fix && prettier --write --list-different src",
     "lint:css": "stylelint \"src/**/*.scss\"",
-    "format:css": "prettier-stylelint --write \"src/**/*.scss\""
+    "format:css": "prettier-stylelint --write \"src/**/*.scss\"",
+    "format": "npm run lint:eslint -- --fix && prettier --write --list-different src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "eslint --cache",
+    "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
     "classnames": "^2.5.1",
