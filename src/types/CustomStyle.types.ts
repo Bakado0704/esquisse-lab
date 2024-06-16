@@ -1,7 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export interface CustomCSSProperties extends CSSProperties {
-  "--color"?: string;
-  "--bg-color"?: string;
-  "--size"?: string;
+  '--color'?: string;
+  '--bg-color'?: string;
+  '--size'?: string;
 }

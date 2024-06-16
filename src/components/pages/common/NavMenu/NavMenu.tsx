@@ -1,7 +1,7 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import styles from "./NavMenu.module.scss";
-import { NavMenuProps } from "./NavMenu.types";
+import styles from './NavMenu.module.scss';
+import { NavMenuProps } from './NavMenu.types';
 
 const NavMenu = ({
   isMenuOpen,
@@ -12,7 +12,7 @@ const NavMenu = ({
     <div
       className={classNames(
         styles.container,
-        isMenuOpen ? styles.open : undefined
+        isMenuOpen ? styles.open : undefined,
       )}
     >
       <button className={styles.button} onClick={() => onScrollMember()}>

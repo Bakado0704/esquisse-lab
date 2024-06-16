@@ -1,19 +1,19 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
-import type { ButtonProps } from "./Button.types";
+import type { ButtonProps } from './Button.types';
 
 const Button = (props: ButtonProps) => {
   const {
     id,
     className,
-    theme = "fill",
-    size = "medium",
+    theme = 'fill',
+    size = 'medium',
     children,
     fullWidth,
     onClick,
-    type = "button",
+    type = 'button',
     disabled,
     ...styleProps
   } = props;
@@ -24,15 +24,15 @@ const Button = (props: ButtonProps) => {
       className={classNames(
         styles[size],
         styles[theme],
-        fullWidth && styles["full-width"],
-        className
+        fullWidth && styles['full-width'],
+        className,
       )}
       style={{ ...styleProps }}
       onClick={onClick}
       type={type}
       disabled={disabled}
     >
-      {typeof children === "string" || typeof children === "number" ? (
+      {typeof children === 'string' || typeof children === 'number' ? (
         <span>{children}</span>
       ) : (
         children

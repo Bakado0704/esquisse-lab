@@ -1,4 +1,4 @@
-@use "@/styles/mixin" as *;
+@use '@/styles/mixin' as *;
 
 .container {
   position: relative;
@@ -17,7 +17,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  background: url("/images/home/recruit/bottomCircle.png") no-repeat center;
+  background: url('/images/home/recruit/bottomCircle.png') no-repeat center;
   background-size: cover;
   z-index: -1;
 }

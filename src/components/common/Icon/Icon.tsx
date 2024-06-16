@@ -1,18 +1,18 @@
-import { cloneElement } from "react";
+import { cloneElement } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import ArrowLarge from "@/assets/image/arrow-large.svg";
-import Attention from "@/assets/image/attention.svg";
-import BottomCircle from "@/assets/image/bottom-circle.svg";
-import Document from "@/assets/image/document.svg";
-import Support from "@/assets/image/support.svg";
-import Teacher from "@/assets/image/teacher.svg";
-import { CustomCSSProperties } from "@/types/CustomStyle.types";
+import ArrowLarge from '@/assets/image/arrow-large.svg';
+import Attention from '@/assets/image/attention.svg';
+import BottomCircle from '@/assets/image/bottom-circle.svg';
+import Document from '@/assets/image/document.svg';
+import Support from '@/assets/image/support.svg';
+import Teacher from '@/assets/image/teacher.svg';
+import { CustomCSSProperties } from '@/types/CustomStyle.types';
 
-import styles from "./Icon.module.scss";
+import styles from './Icon.module.scss';
 
-import type { IconProps } from "./Icon.types";
+import type { IconProps } from './Icon.types';
 
 const ICONS = {
   arrowLarge: <ArrowLarge />,
@@ -30,13 +30,13 @@ const Icon = ({
   className,
   iconName,
   disabled = false,
-  color = "w1",
+  color = 'w1',
   onClick,
   ...styleProps
 }: IconProps) => {
   const style: CustomCSSProperties = {
-    "--color": `var(--${color})`,
-    cursor: onClick ? "pointer" : disabled ? "not-allowed" : "inherit",
+    '--color': `var(--${color})`,
+    cursor: onClick ? 'pointer' : disabled ? 'not-allowed' : 'inherit',
     ...styleProps,
   };
 

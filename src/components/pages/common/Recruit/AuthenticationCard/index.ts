@@ -1,1 +1,1 @@
-export { default as AuthenticationCard } from "./AuthenticationCard";
+export { default as AuthenticationCard } from './AuthenticationCard';

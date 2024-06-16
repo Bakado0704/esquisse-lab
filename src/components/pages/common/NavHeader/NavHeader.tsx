@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import classNames from "classnames";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import classNames from 'classnames';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-import logo from "@/assets/logo/esquisse-lab.png";
-import { useMemberContext } from "@/contexts/member.context";
-import { onScroll } from "@/hooks/useScroll";
+import logo from '@/assets/logo/esquisse-lab.png';
+import { FlexBox } from '@/components/common';
+import { useMemberContext } from '@/contexts/member.context';
+import { onScroll } from '@/hooks/useScroll';
 
-import { NavMenu } from "../NavMenu";
+import { NavMenu } from '../NavMenu';
 
-import styles from "./NavHeader.module.scss";
+import styles from './NavHeader.module.scss';
 
 const NavHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,26 +22,30 @@ const NavHeader = () => {
   };
   const onScrollMember = () => {
     setIsOpenMember(true);
-    onScroll("member");
+    onScroll('member');
     setIsMenuOpen(false);
   };
   const onScrollLogin = () => {
-    onScroll("login");
+    onScroll('login');
     setIsMenuOpen(false);
   };
 
   return (
-    <div className={styles.headerContainer}>
+    <FlexBox
+      alignItems='center'
+      justifyContent='center'
+      className={styles.headerContainer}
+    >
       <NavMenu
         isMenuOpen={isMenuOpen}
         onScrollMember={onScrollMember}
         onScrollLogin={onScrollLogin}
       />
       <div className={styles.headerContainerInner}>
-        <div className={styles.logo} onClick={() => router.push("/home")}>
+        <div className={styles.logo} onClick={() => router.push('/home')}>
           <Image
             src={logo}
-            alt="logo"
+            alt='logo'
             height={40}
             className={styles.logoImage}
           />
@@ -62,7 +67,7 @@ const NavHeader = () => {
         <button
           className={classNames(
             styles.SpContainer,
-            isMenuOpen ? styles.open : undefined
+            isMenuOpen ? styles.open : undefined,
           )}
           onClick={() => onMenuOpen()}
         >
@@ -71,7 +76,7 @@ const NavHeader = () => {
           <span />
         </button>
       </div>
-    </div>
+    </FlexBox>
   );
 };
 export default NavHeader;

@@ -1,19 +1,19 @@
-import classNames from "classnames";
-import { Anton } from "next/font/google";
+import classNames from 'classnames';
+import { Anton } from 'next/font/google';
 
-import styles from "./Typography.module.scss";
+import styles from './Typography.module.scss';
 
-import type { TypographyProps } from "./Typography.types";
+import type { TypographyProps } from './Typography.types';
 
 const gothicFont = Anton({
-  subsets: ["latin"],
-  weight: "400",
+  subsets: ['latin'],
+  weight: '400',
 });
 
 const Typography = (props: TypographyProps) => {
   const {
     children,
-    color = "b1",
+    color = 'b1',
     className,
     ellipsis,
     lineNum = 1,
@@ -21,8 +21,8 @@ const Typography = (props: TypographyProps) => {
     ...styleProps
   } = props;
   const style = {
-    "--color": `var(--${color})`,
-    "--line-num": lineNum,
+    '--color': `var(--${color})`,
+    '--line-num': lineNum,
     ...styleProps,
   };
 
@@ -33,7 +33,7 @@ const Typography = (props: TypographyProps) => {
         className,
         gothic && gothicFont.className,
         ellipsis && styles.ellipsis,
-        lineNum > 1 && styles.multiLine
+        lineNum > 1 && styles.multiLine,
       )}
       style={style}
     >

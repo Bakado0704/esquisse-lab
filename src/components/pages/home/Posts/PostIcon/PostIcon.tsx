@@ -1,4 +1,4 @@
-import styles from "./PostIcon.module.scss";
+import styles from './PostIcon.module.scss';
 
 const PostIcon = () => {
   return (

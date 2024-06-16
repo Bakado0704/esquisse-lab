@@ -1,4 +1,4 @@
-import { User } from "@/types/application/user.types";
+import { User } from '@/types/application/user.types';
 
 export type MemberIconProps = {
   user: User;

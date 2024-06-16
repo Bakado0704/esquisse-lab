@@ -1,15 +1,15 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import { CustomCSSProperties } from "@/types/CustomStyle.types";
+import { CustomCSSProperties } from '@/types/CustomStyle.types';
 
-import styles from "./Separator.module.scss";
+import styles from './Separator.module.scss';
 
-import type { SeparatorProps } from "./Separator.types";
+import type { SeparatorProps } from './Separator.types';
 
 const Separator = (props: SeparatorProps) => {
-  const { className, direction, color = "b3", ...styleProps } = props;
+  const { className, direction, color = 'b3', ...styleProps } = props;
   const style: CustomCSSProperties = {
-    "--color": `var(--${color})`,
+    '--color': `var(--${color})`,
     ...styleProps,
   };
 

@@ -1,9 +1,9 @@
-import { GetServerSideProps } from "next";
+import { GetServerSideProps } from 'next';
 
-import { Concept } from "@/components/pages/common/Concept";
-import { Members } from "@/components/pages/common/Members";
-import { Recruit } from "@/components/pages/common/Recruit";
-import { AllPosts } from "@/components/pages/posts/AllPosts";
+import { Concept } from '@/components/pages/common/Concept';
+import { Members } from '@/components/pages/common/Members';
+import { Recruit } from '@/components/pages/common/Recruit';
+import { AllPosts } from '@/components/pages/posts/AllPosts';
 
 const Page = ({ categoryId }: { categoryId: string }) => {
   return (
@@ -18,7 +18,7 @@ const Page = ({ categoryId }: { categoryId: string }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
-  if (typeof id !== "string")
+  if (typeof id !== 'string')
     return {
       notFound: true,
     };

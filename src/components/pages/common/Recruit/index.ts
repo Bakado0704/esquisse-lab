@@ -1,1 +1,1 @@
-export { default as Recruit } from "./Recruit";
+export { default as Recruit } from './Recruit';

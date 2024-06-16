@@ -1,5 +1,5 @@
 export const onScroll = (targetId: string) => {
-  const container = document.getElementById("scrollContainer");
+  const container = document.getElementById('scrollContainer');
   const target = document.getElementById(targetId);
 
   if (container && target) {
@@ -11,7 +11,7 @@ export const onScroll = (targetId: string) => {
       targetRect.top - padding - containerRect.top + container.scrollTop;
     container.scrollTo({
       top: scrollPosition,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   }
 };

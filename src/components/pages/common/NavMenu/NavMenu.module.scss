@@ -1,4 +1,4 @@
-@use "@/styles/mixin" as *;
+@use '@/styles/mixin' as *;
 
 .container {
   position: fixed;
@@ -24,7 +24,7 @@
 
 .button {
   font-size: 1.8rem;
-  font-family: "protipo", sans-serif;
+  font-family: 'protipo', sans-serif;
   font-weight: 800;
   color: var(--main1);
   text-align: left;
