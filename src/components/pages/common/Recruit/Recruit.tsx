@@ -7,7 +7,7 @@ import styles from './Recruit.module.scss';
 
 const Recruit = () => {
   return (
-    <FlexBox id='login' className={styles.container}>
+    <FlexBox className={styles.container}>
       <Bg />
       <ProposeUnit />
       <AuthenticationCard />

@@ -16,7 +16,7 @@ const AuthenticationUnit = () => {
   const onSubmit = () => {};
 
   return (
-    <Card fullWidth className={styles.card}>
+    <Card id='login' fullWidth className={styles.card}>
       <FlexBox gap='4rem' flexDirection='column' className={styles.cardInner}>
         <Typography gothic className={styles.title}>
           Login
@@ -31,19 +31,15 @@ const AuthenticationUnit = () => {
           />
         </FlexBox>
         <FlexBox flexDirection='column' className={styles.buttonContainer}>
-          <Button className={styles.button} onClick={() => onSubmit()}>
-            <Typography color='w1' fontSize='1.6rem'>
-              Login
-            </Typography>
+          <Button className={styles.loginButton} onClick={() => onSubmit()}>
+            Login
           </Button>
           <Separator direction='horizontal' />
           <Button
             className={styles.accountButton}
             onClick={() => router.push('/register')}
           >
-            <Typography color='w1' fontSize='1.6rem'>
-              Create a new Account!
-            </Typography>
+            Create a new Account!
           </Button>
         </FlexBox>
       </FlexBox>
