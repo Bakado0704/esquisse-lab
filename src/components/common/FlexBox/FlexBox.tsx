@@ -16,7 +16,6 @@ const FlexBox = forwardRef<HTMLDivElement, FlexBoxProps>((props, ref) => {
       style={{ ...styleProps }}
       onClick={onClick}
       onScroll={onScroll}
-      role='presentation'
     >
       {children}
     </div>
