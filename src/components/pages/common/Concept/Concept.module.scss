@@ -1,13 +1,12 @@
 @use '@/styles/mixin' as *;
 
 .container {
-  justify-content: space-between;
-  gap: 6.4rem 1.6rem;
   width: 100%;
   padding: 8rem 0;
+  justify-content: space-between;
+  gap: 6.4rem 1.6rem;
 
   @include mq(md) {
-    padding: rem 0;
     justify-content: center;
     flex-direction: column;
   }
@@ -29,15 +28,4 @@
       height: 15rem;
     }
   }
-}
-
-.title {
-  font-size: 2.4rem;
-  font-weight: 600;
-}
-
-.description {
-  font-size: 1rem;
-  line-height: 150%;
-  text-align: center;
 }
