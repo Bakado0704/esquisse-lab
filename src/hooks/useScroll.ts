@@ -4,7 +4,8 @@ export const onScroll = (targetId: string, scrollTo: 'top' | 'bottom') => {
 
   if (container && target) {
     const targetRect = target.getBoundingClientRect();
-    const scrollPosition = targetRect[scrollTo] + container.scrollTop;
+    const padding = 60;
+    const scrollPosition = targetRect[scrollTo] - padding + container.scrollTop;
 
     container.scrollTo({
       top: scrollPosition,
