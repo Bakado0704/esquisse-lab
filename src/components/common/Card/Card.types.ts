@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 
 export type CardProps = {
+  id?: string;
   children: ReactNode;
   fullWidth?: boolean;
   className?: string;
