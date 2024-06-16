@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { Button, FlexBox, Typography } from '@/components/common';
 import { useMemberContext } from '@/contexts/member.context';
 
+import { MemberDetail } from './MemberDetail';
 import { MemberIcon } from './MemberIcon';
 import styles from './Members.module.scss';
 
@@ -15,7 +16,7 @@ const Members = () => {
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {members && (
+      {members.length && (
         <FlexBox width='100%' gap='6rem' flexDirection='column'>
           <FlexBox justifyContent='center'>
             <Typography color='w1' gothic className={styles.title}>
@@ -32,31 +33,14 @@ const Members = () => {
                   className={styles.member}
                 >
                   <MemberIcon user={user} />
-                  <FlexBox flexDirection='column' gap='1rem'>
-                    <Typography
-                      ellipsis
-                      color='w1'
-                      textAlign='center'
-                      fontSize='1.4rem'
-                      fontWeight={600}
-                    >
-                      {user.name}
-                    </Typography>
-                    <Typography
-                      ellipsis
-                      color='w1'
-                      textAlign='center'
-                      fontSize='1.2rem'
-                    >
-                      {user.lab}
-                    </Typography>
-                  </FlexBox>
+                  <MemberDetail user={user} />
                 </FlexBox>
               );
             })}
           </FlexBox>
           <FlexBox justifyContent='center'>
             <Button
+              size='huge'
               className={styles.button}
               onClick={() => router.push('/register')}
             >
