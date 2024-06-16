@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 
 import logo from '@/assets/logo/esquisse-lab.png';
-import { FlexBox } from '@/components/common';
+import { Button, FlexBox } from '@/components/common';
 
 import { NavMenu } from '../NavMenu';
 
@@ -37,12 +37,20 @@ const NavHeader = () => {
           onClick={() => router.push('/home')}
         />
         <FlexBox className={styles.PcContainer}>
-          <button className={styles.memberButton} onClick={onScrollMember}>
+          <Button
+            theme='textIndigo'
+            className={styles.memberButton}
+            onClick={onScrollMember}
+          >
             Members
-          </button>
-          <button className={styles.loginButton} onClick={onScrollLogin}>
+          </Button>
+          <Button
+            theme='fill'
+            className={styles.loginButton}
+            onClick={onScrollLogin}
+          >
             ログイン
-          </button>
+          </Button>
         </FlexBox>
         <FlexBox className={styles.SpContainer}>
           <button
