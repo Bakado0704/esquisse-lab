@@ -4,6 +4,7 @@ import { Concept } from '@/components/pages/common/Concept';
 import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
 import { ArchitectureWork } from '@/components/pages/user/ArchitectureWork';
+import { PersonalProject } from '@/components/pages/user/PersonalProject';
 import { Profile } from '@/components/pages/user/Profile';
 import { getUsers } from '@/libs/getUsers';
 import { getWorks } from '@/libs/getWorks';
@@ -16,6 +17,7 @@ const Page = ({ userId }: { userId: string }) => {
     <>
       <Profile user={user} />
       <ArchitectureWork archiWork={archiWork} />
+      <PersonalProject />
       <Recruit />
       <Concept />
       <Members />

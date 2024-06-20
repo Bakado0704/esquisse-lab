@@ -1,0 +1,9 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  display: none;
+
+  @include mq(md) {
+    display: flex;
+  }
+}
