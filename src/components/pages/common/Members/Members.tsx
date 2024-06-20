@@ -1,73 +1,48 @@
-import classNames from "classnames";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { Button, FlexBox, Typography } from "@/components/common";
-import { useMemberContext } from "@/contexts/member.context";
-import { getUsers } from "@/libs/getUsers";
+import { Button, FlexBox, Typography } from '@/components/common';
+import { useMemberContext } from '@/contexts/member.context';
 
-import { MemberIcon } from "./MemberIcon";
-import styles from "./Members.module.scss";
+import { MemberDetail } from './MemberDetail';
+import { MemberIcon } from './MemberIcon';
+import styles from './Members.module.scss';
 
 const Members = () => {
-  const { isOpenMember } = useMemberContext();
-  const users = getUsers();
+  const { members } = useMemberContext();
   const router = useRouter();
+
   return (
-    <FlexBox id="member" className={styles.container}>
+    <FlexBox id='member' className={styles.container}>
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {users && (
-        <FlexBox
-          gap="6rem"
-          flexDirection="column"
-          className={classNames(
-            styles.containerInner,
-            isOpenMember && styles.containerInnerOpen
-          )}
-        >
-          <FlexBox justifyContent="center">
-            <Typography color="w1" gothic className={styles.title}>
+      {members.length && (
+        <FlexBox width='100%' gap='6rem' flexDirection='column'>
+          <FlexBox justifyContent='center'>
+            <Typography color='w1' gothic className={styles.title}>
               Members
             </Typography>
           </FlexBox>
           <FlexBox className={styles.memberContainer}>
-            {users.map((user) => {
+            {members.map((user) => {
               return (
                 <FlexBox
                   key={user.name}
-                  flexDirection="column"
-                  gap="1.6rem"
+                  flexDirection='column'
+                  gap='1.6rem'
                   className={styles.member}
                 >
                   <MemberIcon user={user} />
-                  <FlexBox flexDirection="column" gap="1rem">
-                    <Typography
-                      ellipsis
-                      color="w1"
-                      textAlign="center"
-                      fontSize="1.4rem"
-                      fontWeight={600}
-                    >
-                      {user.name}
-                    </Typography>
-                    <Typography
-                      ellipsis
-                      color="w1"
-                      textAlign="center"
-                      fontSize="1.2rem"
-                    >
-                      {user.lab}
-                    </Typography>
-                  </FlexBox>
+                  <MemberDetail user={user} />
                 </FlexBox>
               );
             })}
           </FlexBox>
-          <FlexBox justifyContent="center">
+          <FlexBox justifyContent='center'>
             <Button
+              size='huge'
               className={styles.button}
-              onClick={() => router.push("/register")}
+              onClick={() => router.push('/register')}
             >
               メンバーになる
             </Button>

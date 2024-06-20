@@ -1,12 +1,12 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
-import type { IconName } from "./Icon";
+import type { IconName } from './Icon';
 
 export type IconProps = {
   id?: string;
   disabled?: boolean;
   className?: string;
   iconName: IconName;
-  onClick?: JSX.IntrinsicElements["div"]["onClick"];
+  onClick?: JSX.IntrinsicElements['div']['onClick'];
   size?: string;
 } & CSSProperties;

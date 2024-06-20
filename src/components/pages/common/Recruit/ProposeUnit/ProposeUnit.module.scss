@@ -1,4 +1,4 @@
-@use "@/styles/mixin" as *;
+@use '@/styles/mixin' as *;
 
 .container {
   width: 50%;
@@ -30,8 +30,6 @@
 }
 
 .button {
-  width: 24rem;
-  height: 6rem;
   border-radius: 90rem;
 
   @include mq(md) {

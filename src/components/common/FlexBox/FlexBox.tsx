@@ -1,10 +1,10 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import styles from "./FlexBox.module.scss";
+import styles from './FlexBox.module.scss';
 
-import type { FlexBoxProps } from "./FlexBox.types";
+import type { FlexBoxProps } from './FlexBox.types';
 
 const FlexBox = forwardRef<HTMLDivElement, FlexBoxProps>((props, ref) => {
   const { id, children, className, onClick, onScroll, ...styleProps } = props;
@@ -16,7 +16,6 @@ const FlexBox = forwardRef<HTMLDivElement, FlexBoxProps>((props, ref) => {
       style={{ ...styleProps }}
       onClick={onClick}
       onScroll={onScroll}
-      role="presentation"
     >
       {children}
     </div>

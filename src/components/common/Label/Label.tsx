@@ -1,20 +1,20 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import { CustomCSSProperties } from "@/types/CustomStyle.types";
+import { CustomCSSProperties } from '@/types/CustomStyle.types';
 
-import styles from "./Label.module.scss";
-import { LabelProps } from "./Label.types";
+import styles from './Label.module.scss';
+import { LabelProps } from './Label.types';
 
 const Label = ({
   children,
-  color = "b1",
-  bgColor = "w3",
+  color = 'b1',
+  bgColor = 'w3',
   theme,
   ...styleProps
 }: LabelProps) => {
   const style: CustomCSSProperties = {
-    "--color": `var(--${color})`,
-    "--bg-color": `var(--${bgColor})`,
+    '--color': `var(--${color})`,
+    '--bg-color': `var(--${bgColor})`,
     ...styleProps,
   };
 

@@ -5,22 +5,24 @@ import {
   createContext,
   useContext,
   useState,
-} from "react";
+} from 'react';
+
+import { User } from '@/types/application/user.types';
 
 const MemberContext = createContext<{
-  isOpenMember: boolean;
-  setIsOpenMember: Dispatch<SetStateAction<boolean>>;
+  members: User[];
+  setMembers: Dispatch<SetStateAction<User[]>>;
 }>({
-  isOpenMember: false,
-  setIsOpenMember: () => {},
+  members: [],
+  setMembers: () => {},
 });
 
 export const useMemberContext = () => useContext(MemberContext);
 
 export const MemberProvider = ({ children }: { children?: ReactNode }) => {
-  const [isOpenMember, setIsOpenMember] = useState<boolean>(false);
+  const [members, setMembers] = useState<User[]>([]);
 
-  const value = { isOpenMember, setIsOpenMember };
+  const value = { members, setMembers };
 
   return (
     <MemberContext.Provider value={value}>{children}</MemberContext.Provider>

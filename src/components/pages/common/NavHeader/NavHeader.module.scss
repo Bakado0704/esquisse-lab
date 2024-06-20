@@ -1,24 +1,18 @@
-@use "@/styles/mixin" as *;
+@use '@/styles/mixin' as *;
 
 .headerContainer {
   position: fixed;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--w1);
-  height: 6rem;
   width: 100%;
-  left: 0;
+  height: 6rem;
   top: 0;
+  left: 0;
+  background-color: var(--w1);
+  z-index: 10000;
 }
 
 .headerContainerInner {
-  display: flex;
-  align-items: center;
-  max-width: 1080px;
-  justify-content: space-between;
   width: 100%;
+  max-width: 1080px;
   padding: 0 4rem;
 
   @include mq(md) {
@@ -26,8 +20,15 @@
   }
 }
 
-.logo {
+.logoImage {
+  width: 26.5rem;
+  height: 4rem;
   cursor: pointer;
+
+  @include mq(md) {
+    width: 23.9rem;
+    height: 3.6rem;
+  }
 }
 
 .memberButton {
@@ -37,6 +38,7 @@
   color: var(--main1);
   background-color: transparent;
   border: none;
+  transition: all 0.3s ease;
   cursor: pointer;
 
   &:hover {
@@ -57,20 +59,11 @@
   border: none;
   background: linear-gradient(270deg, var(--accent1) 0%, var(--accent2) 100%);
   color: var(--w1);
+  transition: all 0.3s ease;
   cursor: pointer;
 
   &:hover {
     opacity: 0.8;
-  }
-}
-
-.logoImage {
-  width: 26.5rem;
-  height: 4rem;
-
-  @include mq(md) {
-    width: 23.9rem;
-    height: 3.6rem;
   }
 }
 
@@ -85,39 +78,44 @@
 
 .SpContainer {
   display: none;
-  z-index: 1000;
 
   @include mq(md) {
     display: block;
-    position: relative;
-    width: 3.6rem;
-    height: 3.6rem;
+  }
+}
 
-    > span {
-      position: absolute;
-      left: 50%;
-      width: 2.4rem;
-      height: 0.2rem;
-      background-color: var(--main1);
-      transform: translate(-50%, -50%);
-    }
+.menuButton {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: none;
+  background-color: transparent;
+  z-index: 1000;
 
-    > span:nth-child(1) {
-      transform: translate(-50%, calc(-50% + 0.8rem));
-    }
+  > span {
+    position: absolute;
+    left: 50%;
+    width: 2.4rem;
+    height: 0.2rem;
+    background-color: var(--main1);
+    transform: translate(-50%, -50%);
+  }
 
-    > span:nth-child(2) {
-      transform: translate(-50%, -50%);
-    }
+  > span:nth-child(1) {
+    transform: translate(-50%, calc(-50% + 0.8rem));
+  }
 
-    > span:nth-child(3) {
-      transform: translate(-50%, calc(-50% - 0.8rem));
-    }
+  > span:nth-child(2) {
+    transform: translate(-50%, -50%);
+  }
+
+  > span:nth-child(3) {
+    transform: translate(-50%, calc(-50% - 0.8rem));
   }
 
   &:hover {
-    cursor: pointer;
     transition: transform 0.3s ease;
+    cursor: pointer;
 
     > span {
       background-color: var(--accent1);
@@ -125,7 +123,7 @@
   }
 }
 
-.open {
+.menuButtonOpen {
   > span:nth-child(1) {
     transform: translate(-50%, -50%) rotate(45deg);
   }

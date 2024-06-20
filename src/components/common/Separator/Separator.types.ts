@@ -1,7 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export type SeparatorProps = {
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   color?: string;
   className?: string;
-} & Omit<CSSProperties, "direction">;
+} & Omit<CSSProperties, 'direction'>;

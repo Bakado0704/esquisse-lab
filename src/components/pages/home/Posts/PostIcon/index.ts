@@ -1,1 +1,1 @@
-export { default as PostIcon } from "./PostIcon";
+export { default as PostIcon } from './PostIcon';

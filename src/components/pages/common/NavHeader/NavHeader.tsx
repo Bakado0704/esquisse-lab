@@ -1,77 +1,72 @@
-import { useState } from "react";
+import classNames from 'classnames';
+import Image from 'next/image';
 
-import classNames from "classnames";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import logo from '@/assets/logo/esquisse-lab.png';
+import { Button, FlexBox } from '@/components/common';
 
-import logo from "@/assets/logo/esquisse-lab.png";
-import { useMemberContext } from "@/contexts/member.context";
-import { onScroll } from "@/hooks/useScroll";
+import { NavMenu } from '../NavMenu';
 
-import { NavMenu } from "../NavMenu";
-
-import styles from "./NavHeader.module.scss";
+import { useNavHeader } from './NavHeader.hooks';
+import styles from './NavHeader.module.scss';
 
 const NavHeader = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setIsOpenMember } = useMemberContext();
-  const router = useRouter();
-  const onMenuOpen = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-  const onScrollMember = () => {
-    setIsOpenMember(true);
-    onScroll("member");
-    setIsMenuOpen(false);
-  };
-  const onScrollLogin = () => {
-    onScroll("login");
-    setIsMenuOpen(false);
-  };
+  const { isMenuOpen, onMenuOpen, onScrollMember, onScrollLogin, router } =
+    useNavHeader();
 
   return (
-    <div className={styles.headerContainer}>
+    <FlexBox
+      alignItems='center'
+      justifyContent='center'
+      className={styles.headerContainer}
+    >
       <NavMenu
         isMenuOpen={isMenuOpen}
         onScrollMember={onScrollMember}
         onScrollLogin={onScrollLogin}
       />
-      <div className={styles.headerContainerInner}>
-        <div className={styles.logo} onClick={() => router.push("/home")}>
-          <Image
-            src={logo}
-            alt="logo"
-            height={40}
-            className={styles.logoImage}
-          />
-        </div>
-        <div className={styles.PcContainer}>
-          <button
+      <FlexBox
+        alignItems='center'
+        justifyContent='space-between'
+        className={styles.headerContainerInner}
+      >
+        <Image
+          src={logo}
+          alt='logo'
+          height={40}
+          className={styles.logoImage}
+          onClick={() => router.push('/home')}
+        />
+        <FlexBox className={styles.PcContainer}>
+          <Button
+            theme='textIndigo'
             className={styles.memberButton}
-            onClick={() => onScrollMember()}
+            onClick={onScrollMember}
           >
             Members
-          </button>
-          <button
+          </Button>
+          <Button
+            theme='fill'
             className={styles.loginButton}
-            onClick={() => onScrollLogin()}
+            onClick={onScrollLogin}
           >
             ログイン
+          </Button>
+        </FlexBox>
+        <FlexBox className={styles.SpContainer}>
+          <button
+            className={classNames(
+              styles.menuButton,
+              isMenuOpen ? styles.menuButtonOpen : undefined,
+            )}
+            onClick={onMenuOpen}
+          >
+            <span />
+            <span />
+            <span />
           </button>
-        </div>
-        <button
-          className={classNames(
-            styles.SpContainer,
-            isMenuOpen ? styles.open : undefined
-          )}
-          onClick={() => onMenuOpen()}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
-    </div>
+        </FlexBox>
+      </FlexBox>
+    </FlexBox>
   );
 };
 export default NavHeader;

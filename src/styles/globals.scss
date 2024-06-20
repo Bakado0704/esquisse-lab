@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
 
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -34,6 +34,11 @@
     #00000010,
     #00000010,
     #00000080
+  );
+  --pink-gradient: linear-gradient(
+    270deg,
+    var(--accent1) 0%,
+    var(--accent2) 100%
   );
 
   --callout-rgb: 238, 240, 241;
@@ -64,7 +69,7 @@ body,
 button,
 select,
 pre {
-  font-family: "Hiragino Sans", "Protest Strike", sans-serif;
+  font-family: 'Hiragino Sans', 'Protest Strike', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -152,12 +157,12 @@ svg {
   width: 100%;
 }
 
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"] {
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'] {
   position: relative;
 }
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   color: var(--b1);
   opacity: 1;
   display: block;
@@ -171,7 +176,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0.5rem;
   left: 0.8rem;
 }
-input[type="time"]::-webkit-calendar-picker-indicator {
+input[type='time']::-webkit-calendar-picker-indicator {
   color: var(--b1);
   opacity: 1;
   display: block;
@@ -185,7 +190,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   top: 0.6rem;
   left: 0.2rem;
 }
-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+input[type='datetime-local']::-webkit-calendar-picker-indicator {
   color: var(--b1);
   opacity: 1;
   display: block;
@@ -199,19 +204,19 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   top: 0.5rem;
   left: 0.8rem;
 }
-input[type="date"]::-webkit-datetime-edit-fields-wrapper,
-input[type="date"]::-webkit-datetime-edit {
+input[type='date']::-webkit-datetime-edit-fields-wrapper,
+input[type='date']::-webkit-datetime-edit {
   position: relative;
   left: 1.2rem;
 }
-input[type="time"]::-webkit-datetime-edit-fields-wrapper,
-input[type="time"]::-webkit-datetime-edit {
+input[type='time']::-webkit-datetime-edit-fields-wrapper,
+input[type='time']::-webkit-datetime-edit {
   position: relative;
 }
-input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper {
+input[type='datetime-local']::-webkit-datetime-edit-fields-wrapper {
   position: relative;
 }
-input[type="datetime-local"]::-webkit-datetime-edit {
+input[type='datetime-local']::-webkit-datetime-edit {
   position: relative;
   top: -0.3rem;
   left: 2.8rem;

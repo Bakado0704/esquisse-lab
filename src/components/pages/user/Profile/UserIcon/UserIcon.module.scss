@@ -1,0 +1,93 @@
+@use '@/styles/mixin' as *;
+
+.iconContainer {
+  position: relative;
+}
+
+.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background-color: var(--w1);
+  transform: translate(-50%, -50%);
+
+  @include mq(md) {
+    width: 11rem;
+    height: 11rem;
+  }
+}
+
+.icon {
+  position: relative;
+  display: block;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--b3);
+  cursor: pointer;
+
+  @include mq(md) {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  > span:first-child {
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+
+    @include mq(md) {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  > span:last-child {
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+
+    @include mq(md) {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+
+  &:hover {
+    > span:first-child {
+      width: 6rem;
+      height: 6rem;
+    }
+    > span:last-child {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    @include mq(md) {
+      > span:first-child {
+        width: 5rem;
+        height: 5rem;
+      }
+      > span:last-child {
+        width: 8rem;
+        height: 8rem;
+      }
+    }
+  }
+}

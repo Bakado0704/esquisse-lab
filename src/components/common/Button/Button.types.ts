@@ -1,17 +1,13 @@
-import { CSSProperties, ReactNode } from "react";
-
-import { IconName } from "../Icon";
+import { CSSProperties, ReactNode } from 'react';
 
 export type ButtonProps = {
   id?: string;
   className?: string;
   children?: ReactNode;
-  theme?: "fill" | "rectPink";
-  size?: "huge" | "large" | "medium" | "small";
-  iconSize?: string;
+  theme?: 'fill' | 'rectPink' | 'textIndigo';
+  size?: 'huge' | 'large' | 'medium';
   fullWidth?: boolean;
-  iconName?: IconName;
-  onClick?: JSX.IntrinsicElements["button"]["onClick"];
-  type?: JSX.IntrinsicElements["button"]["type"];
-  disabled?: JSX.IntrinsicElements["button"]["disabled"];
+  onClick?: JSX.IntrinsicElements['button']['onClick'];
+  type?: JSX.IntrinsicElements['button']['type'];
+  disabled?: JSX.IntrinsicElements['button']['disabled'];
 } & CSSProperties;

@@ -1,4 +1,4 @@
-import styles from "./Bg.module.scss";
+import styles from './Bg.module.scss';
 
 const Bg = () => {
   return (
