@@ -5,8 +5,10 @@ import classNames from 'classnames';
 import ArrowLarge from '@/assets/image/arrow-large.svg';
 import Attention from '@/assets/image/attention.svg';
 import BottomCircle from '@/assets/image/bottom-circle.svg';
+import Calender from '@/assets/image/calender.svg';
 import Document from '@/assets/image/document.svg';
 import Support from '@/assets/image/support.svg';
+import Tag from '@/assets/image/tag.svg';
 import Teacher from '@/assets/image/teacher.svg';
 import { CustomCSSProperties } from '@/types/CustomStyle.types';
 
@@ -18,8 +20,10 @@ const ICONS = {
   arrowLarge: <ArrowLarge />,
   attention: <Attention />,
   bottomCircle: <BottomCircle />,
+  calender: <Calender />,
   document: <Document />,
   support: <Support />,
+  tag: <Tag />,
   teacher: <Teacher />,
 } as const;
 
@@ -31,11 +35,13 @@ const Icon = ({
   iconName,
   disabled = false,
   color = 'w1',
+  size,
   onClick,
   ...styleProps
 }: IconProps) => {
   const style: CustomCSSProperties = {
     '--color': `var(--${color})`,
+    '--size': size,
     cursor: onClick ? 'pointer' : disabled ? 'not-allowed' : 'inherit',
     ...styleProps,
   };
