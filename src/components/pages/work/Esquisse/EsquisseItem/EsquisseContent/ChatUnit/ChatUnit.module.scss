@@ -92,6 +92,13 @@
   &:hover {
     opacity: 0.8;
   }
+
+  @include mq(md) {
+    top: auto;
+    bottom: -3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 }
 
 .iconContainer {
