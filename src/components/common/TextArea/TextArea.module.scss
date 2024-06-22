@@ -1,0 +1,25 @@
+@use '@/styles/mixin' as *;
+
+.textarea {
+  padding: 1.2rem;
+  border: 0.1rem solid var(--w4);
+  border-radius: 0.25rem;
+  line-height: 150%;
+  font-size: 1.4rem;
+  font-weight: 300;
+  background-color: var(--w11);
+
+  &::placeholder {
+    color: var(--b3);
+  }
+
+  &:disabled {
+    background-color: var(--w4);
+  }
+}
+
+.explanation {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--b2);
+}
