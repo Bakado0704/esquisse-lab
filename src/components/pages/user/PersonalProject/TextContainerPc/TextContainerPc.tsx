@@ -10,7 +10,7 @@ const TextContainerPc = () => {
           個人開発
         </Typography>
         <Typography gothic fontSize='4.2rem' color='w1'>
-          Esquisse-Lab
+          EsquisseLab
         </Typography>
       </FlexBox>
       <Typography fontSize='1.2rem' color='w1'>

@@ -1,0 +1,12 @@
+.esquisseContent {
+  padding-top: 1.2rem;
+}
+
+.esquisseContentActive {
+  height: 100%;
+  transition: height 3s ease;
+}
+
+.separator {
+  border-bottom: 3px dashed var(--w3);
+}

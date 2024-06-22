@@ -1,0 +1,112 @@
+@use '@/styles/mixin' as *;
+
+.title {
+  font-size: 1.6rem;
+
+  @include mq(md) {
+    font-size: 1.4rem;
+  }
+}
+
+.date {
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.buttonsContainerClosed {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  gap: 1.6rem;
+  transition: all 0.3s ease;
+
+  @include mq(md) {
+    width: 3.2rem;
+    height: 3.2rem;
+    gap: 1.2rem;
+  }
+}
+
+.buttonsContainerActive {
+  position: relative;
+  width: calc(4rem * 3 + 1.6rem * 2);
+  height: 4rem;
+  transition: all 0.3s ease;
+
+  @include mq(md) {
+    width: calc(3.2rem * 3 + 1.2rem * 2);
+    height: 3.2rem;
+  }
+}
+
+.buttonContainer {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  @include mq(md) {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
+.buttonEdit {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: var(--b3);
+  z-index: 1;
+
+  &:hover {
+    background-color: var(--w3);
+  }
+}
+
+.buttonDelete {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--b3);
+  z-index: 1;
+
+  &:hover {
+    background-color: var(--w3);
+  }
+}
+
+.buttonPink {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.buttonPinkActive {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%) rotate(180deg);
+  background-color: var(--accent2);
+
+  &:hover {
+    background-color: var(--accent3);
+  }
+}
+
+.buttonPinkClosed {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: var(--accent3);
+
+  &:hover {
+    background-color: var(--accent2);
+  }
+}

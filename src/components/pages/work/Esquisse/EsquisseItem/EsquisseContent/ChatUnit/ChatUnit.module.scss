@@ -1,0 +1,165 @@
+@use '@/styles/mixin' as *;
+
+.chatContainer {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  gap: 2.4rem;
+
+  @include mq(md) {
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}
+
+.chatHostContainer {
+  flex-direction: initial;
+
+  @include mq(md) {
+    flex-direction: column;
+  }
+}
+
+.descriptionContainer {
+  position: relative;
+  width: calc(100% - 18rem - 2.4rem);
+  padding: 1.6rem;
+  background-color: var(--w3);
+  border-radius: 1rem;
+
+  @include mq(md) {
+    width: 100%;
+  }
+}
+
+.hostTriangle {
+  position: absolute;
+  top: 16px;
+  right: -18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid var(--w3);
+  border-right: 0;
+  z-index: 10;
+
+  @include mq(md) {
+    top: auto;
+    bottom: -20px;
+    right: 5px;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 20px solid var(--w3);
+  }
+}
+
+.triangle {
+  position: absolute;
+  top: 16px;
+  left: -18px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 20px solid var(--w3);
+  border-left: 0;
+  z-index: 10;
+
+  @include mq(md) {
+    top: auto;
+    bottom: -20px;
+    left: 5px;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 20px solid var(--w3);
+  }
+}
+
+.buttonDelete {
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-color: var(--b3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include mq(md) {
+    top: auto;
+    bottom: -3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+
+.iconContainer {
+  width: 18rem;
+  height: 5rem;
+
+  @include mq(md) {
+    width: 100%;
+    height: 3rem;
+  }
+}
+
+.hostIconContainer {
+  flex-direction: row-reverse;
+}
+
+.icon {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--b3);
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1.4rem;
+    height: 1.4rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    z-index: 10;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    z-index: 10;
+  }
+
+  @include mq(md) {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.userContainer {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
