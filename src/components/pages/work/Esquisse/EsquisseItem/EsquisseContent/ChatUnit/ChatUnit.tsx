@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 
-import { FlexBox, Typography } from '@/components/common';
+import { FlexBox, Icon, Typography } from '@/components/common';
 import { getUsers } from '@/libs/getUsers';
 
 import styles from './ChatUnit.module.scss';
@@ -15,6 +15,7 @@ const ChatUnit = ({ chats, userId }: ChatUnitProps) => {
       {chats.map((chat) => {
         const user = getUsers().find((user) => user.id === chat.uid);
         const isHostUser = user?.id === userId;
+        const onDeleteChat = () => {};
 
         return (
           <FlexBox
@@ -27,15 +28,26 @@ const ChatUnit = ({ chats, userId }: ChatUnitProps) => {
             )}
           >
             <FlexBox className={styles.descriptionContainer}>
+              <Typography fontSize='1rem' lineHeight='150%'>
+                {chat.description}
+              </Typography>
+              {isHostUser && (
+                <FlexBox
+                  alignItems='center'
+                  justifyContent='center'
+                  onClick={onDeleteChat}
+                  className={styles.buttonDelete}
+                >
+                  <Icon iconName='trash' size='1rem' />
+                </FlexBox>
+              )}
               <div
                 className={classNames(
                   isHostUser ? styles.hostTriangle : styles.triangle,
                 )}
               />
-              <Typography fontSize='1.2rem' lineHeight='150%'>
-                {chat.description}
-              </Typography>
             </FlexBox>
+
             <FlexBox
               gap='2rem'
               alignItems='center'
