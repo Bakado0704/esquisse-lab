@@ -1,0 +1,19 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  align-items: center;
+  gap: 1.2rem;
+
+  @include mq(md) {
+    font-size: 0.8rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 150%;
+
+  @include mq(md) {
+    font-size: 1.6rem;
+  }
+}
