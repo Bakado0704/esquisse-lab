@@ -1,11 +1,10 @@
+import { TagInfo } from './tag.types';
+
 export type Work = {
   id: string;
   uid: string;
   title: string;
   concept: string;
-  tags: string[];
-  startDate: Date;
-  endDate?: Date;
-  awards?: string[];
-  esquisseIds?: string[];
+  tags: TagInfo[];
+  esquisseIds: string[];
 };
