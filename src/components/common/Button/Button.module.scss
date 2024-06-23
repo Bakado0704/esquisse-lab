@@ -70,6 +70,16 @@
   }
 }
 
+.outlineWhite {
+  @include common($background-color: var(--w1), $color: var(--b1));
+
+  background-color: var(--w1);
+
+  &:hover {
+    background-color: var(--w3);
+  }
+}
+
 .textIndigo {
   @include textCommon($color: var(--main1), $hoverColor: var(--accent1));
 

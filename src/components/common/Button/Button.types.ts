@@ -4,7 +4,7 @@ export type ButtonProps = {
   id?: string;
   className?: string;
   children?: ReactNode;
-  theme?: 'fill' | 'rectPink' | 'textIndigo';
+  theme?: 'fill' | 'rectPink' | 'textIndigo' | 'outlineWhite';
   size?: 'huge' | 'large' | 'medium';
   fullWidth?: boolean;
   onClick?: JSX.IntrinsicElements['button']['onClick'];
