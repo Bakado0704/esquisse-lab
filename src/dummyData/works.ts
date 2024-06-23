@@ -7,10 +7,11 @@ export const works: Work[] = [
     title: '水害ノ強制作法',
     concept:
       '我孫子市の自宅の近くにある用水路を、用水路の整備によって失われたものを取り戻す動脈として再生します。',
-    tags: ['selected', 'water', 'development'],
-    startDate: new Date('2021-01-01T00:00:00Z'),
-    endDate: new Date('2021-01-02T00:00:00Z'),
-    awards: ['学内選抜'],
+    tags: [
+      { id: 'selected', name: 'selected' },
+      { id: 'water', name: 'water' },
+      { id: 'development', name: 'development' },
+    ],
     esquisseIds: ['esquisse1', 'esquisse2'],
   },
   {
@@ -19,10 +20,11 @@ export const works: Work[] = [
     title: '水害ノ強制作法',
     concept:
       '我孫子市の自宅の近くにある用水路を、用水路の整備によって失われたものを取り戻す動脈として再生します。',
-    tags: ['selected', 'water', 'development'],
-    startDate: new Date('2021-01-01T00:00:00Z'),
-    endDate: new Date('2021-01-02T00:00:00Z'),
-    awards: ['学内選抜'],
+    tags: [
+      { id: 'selected', name: 'selected' },
+      { id: 'water', name: 'water' },
+      { id: 'development', name: 'development' },
+    ],
     esquisseIds: ['esquisse3', 'esquisse4'],
   },
 ];
