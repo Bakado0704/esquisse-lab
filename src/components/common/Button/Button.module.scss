@@ -70,6 +70,20 @@
   }
 }
 
+.rectBlack {
+  @include common(
+    $background-color: var(--w1),
+    $color: var(--w1),
+    $borderRadius: 0.4rem
+  );
+
+  background-color: var(--b1);
+
+  &:hover {
+    background-color: var(--b2);
+  }
+}
+
 .outlineWhite {
   @include common($background-color: var(--w1), $color: var(--b1));
 
@@ -107,6 +121,13 @@
 }
 
 .medium {
+  span {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}
+
+.small {
   span {
     font-size: 1.4rem;
     font-weight: 600;
