@@ -23,11 +23,18 @@
 .logoImage {
   width: 26.5rem;
   height: 4rem;
-  cursor: pointer;
 
   @include mq(md) {
     width: 23.9rem;
     height: 3.6rem;
+  }
+}
+
+.activeLogoImage {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
