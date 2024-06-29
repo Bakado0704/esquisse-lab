@@ -14,8 +14,8 @@ const FvText = ({ work }: FvTextProps) => {
   const { startDate, endDate } = getPeriod({ workId: id });
 
   return (
-    <FlexBox flexDirection='column' gap='2.8rem' className={styles.container}>
-      <TitleUnit title={title} concept={concept} />
+    <FlexBox flexDirection='column' className={styles.container}>
+      <TitleUnit title={title} concept={concept} workId={id} />
       <UserUnit userId={uid} />
       <TagUnit tags={tags} />
       <PeriodUnit startDate={startDate} endDate={endDate} />
