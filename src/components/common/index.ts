@@ -1,10 +1,16 @@
 export { Button } from './Button';
 export { Card } from './Card';
+export { DateAndTimePicker } from './DateAndTimePicker';
+export { DraggableItem } from './DragTag/DraggableItem';
+export { DraggableList } from './DragTag/DraggableList';
 export { FlexBox } from './FlexBox';
+export { Heading } from './Heading';
 export { Icon } from './Icon';
 export { Input } from './Input';
 export { InputLabel } from './InputLabel';
 export { Label } from './Label';
+export { LeftBorder } from './LeftBorder';
+export { LeftBorderTitle } from './LeftBorderTitle';
 export { Separator } from './Separator';
 export { TextArea } from './TextArea';
 export { Typography } from './Typography';
