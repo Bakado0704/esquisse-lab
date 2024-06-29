@@ -30,12 +30,12 @@ const TagUnit = ({ tags }: TagUnitProps) => {
             return (
               <FlexBox
                 key={index}
-                onClick={() => router.push(`/posts/${tag}`)}
+                onClick={() => router.push(`/posts/${tag.name}`)}
                 className={styles.link}
               >
                 {index !== 0 && <Typography>・</Typography>}
                 <Typography key={index} fontSize='1.2rem' color='b2'>
-                  {tag}
+                  {tag.name}
                 </Typography>
               </FlexBox>
             );
