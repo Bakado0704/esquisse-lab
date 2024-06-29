@@ -38,7 +38,6 @@ const NavHeader = () => {
         <Image
           src={logo}
           alt='logo'
-          height={40}
           className={classNames(
             styles.logoImage,
             !isFormPage ? styles.activeLogoImage : undefined,

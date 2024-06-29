@@ -21,12 +21,12 @@
 }
 
 .logoImage {
-  width: 26.5rem;
-  height: 4rem;
+  width: 24rem;
+  height: 3.6rem;
 
   @include mq(md) {
-    width: 23.9rem;
-    height: 3.6rem;
+    width: 21.2rem;
+    height: 3.2rem;
   }
 }
 
