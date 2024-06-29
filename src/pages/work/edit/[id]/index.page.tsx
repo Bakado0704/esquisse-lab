@@ -1,7 +1,7 @@
-import { EsquisseForm } from '@/components/pages/work/Form';
+import { WorkForm } from '@/components/pages/work/Form/WorkForm';
 
 const Page = () => {
-  return <EsquisseForm />;
+  return <WorkForm />;
 };
 
 export default Page;
