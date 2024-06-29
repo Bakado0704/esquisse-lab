@@ -1,8 +1,15 @@
+import { useRouter } from 'next/navigation';
+
 import { FlexBox, Typography } from '@/components/common';
 
 import styles from './ButtonUnit.module.scss';
 
 const ButtonUnit = () => {
+  const router = useRouter();
+  const onCreateEsquisse = () => {
+    router.push(`/work/esquisse/new`);
+  };
+
   return (
     <FlexBox flexDirection='column' className={styles.container}>
       <FlexBox className={styles.lineContainer}>
@@ -15,7 +22,7 @@ const ButtonUnit = () => {
       </FlexBox>
       <FlexBox flexDirection='column' gap='1.2rem'>
         <FlexBox justifyContent='center'>
-          <button className={styles.button}>
+          <button className={styles.button} onClick={onCreateEsquisse}>
             <span />
             <span />
           </button>
