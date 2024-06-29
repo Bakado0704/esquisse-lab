@@ -2,28 +2,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { Button, FlexBox } from '@/components/common';
-import {
-  WorkEsquisseFormSchema,
-  WorkEsquisseFormValue,
-} from '@/types/form/WorkEsquisseForm.types';
+import { WorkFormSchema, WorkFormValue } from '@/types/form/WorkForm.types';
 
-import { useEsquisseForm } from './EsquisseForm.hooks';
-import styles from './EsquisseForm.module.scss';
-import { EsquisseFormAdviseUnit } from './EsquisseFormAdviseUnit';
-import { EsquisseFormBaseUnit } from './EsquisseFormBaseUnit';
+import { EsquisseFormBaseUnit } from '../EsquisseFormBaseUnit';
 
-export const EsquisseFormInternal = () => {
-  const { router, imageDatums, setImageDatums, handleSubmit, onSubmit } =
-    useEsquisseForm();
+import { useWorkForm } from './WorkForm.hooks';
+import styles from './WorkForm.module.scss';
+
+export const WorkFormInternal = () => {
+  const { router, handleSubmit, onSubmit } = useWorkForm();
 
   return (
     <FlexBox gap='2.4rem' flexDirection='column' className={styles.container}>
       <div className={styles.bg} />
       <EsquisseFormBaseUnit />
-      <EsquisseFormAdviseUnit
-        imageDatums={imageDatums}
-        setImageDatums={setImageDatums}
-      />
       <FlexBox justifyContent='center' gap='2.4rem'>
         <Button size='large' theme='outlineWhite' onClick={() => router.back()}>
           前の画面に戻る
@@ -40,16 +32,16 @@ export const EsquisseFormInternal = () => {
   );
 };
 
-const EsquisseForm = () => {
-  const methods = useForm<WorkEsquisseFormValue>({
-    resolver: zodResolver(WorkEsquisseFormSchema),
+const WorkForm = () => {
+  const methods = useForm<WorkFormValue>({
+    resolver: zodResolver(WorkFormSchema),
   });
 
   return (
     <FormProvider {...methods}>
-      <EsquisseFormInternal />
+      <WorkFormInternal />
     </FormProvider>
   );
 };
 
-export default EsquisseForm;
+export default WorkForm;

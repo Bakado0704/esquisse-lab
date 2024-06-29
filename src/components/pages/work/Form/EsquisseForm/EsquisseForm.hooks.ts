@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
-import { submitForm } from '@/libs/service/form/submitForm';
+import { submitForm } from '@/libs/service/form/esquisse/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDatumsType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
