@@ -1,13 +1,13 @@
 import { Esquisse } from '@/types/application/esquisse.types';
 import { Work } from '@/types/firestore/work.types';
-import { Submit } from '@/types/form/Submit.types';
+import { EsquisseSubmit } from '@/types/form/Submit.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 export const parseSubmitObject = ({
   formData,
 }: {
   formData: WorkEsquisseFormValue;
-}): Submit => {
+}): EsquisseSubmit => {
   const {
     title,
     concept,
