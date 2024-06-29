@@ -3,9 +3,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { Button, FlexBox } from '@/components/common';
 import {
-  EsquisseFormSchema,
-  EsquisseFormValue,
-} from '@/types/form/EsquisseForm.types';
+  WorkEsquisseFormSchema,
+  WorkEsquisseFormValue,
+} from '@/types/form/WorkEsquisseForm.types';
 
 import { useEsquisseForm } from './EsquisseForm.hooks';
 import styles from './EsquisseForm.module.scss';
@@ -41,8 +41,8 @@ export const EsquisseFormInternal = () => {
 };
 
 const EsquisseForm = () => {
-  const methods = useForm<EsquisseFormValue>({
-    resolver: zodResolver(EsquisseFormSchema),
+  const methods = useForm<WorkEsquisseFormValue>({
+    resolver: zodResolver(WorkEsquisseFormSchema),
   });
 
   return (

@@ -2,11 +2,8 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import {
-  EsquisseFormValue,
-  ImageDatumsType,
-  ImageType,
-} from '@/types/form/EsquisseForm.types';
+import { ImageDatumsType, ImageType } from '@/types/form/ImageForm.types';
+import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 type ImageInputUnitType = {
   imageDatums: ImageDatumsType;
@@ -18,7 +15,7 @@ export const useImageInputUnit = ({
   setImageDatums,
 }: ImageInputUnitType) => {
   const ref = useRef<HTMLInputElement>(null);
-  const { setValue } = useFormContext<EsquisseFormValue>();
+  const { setValue } = useFormContext<WorkEsquisseFormValue>();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {

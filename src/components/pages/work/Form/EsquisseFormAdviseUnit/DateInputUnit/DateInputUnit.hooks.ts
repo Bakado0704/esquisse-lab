@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { EsquisseFormValue } from '@/types/form/EsquisseForm.types';
+import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 export const useDateInputUnit = () => {
   const {
@@ -11,7 +11,7 @@ export const useDateInputUnit = () => {
     setValue,
     setError,
     clearErrors,
-  } = useFormContext<EsquisseFormValue>();
+  } = useFormContext<WorkEsquisseFormValue>();
 
   const inputDate = useWatch({
     control,

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { ImageDatumsType } from '@/types/form/EsquisseForm.types';
+import { ImageDatumsType } from '@/types/form/ImageForm.types';
 
 export type ImageInputUnitProps = {
   imageDatums: ImageDatumsType;

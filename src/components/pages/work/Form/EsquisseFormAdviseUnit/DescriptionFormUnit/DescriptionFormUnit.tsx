@@ -1,13 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 
 import { TextArea } from '@/components/common';
-import { EsquisseFormValue } from '@/types/form/EsquisseForm.types';
+import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 const DescriptionFormUnit = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<EsquisseFormValue>();
+  } = useFormContext<WorkEsquisseFormValue>();
 
   return (
     <TextArea

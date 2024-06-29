@@ -5,7 +5,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { createTagDropDown, normalizeInput } from '@/libs/service/tags';
 import { TagInfo } from '@/types/application/tag.types';
-import { EsquisseFormValue } from '@/types/form/EsquisseForm.types';
+import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 export const useTagFormUnit = () => {
   const {
@@ -13,7 +13,7 @@ export const useTagFormUnit = () => {
     formState: { errors },
     getValues,
     clearErrors,
-  } = useFormContext<EsquisseFormValue>();
+  } = useFormContext<WorkEsquisseFormValue>();
   const [tagInput, setTagInput] = useState<string>('');
   const [selectedDropDownIdx, setSelectedDropDownIdx] = useState<number>(-1);
   const [tagInputDropDown, setTagInputDropDown] = useState<TagInfo[]>([]);

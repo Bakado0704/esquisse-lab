@@ -5,18 +5,16 @@ import { useFormContext } from 'react-hook-form';
 
 import { submitForm } from '@/libs/service/form/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
-import {
-  EsquisseFormValue,
-  ImageDatumsType,
-} from '@/types/form/EsquisseForm.types';
+import { ImageDatumsType } from '@/types/form/ImageForm.types';
+import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 export const useEsquisseForm = () => {
-  const { handleSubmit } = useFormContext<EsquisseFormValue>();
+  const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
   const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
   const processing = useRef(false);
   const router = useRouter();
 
-  const onSubmit = async (formData: EsquisseFormValue) => {
+  const onSubmit = async (formData: WorkEsquisseFormValue) => {
     if (processing.current) return;
     processing.current = true;
 
