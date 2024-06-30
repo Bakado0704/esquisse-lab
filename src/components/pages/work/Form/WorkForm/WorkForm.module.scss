@@ -1,8 +1,8 @@
 .container {
   position: relative;
   padding: 4rem 0;
-  height: calc(100vh - 6rem);
-  height: calc(100dvh - 6rem);
+  min-height: calc(100vh - 10rem);
+  min-height: calc(100dvh - 10rem);
 }
 
 .bg {
