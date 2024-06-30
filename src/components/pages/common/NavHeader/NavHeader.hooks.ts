@@ -17,11 +17,11 @@ export const useNavHeader = () => {
   useEffect(() => {
     if (members.length) {
       onScroll('member', 'top');
-    }
 
-    return () => {
-      clearScroll();
-    };
+      return () => {
+        clearScroll();
+      };
+    }
   }, [members]);
 
   const onNavigateTop = () => {

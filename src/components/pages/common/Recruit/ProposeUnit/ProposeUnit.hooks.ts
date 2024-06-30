@@ -11,11 +11,11 @@ export const useProposeUnit = () => {
   useEffect(() => {
     if (members.length) {
       onScroll('member', 'top');
-    }
 
-    return () => {
-      clearScroll();
-    };
+      return () => {
+        clearScroll();
+      };
+    }
   }, [members]);
 
   const onScrollMember = () => {
