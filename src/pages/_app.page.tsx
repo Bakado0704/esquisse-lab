@@ -1,4 +1,5 @@
 import { HeaderLayout } from '@/components/layout/HeaderLayout';
+import { EsquisseIdProvider } from '@/contexts/esquisseId.context';
 import { FormWorkProvider } from '@/contexts/formWork.context';
 import { MemberProvider } from '@/contexts/member.context';
 import '@/styles/globals.scss';
@@ -9,9 +10,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <MemberProvider>
       <FormWorkProvider>
-        <HeaderLayout>
-          <Component {...pageProps} />
-        </HeaderLayout>
+        <EsquisseIdProvider>
+          <HeaderLayout>
+            <Component {...pageProps} />
+          </HeaderLayout>
+        </EsquisseIdProvider>
       </FormWorkProvider>
     </MemberProvider>
   );
