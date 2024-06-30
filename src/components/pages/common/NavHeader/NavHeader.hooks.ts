@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useMemberContext } from '@/contexts/member.context';
-import { onScroll } from '@/hooks/useScroll';
+import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getUsers } from '@/libs/getUsers';
 
 export const useNavHeader = () => {
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { members, setMembers } = useMemberContext();
   const users = getUsers();
@@ -18,6 +18,10 @@ export const useNavHeader = () => {
     if (members.length) {
       onScroll('member', 'top');
     }
+
+    return () => {
+      clearScroll();
+    };
   }, [members]);
 
   const onNavigateTop = () => {

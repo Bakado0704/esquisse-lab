@@ -13,3 +13,14 @@ export const onScroll = (targetId: string, scrollTo: 'top' | 'bottom') => {
     });
   }
 };
+
+export const clearScroll = () => {
+  const container = document.getElementById('scrollContainer');
+
+  if (container) {
+    container.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+};
