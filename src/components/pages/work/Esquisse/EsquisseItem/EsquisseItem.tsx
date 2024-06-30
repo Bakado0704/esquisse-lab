@@ -26,6 +26,7 @@ const EsquisseItemInternal = ({
 
   return (
     <FlexBox
+      id={esquisse.id}
       ref={containerRef}
       flexDirection='column'
       onClick={onEsquisseOpen}

@@ -31,6 +31,7 @@ const AllPosts = ({ categoryId }: AllPostsProps) => {
               workId={post.workId}
               userName={post.userName}
               subject={post.subject}
+              esquisseId={post.id}
             />
           );
         })}
