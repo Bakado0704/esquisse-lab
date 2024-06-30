@@ -7,7 +7,10 @@ import { getWorks } from '@/libs/getWorks';
 
 export const usePage = ({ workId }: { workId: string }) => {
   const work = getWorks().find((work) => work.id === workId);
-  const esquisses = getEsquisses();
+  const allEsquisses = getEsquisses();
+  const esquisses = allEsquisses.filter((esquisse) =>
+    work?.esquisseIds.includes(esquisse.id),
+  );
   const { setFormWork } = useFormWorkContext();
   const { setMembers } = useMemberContext();
 
