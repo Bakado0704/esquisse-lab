@@ -13,7 +13,7 @@ export const getPosts: () => Post[] = () => {
       subject: esquisse.subject,
       description: esquisse.description,
       userName: user.name,
-      imageUrl: esquisse.imageUrls?.[0],
+      imageUrl: esquisse.topImage,
       iconUmageUrl: user.iconImageUrl,
     };
   });

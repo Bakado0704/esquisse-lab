@@ -1,13 +1,39 @@
-import { FlexBox, Typography } from '@/components/common';
+import { useRouter } from 'next/navigation';
 
+import { Button, FlexBox, Icon, Typography } from '@/components/common';
+
+import styles from './TitleUnit.module.scss';
 import { TitleUnitProps } from './TitleUnit.types';
 
-const TitleUnit = ({ title, concept }: TitleUnitProps) => {
+const TitleUnit = ({ title, concept, workId }: TitleUnitProps) => {
+  const router = useRouter();
+  const onEditWork = () => {
+    router.push(`./edit/${workId}`);
+  };
   return (
     <FlexBox flexDirection='column' gap='0.8rem'>
-      <Typography fontSize='2.6rem' fontWeight={600}>
-        {title}
-      </Typography>
+      <FlexBox
+        gap='0.8rem'
+        justifyContent='space-between'
+        alignItems='flex-start'
+      >
+        <Typography fontWeight={600} className={styles.title}>
+          {title}
+        </Typography>
+        <Button
+          theme='rectBlack'
+          size='small'
+          className={styles.button}
+          onClick={onEditWork}
+        >
+          <FlexBox gap='0.4rem' alignItems='center'>
+            <Icon iconName='pen' size='1.4rem' />
+            <Typography color='w1' fontSize='1.4rem'>
+              編集する
+            </Typography>
+          </FlexBox>
+        </Button>
+      </FlexBox>
       <Typography fontSize='1.2rem' color='b2'>
         {concept}
       </Typography>

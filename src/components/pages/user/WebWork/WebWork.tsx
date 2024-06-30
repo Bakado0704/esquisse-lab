@@ -1,4 +1,5 @@
 import { FlexBox, Typography } from '@/components/common';
+import { getPeriod } from '@/libs/getPeriod';
 import { getUsers } from '@/libs/getUsers';
 
 import { ItemCard } from '../../common/ItemCard';
@@ -20,12 +21,13 @@ const WebWork = ({ webWork }: WebWorkProps) => {
           const userName = getUsers().find(
             (user) => user.id === work.uid,
           )?.name;
+          const { startDate } = getPeriod({ workId: work.id });
           return (
             <ItemCard
               key={work.id}
               workId={work.id}
               subject={work.title}
-              createdAt={work.startDate}
+              createdAt={startDate}
               userName={userName}
             />
           );

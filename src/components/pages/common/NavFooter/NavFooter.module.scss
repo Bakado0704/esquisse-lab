@@ -1,0 +1,15 @@
+.footerContainer {
+  position: relative;
+  width: 100%;
+  height: 4rem;
+}
+
+.footer {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--pink-gradient);
+}

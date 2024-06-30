@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { format } from 'date-fns';
+import { useRouter } from 'next/navigation';
 
 import { FlexBox, Icon, Typography } from '@/components/common';
 
@@ -8,11 +9,15 @@ import { EsquisseHeaderProps } from './EsquisseHeader.types';
 
 export const EsquisseHeader = ({
   index,
+  esquisseId,
   createdAt,
   isEsquisseActive,
   toggleEsquisse,
 }: EsquisseHeaderProps) => {
-  const onEditEsquisse = () => {};
+  const router = useRouter();
+  const onEditEsquisse = () => {
+    router.push(`/work/esquisse/edit/${esquisseId}`);
+  };
   const onDeleteEsquisse = () => {};
 
   return (

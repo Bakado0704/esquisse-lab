@@ -1,5 +1,4 @@
-export type Tag = {
+export type TagInfo = {
   id: string;
   name: string;
-  search: string;
 };

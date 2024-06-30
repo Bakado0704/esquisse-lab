@@ -21,6 +21,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       rows = 6,
       ...textAreaProps
     } = props;
+    const borderColor = error ? 'var(--red1)' : 'var(--w4)';
 
     return (
       <FlexBox flexDirection='column' gap='0.8rem'>
@@ -31,6 +32,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             rows={rows}
             required={required}
             className={classNames(styles.textarea, className)}
+            style={{ borderColor }}
             {...textAreaProps}
           />
         </FlexBox>

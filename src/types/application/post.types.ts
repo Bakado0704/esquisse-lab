@@ -5,6 +5,6 @@ export type Post = {
   subject: string;
   description: string;
   userName: string;
-  imageUrl?: string;
+  imageUrl: string | null;
   iconImageUrl?: string;
 };

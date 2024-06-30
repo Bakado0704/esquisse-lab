@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import { Button, FlexBox, TextArea } from '@/components/common';
-import { CommentFormValue } from '@/types/form/FirstForm.types';
+import { CommentFormValue } from '@/types/form/CommentForm.types';
 
 import styles from './CommentUnit.module.scss';
 

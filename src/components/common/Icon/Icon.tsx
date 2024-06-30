@@ -7,12 +7,14 @@ import ArrowSmall from '@/assets/image/arrow-small.svg';
 import Attention from '@/assets/image/attention.svg';
 import BottomCircle from '@/assets/image/bottom-circle.svg';
 import Calender from '@/assets/image/calender.svg';
+import Close from '@/assets/image/close.svg';
 import Document from '@/assets/image/document.svg';
 import Pen from '@/assets/image/pen.svg';
 import Support from '@/assets/image/support.svg';
 import Tag from '@/assets/image/tag.svg';
 import Teacher from '@/assets/image/teacher.svg';
 import Trash from '@/assets/image/trash.svg';
+import Upload from '@/assets/image/upload.svg';
 import { CustomCSSProperties } from '@/types/CustomStyle.types';
 
 import styles from './Icon.module.scss';
@@ -31,6 +33,8 @@ const ICONS = {
   tag: <Tag />,
   teacher: <Teacher />,
   trash: <Trash />,
+  close: <Close />,
+  upload: <Upload />,
 } as const;
 
 export type IconName = keyof typeof ICONS;

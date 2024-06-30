@@ -1,4 +1,5 @@
 import { FlexBox } from '@/components/common';
+import { getPeriod } from '@/libs/getPeriod';
 
 import styles from './FvText.module.scss';
 import { FvTextProps } from './FvText.types';
@@ -9,11 +10,12 @@ import { UserUnit } from './UserUnit';
 
 const FvText = ({ work }: FvTextProps) => {
   if (!work) return null;
-  const { title, concept, uid, tags, startDate, endDate } = work;
+  const { title, concept, uid, tags, id } = work;
+  const { startDate, endDate } = getPeriod({ workId: id });
 
   return (
-    <FlexBox flexDirection='column' gap='2.8rem' className={styles.container}>
-      <TitleUnit title={title} concept={concept} />
+    <FlexBox flexDirection='column' className={styles.container}>
+      <TitleUnit title={title} concept={concept} workId={id} />
       <UserUnit userId={uid} />
       <TagUnit tags={tags} />
       <PeriodUnit startDate={startDate} endDate={endDate} />

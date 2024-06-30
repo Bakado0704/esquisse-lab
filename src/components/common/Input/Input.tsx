@@ -52,7 +52,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             />
             {error && (
               <span className={styles.attention}>
-                <Icon iconName='attention' color='red1' />
+                <Icon iconName='attention' color='red1' size='2.4rem' />
               </span>
             )}
           </div>

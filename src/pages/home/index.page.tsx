@@ -5,7 +5,11 @@ import { Recruit } from '@/components/pages/common/Recruit';
 import { Fv } from '@/components/pages/home/Fv';
 import { Posts } from '@/components/pages/home/Posts';
 
+import { usePage } from './page.hooks';
+
 const Home = () => {
+  usePage();
+
   return (
     <>
       <Fv />

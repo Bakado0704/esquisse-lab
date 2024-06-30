@@ -6,12 +6,11 @@ import { Recruit } from '@/components/pages/common/Recruit';
 import { Esquisse } from '@/components/pages/work/Esquisse';
 import { Fv } from '@/components/pages/work/Fv';
 import { FvText } from '@/components/pages/work/FvText';
-import { getEsquisses } from '@/libs/getEsquisse';
-import { getWorks } from '@/libs/getWorks';
+
+import { usePage } from './page.hooks';
 
 const Page = ({ workId }: { workId: string }) => {
-  const work = getWorks().find((work) => work.id === workId);
-  const esquisses = getEsquisses();
+  const { work, esquisses } = usePage({ workId });
 
   return (
     <>

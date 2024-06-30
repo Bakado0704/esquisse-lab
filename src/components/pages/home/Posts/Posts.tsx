@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import postImage from '@/assets/fv/fv.png';
 import { FlexBox, Separator, Typography } from '@/components/common';
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { getPosts } from '@/libs/getPosts';
 import { Post } from '@/types/application/post.types';
 
@@ -11,8 +12,19 @@ import { PostIcon } from './PostIcon';
 import styles from './Posts.module.scss';
 
 const Posts = () => {
+  const { setEsquisseId } = useEsquisseIdContext();
   const router = useRouter();
   const posts = getPosts();
+  const handlePost = ({
+    esquisseId,
+    workId,
+  }: {
+    esquisseId: string;
+    workId: string;
+  }) => {
+    setEsquisseId(esquisseId);
+    router.push(`/work/${workId}`);
+  };
   return (
     <FlexBox flexDirection='column' gap='7.2rem' padding='8.4rem 0 7.2rem'>
       <FlexBox flexDirection='column' gap='3.2rem'>
@@ -27,7 +39,12 @@ const Posts = () => {
                 flexDirection='column'
                 gap='1.8rem'
                 className={styles.post}
-                onClick={() => router.push(`/work/${post.workId}`)}
+                onClick={() =>
+                  handlePost({
+                    esquisseId: post.id,
+                    workId: post.workId,
+                  })
+                }
               >
                 <FlexBox width='100%' className={styles.imageContainer}>
                   <Image src={postImage} alt='post' layout='responsive' />

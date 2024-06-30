@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { FlexBox } from '@/components/common';
-import { CommentFormValue } from '@/types/form/FirstForm.types';
+import { CommentFormValue } from '@/types/form/CommentForm.types';
 
 import { EsquisseContent } from './EsquisseContent';
 import { EsquisseHeader } from './EsquisseHeader';
@@ -26,6 +26,7 @@ const EsquisseItemInternal = ({
 
   return (
     <FlexBox
+      id={esquisse.id}
       ref={containerRef}
       flexDirection='column'
       onClick={onEsquisseOpen}
@@ -36,6 +37,8 @@ const EsquisseItemInternal = ({
     >
       <EsquisseHeader
         index={index}
+        workId={esquisse.workId}
+        esquisseId={esquisse.id}
         createdAt={esquisse.createdAt}
         isEsquisseActive={isEsquisseActive}
         toggleEsquisse={toggleEsquisse}

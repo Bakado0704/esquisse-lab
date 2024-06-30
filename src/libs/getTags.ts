@@ -1,6 +1,6 @@
 import { tags } from '@/dummyData/tags';
-import { Tag } from '@/types/application/tag.types';
+import { TagInfo } from '@/types/application/tag.types';
 
-export const getTags: () => Tag[] = () => {
+export const getTags: () => TagInfo[] = () => {
   return tags;
 };

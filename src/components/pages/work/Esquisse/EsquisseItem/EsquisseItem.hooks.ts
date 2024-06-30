@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
+import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getChats } from '@/libs/getChats';
 
 type UseEsquisseItemProps = {
@@ -7,9 +9,22 @@ type UseEsquisseItemProps = {
 };
 
 export const useEsquisseItem = ({ esquisseId }: UseEsquisseItemProps) => {
+  const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (esquisseId === selectedEsquisseId) {
+      setIsEsquisseActive(true);
+      onScroll(selectedEsquisseId, 'top');
+
+      return () => {
+        clearScroll();
+      };
+    }
+  }, []);
+
   useEffect(() => {
     const baseHeight = window.innerWidth <= 768 ? 58 : 72;
     if (containerRef.current && contentRef.current) {

@@ -2,19 +2,33 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 
 import { FlexBox, Typography } from '@/components/common';
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 
 import styles from './ItemCard.module.scss';
 import { ItemCardProps } from './ItemCard.types';
 import { PostIcon } from './PostIcon';
 
-const AllPosts = ({ workId, createdAt, subject, userName }: ItemCardProps) => {
+const AllPosts = ({
+  workId,
+  createdAt,
+  subject,
+  userName,
+  esquisseId,
+}: ItemCardProps) => {
   const router = useRouter();
+
+  const { setEsquisseId } = useEsquisseIdContext();
+
+  const handleItemCard = () => {
+    setEsquisseId(esquisseId ?? '');
+    router.push(`/work/${workId}`);
+  };
 
   return (
     <FlexBox
-      onClick={() => router.push(`/work/${workId}`)}
-      className={styles.card}
       flexDirection='column'
+      className={styles.card}
+      onClick={handleItemCard}
     >
       <FlexBox alignItems='flex-end' className={styles.imageContainer}>
         <Typography color='w1' fontSize='1.2rem'>

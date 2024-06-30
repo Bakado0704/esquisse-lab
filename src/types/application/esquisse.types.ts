@@ -2,7 +2,8 @@ export type Esquisse = {
   id: string;
   workId: string;
   createdAt: Date;
-  imageUrls?: string[];
+  topImage: string | null;
+  additionalImages: string[];
   subject: string;
   description: string;
   chatIds?: string[];

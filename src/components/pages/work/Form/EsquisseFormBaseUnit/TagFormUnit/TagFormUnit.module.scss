@@ -1,0 +1,14 @@
+.tagList {
+  padding: 1.2rem;
+  background-color: var(--w1);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--w2);
+  }
+}
+
+.selectedTag {
+  padding: 1.2rem;
+  background-color: var(--w2);
+}

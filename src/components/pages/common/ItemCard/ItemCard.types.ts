@@ -3,4 +3,5 @@ export type ItemCardProps = {
   createdAt: Date;
   subject: string;
   userName?: string;
+  esquisseId?: string;
 };

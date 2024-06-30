@@ -23,9 +23,5 @@
 .icon {
   svg {
     height: 12rem;
-
-    @include mq(md) {
-      height: 15rem;
-    }
   }
 }
