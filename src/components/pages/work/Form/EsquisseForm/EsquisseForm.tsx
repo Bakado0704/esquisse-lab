@@ -1,21 +1,17 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 
 import { Button, FlexBox } from '@/components/common';
-import {
-  WorkEsquisseFormSchema,
-  WorkEsquisseFormValue,
-} from '@/types/form/WorkEsquisseForm.types';
 
 import { EsquisseFormAdviseUnit } from '../EsquisseFormAdviseUnit';
 import { EsquisseFormBaseUnit } from '../EsquisseFormBaseUnit';
 
 import { useEsquisseForm } from './EsquisseForm.hooks';
 import styles from './EsquisseForm.module.scss';
+import { useEsquisseFormInternal } from './EsquisseFormInternal.hooks';
 
 export const EsquisseFormInternal = () => {
   const { router, imageDatums, setImageDatums, handleSubmit, onSubmit } =
-    useEsquisseForm();
+    useEsquisseFormInternal();
 
   return (
     <FlexBox gap='2.4rem' flexDirection='column' className={styles.container}>
@@ -41,10 +37,8 @@ export const EsquisseFormInternal = () => {
   );
 };
 
-const EsquisseForm = () => {
-  const methods = useForm<WorkEsquisseFormValue>({
-    resolver: zodResolver(WorkEsquisseFormSchema),
-  });
+const EsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
+  const { methods } = useEsquisseForm({ esquisseId });
 
   return (
     <FormProvider {...methods}>

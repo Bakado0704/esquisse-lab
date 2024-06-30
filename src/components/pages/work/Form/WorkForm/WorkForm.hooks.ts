@@ -1,37 +1,29 @@
-import { useRef } from 'react';
+import { useEffect } from 'react';
 
-import { useRouter } from 'next/router';
-import { useFormContext } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { submitForm } from '@/libs/service/form/work/submitForm';
-import { WorkFormValue } from '@/types/form/WorkForm.types';
+import { useFormWorkContext } from '@/contexts/formWork.context';
+import { WorkFormSchema, WorkFormValue } from '@/types/form/WorkForm.types';
 
 export const useWorkForm = () => {
-  const { handleSubmit } = useFormContext<WorkFormValue>();
-  const processing = useRef(false);
-  const router = useRouter();
+  const methods = useForm<WorkFormValue>({
+    resolver: zodResolver(WorkFormSchema),
+  });
+  const { formWork } = useFormWorkContext();
+  const { reset } = methods;
 
-  const onSubmit = async (formData: WorkFormValue) => {
-    if (processing.current) return;
-    processing.current = true;
+  useEffect(() => {
+    const defaultValue: WorkFormValue = {
+      title: formWork.title,
+      concept: formWork.concept,
+      tags: formWork.tags,
+    };
 
-    try {
-      // setLoading(true);
+    reset(defaultValue);
+  }, []);
 
-      const eventId = await submitForm(formData);
-      // router.push(`/work/${eventId}`);
-      console.log(eventId);
-
-      // setLoading(false);
-    } catch (error) {
-      // setErrorAlert({ error });
-      processing.current = false;
-      // setLoading(false);
-    }
-  };
   return {
-    router,
-    handleSubmit,
-    onSubmit,
+    methods,
   };
 };

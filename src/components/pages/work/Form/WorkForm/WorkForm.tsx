@@ -1,16 +1,15 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 
 import { Button, FlexBox } from '@/components/common';
-import { WorkFormSchema, WorkFormValue } from '@/types/form/WorkForm.types';
 
 import { EsquisseFormBaseUnit } from '../EsquisseFormBaseUnit';
 
 import { useWorkForm } from './WorkForm.hooks';
 import styles from './WorkForm.module.scss';
+import { useWorkFormInternal } from './WorkFormInternal.hooks';
 
 export const WorkFormInternal = () => {
-  const { router, handleSubmit, onSubmit } = useWorkForm();
+  const { router, handleSubmit, onSubmit } = useWorkFormInternal();
 
   return (
     <FlexBox gap='2.4rem' flexDirection='column' className={styles.container}>
@@ -33,9 +32,7 @@ export const WorkFormInternal = () => {
 };
 
 const WorkForm = () => {
-  const methods = useForm<WorkFormValue>({
-    resolver: zodResolver(WorkFormSchema),
-  });
+  const { methods } = useWorkForm();
 
   return (
     <FormProvider {...methods}>

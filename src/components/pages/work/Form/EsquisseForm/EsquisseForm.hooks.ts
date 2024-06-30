@@ -1,59 +1,42 @@
-import { useRef, useState } from 'react';
+import { useEffect } from 'react';
 
-import { useRouter } from 'next/router';
-import { useFormContext } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { submitForm } from '@/libs/service/form/esquisse/submitForm';
-import { uploadImageFile } from '@/libs/service/uploadImage';
-import { ImageDatumsType } from '@/types/form/ImageForm.types';
-import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
+import { useFormWorkContext } from '@/contexts/formWork.context';
+import { getEsquisses } from '@/libs/getEsquisse';
+import {
+  WorkEsquisseFormSchema,
+  WorkEsquisseFormValue,
+} from '@/types/form/WorkEsquisseForm.types';
 
-export const useEsquisseForm = () => {
-  const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
-  const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
-  const processing = useRef(false);
-  const router = useRouter();
+export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
+  const methods = useForm<WorkEsquisseFormValue>({
+    resolver: zodResolver(WorkEsquisseFormSchema),
+  });
+  const { reset } = methods;
+  const esquisse = getEsquisses().filter(
+    (esquisses) => esquisses.id === esquisseId,
+  );
+  const { formWork } = useFormWorkContext();
 
-  const onSubmit = async (formData: WorkEsquisseFormValue) => {
-    if (processing.current) return;
-    processing.current = true;
+  useEffect(() => {
+    const esquisseExist = esquisse.length;
+    const defaultValue: WorkEsquisseFormValue = {
+      title: formWork.title,
+      concept: formWork.concept,
+      tags: formWork.tags,
+      date: esquisseExist ? esquisse[0].createdAt : new Date(),
+      topImage: esquisseExist ? esquisse[0].topImage : null,
+      additionalImages: esquisseExist ? esquisse[0].additionalImages : [],
+      subject: esquisseExist ? esquisse[0].subject : '',
+      description: esquisseExist ? esquisse[0].description : '',
+    };
 
-    try {
-      // setLoading(true);
-      const addedImages = await Promise.all(
-        imageDatums.map(async (image) => {
-          if (image.file) {
-            const uploadedUrl = await uploadImageFile({
-              imageDatum: { objectUrl: image.objectUrl, file: image.file },
-            });
-            return uploadedUrl;
-          }
-          return image.objectUrl;
-        }),
-      );
-      const [topImage, ...additionalImages] = addedImages;
-      const updatedFormData = {
-        ...formData,
-        topImage: topImage ?? null,
-        additionalImages,
-      };
+    reset(defaultValue);
+  }, [formWork]);
 
-      const eventId = await submitForm(updatedFormData);
-      // router.push(`/work/${eventId}`);
-      console.log(eventId);
-
-      // setLoading(false);
-    } catch (error) {
-      // setErrorAlert({ error });
-      processing.current = false;
-      // setLoading(false);
-    }
-  };
   return {
-    router,
-    imageDatums,
-    setImageDatums,
-    handleSubmit,
-    onSubmit,
+    methods,
   };
 };

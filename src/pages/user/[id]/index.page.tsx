@@ -7,13 +7,11 @@ import { ArchitectureWork } from '@/components/pages/user/ArchitectureWork';
 import { PersonalProject } from '@/components/pages/user/PersonalProject';
 import { Profile } from '@/components/pages/user/Profile';
 import { WebWork } from '@/components/pages/user/WebWork';
-import { getUsers } from '@/libs/getUsers';
-import { getWorks } from '@/libs/getWorks';
+
+import { usePage } from './page.hooks';
 
 const Page = ({ userId }: { userId: string }) => {
-  const user = getUsers().filter((user) => user.id === userId)[0];
-  const archiWork = getWorks();
-  const webWork = getWorks();
+  const { user, archiWork, webWork } = usePage({ userId });
 
   return (
     <>
