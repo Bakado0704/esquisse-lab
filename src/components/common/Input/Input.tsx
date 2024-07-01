@@ -13,6 +13,7 @@ import { InputProps } from './Input.types';
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     width = '100%',
+    labelColor,
     label,
     className,
     required,
@@ -32,7 +33,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       justifyContent='flex-start'
       className={styles.primary}
     >
-      {!hideLabel && <InputLabel label={label} required={required} />}
+      {!hideLabel && (
+        <InputLabel label={label} required={required} color={labelColor} />
+      )}
       <FlexBox width={width} flexDirection='column' gap='0.8rem'>
         <FlexBox width={width} alignItems='center' gap='0.8rem'>
           <div className={styles['input-outer']} style={{ width }}>
