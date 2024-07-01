@@ -30,9 +30,9 @@
     "classnames": "^2.5.1",
     "date-fns": "^3.2.0",
     "eslint": "8.39.0",
-    "next": "13.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
     "typescript": "^5",
     "zod": "^3.23.8"
