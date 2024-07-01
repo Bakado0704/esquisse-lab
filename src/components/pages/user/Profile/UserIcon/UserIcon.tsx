@@ -11,7 +11,7 @@ const MemberIcon = ({ user }: MemberIconProps) => {
     <FlexBox
       justifyContent='center'
       className={styles.iconContainer}
-      onClick={() => router.push(`/member/${user.id}/edit`)}
+      onClick={() => router.push(`/user/edit/${user.id}`)}
     >
       <div className={styles.background} />
       <div className={styles.icon}>
