@@ -10,10 +10,10 @@ import { NameInputUnit } from './NameInputUnit';
 import { PasswordInputUnit } from './PasswordInputUnit';
 import { useRegister } from './Register.hooks';
 import styles from './Register.module.scss';
-import { useAccountFormInternal } from './RegisterInternal.hooks';
+import { useRegisterFormInternal } from './RegisterInternal.hooks';
 
 const RegisterInternal = () => {
-  const { handleSubmit, onSubmit } = useAccountFormInternal();
+  const { handleSubmit, onSubmit } = useRegisterFormInternal();
 
   return (
     <FlexBox

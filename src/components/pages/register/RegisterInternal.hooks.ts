@@ -2,14 +2,14 @@ import { useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { submitForm } from '@/libs/service/form/account/submitForm';
-import { AccountFormValue } from '@/types/form/AccountForm.types';
+import { submitForm } from '@/libs/service/form/register/submitForm';
+import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 
-export const useAccountFormInternal = () => {
-  const { handleSubmit } = useFormContext<AccountFormValue>();
+export const useRegisterFormInternal = () => {
+  const { handleSubmit } = useFormContext<RegisterFormValue>();
   const processing = useRef(false);
 
-  const onSubmit = async (formData: AccountFormValue) => {
+  const onSubmit = async (formData: RegisterFormValue) => {
     if (processing.current) return;
     processing.current = true;
 

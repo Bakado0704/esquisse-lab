@@ -4,18 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import {
-  AccountFormSchema,
-  AccountFormValue,
-} from '@/types/form/AccountForm.types';
+  RegisterFormSchema,
+  RegisterFormValue,
+} from '@/types/form/RegisterForm.types';
 
 export const useRegister = () => {
-  const methods = useForm<AccountFormValue>({
-    resolver: zodResolver(AccountFormSchema),
+  const methods = useForm<RegisterFormValue>({
+    resolver: zodResolver(RegisterFormSchema),
   });
   const { reset } = methods;
 
   useEffect(() => {
-    const defaultValue: AccountFormValue = {
+    const defaultValue: RegisterFormValue = {
       name: '',
       lab: '',
       password1: '',

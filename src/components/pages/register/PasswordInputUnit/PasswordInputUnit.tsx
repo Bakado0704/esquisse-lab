@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import { Input } from '@/components/common';
-import { AccountFormValue } from '@/types/form/AccountForm.types';
+import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 
 import { PasswordInputUnitProps } from './PasswordInputUnit.types';
 
@@ -9,7 +9,7 @@ const PasswordInputUnit = ({ password, label }: PasswordInputUnitProps) => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<AccountFormValue>();
+  } = useFormContext<RegisterFormValue>();
 
   return (
     <Input

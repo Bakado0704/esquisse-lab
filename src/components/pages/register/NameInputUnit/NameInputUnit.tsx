@@ -1,13 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 
 import { Input } from '@/components/common';
-import { AccountFormValue } from '@/types/form/AccountForm.types';
+import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 
 const NameInputUnit = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<AccountFormValue>();
+  } = useFormContext<RegisterFormValue>();
 
   return (
     <Input
