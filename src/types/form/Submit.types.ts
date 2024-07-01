@@ -1,3 +1,4 @@
+import { User } from '../application/user.types';
 import { Esquisse } from '../firestore/esquisse.types';
 import { Work } from '../firestore/work.types';
 
@@ -8,4 +9,8 @@ export type EsquisseSubmit = {
 
 export type WorkSubmit = {
   workObj: Work;
+};
+
+export type UserSubmit = {
+  userObj: User;
 };

@@ -5,5 +5,5 @@ export type User = {
   coverImageUrl?: string;
   iconImageUrl?: string;
   detail?: string;
-  workIds?: string[];
+  workIds: string[];
 };
