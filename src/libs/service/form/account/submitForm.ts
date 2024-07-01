@@ -6,9 +6,9 @@ export const submitForm = async (formData: AccountFormValue): Promise<void> => {
   const parsedData = parseSubmitObject({
     formData,
   });
-  const { userObj } = parsedData;
+  const email = parsedData;
 
-  console.log(userObj);
+  console.log(email);
 
   // await batchCreate({
   //   esquisseObj,
