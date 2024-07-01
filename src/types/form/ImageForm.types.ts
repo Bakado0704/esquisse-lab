@@ -8,8 +8,10 @@ export type ImageType = {
   imgSize: ImgSizeType;
 };
 
-export type ImageDatumsType = {
+export type ImageDataType = {
   file?: File;
   objectUrl: string;
   imgSize: { width: number; height: number };
-}[];
+};
+
+export type ImageDatumsType = ImageDataType[];
