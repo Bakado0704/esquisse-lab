@@ -7,7 +7,7 @@ export const UserSchema = z.object({
   coverImageUrl: z.string().optional(),
   iconImageUrl: z.string().optional(),
   detail: z.string().optional(),
-  workIds: z.array(z.string()).optional(),
+  workIds: z.array(z.string()),
 });
 
 export type User = z.infer<typeof UserSchema>;

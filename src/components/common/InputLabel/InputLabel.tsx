@@ -6,7 +6,7 @@ import styles from './InputLabel.module.scss';
 import { InputLabelProps } from './InputLabel.types';
 
 const InputLabel = (props: InputLabelProps) => {
-  const { label, required, id } = props;
+  const { label, required, color, id } = props;
 
   return (
     <label htmlFor={id} className={styles.label}>
@@ -17,7 +17,7 @@ const InputLabel = (props: InputLabelProps) => {
         gap='0.8rem'
       >
         {typeof label === 'string' || typeof label === 'number' ? (
-          <Typography fontSize='1.2rem' fontWeight={600}>
+          <Typography fontSize='1.2rem' fontWeight={600} color={color}>
             {label}
           </Typography>
         ) : (

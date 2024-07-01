@@ -37,7 +37,7 @@ const AuthenticationUnit = () => {
           <Separator direction='horizontal' />
           <Button
             className={styles.accountButton}
-            onClick={() => router.push('/register')}
+            onClick={() => router.push('/account')}
           >
             Create a new Account!
           </Button>
