@@ -15,6 +15,9 @@ export const usePage = ({ userId }: { userId: string }) => {
   useEffect(() => {
     setMembers([]);
     setFormWork({
+      workId: '',
+      uid: '',
+      esquisseIds: [],
       title: '',
       concept: '',
       tags: [],

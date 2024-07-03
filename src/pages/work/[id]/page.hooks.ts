@@ -18,6 +18,9 @@ export const usePage = ({ workId }: { workId: string }) => {
     setMembers([]);
     if (work) {
       setFormWork({
+        workId: work.id,
+        uid: work.uid,
+        esquisseIds: work.esquisseIds,
         title: work.title,
         concept: work.concept,
         tags: work.tags,
