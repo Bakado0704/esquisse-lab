@@ -10,4 +10,4 @@ export const ChatSchema = z.object({
 
 export type Chat = z.infer<typeof ChatSchema>;
 
-export const parseUser = (value: unknown): Chat => ChatSchema.parse(value);
+export const parseChat = (value: unknown): Chat => ChatSchema.parse(value);

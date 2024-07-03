@@ -13,4 +13,4 @@ export const WorkSchema = z.object({
 
 export type Work = z.infer<typeof WorkSchema>;
 
-export const parseUser = (value: unknown): Work => WorkSchema.parse(value);
+export const parseWork = (value: unknown): Work => WorkSchema.parse(value);

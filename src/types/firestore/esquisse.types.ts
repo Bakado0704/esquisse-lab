@@ -13,5 +13,5 @@ export const EsquisseSchema = z.object({
 
 export type Esquisse = z.infer<typeof EsquisseSchema>;
 
-export const parseUser = (value: unknown): Esquisse =>
+export const parseEquisse = (value: unknown): Esquisse =>
   EsquisseSchema.parse(value);
