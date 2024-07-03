@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
 export const EsquisseFormSchema = z.object({
+  workId: z.string(),
+  esquisseId: z.string(),
   date: z.date(),
   topImage: z.string().nullable(),
   additionalImages: z.array(z.string()),
