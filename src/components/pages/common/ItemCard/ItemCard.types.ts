@@ -4,4 +4,5 @@ export type ItemCardProps = {
   subject: string;
   userName?: string;
   esquisseId?: string;
+  transitionDelay: string;
 };

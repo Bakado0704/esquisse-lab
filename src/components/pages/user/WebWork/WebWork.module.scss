@@ -18,4 +18,17 @@
   width: 100%;
   gap: 1.6rem;
   flex-wrap: wrap;
+
+  > div {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: all 0.5s ease;
+  }
+
+  &.open {
+    > div {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

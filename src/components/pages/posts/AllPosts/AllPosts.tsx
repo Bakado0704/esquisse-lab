@@ -1,5 +1,6 @@
 import { FlexBox, Typography } from '@/components/common';
 import { ItemCard } from '@/components/pages/common/ItemCard';
+import { useFadeIn } from '@/hooks/useFadeIn';
 import { getPosts } from '@/libs/getPosts';
 
 import styles from './AllPosts.module.scss';
@@ -7,6 +8,8 @@ import { AllPostsProps } from './AllPosts.types';
 
 const AllPosts = ({ categoryId }: AllPostsProps) => {
   const posts = getPosts();
+  useFadeIn({ targetId: 'cardContainer', styles });
+
   return (
     <FlexBox gap='3.2rem' flexDirection='column' className={styles.container}>
       <div className={styles.bg} />
@@ -22,8 +25,8 @@ const AllPosts = ({ categoryId }: AllPostsProps) => {
           {categoryId.slice(1)}
         </Typography>
       </FlexBox>
-      <FlexBox className={styles.cardContainer}>
-        {posts.map((post) => {
+      <FlexBox id='cardContainer' className={styles.cardContainer}>
+        {posts.map((post, index) => {
           return (
             <ItemCard
               key={post.id}
@@ -32,6 +35,7 @@ const AllPosts = ({ categoryId }: AllPostsProps) => {
               userName={post.userName}
               subject={post.subject}
               esquisseId={post.id}
+              transitionDelay={`${index * 0.16}s`}
             />
           );
         })}
