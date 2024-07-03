@@ -1,21 +1,18 @@
-import { useRouter } from 'next/navigation';
+import { FormProvider } from 'react-hook-form';
 
-import {
-  Button,
-  FlexBox,
-  Input,
-  Separator,
-  Typography,
-} from '@/components/common';
+import { Button, FlexBox, Separator, Typography } from '@/components/common';
 import { Card } from '@/components/common/Card';
-import { useFadeIn } from '@/hooks/useFadeIn';
 
+import { useAuthenticationUnitInternal } from './AuthecticationCardInternal.hooks';
+import { useAuthenticationCardUnit } from './AuthenticationCard.hooks';
 import styles from './AuthenticationCard.module.scss';
+import { EmailInputUnit } from './EmailInputUnit';
+import { PasswordInputUnit } from './PasswordInputUnit';
 
-const AuthenticationUnit = () => {
-  const router = useRouter();
-  const onSubmit = () => {};
-  useFadeIn({ targetId: 'login', styles });
+const AuthenticationUnitInternal = () => {
+  const { router, onSubmit, handleSubmit } = useAuthenticationUnitInternal({
+    styles,
+  });
 
   return (
     <Card id='login' fullWidth className={styles.card}>
@@ -24,16 +21,14 @@ const AuthenticationUnit = () => {
           Login
         </Typography>
         <FlexBox gap='2.4rem' flexDirection='column'>
-          <Input hideLabel placeholder='Your Email' className={styles.input} />
-          <Input
-            hideLabel
-            type='password'
-            placeholder='Password'
-            className={styles.input}
-          />
+          <EmailInputUnit />
+          <PasswordInputUnit />
         </FlexBox>
         <FlexBox flexDirection='column' className={styles.buttonContainer}>
-          <Button className={styles.loginButton} onClick={() => onSubmit()}>
+          <Button
+            className={styles.loginButton}
+            onClick={handleSubmit((data) => onSubmit(data))}
+          >
             Login
           </Button>
           <Separator direction='horizontal' />
@@ -46,6 +41,16 @@ const AuthenticationUnit = () => {
         </FlexBox>
       </FlexBox>
     </Card>
+  );
+};
+
+const AuthenticationUnit = () => {
+  const { methods } = useAuthenticationCardUnit();
+
+  return (
+    <FormProvider {...methods}>
+      <AuthenticationUnitInternal />
+    </FormProvider>
   );
 };
 
