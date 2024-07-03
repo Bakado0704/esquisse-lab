@@ -10,6 +10,9 @@ import {
 import { WorkFormValue } from '@/types/form/WorkForm.types';
 
 export const initialValue: WorkFormValue = {
+  workId: '',
+  uid: '',
+  esquisseIds: [],
   title: '',
   concept: '',
   tags: [],

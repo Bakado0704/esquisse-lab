@@ -18,9 +18,8 @@ export const useWorkFormInternal = () => {
     try {
       // setLoading(true);
 
-      const eventId = await submitForm(formData);
-      // router.push(`/work/${eventId}`);
-      console.log(eventId);
+      const id = await submitForm(formData);
+      router.push(`/work/${id}`);
 
       // setLoading(false);
     } catch (error) {
