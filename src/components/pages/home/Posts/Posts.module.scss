@@ -1,5 +1,29 @@
 @use '@/styles/mixin' as *;
 
+.container {
+  padding: 8.4rem 0 7.2rem;
+
+  @include mq(md) {
+    padding: 6.4rem 0;
+  }
+}
+
+.containerInner {
+  gap: 3.2rem;
+
+  @include mq(md) {
+    gap: 2.4rem;
+  }
+}
+
+.postTitle {
+  font-size: 4.8rem;
+
+  @include mq(md) {
+    font-size: 4rem;
+  }
+}
+
 .post {
   padding-top: 2.4rem;
   gap: 1.8rem;

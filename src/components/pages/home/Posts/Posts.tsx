@@ -26,9 +26,9 @@ const Posts = () => {
     router.push(`/work/${workId}`);
   };
   return (
-    <FlexBox flexDirection='column' gap='7.2rem' padding='8.4rem 0 7.2rem'>
-      <FlexBox flexDirection='column' gap='3.2rem'>
-        <Typography fontSize='4.8rem' gothic color='accent1'>
+    <FlexBox flexDirection='column' gap='7.2rem' className={styles.container}>
+      <FlexBox flexDirection='column' className={styles.containerInner}>
+        <Typography gothic color='accent1' className={styles.postTitle}>
           Posts
         </Typography>
         <FlexBox flexDirection='column'>
