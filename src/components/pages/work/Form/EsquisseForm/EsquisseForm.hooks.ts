@@ -23,6 +23,10 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
   useEffect(() => {
     const esquisseExist = esquisse.length;
     const defaultValue: WorkEsquisseFormValue = {
+      uid: formWork.uid,
+      esquisseIds: formWork.esquisseIds,
+      workId: formWork.workId,
+      esquisseId: esquisseId ?? '',
       title: formWork.title,
       concept: formWork.concept,
       tags: formWork.tags,

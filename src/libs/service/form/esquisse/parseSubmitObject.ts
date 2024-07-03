@@ -9,6 +9,10 @@ export const parseSubmitObject = ({
   formData: WorkEsquisseFormValue;
 }): EsquisseSubmit => {
   const {
+    workId,
+    esquisseId,
+    esquisseIds,
+    uid,
     title,
     concept,
     tags,
@@ -18,11 +22,6 @@ export const parseSubmitObject = ({
     subject,
     description,
   } = formData;
-
-  const workId = ''; //contextから取ってくる
-  const esquisseId = ''; //contextから取ってくる
-  const uid = ''; //contextから取ってくる
-  const esquisseIds: string[] = [];
 
   const workObj: Work = {
     id: workId,

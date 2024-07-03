@@ -5,19 +5,26 @@ import { parseSubmitObject } from './parseSubmitObject';
 
 export const submitForm = async (
   formData: WorkEsquisseFormValue,
+  status: 'new' | 'esquisseUpdate' | 'esquisseCreate',
 ): Promise<Work['id']> => {
   const parsedData = parseSubmitObject({
     formData,
   });
   const { esquisseObj, workObj } = parsedData;
+  console.log(esquisseObj);
 
-  if (esquisseObj.id === '') {
-    // await batchUpdate({
+  if (status === 'new') {
+    // await batchCreate({
+    //   esquisseObj,
+    //   workObj,
+    // });
+  } else if (status === 'esquisseCreate') {
+    // await batchEsquisseCreate({
     //   esquisseObj,
     //   workObj,
     // });
   } else {
-    // await batchCreate({
+    // await batchEsquisseUpdate({
     //   esquisseObj,
     //   workObj,
     // });
