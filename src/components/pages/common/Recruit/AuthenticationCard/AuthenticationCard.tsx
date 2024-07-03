@@ -8,12 +8,14 @@ import {
   Typography,
 } from '@/components/common';
 import { Card } from '@/components/common/Card';
+import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './AuthenticationCard.module.scss';
 
 const AuthenticationUnit = () => {
   const router = useRouter();
   const onSubmit = () => {};
+  useFadeIn({ targetId: 'login', styles });
 
   return (
     <Card id='login' fullWidth className={styles.card}>
