@@ -1,5 +1,26 @@
 @use '@/styles/mixin' as *;
 
+.container {
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: all 0.5s ease;
+
+  &.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.line {
+  width: 0.2rem;
+  height: 3.2rem;
+  background-color: var(--w3);
+
+  @include mq(md) {
+    height: 2.4rem;
+  }
+}
+
 .esquisseContainer {
   position: relative;
   padding: 1.6rem 2rem;

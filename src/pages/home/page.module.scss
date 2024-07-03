@@ -1,0 +1,9 @@
+@use '@/styles/mixin' as *;
+
+.separator {
+  margin-top: 10.4rem;
+
+  @include mq(md) {
+    margin-top: 8rem;
+  }
+}

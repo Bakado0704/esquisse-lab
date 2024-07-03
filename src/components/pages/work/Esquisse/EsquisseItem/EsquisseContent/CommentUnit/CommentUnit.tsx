@@ -1,13 +1,13 @@
-import { useFormContext } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 
 import { Button, FlexBox, TextArea } from '@/components/common';
-import { CommentFormValue } from '@/types/form/CommentForm.types';
 
+import { useCommentUnit } from './CommentUnit.hooks';
 import styles from './CommentUnit.module.scss';
+import { useCommentUnitInternal } from './CommentUnitInternal';
 
-const CommentUnit = () => {
-  const onComment = () => {};
-  const { register } = useFormContext<CommentFormValue>();
+const CommentUnitInternal = () => {
+  const { errors, register, handleSubmit, onSubmit } = useCommentUnitInternal();
 
   return (
     <FlexBox flexDirection='column' justifyContent='center' gap='1.2rem'>
@@ -16,18 +16,29 @@ const CommentUnit = () => {
         rows={8}
         placeholder='コメントを入力してください。'
         {...register('comment')}
+        error={errors.comment?.message}
       />
       <FlexBox justifyContent='center' margin='1.2rem 0'>
         <Button
           theme='rectPink'
           size='medium'
           className={styles.button}
-          onClick={onComment}
+          onClick={handleSubmit((data) => onSubmit(data))}
         >
           コメントをする
         </Button>
       </FlexBox>
     </FlexBox>
+  );
+};
+
+const CommentUnit = () => {
+  const { methods } = useCommentUnit();
+
+  return (
+    <FormProvider {...methods}>
+      <CommentUnitInternal />
+    </FormProvider>
   );
 };
 

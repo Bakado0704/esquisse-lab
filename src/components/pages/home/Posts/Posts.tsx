@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import postImage from '@/assets/fv/fv.png';
 import { FlexBox, Separator, Typography } from '@/components/common';
+import { NextImage } from '@/components/common/NextImage';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { getPosts } from '@/libs/getPosts';
 import { Post } from '@/types/application/post.types';
@@ -26,9 +26,9 @@ const Posts = () => {
     router.push(`/work/${workId}`);
   };
   return (
-    <FlexBox flexDirection='column' gap='7.2rem' padding='8.4rem 0 7.2rem'>
-      <FlexBox flexDirection='column' gap='3.2rem'>
-        <Typography fontSize='4.8rem' gothic color='accent1'>
+    <FlexBox flexDirection='column' gap='7.2rem' className={styles.container}>
+      <FlexBox flexDirection='column' className={styles.containerInner}>
+        <Typography gothic color='accent1' className={styles.postTitle}>
           Posts
         </Typography>
         <FlexBox flexDirection='column'>
@@ -37,7 +37,6 @@ const Posts = () => {
               <FlexBox
                 key={index}
                 flexDirection='column'
-                gap='1.8rem'
                 className={styles.post}
                 onClick={() =>
                   handlePost({
@@ -46,21 +45,29 @@ const Posts = () => {
                   })
                 }
               >
-                <FlexBox width='100%' className={styles.imageContainer}>
-                  <Image src={postImage} alt='post' layout='responsive' />
+                <FlexBox className={styles.imageContainer}>
+                  <NextImage id={post.id} src={postImage} alt='post' />
                 </FlexBox>
-                <FlexBox flexDirection='column' gap='1.2rem'>
-                  <FlexBox gap='1.8rem' alignItems='center'>
+                <FlexBox
+                  flexDirection='column'
+                  className={styles.detailContainer}
+                >
+                  <FlexBox gap='1.6rem' alignItems='center'>
                     <PostIcon />
-                    <FlexBox flexDirection='column' gap='0.8rem'>
-                      <Typography fontSize='1.2rem'>
+                    <FlexBox
+                      flexDirection='column'
+                      gap='0.8rem'
+                      className={styles.detail}
+                    >
+                      <Typography fontSize='1.2rem' color='b2'>
                         {format(post.createdAt, 'yyyy年MM月dd日')}
                       </Typography>
-                      <Typography fontSize='1.2rem'>{post.userName}</Typography>
+                      <Typography fontSize='1.2rem' color='b2'>
+                        {post.userName}
+                      </Typography>
                     </FlexBox>
                   </FlexBox>
                   <Typography
-                    fontSize='2.4rem'
                     fontWeight={600}
                     lineHeight='150%'
                     ellipsis
@@ -68,11 +75,7 @@ const Posts = () => {
                   >
                     {post.subject}
                   </Typography>
-                  <Typography
-                    ellipsis
-                    fontSize='1.4rem'
-                    className={styles.description}
-                  >
+                  <Typography ellipsis className={styles.description}>
                     {post.description}
                   </Typography>
                 </FlexBox>

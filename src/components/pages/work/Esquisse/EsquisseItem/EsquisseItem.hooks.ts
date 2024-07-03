@@ -1,18 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
+import { useFadeIn } from '@/hooks/useFadeIn';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getChats } from '@/libs/getChats';
 
 type UseEsquisseItemProps = {
   esquisseId: string;
+  styles: {
+    readonly [key: string]: string;
+  };
 };
 
-export const useEsquisseItem = ({ esquisseId }: UseEsquisseItemProps) => {
+export const useEsquisseItem = ({
+  esquisseId,
+  styles,
+}: UseEsquisseItemProps) => {
   const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const targetId = esquisseId + '_id';
+
+  useFadeIn({ targetId, styles });
 
   useEffect(() => {
     if (esquisseId === selectedEsquisseId) {
@@ -49,6 +59,7 @@ export const useEsquisseItem = ({ esquisseId }: UseEsquisseItemProps) => {
   };
 
   return {
+    targetId,
     chats,
     isEsquisseActive,
     containerRef,

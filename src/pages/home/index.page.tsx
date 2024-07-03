@@ -6,6 +6,7 @@ import { Fv } from '@/components/pages/home/Fv';
 import { Posts } from '@/components/pages/home/Posts';
 
 import { usePage } from './page.hooks';
+import styles from './page.module.scss';
 
 const Home = () => {
   usePage();
@@ -13,7 +14,7 @@ const Home = () => {
   return (
     <>
       <Fv />
-      <Separator direction='horizontal' marginTop='10.4rem' />
+      <Separator direction='horizontal' className={styles.separator} />
       <Posts />
       <Recruit />
       <Concept />

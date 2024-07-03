@@ -39,13 +39,3 @@
     background-color: var(--accent2);
   }
 }
-
-.line {
-  width: 0.2rem;
-  height: 3.2rem;
-  background-color: var(--w3);
-
-  @include mq(md) {
-    height: 2.4rem;
-  }
-}

@@ -1,11 +1,17 @@
 import { FlexBox, Icon, Typography } from '@/components/common';
 import { conceptList } from '@/dummyData/concept';
+import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './Concept.module.scss';
 
 const Concept = () => {
+  useFadeIn({ targetId: 'concept', styles });
   return (
-    <FlexBox justifyContent='space-between' className={styles.container}>
+    <FlexBox
+      id='concept'
+      justifyContent='space-between'
+      className={styles.container}
+    >
       {conceptList.map((concept, index) => (
         <FlexBox
           key={index}

@@ -8,12 +8,13 @@ import styles from './ItemCard.module.scss';
 import { ItemCardProps } from './ItemCard.types';
 import { PostIcon } from './PostIcon';
 
-const AllPosts = ({
+const ItemCard = ({
   workId,
   createdAt,
   subject,
   userName,
   esquisseId,
+  transitionDelay,
 }: ItemCardProps) => {
   const router = useRouter();
 
@@ -28,6 +29,7 @@ const AllPosts = ({
     <FlexBox
       flexDirection='column'
       className={styles.card}
+      transitionDelay={transitionDelay}
       onClick={handleItemCard}
     >
       <FlexBox alignItems='flex-end' className={styles.imageContainer}>
@@ -52,4 +54,4 @@ const AllPosts = ({
   );
 };
 
-export default AllPosts;
+export default ItemCard;

@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 
 import portfolioImg from '@/assets/portfolio/portfolio.png';
 import { FlexBox } from '@/components/common';
+import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './PersonalProject.module.scss';
 import { TextContainerPc } from './TextContainerPc';
@@ -11,6 +12,7 @@ import { TextContainerSpTop } from './TextContainerSpTop';
 
 const PersonalProject = () => {
   const router = useRouter();
+  useFadeIn({ targetId: 'portfolioImg', styles });
 
   return (
     <FlexBox className={styles.container}>
@@ -22,9 +24,9 @@ const PersonalProject = () => {
         onClick={() => router.push('/home')}
       >
         <Image
+          id='portfolioImg'
           src={portfolioImg}
-          alt='fv'
-          style={{ objectFit: 'cover' }}
+          alt='portfolioImg'
           className={styles.image}
         />
       </FlexBox>

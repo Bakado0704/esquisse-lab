@@ -15,16 +15,12 @@ export const Esquisse = ({ esquisses, userId }: EsquisseProps) => {
         <FlexBox flexDirection='column'>
           {esquisses.map((esquisse, index) => {
             return (
-              <FlexBox key={esquisse.id} flexDirection='column'>
-                <FlexBox width='100%' justifyContent='center'>
-                  {index !== 0 && <div className={styles.line} />}
-                </FlexBox>
-                <EsquisseItem
-                  esquisse={esquisse}
-                  index={index}
-                  userId={userId}
-                />
-              </FlexBox>
+              <EsquisseItem
+                key={esquisse.id}
+                esquisse={esquisse}
+                index={index}
+                userId={userId}
+              />
             );
           })}
         </FlexBox>

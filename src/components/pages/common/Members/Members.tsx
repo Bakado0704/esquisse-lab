@@ -16,7 +16,7 @@ const Members = () => {
       <div className={styles.bg} />
       <div className={styles.bgLineVertical} />
       <div className={styles.bgLineHorizontal} />
-      {members.length && (
+      {members.length > 0 && (
         <FlexBox width='100%' gap='6rem' flexDirection='column'>
           <FlexBox justifyContent='center'>
             <Typography color='w1' gothic className={styles.title}>

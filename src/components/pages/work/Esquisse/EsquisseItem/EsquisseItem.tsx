@@ -16,39 +16,45 @@ const EsquisseItemInternal = ({
   index,
 }: EsquisseItemProps) => {
   const {
+    targetId,
     chats,
     isEsquisseActive,
     containerRef,
     contentRef,
     toggleEsquisse,
     onEsquisseOpen,
-  } = useEsquisseItem({ esquisseId: esquisse.id });
+  } = useEsquisseItem({ esquisseId: esquisse.id, styles });
 
   return (
-    <FlexBox
-      id={esquisse.id}
-      ref={containerRef}
-      flexDirection='column'
-      onClick={onEsquisseOpen}
-      className={classNames(
-        styles.esquisseContainer,
-        !isEsquisseActive && styles.esquisseContainerClosed,
-      )}
-    >
-      <EsquisseHeader
-        index={index}
-        workId={esquisse.workId}
-        esquisseId={esquisse.id}
-        createdAt={esquisse.createdAt}
-        isEsquisseActive={isEsquisseActive}
-        toggleEsquisse={toggleEsquisse}
-      />
-      <EsquisseContent
-        userId={userId}
-        esquisse={esquisse}
-        contentRef={contentRef}
-        chats={chats}
-      />
+    <FlexBox id={targetId} flexDirection='column' className={styles.container}>
+      <FlexBox width='100%' justifyContent='center'>
+        {index !== 0 && <div className={styles.line} />}
+      </FlexBox>
+      <FlexBox
+        id={esquisse.id}
+        ref={containerRef}
+        flexDirection='column'
+        onClick={onEsquisseOpen}
+        className={classNames(
+          styles.esquisseContainer,
+          !isEsquisseActive && styles.esquisseContainerClosed,
+        )}
+      >
+        <EsquisseHeader
+          index={index}
+          workId={esquisse.workId}
+          esquisseId={esquisse.id}
+          createdAt={esquisse.createdAt}
+          isEsquisseActive={isEsquisseActive}
+          toggleEsquisse={toggleEsquisse}
+        />
+        <EsquisseContent
+          userId={userId}
+          esquisse={esquisse}
+          contentRef={contentRef}
+          chats={chats}
+        />
+      </FlexBox>
     </FlexBox>
   );
 };
