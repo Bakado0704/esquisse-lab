@@ -1,23 +1,23 @@
 import { User } from '@/types/firestore/user.types';
-import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 import { UserSubmit } from '@/types/form/Submit.types';
-import { generateId } from '@/utils/generateId';
+import { UserFormValue } from '@/types/form/UserForm.types';
 
 export const parseSubmitObject = ({
   formData,
 }: {
-  formData: RegisterFormValue;
+  formData: UserFormValue;
 }): UserSubmit => {
-  const { name, lab } = formData;
+  const { id, name, lab, coverImageUrl, iconImageUrl, detail, workIds } =
+    formData;
 
   const userObj: User = {
-    id: generateId(),
+    id,
     name,
     lab,
-    coverImageUrl: undefined,
-    iconImageUrl: undefined,
-    detail: '',
-    workIds: [],
+    coverImageUrl,
+    iconImageUrl,
+    detail,
+    workIds,
   };
 
   return { userObj };

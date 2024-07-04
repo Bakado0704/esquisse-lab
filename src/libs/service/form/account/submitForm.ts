@@ -1,17 +1,32 @@
+import { auth, createUser, sendEmail } from '@/libs/firebase/app';
 import { AccountFormValue } from '@/types/form/AccountForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
+
+const actionCodeSettings = {
+  url: 'http://localhost:3000/register',
+  handleCodeInApp: true,
+};
+
+export const accountCreate = async (email: string, password: string) => {
+  await createUser(auth, email, password).catch(() => {
+    alert('すでにこのメールアドレスは使われています');
+    return;
+  });
+};
 
 export const submitForm = async (formData: AccountFormValue): Promise<void> => {
   const parsedData = parseSubmitObject({
     formData,
   });
-  const email = parsedData;
+  const accountObj = parsedData;
 
-  console.log(email);
+  await accountCreate(accountObj.email, accountObj.password1);
 
-  // await batchCreate({
-  //   esquisseObj,
-  //   workObj,
-  // });
+  if (auth.currentUser) {
+    await sendEmail(auth.currentUser, actionCodeSettings);
+  } else {
+    alert('もう一度お試しください');
+    return;
+  }
 };

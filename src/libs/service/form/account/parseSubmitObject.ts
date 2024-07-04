@@ -4,8 +4,14 @@ export const parseSubmitObject = ({
   formData,
 }: {
   formData: AccountFormValue;
-}): string => {
-  const { email } = formData;
+}): AccountFormValue => {
+  const { email, password1, password2 } = formData;
 
-  return email;
+  const accountObj: AccountFormValue = {
+    email,
+    password1,
+    password2,
+  };
+
+  return accountObj;
 };

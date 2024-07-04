@@ -1,16 +1,27 @@
+import { auth, updateUser } from '@/libs/firebase/app';
 import { batchCreate } from '@/libs/repository/batch/user';
-import { RegisterFormValue } from '@/types/form/RegisterForm.types';
+import { UserFormValue } from '@/types/form/UserForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
 
-export const submitForm = async (
-  formData: RegisterFormValue,
-): Promise<void> => {
+export const accountUpdate = async ({ name }: { name: string }) => {
+  if (auth.currentUser) {
+    updateUser(auth.currentUser, {
+      displayName: name,
+    }).catch(() => {
+      alert('もう一度入力ください');
+      return;
+    });
+  }
+};
+
+export const submitForm = async (formData: UserFormValue): Promise<void> => {
   const parsedData = parseSubmitObject({
     formData,
   });
   const { userObj } = parsedData;
 
+  await accountUpdate({ name: userObj.name });
   await batchCreate({
     userObj,
   });
