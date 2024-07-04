@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { submitForm } from '@/libs/service/form/login/submitForm';
+import { Login } from '@/libs/service/form/authentication/login';
 import { LoginFormValue } from '@/types/form/LoginForm.types';
 
 type AuthenticationFormPrpos = {
@@ -28,15 +28,13 @@ export const useAuthenticationUnitInternal = ({
 
     try {
       // setLoading(true);
-
-      await submitForm(formData);
-      // router.push(`/work/${eventId}`);
+      await Login(formData);
       // setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
-      processing.current = false;
       // setLoading(false);
     }
+    processing.current = false;
   };
   return {
     router,
