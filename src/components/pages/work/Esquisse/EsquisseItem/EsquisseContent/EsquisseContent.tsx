@@ -22,7 +22,7 @@ const EsquisseContent = ({
       <ContentUnit esquisse={esquisse} />
       <div className={styles.separator} />
       <ChatUnit chats={chats} userId={userId} />
-      <CommentUnit />
+      <CommentUnit esquisseId={esquisse.id} uid={userId} />
     </FlexBox>
   );
 };

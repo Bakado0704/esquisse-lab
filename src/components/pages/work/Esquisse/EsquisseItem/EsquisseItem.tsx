@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { FlexBox } from '@/components/common';
-import { CommentFormValue } from '@/types/form/CommentForm.types';
+import { ChatFormValue } from '@/types/form/ChatForm.types';
 
 import { EsquisseContent } from './EsquisseContent';
 import { EsquisseHeader } from './EsquisseHeader';
@@ -60,7 +60,7 @@ const EsquisseItemInternal = ({
 };
 
 const EsquisseItem = ({ esquisse, index, userId }: EsquisseItemProps) => {
-  const methods = useForm<CommentFormValue>();
+  const methods = useForm<ChatFormValue>();
 
   return (
     <FormProvider {...methods}>

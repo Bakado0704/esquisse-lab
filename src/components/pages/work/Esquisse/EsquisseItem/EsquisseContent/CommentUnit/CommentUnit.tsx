@@ -15,8 +15,8 @@ const CommentUnitInternal = () => {
         label='コメント追加'
         rows={8}
         placeholder='コメントを入力してください。'
-        {...register('comment')}
-        error={errors.comment?.message}
+        {...register('description')}
+        error={errors.description?.message}
       />
       <FlexBox justifyContent='center' margin='1.2rem 0'>
         <Button
@@ -32,8 +32,14 @@ const CommentUnitInternal = () => {
   );
 };
 
-const CommentUnit = () => {
-  const { methods } = useCommentUnit();
+const CommentUnit = ({
+  esquisseId,
+  uid,
+}: {
+  esquisseId: string;
+  uid?: string;
+}) => {
+  const { methods } = useCommentUnit({ esquisseId, uid });
 
   return (
     <FormProvider {...methods}>

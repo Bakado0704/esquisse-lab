@@ -1,5 +1,6 @@
-import { User } from '../application/user.types';
+import { Chat } from '../firestore/chat.types';
 import { Esquisse } from '../firestore/esquisse.types';
+import { User } from '../firestore/user.types';
 import { Work } from '../firestore/work.types';
 
 export type EsquisseSubmit = {
@@ -13,4 +14,8 @@ export type WorkSubmit = {
 
 export type UserSubmit = {
   userObj: User;
+};
+
+export type ChatSubmit = {
+  chatObj: Chat;
 };

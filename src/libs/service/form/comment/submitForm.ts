@@ -1,17 +1,21 @@
-import { CommentFormValue } from '@/types/form/CommentForm.types';
+import { Chat } from '@/types/application/chat.types';
+import { ChatFormValue } from '@/types/form/ChatForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
 
-export const submitForm = async (formData: CommentFormValue): Promise<void> => {
+export const submitForm = async (
+  formData: ChatFormValue,
+): Promise<Chat['esquisseId']> => {
   const parsedData = parseSubmitObject({
     formData,
   });
-  const comment = parsedData;
+  const { chatObj } = parsedData;
 
-  console.log(comment);
+  console.log(chatObj);
 
   // await batchCreate({
-  //   esquisseObj,
-  //   workObj,
+  //   chatObj,
   // });
+
+  return chatObj.esquisseId;
 };

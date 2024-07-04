@@ -3,25 +3,26 @@ import { useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { submitForm } from '@/libs/service/form/comment/submitForm';
-import { CommentFormValue } from '@/types/form/CommentForm.types';
+import { ChatFormValue } from '@/types/form/ChatForm.types';
 
 export const useCommentUnitInternal = () => {
   const {
     formState: { errors },
     handleSubmit,
     register,
-  } = useFormContext<CommentFormValue>();
+  } = useFormContext<ChatFormValue>();
   const processing = useRef(false);
 
-  const onSubmit = async (formData: CommentFormValue) => {
+  const onSubmit = async (formData: ChatFormValue) => {
     if (processing.current) return;
     processing.current = true;
 
     try {
       // setLoading(true);
 
-      await submitForm(formData);
-      // router.push(`/work/${eventId}`);
+      const workId = await submitForm(formData);
+      console.log(workId);
+      // router.push(`/work/${workId}`);
       // setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
