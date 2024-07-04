@@ -17,6 +17,8 @@ export const useAccountForm = () => {
   useEffect(() => {
     const defaultValue: AccountFormValue = {
       email: '',
+      password1: '',
+      password2: '',
     };
 
     reset(defaultValue);

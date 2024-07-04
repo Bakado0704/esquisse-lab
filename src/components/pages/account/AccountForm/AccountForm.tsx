@@ -11,6 +11,7 @@ import { useAccountForm } from './AccountForm.hooks';
 import styles from './AccountForm.module.scss';
 import { useAccountFormInternal } from './AccountFormInternal.hooks';
 import { EmailInputUnit } from './EmailInputUnit';
+import { PasswordInputUnit } from './PasswordInputUnit';
 
 const AccountUnitInternal = ({
   setPage,
@@ -45,7 +46,7 @@ const AccountUnitInternal = ({
           アカウントの作成
         </Typography>
         <Typography color='var(--w1)' fontSize='1.2rem' textAlign='center'>
-          EsquisseLabのアカウントを作成するために、メールアドレスをご入力ください。
+          EsquisseLabのアカウントを作成するために、メールアドレス・パスワードを設定してください。
         </Typography>
       </FlexBox>
 
@@ -56,7 +57,11 @@ const AccountUnitInternal = ({
         justifyContent='center'
         className={styles.formContainer}
       >
-        <EmailInputUnit />
+        <FlexBox gap='2rem' flexDirection='column'>
+          <EmailInputUnit />
+          <PasswordInputUnit password='password1' label='パスワード' />
+          <PasswordInputUnit password='password2' label='パスワード(確認用)' />
+        </FlexBox>
         <FlexBox width='100%' justifyContent='center'>
           <Button
             size='huge'
