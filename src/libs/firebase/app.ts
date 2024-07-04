@@ -1,5 +1,11 @@
 import { getApp, getApps, initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+  signOut,
+  updateProfile,
+} from 'firebase/auth';
 import { getFirestore, initializeFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 import { getStorage } from 'firebase/storage';
@@ -23,6 +29,10 @@ initializeFirestore(firebaseApp, {
 export const db = getFirestore(firebaseApp);
 export const functions = getFunctions(firebaseApp);
 export const auth = getAuth(firebaseApp);
+export const createUser = createUserWithEmailAndPassword;
+export const updateUser = updateProfile;
+export const sendEmail = sendEmailVerification;
+export const signout = signOut;
 export const storage = getStorage(firebaseApp);
 
 export default firebaseApp;
