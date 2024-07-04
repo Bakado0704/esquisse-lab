@@ -18,7 +18,5 @@ export const parseSubmitObject = ({
     esquisseIds,
   };
 
-  console.log(workObj);
-
   return { workObj };
 };

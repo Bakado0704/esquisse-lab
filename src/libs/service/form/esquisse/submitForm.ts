@@ -1,3 +1,8 @@
+import {
+  batchCreate,
+  batchEsquisseCreate,
+  batchEsquisseUpdate,
+} from '@/libs/repository/batch/esquisse';
 import { Work } from '@/types/application/work.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
@@ -14,20 +19,20 @@ export const submitForm = async (
   console.log(esquisseObj);
 
   if (status === 'new') {
-    // await batchCreate({
-    //   esquisseObj,
-    //   workObj,
-    // });
+    await batchCreate({
+      esquisseObj,
+      workObj,
+    });
   } else if (status === 'esquisseCreate') {
-    // await batchEsquisseCreate({
-    //   esquisseObj,
-    //   workObj,
-    // });
+    await batchEsquisseCreate({
+      esquisseObj,
+      workObj,
+    });
   } else {
-    // await batchEsquisseUpdate({
-    //   esquisseObj,
-    //   workObj,
-    // });
+    await batchEsquisseUpdate({
+      esquisseObj,
+      workObj,
+    });
   }
 
   return workObj.id;

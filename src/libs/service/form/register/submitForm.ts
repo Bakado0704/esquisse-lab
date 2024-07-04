@@ -1,3 +1,4 @@
+import { batchCreate } from '@/libs/repository/batch/user';
 import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
@@ -10,9 +11,7 @@ export const submitForm = async (
   });
   const { userObj } = parsedData;
 
-  console.log(userObj);
-
-  // await batchCreate({
-  //   userObj,
-  // });
+  await batchCreate({
+    userObj,
+  });
 };

@@ -1,3 +1,4 @@
+import { batchCreate } from '@/libs/repository/batch/chat';
 import { Chat } from '@/types/application/chat.types';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 
@@ -11,11 +12,9 @@ export const submitForm = async (
   });
   const { chatObj } = parsedData;
 
-  console.log(chatObj);
-
-  // await batchCreate({
-  //   chatObj,
-  // });
+  await batchCreate({
+    chatObj,
+  });
 
   return chatObj.esquisseId;
 };

@@ -42,7 +42,5 @@ export const parseSubmitObject = ({
     description,
   };
 
-  console.log(workObj, esquisseObj);
-
   return { workObj, esquisseObj };
 };

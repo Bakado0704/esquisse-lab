@@ -20,7 +20,5 @@ export const parseSubmitObject = ({
     workIds,
   };
 
-  console.log(userObj);
-
   return { userObj };
 };
