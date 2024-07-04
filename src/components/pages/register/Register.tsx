@@ -5,9 +5,9 @@ import { FormProvider } from 'react-hook-form';
 import fvImg from '@/assets/fv/fv.png';
 import { Button, FlexBox } from '@/components/common';
 
+import { IconImageInputUnit } from './IconImageInputUnit';
 import { LabInputUnit } from './LabInputUnit';
 import { NameInputUnit } from './NameInputUnit';
-import { PasswordInputUnit } from './PasswordInputUnit';
 import { useRegister } from './Register.hooks';
 import styles from './Register.module.scss';
 import { useRegisterFormInternal } from './RegisterInternal.hooks';
@@ -17,7 +17,7 @@ const RegisterInternal = () => {
 
   return (
     <FlexBox
-      gap='3.2rem'
+      gap='1.6em'
       flexDirection='column'
       justifyContent='center'
       className={styles.container}
@@ -32,27 +32,27 @@ const RegisterInternal = () => {
         </Typography>
       </FlexBox>
 
-      <FlexBox
-        width='100%'
-        gap='1.6rem'
-        flexDirection='column'
-        justifyContent='center'
-        className={styles.formContainer}
-      >
-        <NameInputUnit />
-        <LabInputUnit />
-        <PasswordInputUnit password='password1' label='パスワード' />
-        <PasswordInputUnit password='password2' label='パスワード(確認用)' />
-      </FlexBox>
-
-      <FlexBox width='100%' justifyContent='center'>
-        <Button
-          size='huge'
-          className={styles.button}
-          onClick={handleSubmit((data) => onSubmit(data))}
+      <FlexBox flexDirection='column' gap='3.2rem'>
+        <FlexBox
+          gap='1.6rem'
+          flexDirection='column'
+          justifyContent='center'
+          className={styles.formContainer}
         >
-          アカウントを作成する
-        </Button>
+          <IconImageInputUnit />
+          <NameInputUnit />
+          <LabInputUnit />
+        </FlexBox>
+
+        <FlexBox width='100%' justifyContent='center'>
+          <Button
+            size='huge'
+            className={styles.button}
+            onClick={handleSubmit((data) => onSubmit(data))}
+          >
+            アカウントを作成する
+          </Button>
+        </FlexBox>
       </FlexBox>
     </FlexBox>
   );
