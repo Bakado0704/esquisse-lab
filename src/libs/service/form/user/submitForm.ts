@@ -12,7 +12,7 @@ export const submitForm = async (
   const { userObj } = parsedData;
 
   // await batchUpdate({
-  // userObj
+  //   userObj,
   // });
 
   return userObj.id;
