@@ -62,16 +62,16 @@ export const useTagFormUnit = () => {
   const onSelectDropDown = async (selectedTag: TagInfo) => {
     // setLoading(true);
     if (selectedTag.id === '_single') {
-      // firebaseに登録したのち、formに追加
-      // await createArtist(selectedTag.name, user?.uid || '')
-      //   .then((createdArtist) => {
-      //     appendArtist(createdArtist);
-      //     clearErrors('artists');
-      //     setArtistInput('');
-      //   })
-      //   .catch((error) => {
-      //     setErrorAlert({ error });
-      //   });
+      // const tagObj: Tag = {
+      //   id: generateId(),
+      //   name: selectedTag.name,
+      //   search: normalizeInput(selectedTag.name),
+      // };
+      // await batchCreate({ tagObj }).then((createdTag) => {
+      //   appendTag(createdTag);
+      //   clearErrors('tags');
+      //   setTagInput('');
+      // });
       appendTag(selectedTag);
       clearErrors('tags');
       setTagInput('');
