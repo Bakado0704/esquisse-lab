@@ -5,7 +5,6 @@ import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getUsers } from '@/libs/getUsers';
 
 export const useProposeUnit = () => {
-  const users = getUsers();
   const { members, setMembers } = useMemberContext();
 
   useEffect(() => {
@@ -18,7 +17,8 @@ export const useProposeUnit = () => {
     }
   }, [members]);
 
-  const onScrollMember = () => {
+  const onScrollMember = async () => {
+    const users = await getUsers();
     setMembers(users);
     onScroll('member', 'top');
   };
