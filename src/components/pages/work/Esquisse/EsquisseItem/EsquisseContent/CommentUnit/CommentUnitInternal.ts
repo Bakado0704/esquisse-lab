@@ -20,9 +20,7 @@ export const useCommentUnitInternal = () => {
     try {
       // setLoading(true);
 
-      const workId = await submitForm(formData);
-      console.log(workId);
-      // router.push(`/work/${workId}`);
+      await submitForm(formData);
       // setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });

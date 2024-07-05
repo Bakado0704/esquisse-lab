@@ -16,8 +16,6 @@ export const submitForm = async (
     formData,
   });
   const { esquisseObj, workObj } = parsedData;
-  console.log(esquisseObj);
-
   if (status === 'new') {
     await batchCreate({
       esquisseObj,

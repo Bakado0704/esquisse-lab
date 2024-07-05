@@ -19,9 +19,8 @@ export const useUserFormInternal = () => {
     try {
       // setLoading(true);
 
-      const eventId = await submitForm(formData);
-      // router.push(`/work/${eventId}`);
-      console.log(eventId);
+      const userId = await submitForm(formData);
+      router.push(`/user/${userId}`);
 
       // setLoading(false);
     } catch (error) {

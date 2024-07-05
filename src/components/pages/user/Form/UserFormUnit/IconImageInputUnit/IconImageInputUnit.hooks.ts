@@ -40,8 +40,6 @@ export const useIconImageInputUnit = () => {
   const addImageHandler = async (file: File) => {
     if (!file) return;
 
-    console.log('ddd');
-
     const objectUrl = URL.createObjectURL(file);
     loadImage(objectUrl)
       .then((imageType) => {
@@ -50,7 +48,6 @@ export const useIconImageInputUnit = () => {
           objectUrl: objectUrl,
           imgSize: imageType.imgSize,
         };
-        console.log('ccc');
         setIconImageData(newImage);
       })
       .catch((error) => {
