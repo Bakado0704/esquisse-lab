@@ -14,7 +14,12 @@ const FvText = ({ work }: FvTextProps) => {
 
   return (
     <FlexBox flexDirection='column' className={styles.container}>
-      <TitleUnit title={work.title} concept={work.concept} workId={work.id} />
+      <TitleUnit
+        title={work.title}
+        concept={work.concept}
+        workId={work.id}
+        userId={work.uid}
+      />
       <UserUnit userId={work.uid} />
       <TagUnit tags={work.tags} />
       <PeriodUnit startDate={startDate} endDate={endDate} />
