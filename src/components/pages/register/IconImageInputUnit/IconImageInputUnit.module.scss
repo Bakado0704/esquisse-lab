@@ -15,8 +15,8 @@
   &::after {
     content: '';
     position: absolute;
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
     top: 50%;
     left: 50%;
     border-radius: 50%;
@@ -45,8 +45,8 @@
 
     &::after {
       transition: all 0.3s ease-in;
-      width: 52%;
-      height: 52%;
+      width: 45%;
+      height: 45%;
     }
 
     &::before {
