@@ -1,16 +1,11 @@
-import { useRouter } from 'next/navigation';
-
 import { FlexBox, Typography } from '@/components/common';
-import { getUsers } from '@/libs/getUsers';
 
+import { useUserUnit } from './UserUnit.hooks';
 import styles from './UserUnit.module.scss';
 import { UserUnitProps } from './UserUnit.types';
 
-const UserUnit = ({ userId }: UserUnitProps) => {
-  const router = useRouter();
-  const user = getUsers().find((user) => user.id === userId);
-
-  if (!user) return null;
+const UserUnit = async ({ userId }: UserUnitProps) => {
+  const { user, handleUser } = useUserUnit({ userId });
 
   return (
     <FlexBox gap='2rem' alignItems='center'>
@@ -19,7 +14,7 @@ const UserUnit = ({ userId }: UserUnitProps) => {
         flexDirection='column'
         gap='0.4rem'
         className={styles.link}
-        onClick={() => router.push(`/user/${user.id}`)}
+        onClick={handleUser}
       >
         <Typography fontSize='1.6rem' fontWeight={600}>
           設計者
