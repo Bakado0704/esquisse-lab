@@ -1,41 +1,23 @@
-import {
-  QueryConstraint,
-  WhereFilterOp,
-  collection,
-  limit as firestoreLimit,
-  getDocs,
-  query,
-  where,
-} from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 import { db } from '../app';
+import { CustomQueryConstraint, queryRef } from '../factory/query';
 import { timestampToDate } from '../timestampToDate';
 
 type Props<T> = {
   path: string;
   parseT: (value: { [key: string]: unknown }) => T;
-  options?: Options;
-};
-
-export type Options = {
-  limit?: number;
-  queryConstraints?: QueryConstraint[];
-  lastVisibleId?: string;
-  deletedShown?: boolean;
+  queryConstraints?: CustomQueryConstraint<T>[];
 };
 
 export const list = async <T>({
   path,
   parseT,
-  options,
+  queryConstraints = [],
 }: Props<T>): Promise<T[]> => {
-  // 100件以上のデータを取得する場合は、limitを変更
-  const { limit, queryConstraints = [] } = options || {};
-  const collectionRef = collection(db, path);
-  const assembledQueryConstraints = queryConstraints;
-  if (limit) assembledQueryConstraints.push(firestoreLimit(limit));
-  const q = query(collectionRef, ...assembledQueryConstraints);
-  const { docs } = await getDocs(q);
+  const { docs } = await getDocs(
+    queryRef(collection(db, path), queryConstraints),
+  );
   const data: T[] = [];
   docs.forEach((queryDocumentSnapshot) => {
     const datum = {
@@ -46,14 +28,8 @@ export const list = async <T>({
       data.push(parseT(datum));
     } catch (error) {
       console.log(`Document: ${path}/${datum.id}`);
-      console.error(error);
+      console.error(error); // TODO: 不要かも
     }
   });
   return data;
 };
-
-export const safeWhere = <T, K extends keyof T>(
-  fieldPath: K extends string ? K : never,
-  opStr: WhereFilterOp,
-  value: T[K] | T[K][],
-) => where(fieldPath, opStr, value);

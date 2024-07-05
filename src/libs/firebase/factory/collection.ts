@@ -1,6 +1,8 @@
 import { FirestoreCollectionPath } from '@/types/firestore/FirestorePath.types';
 
 import { create } from '../collection/create';
+import { deleteDoc } from '../collection/delete';
+import { exists } from '../collection/exists';
 import { get } from '../collection/get';
 import { list } from '../collection/list';
 import { update } from '../collection/update';
@@ -13,7 +15,7 @@ type Repository<T> = {
     typeof get<T>
   >;
   list: (
-    options?: Parameters<typeof list<T>>[0]['options'],
+    queryConstraints?: Parameters<typeof list<T>>[0]['queryConstraints'],
   ) => ReturnType<typeof list<T>>;
   create: (
     inputData: Omit<T, 'id' | 'createdAt'> & { id?: string },
@@ -22,6 +24,14 @@ type Repository<T> = {
     id: string,
     { ...inputData }: Omit<Partial<T>, 'id'>,
   ) => ReturnType<typeof update<T>>;
+  deleteDoc: ({
+    id,
+  }: Pick<Parameters<typeof deleteDoc>[0], 'id'>) => ReturnType<
+    typeof deleteDoc
+  >;
+  exists: ({
+    id,
+  }: Pick<Parameters<typeof exists>[0], 'id'>) => ReturnType<typeof exists>;
 };
 
 type CreateRepositoryProps<T> = {
@@ -34,8 +44,9 @@ export const createRepository = <T>({
   parseT,
 }: CreateRepositoryProps<T>): Repository<T> => ({
   get: ({ id, isWithoutId }) => get<T>({ path, id, parseT, isWithoutId }),
-  list: (options) => list<T>({ path, options, parseT }),
+  list: (queryConstraints) => list<T>({ path, queryConstraints, parseT }),
   create: (inputData) => create<T>({ path, parseT, inputData }),
-  update: (id, inputData) =>
-    update<T>({ path, id, ...inputData } as Parameters<typeof update<T>>[0]),
+  update: (id, inputData) => update<T>({ path, id, ...inputData }),
+  deleteDoc: ({ id }) => deleteDoc({ path, id }),
+  exists: ({ id }) => exists({ path, id }),
 });
