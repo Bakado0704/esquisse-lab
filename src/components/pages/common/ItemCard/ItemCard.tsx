@@ -1,29 +1,24 @@
 import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
 
 import { FlexBox, Typography } from '@/components/common';
-import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 
+import { useItemCard } from './ItemCard.hooks';
 import styles from './ItemCard.module.scss';
 import { ItemCardProps } from './ItemCard.types';
 import { PostIcon } from './PostIcon';
 
 const ItemCard = ({
   workId,
-  createdAt,
+  userId,
   subject,
-  userName,
   esquisseId,
   transitionDelay,
 }: ItemCardProps) => {
-  const router = useRouter();
-
-  const { setEsquisseId } = useEsquisseIdContext();
-
-  const handleItemCard = () => {
-    setEsquisseId(esquisseId ?? '');
-    router.push(`/work/${workId}`);
-  };
+  const { createdAt, handleItemCard, userName } = useItemCard({
+    workId,
+    userId,
+    esquisseId,
+  });
 
   return (
     <FlexBox
