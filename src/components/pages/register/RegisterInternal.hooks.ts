@@ -1,15 +1,21 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { auth } from '@/libs/firebase/app';
 import { submitForm } from '@/libs/service/form/register/submitForm';
+import { uploadImageFile } from '@/libs/service/uploadImage';
+import { fetchUserInfo } from '@/libs/service/user';
+import { ImageDataType } from '@/types/form/ImageForm.types';
 import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 import { generateId } from '@/utils/generateId';
 
 export const useRegisterFormInternal = () => {
   const { handleSubmit } = useFormContext<RegisterFormValue>();
+  const { setUser } = useAuthContext();
+  const [iconImageData, setIconImageData] = useState<ImageDataType>();
   const processing = useRef(false);
   const router = useRouter();
 
@@ -19,18 +25,32 @@ export const useRegisterFormInternal = () => {
 
     try {
       // setLoading(true);
+      let iconImageUrl = '';
+
+      if (iconImageData && iconImageData.file) {
+        iconImageUrl = await uploadImageFile({
+          imageDatum: {
+            objectUrl: iconImageData.objectUrl,
+            file: iconImageData.file,
+          },
+        });
+      }
 
       const createdFormData = {
         id: auth.currentUser ? auth.currentUser.uid : generateId(),
         name: formData.name,
         lab: formData.lab,
         workIds: [],
-        coverImageUrl: formData.iconImageUrl,
-        iconImageUrl: undefined,
+        coverImageUrl: undefined,
+        iconImageUrl,
         detail: '',
       };
 
       await submitForm(createdFormData);
+      await fetchUserInfo({ userId: createdFormData.id }).then((userInfo) => {
+        setUser(userInfo);
+      });
+
       router.push(`/home`);
       // setLoading(false);
     } catch (error) {
@@ -40,6 +60,8 @@ export const useRegisterFormInternal = () => {
     }
   };
   return {
+    iconImageData,
+    setIconImageData,
     handleSubmit,
     onSubmit,
   };

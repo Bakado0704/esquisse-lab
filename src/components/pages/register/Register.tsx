@@ -1,9 +1,8 @@
-import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { FormProvider } from 'react-hook-form';
 
 import fvImg from '@/assets/fv/fv.png';
-import { Button, FlexBox } from '@/components/common';
+import { Button, FlexBox, Typography } from '@/components/common';
 
 import { IconImageInputUnit } from './IconImageInputUnit';
 import { LabInputUnit } from './LabInputUnit';
@@ -13,7 +12,8 @@ import styles from './Register.module.scss';
 import { useRegisterFormInternal } from './RegisterInternal.hooks';
 
 const RegisterInternal = () => {
-  const { handleSubmit, onSubmit } = useRegisterFormInternal();
+  const { iconImageData, setIconImageData, handleSubmit, onSubmit } =
+    useRegisterFormInternal();
 
   return (
     <FlexBox
@@ -27,7 +27,7 @@ const RegisterInternal = () => {
       </FlexBox>
 
       <FlexBox width='100%' justifyContent='center'>
-        <Typography color='var(--w1)' fontWeight={600} fontSize='2.4rem'>
+        <Typography color='w1' fontWeight={600} fontSize='2.4rem'>
           メールアドレスの受信が確認されました！
         </Typography>
       </FlexBox>
@@ -39,7 +39,10 @@ const RegisterInternal = () => {
           justifyContent='center'
           className={styles.formContainer}
         >
-          <IconImageInputUnit />
+          <IconImageInputUnit
+            iconImageData={iconImageData}
+            setIconImageData={setIconImageData}
+          />
           <NameInputUnit />
           <LabInputUnit />
         </FlexBox>
