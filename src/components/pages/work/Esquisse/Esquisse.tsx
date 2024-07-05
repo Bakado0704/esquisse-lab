@@ -25,7 +25,7 @@ export const Esquisse = ({ esquisses, userId }: EsquisseProps) => {
           })}
         </FlexBox>
       </FlexBox>
-      <ButtonUnit />
+      <ButtonUnit userId={userId} />
     </FlexBox>
   );
 };
