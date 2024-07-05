@@ -22,7 +22,7 @@ export const getPosts = async (): Promise<Post[]> => {
             description: esquisse.description,
             userId: user.id,
             imageUrl: esquisse.topImage,
-            iconUmageUrl: user.iconImageUrl,
+            iconImageUrl: user.iconImageUrl,
           };
         } catch (error) {
           console.error(
