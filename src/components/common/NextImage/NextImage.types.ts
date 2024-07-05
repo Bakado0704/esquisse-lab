@@ -1,8 +1,6 @@
-import { StaticImageData } from 'next/image';
-
 export type NextImageProps = {
   id: string;
-  src: StaticImageData;
+  src: string;
   alt: string;
   className?: string;
 };
