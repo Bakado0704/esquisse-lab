@@ -1,12 +1,9 @@
 import { batchCreate } from '@/libs/repository/batch/chat';
-import { Chat } from '@/types/application/chat.types';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
 
-export const submitForm = async (
-  formData: ChatFormValue,
-): Promise<Chat['esquisseId']> => {
+export const submitForm = async (formData: ChatFormValue): Promise<void> => {
   const parsedData = parseSubmitObject({
     formData,
   });
@@ -15,6 +12,4 @@ export const submitForm = async (
   await batchCreate({
     chatObj,
   });
-
-  return chatObj.esquisseId;
 };

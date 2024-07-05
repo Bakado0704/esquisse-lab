@@ -1,4 +1,6 @@
-import { auth, updateUser } from '@/libs/firebase/app';
+import { updateProfile } from 'firebase/auth';
+
+import { auth } from '@/libs/firebase/app';
 import { batchCreate } from '@/libs/repository/batch/user';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
@@ -6,7 +8,7 @@ import { parseSubmitObject } from './parseSubmitObject';
 
 export const accountUpdate = async ({ name }: { name: string }) => {
   if (auth.currentUser) {
-    updateUser(auth.currentUser, {
+    updateProfile(auth.currentUser, {
       displayName: name,
     }).catch(() => {
       alert('もう一度入力ください');

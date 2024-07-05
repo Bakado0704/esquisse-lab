@@ -1,4 +1,9 @@
-import { auth, createUser, sendEmail } from '@/libs/firebase/app';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
+
+import { auth } from '@/libs/firebase/app';
 import { AccountFormValue } from '@/types/form/AccountForm.types';
 
 import { parseSubmitObject } from './parseSubmitObject';
@@ -9,7 +14,7 @@ const actionCodeSettings = {
 };
 
 export const accountCreate = async (email: string, password: string) => {
-  await createUser(auth, email, password).catch(() => {
+  await createUserWithEmailAndPassword(auth, email, password).catch(() => {
     alert('すでにこのメールアドレスは使われています');
     return;
   });
@@ -24,7 +29,7 @@ export const submitForm = async (formData: AccountFormValue): Promise<void> => {
   await accountCreate(accountObj.email, accountObj.password1);
 
   if (auth.currentUser) {
-    await sendEmail(auth.currentUser, actionCodeSettings);
+    await sendEmailVerification(auth.currentUser, actionCodeSettings);
   } else {
     alert('もう一度お試しください');
     return;
