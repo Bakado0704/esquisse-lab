@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
@@ -21,6 +21,12 @@ export const useEsquisseFormInternal = () => {
   const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
 
   const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/account');
+    }
+  }, []);
 
   const onSubmit = async (
     formData: WorkEsquisseFormValue,
