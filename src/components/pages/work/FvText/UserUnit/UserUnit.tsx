@@ -4,7 +4,7 @@ import { useUserUnit } from './UserUnit.hooks';
 import styles from './UserUnit.module.scss';
 import { UserUnitProps } from './UserUnit.types';
 
-const UserUnit = async ({ userId }: UserUnitProps) => {
+const UserUnit = ({ userId }: UserUnitProps) => {
   const { user, handleUser } = useUserUnit({ userId });
 
   return (
