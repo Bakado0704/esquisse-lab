@@ -1,22 +1,8 @@
-import {
-  onAuthStateChanged as onFirebaseAuthStateChanged,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
+import { onAuthStateChanged as onFirebaseAuthStateChanged } from 'firebase/auth';
 
-import { UserInfo } from '@/types/application/userInfo.types';
+import { UserInfo } from '@/types/application/UserInfo.types';
 
 import { auth } from '../firebase/app';
-
-export const signInWithEmail = async (
-  email: string,
-  password: string,
-): Promise<string> => {
-  const { user } = await signInWithEmailAndPassword(auth, email, password);
-
-  if (!user) throw 'ログインに失敗しました。';
-
-  return user.uid;
-};
 
 export const onAuthStateChanged = (
   callback: (authUser: UserInfo | null) => void,

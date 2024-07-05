@@ -5,7 +5,6 @@ import {
   createContext,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -28,30 +27,27 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
   const [user, setUser] = useState<User | undefined>(undefined);
-
-  const ref = useRef(false);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!ref.current) {
-      ref.current = true;
-      const unsubscribe = onAuthStateChanged(async (user) => {
-        if (user) {
-          await fetchUserInfo({ userId: user.uid })
-            .then((userInfo) => {
-              setUser(userInfo);
-            })
-            .catch(async (error) => {
-              setUser(undefined);
-              alert(error);
-            });
-        } else {
+    console.log('aaa');
+    const unsubscribe = onAuthStateChanged(async (authUser) => {
+      if (authUser) {
+        console.log('authUser');
+        console.log(authUser);
+        try {
+          const userInfo = await fetchUserInfo({ userId: authUser.uid });
+          setUser(userInfo);
+        } catch (error) {
           setUser(undefined);
         }
-      });
-      unsubscribe();
-    }
+      } else {
+        setUser(undefined);
+      }
+    });
+
+    return () => unsubscribe();
   }, [router]);
 
   const value = {
