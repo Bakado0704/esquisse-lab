@@ -27,7 +27,7 @@ const PeriodUnit = ({ startDate, endDate }: PeriodUnitProps) => {
             〜
           </Typography>
           <Typography fontSize='1.2rem' color='b2'>
-            {format(startDate ?? endDate, 'yyyy年MM月dd日')}
+            {format(endDate, 'yyyy年MM月dd日')}
           </Typography>
         </FlexBox>
       </FlexBox>
