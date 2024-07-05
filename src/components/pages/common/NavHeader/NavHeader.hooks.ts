@@ -11,10 +11,9 @@ import { Logout } from '@/libs/service/form/authentication/logout';
 export const useNavHeader = () => {
   const router = useRouter();
   const pathname = usePathname() || '';
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { members, setMembers } = useMemberContext();
   const { user, setUser } = useAuthContext();
-  const users = getUsers();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isFormPage =
     pathname.includes('/edit') ||
     pathname.includes('/new') ||
@@ -47,15 +46,19 @@ export const useNavHeader = () => {
   const onMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const onScrollMember = () => {
+
+  const onScrollMember = async () => {
+    const users = await getUsers();
     setMembers(users);
     setIsMenuOpen(false);
     onScroll('member', 'top');
   };
+
   const onScrollLogin = () => {
     onScroll('login', 'top');
     setIsMenuOpen(false);
   };
+
   const onNavigateUser = ({ userId }: { userId: string }) => {
     router.push(`/user/${userId}`);
   };
