@@ -28,7 +28,7 @@ const PostItem = ({ post }: PostItemProps) => {
       </FlexBox>
       <FlexBox flexDirection='column' className={styles.detailContainer}>
         <FlexBox gap='1.6rem' alignItems='center'>
-          <PostIcon />
+          <PostIcon iconImageUrl={post.iconImageUrl} />
           <FlexBox
             flexDirection='column'
             gap='0.8rem'

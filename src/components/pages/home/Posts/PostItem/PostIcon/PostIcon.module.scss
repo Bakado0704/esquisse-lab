@@ -1,5 +1,18 @@
 @use '@/styles/mixin' as *;
 
+.iconContainer {
+  position: relative;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  overflow: hidden;
+
+  @include mq(md) {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
 .icon {
   position: relative;
   display: block;
