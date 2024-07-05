@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
+import { getEsquisse } from '@/libs/getEsquisse';
 import { ImageDatumsType, ImageType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
@@ -16,6 +18,7 @@ export const useImageInputUnit = ({
 }: ImageInputUnitType) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<WorkEsquisseFormValue>();
+  const { esquisseId } = useEsquisseIdContext();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {
@@ -31,21 +34,27 @@ export const useImageInputUnit = ({
     });
 
   useEffect(() => {
-    const topImageUrl = ''; // contextの値を入れる
-    const additionalImagesUrls = [] as string[]; // contextの値を入れる
-    const initialUrls = [topImageUrl, ...additionalImagesUrls].filter(
-      (url) => url,
-    );
-    if (initialUrls.length > 0) {
-      Promise.all(initialUrls.map((imgUrl) => loadImage(imgUrl)))
-        .then((images) => {
+    const fetchImages = async () => {
+      try {
+        const esquisse = await getEsquisse({ esquisseId });
+        const topImageUrl = esquisse.topImage ?? '';
+        const additionalImagesUrls = esquisse.additionalImages;
+        const initialUrls = [topImageUrl, ...additionalImagesUrls].filter(
+          (url) => url,
+        );
+        if (initialUrls.length > 0) {
+          const images = await Promise.all(
+            initialUrls.map((imgUrl) => loadImage(imgUrl)),
+          );
           setImageDatums(images);
-        })
-        .catch((error) => {
-          console.error('Error loading images:', error);
-        });
-    }
-  }, []);
+        }
+      } catch (error) {
+        console.error('Error fetching or loading images:', error);
+      }
+    };
+
+    fetchImages();
+  }, [esquisseId, setImageDatums]);
 
   const addImageHandler = async (file: File) => {
     if (!file) return;

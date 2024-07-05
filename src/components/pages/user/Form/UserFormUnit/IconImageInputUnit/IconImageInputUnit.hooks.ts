@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { ImageType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
@@ -16,6 +17,7 @@ export const useIconImageInputUnit = ({
 }: useIconImageInputUnitProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<UserFormValue>();
+  const { user } = useAuthContext();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {
@@ -31,16 +33,18 @@ export const useIconImageInputUnit = ({
     });
 
   useEffect(() => {
-    const iconImageUrl = ''; // contextの値を入れる
+    const iconImageUrl = user?.iconImageUrl;
 
-    loadImage(iconImageUrl)
-      .then((image) => {
-        setIconImageData(image);
-      })
-      .catch((error) => {
-        console.error('Error loading images:', error);
-      });
-  }, []);
+    if (iconImageUrl) {
+      loadImage(iconImageUrl)
+        .then((image) => {
+          setIconImageData(image);
+        })
+        .catch((error) => {
+          console.error('Error loading images:', error);
+        });
+    }
+  }, [user]);
 
   const addImageHandler = async (file: File) => {
     if (!file) return;
