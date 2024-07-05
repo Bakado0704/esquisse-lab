@@ -4,6 +4,7 @@ import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getChats } from '@/libs/getChats';
+import { Chat } from '@/types/application/chat.types';
 
 type UseEsquisseItemProps = {
   esquisseId: string;
@@ -18,11 +19,25 @@ export const useEsquisseItem = ({
 }: UseEsquisseItemProps) => {
   const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
+  const [chats, setChats] = useState<Chat[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const targetId = esquisseId + '_id';
 
   useFadeIn({ targetId, styles });
+
+  useEffect(() => {
+    const fetchChats = async () => {
+      try {
+        const fetchedChats = await getChats({ esquisseId });
+        setChats(fetchedChats);
+      } catch (error) {
+        console.error('Failed to fetch chats:', error);
+      }
+    };
+
+    fetchChats();
+  }, [esquisseId]);
 
   useEffect(() => {
     if (esquisseId === selectedEsquisseId) {
@@ -33,7 +48,7 @@ export const useEsquisseItem = ({
         clearScroll();
       };
     }
-  }, []);
+  }, [esquisseId, selectedEsquisseId]);
 
   useEffect(() => {
     const baseHeight = window.innerWidth <= 768 ? 58 : 72;
@@ -47,11 +62,10 @@ export const useEsquisseItem = ({
     }
   }, [isEsquisseActive]);
 
-  const chats = getChats().filter((chat) => chat.esquisseId === esquisseId);
-
   const toggleEsquisse = () => {
     setIsEsquisseActive(!isEsquisseActive);
   };
+
   const onEsquisseOpen = () => {
     if (!isEsquisseActive) {
       setIsEsquisseActive(true);

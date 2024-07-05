@@ -21,7 +21,11 @@ const EsquisseContent = ({
     >
       <ContentUnit esquisse={esquisse} />
       <div className={styles.separator} />
-      <ChatUnit chats={chats} userId={userId} />
+      <FlexBox gap='2.4rem' flexDirection='column'>
+        {chats.map((chat) => {
+          return <ChatUnit key={chat.id} chat={chat} userId={userId} />;
+        })}
+      </FlexBox>
       <CommentUnit esquisseId={esquisse.id} uid={userId} />
     </FlexBox>
   );
