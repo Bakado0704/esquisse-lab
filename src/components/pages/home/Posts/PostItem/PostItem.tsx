@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 
-import postImage from '@/assets/fv/fv.png';
 import { FlexBox, Separator, Typography } from '@/components/common';
 import { NextImage } from '@/components/common/NextImage';
 
@@ -24,7 +23,19 @@ const PostItem = ({ post }: PostItemProps) => {
       }
     >
       <FlexBox className={styles.imageContainer}>
-        <NextImage id={post.id} src={postImage} alt='post' />
+        {post.imageUrl ? (
+          <NextImage id={post.id} src={post.imageUrl} alt='post' />
+        ) : (
+          <FlexBox
+            alignItems='center'
+            justifyContent='center'
+            className={styles.image}
+          >
+            <Typography gothic color='b3' className={styles.noImage}>
+              NoImage
+            </Typography>
+          </FlexBox>
+        )}
       </FlexBox>
       <FlexBox flexDirection='column' className={styles.detailContainer}>
         <FlexBox gap='1.6rem' alignItems='center'>
