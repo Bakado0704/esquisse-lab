@@ -31,11 +31,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('aaa');
     const unsubscribe = onAuthStateChanged(async (authUser) => {
       if (authUser) {
-        console.log('authUser');
-        console.log(authUser);
         try {
           const userInfo = await fetchUserInfo({ userId: authUser.uid });
           setUser(userInfo);
