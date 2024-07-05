@@ -1,14 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { ImageDataType, ImageType } from '@/types/form/ImageForm.types';
+import { ImageType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
-export const useCoverImageInputUnit = () => {
-  const [coverImageData, setCoverImageData] = useState<ImageDataType | null>(
-    null,
-  );
+type useCoverImageInputUnitProps = {
+  coverImageData: ImageType | undefined;
+  setCoverImageData: Dispatch<SetStateAction<ImageType | undefined>>;
+};
+
+export const useCoverImageInputUnit = ({
+  coverImageData,
+  setCoverImageData,
+}: useCoverImageInputUnitProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<UserFormValue>();
 
