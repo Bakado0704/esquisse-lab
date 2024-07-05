@@ -1,14 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { ImageDataType, ImageType } from '@/types/form/ImageForm.types';
+import { ImageType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
-export const useIconImageInputUnit = () => {
-  const [iconImageData, setIconImageData] = useState<ImageDataType | null>(
-    null,
-  );
+type useIconImageInputUnitProps = {
+  iconImageData: ImageType | undefined;
+  setIconImageData: Dispatch<SetStateAction<ImageType | undefined>>;
+};
+
+export const useIconImageInputUnit = ({
+  iconImageData,
+  setIconImageData,
+}: useIconImageInputUnitProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<UserFormValue>();
 
@@ -63,7 +68,6 @@ export const useIconImageInputUnit = () => {
 
   return {
     ref,
-    iconImageData,
     addImageHandler,
   };
 };

@@ -4,9 +4,16 @@ import { FlexBox, Icon, InputLabel, Typography } from '@/components/common';
 
 import { useIconImageInputUnit } from './IconImageInputUnit.hooks';
 import styles from './IconImageInputUnit.module.scss';
+import { IconImageInputUnitProps } from './IconImageInputUnit.type';
 
-const IconImageInputUnit = () => {
-  const { ref, iconImageData, addImageHandler } = useIconImageInputUnit();
+const IconImageInputUnit = ({
+  iconImageData,
+  setIconImageData,
+}: IconImageInputUnitProps) => {
+  const { ref, addImageHandler } = useIconImageInputUnit({
+    iconImageData,
+    setIconImageData,
+  });
 
   return (
     <FlexBox flexDirection='column' gap='0.6rem'>
