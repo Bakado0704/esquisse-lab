@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
+import { onScroll } from '@/hooks/useScroll';
 import { Login } from '@/libs/service/form/authentication/login';
 import { LoginFormValue } from '@/types/form/LoginForm.types';
 
@@ -32,6 +33,8 @@ export const useAuthenticationUnitInternal = ({
       // setLoading(true);
       await Login(formData).then((user) => {
         setUser(user);
+        alert('ログインに成功しました');
+        onScroll('fv', 'top');
       });
       // setLoading(false);
     } catch (error) {
