@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
+import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
 import { submitForm } from '@/libs/service/form/register/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
@@ -13,18 +14,19 @@ import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 import { generateId } from '@/utils/generateId';
 
 export const useRegisterFormInternal = () => {
+  const processing = useRef(false);
+  const router = useRouter();
+  const { setLoading } = useLoadingContext();
   const { handleSubmit } = useFormContext<RegisterFormValue>();
   const { setUser } = useAuthContext();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
-  const processing = useRef(false);
-  const router = useRouter();
 
   const onSubmit = async (formData: RegisterFormValue) => {
     if (processing.current) return;
     processing.current = true;
 
     try {
-      // setLoading(true);
+      setLoading(true);
       let iconImageUrl = '';
 
       if (iconImageData && iconImageData.file) {
@@ -52,11 +54,11 @@ export const useRegisterFormInternal = () => {
       });
 
       router.push(`/home`);
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
       processing.current = false;
-      // setLoading(false);
+      setLoading(false);
     }
   };
   return {

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
+import { useLoadingContext } from '@/contexts/loading.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
 import { onScroll } from '@/hooks/useScroll';
 import { Login } from '@/libs/service/form/authentication/login';
@@ -19,6 +20,7 @@ export const useAuthenticationUnitInternal = ({
   styles,
 }: AuthenticationFormPrpos) => {
   const { setUser } = useAuthContext();
+  const { setLoading } = useLoadingContext();
   const { handleSubmit } = useFormContext<LoginFormValue>();
   const processing = useRef(false);
   const router = useRouter();
@@ -30,16 +32,16 @@ export const useAuthenticationUnitInternal = ({
     processing.current = true;
 
     try {
-      // setLoading(true);
+      setLoading(true);
       await Login(formData).then((user) => {
         setUser(user);
         alert('ログインに成功しました');
         onScroll('fv', 'top');
       });
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
-      // setLoading(false);
+      setLoading(false);
     }
     processing.current = false;
   };

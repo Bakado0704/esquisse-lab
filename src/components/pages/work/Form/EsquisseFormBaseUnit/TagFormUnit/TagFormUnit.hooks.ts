@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { DragEndEvent } from '@dnd-kit/core';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
+import { useLoadingContext } from '@/contexts/loading.context';
 import { createTagDropDown, normalizeInput } from '@/libs/service/tags';
 import { TagInfo } from '@/types/application/tag.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 export const useTagFormUnit = () => {
+  const { setLoading } = useLoadingContext();
   const {
     control,
     formState: { errors },
@@ -60,7 +62,7 @@ export const useTagFormUnit = () => {
   };
 
   const onSelectDropDown = async (selectedTag: TagInfo) => {
-    // setLoading(true);
+    setLoading(true);
     if (selectedTag.id === '_single') {
       // const tagObj: Tag = {
       //   id: generateId(),
@@ -80,7 +82,7 @@ export const useTagFormUnit = () => {
       clearErrors('tags');
       setTagInput('');
     }
-    //setLoading(false);
+    setLoading(false);
   };
 
   const handleKeyDown = async (

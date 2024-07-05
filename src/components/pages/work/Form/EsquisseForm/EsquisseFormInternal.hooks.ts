@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
+import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/esquisse/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDatumsType } from '@/types/form/ImageForm.types';
@@ -10,11 +11,12 @@ import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 import { generateId } from '@/utils/generateId';
 
 export const useEsquisseFormInternal = () => {
+  const processing = useRef(false);
+  const router = useRouter();
+  const { setLoading } = useLoadingContext();
   const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
 
   const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
-  const processing = useRef(false);
-  const router = useRouter();
 
   const onSubmit = async (
     formData: WorkEsquisseFormValue,
@@ -24,7 +26,7 @@ export const useEsquisseFormInternal = () => {
     processing.current = true;
 
     try {
-      // setLoading(true);
+      setLoading(true);
       const addedImages = await Promise.all(
         imageDatums.map(async (image) => {
           if (image.file) {
@@ -62,11 +64,11 @@ export const useEsquisseFormInternal = () => {
 
       const id = await submitForm(updatedFormData, status);
       router.push(`/work/${id}`);
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
       processing.current = false;
-      // setLoading(false);
+      setLoading(false);
     }
   };
 

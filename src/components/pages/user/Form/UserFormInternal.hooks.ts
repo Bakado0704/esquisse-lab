@@ -3,25 +3,26 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
+import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/user/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDataType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
 export const useUserFormInternal = () => {
+  const processing = useRef(false);
+  const router = useRouter();
+  const { setLoading } = useLoadingContext();
   const { handleSubmit } = useFormContext<UserFormValue>();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
   const [coverImageData, setCoverImageData] = useState<ImageDataType>();
-
-  const processing = useRef(false);
-  const router = useRouter();
 
   const onSubmit = async (formData: UserFormValue) => {
     if (processing.current) return;
     processing.current = true;
 
     try {
-      // setLoading(true);
+      setLoading(true);
 
       let iconImageUrl = '';
       let coverImageUrl = '';
@@ -53,11 +54,11 @@ export const useUserFormInternal = () => {
       const userId = await submitForm(createdFormDate);
       router.push(`/user/${userId}`);
 
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       // setErrorAlert({ error });
       processing.current = false;
-      // setLoading(false);
+      setLoading(false);
     }
   };
 
