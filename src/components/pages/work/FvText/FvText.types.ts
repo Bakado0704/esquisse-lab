@@ -1,5 +1,5 @@
 import { Work } from '@/types/application/work.types';
 
 export type FvTextProps = {
-  work?: Work;
+  work: Work | null;
 };

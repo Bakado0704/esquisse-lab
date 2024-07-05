@@ -1,6 +1,6 @@
 import { FlexBox } from '@/components/common';
-import { getPeriod } from '@/libs/getPeriod';
 
+import { useFvText } from './FvText.hooks';
 import styles from './FvText.module.scss';
 import { FvTextProps } from './FvText.types';
 import { PeriodUnit } from './PeriodUnit';
@@ -9,15 +9,14 @@ import { TitleUnit } from './TitleUnit';
 import { UserUnit } from './UserUnit';
 
 const FvText = ({ work }: FvTextProps) => {
+  const { startDate, endDate } = useFvText({ workId: work?.id });
   if (!work) return null;
-  const { title, concept, uid, tags, id } = work;
-  const { startDate, endDate } = getPeriod({ workId: id });
 
   return (
     <FlexBox flexDirection='column' className={styles.container}>
-      <TitleUnit title={title} concept={concept} workId={id} />
-      <UserUnit userId={uid} />
-      <TagUnit tags={tags} />
+      <TitleUnit title={work.title} concept={work.concept} workId={work.id} />
+      <UserUnit userId={work.uid} />
+      <TagUnit tags={work.tags} />
       <PeriodUnit startDate={startDate} endDate={endDate} />
     </FlexBox>
   );
