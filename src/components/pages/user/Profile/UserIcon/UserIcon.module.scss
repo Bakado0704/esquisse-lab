@@ -20,6 +20,31 @@
   }
 }
 
+.iconImageContainer {
+  position: relative;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include mq(md) {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  > img {
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    > img {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}
+
 .icon {
   position: relative;
   display: block;

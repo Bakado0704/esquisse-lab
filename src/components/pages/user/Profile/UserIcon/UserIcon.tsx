@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { FlexBox } from '@/components/common';
@@ -6,6 +7,7 @@ import { MemberIconProps } from '@/components/pages/common/Members/MemberIcon/Me
 import styles from './UserIcon.module.scss';
 
 const MemberIcon = ({ user }: MemberIconProps) => {
+  console.log(user);
   const router = useRouter();
   return (
     <FlexBox
@@ -14,10 +16,16 @@ const MemberIcon = ({ user }: MemberIconProps) => {
       onClick={() => router.push(`/user/edit/${user.id}`)}
     >
       <div className={styles.background} />
-      <div className={styles.icon}>
-        <span />
-        <span />
-      </div>
+      {user.iconImageUrl ? (
+        <FlexBox className={styles.iconImageContainer}>
+          <Image src={user.iconImageUrl} alt={user.name} fill />
+        </FlexBox>
+      ) : (
+        <div className={styles.icon}>
+          <span />
+          <span />
+        </div>
+      )}
     </FlexBox>
   );
 };
