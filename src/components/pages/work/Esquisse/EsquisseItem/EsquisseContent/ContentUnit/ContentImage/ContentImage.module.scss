@@ -1,0 +1,15 @@
+@use '@/styles/mixin' as *;
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+
+  @include mq(md) {
+    border-radius: 1rem;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
