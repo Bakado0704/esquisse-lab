@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/esquisse/submitForm';
@@ -15,6 +16,7 @@ export const useEsquisseFormInternal = () => {
   const processing = useRef(false);
   const router = useRouter();
   const { setLoading } = useLoadingContext();
+  const { user } = useAuthContext();
   const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
 
@@ -41,6 +43,7 @@ export const useEsquisseFormInternal = () => {
         }),
       );
 
+      const uid = user ? user.id : '';
       const esquisseId =
         formData.esquisseId && formData.esquisseId.trim() !== ''
           ? formData.esquisseId
@@ -57,6 +60,7 @@ export const useEsquisseFormInternal = () => {
 
       const updatedFormData = {
         ...formData,
+        uid,
         workId,
         esquisseIds,
         esquisseId,
