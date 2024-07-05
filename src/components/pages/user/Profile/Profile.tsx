@@ -5,6 +5,8 @@ import { ProfileProps } from './Profile.types';
 import { UserIcon } from './UserIcon';
 
 const Profile = ({ user }: ProfileProps) => {
+  if (!user) return;
+
   return (
     <FlexBox gap='3.2rem' flexDirection='column' className={styles.container}>
       <FlexBox justifyContent='center' flexDirection='column' gap='1.2rem'>
