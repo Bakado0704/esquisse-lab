@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
+import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/user/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
@@ -13,6 +14,7 @@ export const useUserFormInternal = () => {
   const processing = useRef(false);
   const router = useRouter();
   const { setLoading } = useLoadingContext();
+  const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<UserFormValue>();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
   const [coverImageData, setCoverImageData] = useState<ImageDataType>();
@@ -56,7 +58,7 @@ export const useUserFormInternal = () => {
 
       setLoading(false);
     } catch (error) {
-      // setErrorAlert({ error });
+      setErrorAlert({ error });
       processing.current = false;
       setLoading(false);
     }

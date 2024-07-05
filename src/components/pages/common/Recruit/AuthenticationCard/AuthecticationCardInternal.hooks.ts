@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
+import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
 import { onScroll } from '@/hooks/useScroll';
@@ -21,6 +22,7 @@ export const useAuthenticationUnitInternal = ({
 }: AuthenticationFormPrpos) => {
   const { setUser } = useAuthContext();
   const { setLoading } = useLoadingContext();
+  const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<LoginFormValue>();
   const processing = useRef(false);
   const router = useRouter();
@@ -40,7 +42,7 @@ export const useAuthenticationUnitInternal = ({
       });
       setLoading(false);
     } catch (error) {
-      // setErrorAlert({ error });
+      setErrorAlert({ error });
       setLoading(false);
     }
     processing.current = false;

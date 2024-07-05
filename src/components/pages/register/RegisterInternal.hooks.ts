@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
+import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
 import { submitForm } from '@/libs/service/form/register/submitForm';
@@ -17,6 +18,7 @@ export const useRegisterFormInternal = () => {
   const processing = useRef(false);
   const router = useRouter();
   const { setLoading } = useLoadingContext();
+  const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<RegisterFormValue>();
   const { setUser } = useAuthContext();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
@@ -56,7 +58,7 @@ export const useRegisterFormInternal = () => {
       router.push(`/home`);
       setLoading(false);
     } catch (error) {
-      // setErrorAlert({ error });
+      setErrorAlert({ error });
       processing.current = false;
       setLoading(false);
     }
