@@ -1,30 +1,14 @@
-import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 
-import postImage from '@/assets/fv/fv.png';
-import { FlexBox, Separator, Typography } from '@/components/common';
-import { NextImage } from '@/components/common/NextImage';
-import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
-import { getPosts } from '@/libs/getPosts';
+import { FlexBox, Typography } from '@/components/common';
 import { Post } from '@/types/application/post.types';
 
-import { PostIcon } from './PostIcon';
+import { PostItem } from './PostItem';
 import styles from './Posts.module.scss';
+import { PostsProps } from './Posts.types';
 
-const Posts = () => {
-  const { setEsquisseId } = useEsquisseIdContext();
+const Posts = ({ posts }: PostsProps) => {
   const router = useRouter();
-  const posts = getPosts();
-  const handlePost = ({
-    esquisseId,
-    workId,
-  }: {
-    esquisseId: string;
-    workId: string;
-  }) => {
-    setEsquisseId(esquisseId);
-    router.push(`/work/${workId}`);
-  };
   return (
     <FlexBox flexDirection='column' gap='7.2rem' className={styles.container}>
       <FlexBox flexDirection='column' className={styles.containerInner}>
@@ -32,56 +16,8 @@ const Posts = () => {
           Posts
         </Typography>
         <FlexBox flexDirection='column'>
-          {posts.map((post: Post, index) => {
-            return (
-              <FlexBox
-                key={index}
-                flexDirection='column'
-                className={styles.post}
-                onClick={() =>
-                  handlePost({
-                    esquisseId: post.id,
-                    workId: post.workId,
-                  })
-                }
-              >
-                <FlexBox className={styles.imageContainer}>
-                  <NextImage id={post.id} src={postImage} alt='post' />
-                </FlexBox>
-                <FlexBox
-                  flexDirection='column'
-                  className={styles.detailContainer}
-                >
-                  <FlexBox gap='1.6rem' alignItems='center'>
-                    <PostIcon />
-                    <FlexBox
-                      flexDirection='column'
-                      gap='0.8rem'
-                      className={styles.detail}
-                    >
-                      <Typography fontSize='1.2rem' color='b2'>
-                        {format(post.createdAt, 'yyyy年MM月dd日')}
-                      </Typography>
-                      <Typography fontSize='1.2rem' color='b2'>
-                        {post.userName}
-                      </Typography>
-                    </FlexBox>
-                  </FlexBox>
-                  <Typography
-                    fontWeight={600}
-                    lineHeight='150%'
-                    ellipsis
-                    className={styles.subject}
-                  >
-                    {post.subject}
-                  </Typography>
-                  <Typography ellipsis className={styles.description}>
-                    {post.description}
-                  </Typography>
-                </FlexBox>
-                <Separator direction='horizontal' />
-              </FlexBox>
-            );
+          {posts.map((post: Post) => {
+            return <PostItem key={post.id} post={post} />;
           })}
         </FlexBox>
       </FlexBox>
