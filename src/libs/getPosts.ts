@@ -1,20 +1,44 @@
-import { esquisses } from '@/dummyData/esquisses';
-import { users } from '@/dummyData/users';
 import { Post } from '@/types/application/post.types';
 
-export const getPosts: () => Post[] = () => {
-  return esquisses.map((esquisse) => {
-    const user = users[0];
+import { getEsquisses } from './getEsquisse';
+import { getUser } from './getUsers';
+import { getWork } from './getWorks';
 
-    return {
-      id: esquisse.id,
-      createdAt: esquisse.createdAt,
-      workId: esquisse.workId,
-      subject: esquisse.subject,
-      description: esquisse.description,
-      userName: user.name,
-      imageUrl: esquisse.topImage,
-      iconUmageUrl: user.iconImageUrl,
-    };
-  });
+export const getPosts = async (): Promise<Post[]> => {
+  try {
+    const allEsquisses = await getEsquisses();
+
+    const posts = await Promise.all(
+      allEsquisses.map(async (esquisse) => {
+        try {
+          const work = await getWork({ workId: esquisse.workId });
+          const user = await getUser({ userId: work.uid });
+
+          return {
+            id: esquisse.id,
+            createdAt: esquisse.createdAt,
+            workId: esquisse.workId,
+            subject: esquisse.subject,
+            description: esquisse.description,
+            userId: user.id,
+            imageUrl: esquisse.topImage,
+            iconUmageUrl: user.iconImageUrl,
+          };
+        } catch (error) {
+          console.error(
+            `Error fetching data for esquisse ID ${esquisse.id}:`,
+            error,
+          );
+          throw new Error(
+            `Failed to fetch data for esquisse ID ${esquisse.id}`,
+          );
+        }
+      }),
+    );
+
+    return posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    throw new Error('Failed to fetch posts');
+  }
 };

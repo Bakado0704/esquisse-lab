@@ -1,20 +1,26 @@
-import { works } from '@/dummyData/works';
 import { Work } from '@/types/application/work.types';
 
-export const getWorks: () => Work[] = () => {
-  return works.map((work) => {
-    return {
-      id: work.id,
-      uid: work.uid,
-      title: work.title,
-      concept: work.concept,
-      tags: work.tags.map((tag) => {
-        return {
-          id: tag.id,
-          name: tag.name,
-        };
-      }),
-      esquisseIds: work.esquisseIds,
-    };
-  });
+import { workRepository } from './repository/firebase';
+
+export const getWork = async ({
+  workId,
+}: {
+  workId: string;
+}): Promise<Work> => {
+  const work = await workRepository.get({ id: workId });
+  return work;
+};
+
+export const getWorks = async ({
+  workIds,
+}: {
+  workIds: string[];
+}): Promise<Work[]> => {
+  const works = await Promise.all(
+    workIds.map(async (workId) => {
+      return await getWork({ workId });
+    }),
+  );
+
+  return works;
 };
