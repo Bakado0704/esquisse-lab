@@ -10,13 +10,26 @@ import { useUserFormInternal } from './UserFormInternal.hooks';
 import { UserFormUnit } from './UserFormUnit';
 
 export const UserFormInternal = () => {
-  const { router, handleSubmit, onSubmit } = useUserFormInternal();
+  const {
+    router,
+    iconImageData,
+    coverImageData,
+    handleSubmit,
+    onSubmit,
+    setIconImageData,
+    setCoverImageData,
+  } = useUserFormInternal();
 
   return (
     <FlexBox flexDirection='column'>
       <FlexBox gap='2.4rem' flexDirection='column' className={styles.container}>
         <div className={styles.bg} />
-        <UserFormUnit />
+        <UserFormUnit
+          iconImageData={iconImageData}
+          coverImageData={coverImageData}
+          setIconImageData={setIconImageData}
+          setCoverImageData={setCoverImageData}
+        />
         <FlexBox justifyContent='center' gap='2.4rem'>
           <Button
             size='large'
