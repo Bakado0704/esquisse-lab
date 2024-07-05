@@ -42,6 +42,7 @@ const EsquisseItemInternal = ({
       >
         <EsquisseHeader
           index={index}
+          userId={userId}
           workId={esquisse.workId}
           esquisseId={esquisse.id}
           createdAt={esquisse.createdAt}

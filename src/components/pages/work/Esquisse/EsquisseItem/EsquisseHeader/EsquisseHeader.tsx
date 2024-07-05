@@ -1,24 +1,24 @@
 import classNames from 'classnames';
 import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
 
 import { FlexBox, Icon, Typography } from '@/components/common';
 
+import { useEsquisseHeader } from './EsquisseHeader.hooks';
 import styles from './EsquisseHeader.module.scss';
 import { EsquisseHeaderProps } from './EsquisseHeader.types';
 
 export const EsquisseHeader = ({
   index,
+  userId,
   esquisseId,
   createdAt,
   isEsquisseActive,
   toggleEsquisse,
 }: EsquisseHeaderProps) => {
-  const router = useRouter();
-  const onEditEsquisse = () => {
-    router.push(`/work/esquisse/edit/${esquisseId}`);
-  };
-  const onDeleteEsquisse = () => {};
+  const { isHostUser, onEditEsquisse, onDeleteEsquisse } = useEsquisseHeader({
+    esquisseId,
+    userId,
+  });
 
   return (
     <FlexBox justifyContent='space-between'>
@@ -35,32 +35,39 @@ export const EsquisseHeader = ({
           fontWeight={600}
           className={styles.date}
         >
-          {format(new Date(createdAt), 'yyyy年MM月dd日')}
+          {format(new Date(createdAt), 'yyyy年M月d日')}
         </Typography>
         <FlexBox
           alignItems='center'
           className={
-            isEsquisseActive
+            isHostUser && isEsquisseActive
               ? styles.buttonsContainerActive
               : styles.buttonsContainerClosed
           }
         >
-          <FlexBox
-            alignItems='center'
-            justifyContent='center'
-            className={classNames(styles.buttonContainer, styles.buttonEdit)}
-            onClick={onEditEsquisse}
-          >
-            <Icon iconName='pen' size='2rem' />
-          </FlexBox>
-          <FlexBox
-            alignItems='center'
-            justifyContent='center'
-            className={classNames(styles.buttonContainer, styles.buttonDelete)}
-            onClick={onDeleteEsquisse}
-          >
-            <Icon iconName='trash' size='2rem' />
-          </FlexBox>
+          {isHostUser && (
+            <FlexBox
+              alignItems='center'
+              justifyContent='center'
+              className={classNames(styles.buttonContainer, styles.buttonEdit)}
+              onClick={onEditEsquisse}
+            >
+              <Icon iconName='pen' size='2rem' />
+            </FlexBox>
+          )}
+          {isHostUser && (
+            <FlexBox
+              alignItems='center'
+              justifyContent='center'
+              className={classNames(
+                styles.buttonContainer,
+                styles.buttonDelete,
+              )}
+              onClick={onDeleteEsquisse}
+            >
+              <Icon iconName='trash' size='2rem' />
+            </FlexBox>
+          )}
           <FlexBox
             alignItems='center'
             justifyContent='center'
