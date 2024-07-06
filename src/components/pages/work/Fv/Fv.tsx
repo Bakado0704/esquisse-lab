@@ -1,28 +1,37 @@
 import Image from 'next/image';
 
-import fvImg from '@/assets/fv/fv.png';
-import { FlexBox, Icon } from '@/components/common';
+import { FlexBox, Icon, Typography } from '@/components/common';
+import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './Fv.module.scss';
 
-const Fv = () => {
+const Fv = ({ imgUrl }: { imgUrl?: string }) => {
+  useFadeIn({ targetId: 'workFv', styles });
   return (
     <FlexBox className={styles.container}>
-      <FlexBox className={styles.imageContainer}>
-        <Image
-          src={fvImg}
-          alt='fv'
-          style={{ objectFit: 'cover' }}
-          className={styles.imageBg}
-        />
-        <Image
-          src={fvImg}
-          alt='fv'
-          style={{ objectFit: 'cover' }}
-          className={styles.image}
-        />
-        <Icon iconName='bottomCircle' className={styles.bottomCircle} />
+      <FlexBox className={styles.imageBgContainer}>
+        {imgUrl ? (
+          <Image fill src={imgUrl} alt='fv' className={styles.imageBg} />
+        ) : (
+          <div className={styles.noImageBg} />
+        )}
       </FlexBox>
+      <FlexBox id='workFv' className={styles.imageContainer}>
+        {imgUrl ? (
+          <Image fill src={imgUrl} alt='fv' className={styles.image} />
+        ) : (
+          <FlexBox
+            justifyContent='center'
+            alignItems='center'
+            className={styles.noImage}
+          >
+            <Typography gothic color='b3' className={styles.noImageText}>
+              NoImage
+            </Typography>
+          </FlexBox>
+        )}
+      </FlexBox>
+      <Icon iconName='bottomCircle' className={styles.bottomCircle} />
     </FlexBox>
   );
 };

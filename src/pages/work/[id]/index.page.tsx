@@ -10,11 +10,11 @@ import { FvText } from '@/components/pages/work/FvText';
 import { usePage } from './page.hooks';
 
 const Page = ({ workId }: { workId: string }) => {
-  const { work, esquisses } = usePage({ workId });
+  const { work, esquisses, imgUrl } = usePage({ workId });
 
   return (
     <>
-      <Fv />
+      <Fv imgUrl={imgUrl} />
       <FvText work={work} />
       <Esquisse esquisses={esquisses} userId={work?.uid} />
       <Recruit />
