@@ -4,6 +4,7 @@ import { AuthProvider } from '@/contexts/auth.context';
 import { ErrorProvider } from '@/contexts/error.context';
 import { EsquisseIdProvider } from '@/contexts/esquisseId.context';
 import { FormWorkProvider } from '@/contexts/formWork.context';
+import { ModalImageProvider } from '@/contexts/image.context';
 import { LoadingProvider } from '@/contexts/loading.context';
 import { MemberProvider } from '@/contexts/member.context';
 import '@/styles/globals.scss';
@@ -18,10 +19,12 @@ export default function App({ Component, pageProps }: AppProps) {
           <MemberProvider>
             <FormWorkProvider>
               <EsquisseIdProvider>
-                <HeaderLayout>
-                  <Loader />
-                  <Component {...pageProps} />
-                </HeaderLayout>
+                <ModalImageProvider>
+                  <HeaderLayout>
+                    <Loader />
+                    <Component {...pageProps} />
+                  </HeaderLayout>
+                </ModalImageProvider>
               </EsquisseIdProvider>
             </FormWorkProvider>
           </MemberProvider>

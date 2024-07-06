@@ -3,7 +3,6 @@ export { Card } from './Card';
 export { DateAndTimePicker } from './DateAndTimePicker';
 export { DraggableItem } from './DragTag/DraggableItem';
 export { DraggableList } from './DragTag/DraggableList';
-export { Fade } from './Fade';
 export { FlexBox } from './FlexBox';
 export { Heading } from './Heading';
 export { Icon } from './Icon';

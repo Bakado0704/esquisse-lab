@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useModalImageContext } from '@/contexts/image.context';
+
 type ImgSize = {
   width: number;
   height: number;
@@ -8,6 +10,7 @@ type ImgSize = {
 export const useContentImage = ({ url }: { url: string }) => {
   const [imgSize, setImgSize] = useState<ImgSize | null>(null);
   const [maxHeight, setMaxHeight] = useState(300);
+  const { setModalImage } = useModalImageContext();
 
   const loadImage = (imgUrl: string, maxHeight: number) =>
     new Promise<ImgSize>((resolve) => {
@@ -47,5 +50,5 @@ export const useContentImage = ({ url }: { url: string }) => {
     fetchImageSize();
   }, [url, maxHeight]);
 
-  return { imgSize };
+  return { imgSize, setModalImage };
 };

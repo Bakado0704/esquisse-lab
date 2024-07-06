@@ -1,5 +1,7 @@
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
 
+import { Modal } from '@/components/common';
 import { Concept } from '@/components/pages/common/Concept';
 import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
@@ -8,9 +10,12 @@ import { Fv } from '@/components/pages/work/Fv';
 import { FvText } from '@/components/pages/work/FvText';
 
 import { usePage } from './page.hooks';
+import styles from './page.module.scss';
 
 const Page = ({ workId }: { workId: string }) => {
-  const { work, esquisses, imgUrl } = usePage({ workId });
+  const { imgUrl, imageSize, modalImage, work, esquisses, onClose } = usePage({
+    workId,
+  });
 
   return (
     <>
@@ -20,6 +25,17 @@ const Page = ({ workId }: { workId: string }) => {
       <Recruit />
       <Concept />
       <Members />
+      <Modal open={!!modalImage} onClose={onClose}>
+        {modalImage ? (
+          <Image
+            src={modalImage}
+            alt='fv'
+            width={imageSize.width}
+            height={imageSize.height}
+            className={styles.image}
+          />
+        ) : null}
+      </Modal>
     </>
   );
 };

@@ -6,7 +6,7 @@ import { useContentImage } from './ContentImage.hooks';
 import styles from './ContentImage.module.scss';
 
 const ContentImage = ({ url }: { url: string }) => {
-  const { imgSize } = useContentImage({ url });
+  const { imgSize, setModalImage } = useContentImage({ url });
   return (
     <>
       {imgSize && (
@@ -14,6 +14,7 @@ const ContentImage = ({ url }: { url: string }) => {
           minWidth={imgSize.width}
           minHeight={imgSize.height}
           className={styles.imageContainer}
+          onClick={() => setModalImage(url)}
         >
           <Image
             src={url}

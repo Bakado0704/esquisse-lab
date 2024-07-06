@@ -4,9 +4,14 @@
   position: relative;
   overflow: hidden;
   border-radius: 2rem;
+  cursor: pointer;
 
   @include mq(md) {
     border-radius: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 }
 
