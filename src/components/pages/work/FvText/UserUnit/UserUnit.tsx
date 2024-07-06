@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { FlexBox, Typography } from '@/components/common';
 
 import { useUserUnit } from './UserUnit.hooks';
@@ -9,7 +11,19 @@ const UserUnit = ({ userId }: UserUnitProps) => {
 
   return (
     <FlexBox gap='2rem' alignItems='center'>
-      <div className={styles.icon} />
+      <FlexBox className={styles.iconContainer}>
+        {user && user.iconImageUrl ? (
+          <Image
+            alt='icon'
+            fill
+            src={user.iconImageUrl}
+            className={styles.iconContainer}
+          />
+        ) : (
+          <div className={styles.icon} />
+        )}
+      </FlexBox>
+
       <FlexBox
         flexDirection='column'
         gap='0.4rem'
