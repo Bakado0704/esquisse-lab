@@ -6,11 +6,13 @@ import { FlexBox, Icon, Typography } from '@/components/common';
 import { useChatUnit } from './ChatUnit.hooks';
 import styles from './ChatUnit.module.scss';
 import { ChatUnitProps } from './ChatUnit.types';
+import { PostIcon } from './PostIcon';
 
 const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
-  const { displayUser, isHostUser, onDeleteChat, handleUser } = useChatUnit({
-    userId,
-  });
+  const { userName, iconImageUrl, isHostUser, onDeleteChat, handleUser } =
+    useChatUnit({
+      userId,
+    });
 
   return (
     <FlexBox
@@ -51,7 +53,7 @@ const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
           isHostUser && styles.hostIconContainer,
         )}
       >
-        <div className={styles.icon} />
+        <PostIcon iconImageUrl={iconImageUrl} />
         <FlexBox
           gap='0.4rem'
           flexDirection='column'
@@ -59,7 +61,7 @@ const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
           onClick={handleUser}
         >
           <Typography ellipsis fontSize='1.4rem' fontWeight={600}>
-            {displayUser}
+            {userName}
           </Typography>
           {chat.createdAt && (
             <Typography>

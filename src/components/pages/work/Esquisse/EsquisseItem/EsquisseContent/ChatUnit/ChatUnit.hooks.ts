@@ -4,22 +4,25 @@ import { useRouter } from 'next/router';
 
 import { auth } from '@/libs/firebase/app';
 import { getUser } from '@/libs/getUsers';
+import { User } from '@/types/application/user.types';
 
 export const useChatUnit = ({ userId }: { userId?: string }) => {
   const router = useRouter();
-  const [displayUser, setDisplayUser] = useState('unknown');
+  const [commentUser, setCommentUser] = useState<User | null>(null);
   const [isHostUser, setIsHostUser] = useState(false);
   const user = auth.currentUser;
+  const userName = commentUser ? commentUser.name : 'unknown';
+  const iconImageUrl = commentUser ? commentUser.iconImageUrl : undefined;
 
   useEffect(() => {
     if (userId) {
       const fetchUser = async () => {
         try {
           const fetchedUser = await getUser({ userId });
-          setDisplayUser(fetchedUser.name);
+          setCommentUser(fetchedUser);
         } catch (error) {
           console.error('Failed to fetch user:', error);
-          setDisplayUser('unknown');
+          setCommentUser(null);
         }
       };
       fetchUser();
@@ -39,7 +42,8 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
   };
 
   return {
-    displayUser,
+    userName,
+    iconImageUrl,
     isHostUser,
     onDeleteChat,
     handleUser,

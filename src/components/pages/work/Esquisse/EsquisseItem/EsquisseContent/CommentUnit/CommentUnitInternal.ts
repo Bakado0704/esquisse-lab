@@ -31,8 +31,9 @@ export const useCommentUnitInternal = () => {
 
     try {
       setLoading(true);
-
       await submitForm(formData);
+      //もう一度commentをfetchする処理を書くべき
+
       setLoading(false);
     } catch (error) {
       setErrorAlert({ error });
