@@ -14,6 +14,7 @@ export const parseSubmitObject = ({
     workIds,
     esquisseId,
     esquisseIds,
+    chatIds,
     uid,
     title,
     concept,
@@ -42,6 +43,7 @@ export const parseSubmitObject = ({
     additionalImages,
     subject,
     description,
+    chatIds,
   };
 
   const userObj: Omit<

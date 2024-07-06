@@ -7,9 +7,10 @@ export const submitForm = async (formData: ChatFormValue): Promise<void> => {
   const parsedData = parseSubmitObject({
     formData,
   });
-  const { chatObj } = parsedData;
+  const { chatObj, esquisseObj } = parsedData;
 
   await batchCreate({
     chatObj,
+    esquisseObj,
   });
 };

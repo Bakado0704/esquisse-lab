@@ -22,4 +22,13 @@ export type UserSubmit = {
 
 export type ChatSubmit = {
   chatObj: Chat;
+  esquisseObj: Omit<
+    Esquisse,
+    | 'createdAt'
+    | 'description'
+    | 'workId'
+    | 'topImage'
+    | 'additionalImages'
+    | 'subject'
+  >;
 };

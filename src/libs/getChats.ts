@@ -1,6 +1,6 @@
 import { Chat } from '@/types/application/chat.types';
 
-import { chatRepository } from './repository/firebase';
+import { chatRepository, esquisseRepository } from './repository/firebase';
 
 export const getChats = async ({
   esquisseId,
@@ -17,11 +17,19 @@ export const getChats = async ({
 };
 
 export const deleteChat = async ({
+  esquisseId,
   chatId,
 }: {
+  esquisseId: string;
   chatId: string;
 }): Promise<void> => {
   try {
+    const esquisse = await esquisseRepository.get({ id: esquisseId });
+    const filteredChatIds = esquisse.chatIds?.filter((id) => id !== chatId);
+
+    await esquisseRepository.update(esquisseId, {
+      chatIds: filteredChatIds,
+    });
     await chatRepository.deleteDoc({
       id: chatId,
     });

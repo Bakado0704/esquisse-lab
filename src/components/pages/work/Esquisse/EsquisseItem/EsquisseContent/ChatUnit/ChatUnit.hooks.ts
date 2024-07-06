@@ -36,11 +36,17 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
     setIsHostUser(user?.uid === userId);
   }, [user, userId]);
 
-  const onDeleteChat = async ({ chatId }: { chatId: string }) => {
+  const onDeleteChat = async ({
+    chatId,
+    esquisseId,
+  }: {
+    chatId: string;
+    esquisseId: string;
+  }) => {
     setLoading(true);
     const confirm = window.confirm('コメントを消去します。よろしいですか？');
     if (confirm) {
-      await deleteChat({ chatId }).then(() => {
+      await deleteChat({ chatId, esquisseId }).then(() => {
         alert('削除しました');
       });
     }

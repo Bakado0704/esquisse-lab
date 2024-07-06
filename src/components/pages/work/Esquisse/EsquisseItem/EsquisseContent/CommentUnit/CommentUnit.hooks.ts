@@ -18,10 +18,12 @@ export const useCommentUnit = ({ esquisseId, uid }: useCommentUnitProps) => {
   const { reset } = methods;
 
   useEffect(() => {
+    const id = generateId();
     const defaultValue: ChatFormValue = {
-      id: generateId(),
+      id,
       uid: uid ?? '',
       esquisseId,
+      chatIds: [],
       description: '',
       createdAt: new Date(),
     };

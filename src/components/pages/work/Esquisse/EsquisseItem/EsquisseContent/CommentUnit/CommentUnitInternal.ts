@@ -6,6 +6,7 @@ import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { onScroll } from '@/hooks/useScroll';
 import { auth } from '@/libs/firebase/app';
+import { getEsquisse } from '@/libs/getEsquisse';
 import { submitForm } from '@/libs/service/form/comment/submitForm';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 
@@ -31,7 +32,13 @@ export const useCommentUnitInternal = () => {
 
     try {
       setLoading(true);
-      await submitForm(formData);
+
+      const esquisse = await getEsquisse({ esquisseId: formData.esquisseId });
+      const createdFormData = {
+        ...formData,
+        chatIds: esquisse.chatIds ?? [],
+      };
+      await submitForm(createdFormData);
       //もう一度commentをfetchする処理を書くべき
 
       setLoading(false);
@@ -41,6 +48,7 @@ export const useCommentUnitInternal = () => {
       setLoading(false);
     }
   };
+
   return {
     errors,
     isLoginUser,

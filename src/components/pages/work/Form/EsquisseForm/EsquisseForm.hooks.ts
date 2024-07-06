@@ -29,6 +29,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
           workId: formWork.workId,
           workIds: user ? user.workIds : [formWork.workId],
           esquisseId: esquisseId ?? generateId(),
+          chatIds: [],
           title: formWork.title,
           concept: formWork.concept,
           tags: formWork.tags,
@@ -46,6 +47,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
           defaultValue.additionalImages = esquisse.additionalImages;
           defaultValue.subject = esquisse.subject;
           defaultValue.description = esquisse.description;
+          defaultValue.chatIds = esquisse.chatIds;
         }
 
         reset(defaultValue);

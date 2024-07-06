@@ -8,4 +8,10 @@ export const ChatFormSchema = z.object({
   description: z.string().min(1, '文字を入力してください'),
 });
 
-export type ChatFormValue = z.infer<typeof ChatFormSchema>;
+export const ChatFormExtendedSchema = ChatFormSchema.merge(
+  z.object({
+    chatIds: z.array(z.string()),
+  }),
+);
+
+export type ChatFormValue = z.infer<typeof ChatFormExtendedSchema>;

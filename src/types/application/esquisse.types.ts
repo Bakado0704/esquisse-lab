@@ -6,5 +6,5 @@ export type Esquisse = {
   additionalImages: string[];
   subject: string;
   description: string;
-  chatIds?: string[];
+  chatIds: string[];
 };
