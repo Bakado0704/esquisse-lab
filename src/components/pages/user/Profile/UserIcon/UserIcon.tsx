@@ -7,7 +7,6 @@ import { MemberIconProps } from '@/components/pages/common/Members/MemberIcon/Me
 import styles from './UserIcon.module.scss';
 
 const MemberIcon = ({ user }: MemberIconProps) => {
-  console.log(user);
   const router = useRouter();
   return (
     <FlexBox
