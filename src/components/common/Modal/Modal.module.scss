@@ -1,0 +1,86 @@
+.root {
+  position: relative;
+  z-index: 5;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#000, 0.6);
+}
+
+.modal {
+  position: fixed;
+  z-index: 10;
+  padding: 1.6rem;
+  // margin: auto;
+  // overflow: scroll;
+}
+
+.top {
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cardContainer {
+  max-height: calc(100vh - 3.2rem);
+  max-height: calc(100dvh - 3.2rem);
+  background-color: var(--w21);
+  border: 1px solid var(--w4);
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.content-style {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.small {
+  width: 100%;
+  max-width: 25rem;
+}
+
+.medium {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.large {
+  width: 100%;
+  max-width: 67.2rem;
+}
+
+.full {
+  width: 100%;
+  max-width: calc(100vw - 2rem);
+}
+
+.header {
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+.icon {
+  cursor: pointer;
+}

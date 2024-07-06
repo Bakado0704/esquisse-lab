@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 
-import { FlexBox, Separator, Typography } from '@/components/common';
-import { NextImage } from '@/components/common/NextImage';
+import { FlexBox, NextImage, Separator, Typography } from '@/components/common';
 
 import { PostIcon } from './PostIcon';
 import { usePostItem } from './PostItem.hooks';

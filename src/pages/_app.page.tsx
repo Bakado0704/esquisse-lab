@@ -1,4 +1,4 @@
-import { Loader } from '@/components/common/Loader';
+import { Loader } from '@/components/common';
 import { HeaderLayout } from '@/components/layout/HeaderLayout';
 import { AuthProvider } from '@/contexts/auth.context';
 import { ErrorProvider } from '@/contexts/error.context';
