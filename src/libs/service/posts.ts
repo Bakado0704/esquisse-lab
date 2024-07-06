@@ -1,8 +1,8 @@
 import { Post } from '@/types/application/post.types';
 
-import { getEsquisses } from './getEsquisse';
-import { getUser } from './getUsers';
-import { getWork } from './getWorks';
+import { getEsquisses } from './firestore/esquisse';
+import { getUser } from './firestore/user';
+import { getWork } from './firestore/work';
 
 export const getPosts = async (): Promise<Post[]> => {
   try {

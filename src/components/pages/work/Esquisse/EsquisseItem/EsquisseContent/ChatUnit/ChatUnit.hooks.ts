@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 
 import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
-import { deleteChat } from '@/libs/getChats';
-import { getUser } from '@/libs/getUsers';
+import { deleteChat } from '@/libs/service/firestore/chat';
+import { getUser } from '@/libs/service/firestore/user';
 import { User } from '@/types/application/user.types';
 
 export const useChatUnit = ({ userId }: { userId?: string }) => {

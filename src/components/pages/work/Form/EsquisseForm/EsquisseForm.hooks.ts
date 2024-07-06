@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
-import { getEsquisse } from '@/libs/getEsquisse';
+import { getEsquisse } from '@/libs/service/firestore/esquisse';
 import {
   WorkEsquisseFormSchema,
   WorkEsquisseFormValue,

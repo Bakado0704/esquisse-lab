@@ -1,7 +1,7 @@
 import { tags } from '@/dummyData/tags';
 import { TagInfo } from '@/types/firestore/tag.types';
 
-import { tagRepository } from '../repository/firebase';
+import { tagRepository } from '../../repository/firebase';
 
 export const normalizeInput = (input: string) => {
   return input

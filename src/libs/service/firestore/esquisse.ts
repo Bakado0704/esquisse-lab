@@ -4,7 +4,7 @@ import {
   chatRepository,
   esquisseRepository,
   workRepository,
-} from './repository/firebase';
+} from '../../repository/firebase';
 
 export const getEsquisses = async ({
   sortKey,

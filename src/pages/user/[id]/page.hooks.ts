@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getUser } from '@/libs/getUsers';
-import { getWorks } from '@/libs/getWorks';
+import { getUser } from '@/libs/service/firestore/user';
+import { getWorks } from '@/libs/service/firestore/work';
 import { User } from '@/types/application/user.types';
 import { Work } from '@/types/application/work.types';
 

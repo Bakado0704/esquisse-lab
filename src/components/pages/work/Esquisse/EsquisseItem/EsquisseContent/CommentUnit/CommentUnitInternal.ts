@@ -6,7 +6,7 @@ import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { onScroll } from '@/hooks/useScroll';
 import { auth } from '@/libs/firebase/app';
-import { getEsquisse } from '@/libs/getEsquisse';
+import { getEsquisse } from '@/libs/service/firestore/esquisse';
 import { submitForm } from '@/libs/service/form/comment/submitForm';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 

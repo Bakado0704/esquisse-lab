@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useMemberContext } from '@/contexts/member.context';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
-import { getUsers } from '@/libs/getUsers';
+import { getUsers } from '@/libs/service/firestore/user';
 
 export const useProposeUnit = () => {
   const { members, setMembers } = useMemberContext();

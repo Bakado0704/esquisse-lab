@@ -1,10 +1,11 @@
 import { Post } from '@/types/application/post.types';
 import { Work } from '@/types/application/work.types';
 
-import { getPeriod } from './getPeriod';
-import { getTopImage } from './getTopImage';
-import { getUser } from './getUsers';
-import { workRepository } from './repository/firebase';
+import { workRepository } from '../../repository/firebase';
+import { getPeriod } from '../period';
+import { getTopImage } from '../topImage';
+
+import { getUser } from './user';
 
 export const getWork = async ({
   workId,

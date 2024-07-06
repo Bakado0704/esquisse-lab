@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getPosts } from '@/libs/getPosts';
+import { getPosts } from '@/libs/service/posts';
 import { Post } from '@/types/application/post.types';
 
 export const usePage = () => {

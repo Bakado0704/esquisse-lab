@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getWorksWithTag } from '@/libs/getWorks';
+import { getWorksWithTag } from '@/libs/service/firestore/work';
 import { Post } from '@/types/application/post.types';
 
 export const usePage = ({ categoryId }: { categoryId: string }) => {

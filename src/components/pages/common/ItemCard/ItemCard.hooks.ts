@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 
 import { useErrorContext } from '@/contexts/error.context';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
-import { Period, getPeriod } from '@/libs/getPeriod';
-import { getTopImage } from '@/libs/getTopImage';
-import { getUser } from '@/libs/getUsers';
+import { getUser } from '@/libs/service/firestore/user';
+import { Period, getPeriod } from '@/libs/service/period';
+import { getTopImage } from '@/libs/service/topImage';
 import { User } from '@/types/application/user.types'; // 必要に応じて型をインポート
 
 export const useItemCard = ({

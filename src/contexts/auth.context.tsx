@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 import { onAuthStateChanged } from '@/libs/repository/auth';
-import { fetchUserInfo } from '@/libs/service/user';
+import { getUser } from '@/libs/service/firestore/user';
 import { User } from '@/types/application/user.types';
 
 type AuthContextType = {
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const unsubscribe = onAuthStateChanged(async (authUser) => {
       if (authUser) {
         try {
-          const userInfo = await fetchUserInfo({ userId: authUser.uid });
+          const userInfo = await getUser({ userId: authUser.uid });
           setUser(userInfo);
         } catch (error) {
           setUser(undefined);

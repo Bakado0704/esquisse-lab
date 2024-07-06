@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useErrorContext } from '@/contexts/error.context';
-import { Period, getPeriod } from '@/libs/getPeriod';
+import { Period, getPeriod } from '@/libs/service/period';
 
 export const useFvText = ({ workId }: { workId?: string }) => {
   const { setErrorAlert } = useErrorContext();

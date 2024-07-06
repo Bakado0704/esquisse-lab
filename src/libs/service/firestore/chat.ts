@@ -1,6 +1,6 @@
 import { Chat } from '@/types/application/chat.types';
 
-import { chatRepository, esquisseRepository } from './repository/firebase';
+import { chatRepository, esquisseRepository } from '../../repository/firebase';
 
 export const getChats = async ({
   esquisseId,

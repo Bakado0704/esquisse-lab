@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
-import { getChats } from '@/libs/getChats';
+import { getChats } from '@/libs/service/firestore/chat';
 import { Chat } from '@/types/application/chat.types';
 
 type UseEsquisseItemProps = {

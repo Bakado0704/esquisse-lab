@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { getUser } from '@/libs/getUsers';
+import { getUser } from '@/libs/service/firestore/user';
 import { UserFormSchema, UserFormValue } from '@/types/form/UserForm.types';
 
 export const useUserForm = ({ userId }: { userId: string }) => {

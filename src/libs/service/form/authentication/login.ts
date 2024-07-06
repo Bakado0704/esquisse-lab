@@ -4,7 +4,7 @@ import { auth } from '@/libs/firebase/app';
 import { User } from '@/types/application/user.types';
 import { LoginFormValue } from '@/types/form/LoginForm.types';
 
-import { fetchUserInfo } from '../../user';
+import { getUser } from '../../firestore/user';
 
 import { parseSubmitObject } from './parseSubmitObject';
 
@@ -15,7 +15,7 @@ export const Login = async (formData: LoginFormValue): Promise<User> => {
   const { email, password } = parsedData;
 
   const { user } = await signInWithEmailAndPassword(auth, email, password);
-  const userInfo = await fetchUserInfo({ userId: user.uid }).catch((error) => {
+  const userInfo = await getUser({ userId: user.uid }).catch((error) => {
     if (typeof error === 'string') {
       throw {
         code: 'auth/firestore-error',

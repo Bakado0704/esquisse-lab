@@ -1,6 +1,5 @@
+import { userRepository } from '@/libs/repository/firebase';
 import { User } from '@/types/application/user.types';
-
-import { userRepository } from './repository/firebase';
 
 export const getUsers = async (): Promise<User[]> => {
   try {

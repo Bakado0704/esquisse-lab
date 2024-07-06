@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
-import { deleteEsquisse } from '@/libs/getEsquisse';
+import { deleteEsquisse } from '@/libs/service/firestore/esquisse';
 
 type useEsquisseHeaderProps = { esquisseId: string; userId?: string };
 

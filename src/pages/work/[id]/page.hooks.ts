@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getEsquisses } from '@/libs/getEsquisse';
-import { getTopImage } from '@/libs/getTopImage';
-import { getWork } from '@/libs/getWorks';
+import { getEsquisses } from '@/libs/service/firestore/esquisse';
+import { getWork } from '@/libs/service/firestore/work';
+import { getTopImage } from '@/libs/service/topImage';
 import { Esquisse } from '@/types/application/esquisse.types';
 import { Work } from '@/types/application/work.types';
 

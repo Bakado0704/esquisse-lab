@@ -7,9 +7,9 @@ import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
+import { getUser } from '@/libs/service/firestore/user';
 import { submitForm } from '@/libs/service/form/register/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
-import { fetchUserInfo } from '@/libs/service/user';
 import { ImageDataType } from '@/types/form/ImageForm.types';
 import { RegisterFormValue } from '@/types/form/RegisterForm.types';
 import { generateId } from '@/utils/generateId';
@@ -51,7 +51,7 @@ export const useRegisterFormInternal = () => {
       };
 
       await submitForm(createdFormData);
-      await fetchUserInfo({ userId: createdFormData.id }).then((userInfo) => {
+      await getUser({ userId: createdFormData.id }).then((userInfo) => {
         setUser(userInfo);
       });
 

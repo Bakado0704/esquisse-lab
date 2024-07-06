@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuthContext } from '@/contexts/auth.context';
 import { useMemberContext } from '@/contexts/member.context';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
-import { getUsers } from '@/libs/getUsers';
+import { getUsers } from '@/libs/service/firestore/user';
 import { Logout } from '@/libs/service/form/authentication/logout';
 
 export const useNavHeader = () => {
