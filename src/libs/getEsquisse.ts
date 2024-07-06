@@ -2,9 +2,17 @@ import { Esquisse } from '@/types/application/esquisse.types';
 
 import { esquisseRepository, workRepository } from './repository/firebase';
 
-export const getEsquisses = async (): Promise<Esquisse[]> => {
+export const getEsquisses = async ({
+  sortKey,
+  limit,
+}: {
+  sortKey: 'desc' | 'asc';
+  limit: number;
+}): Promise<Esquisse[]> => {
   try {
-    const esquisses = await esquisseRepository.list();
+    const esquisses = await esquisseRepository.list([
+      ['createdAt', sortKey, { limit }],
+    ]);
     return esquisses;
   } catch (error) {
     throw new Error('Failed to fetch esquisses');
@@ -18,12 +26,12 @@ export const getSelectedEsquisses = async ({
 }): Promise<Esquisse[]> => {
   try {
     const work = await workRepository.get({ id: workId });
-    if (!work) {
-      throw new Error(`Work with id ${workId} not found`);
-    }
-    const esquisses = await esquisseRepository.list([
-      ['id', 'array-contains-any', work.esquisseIds],
-    ]);
+    const esquisses = await Promise.all(
+      work.esquisseIds.map(async (id) => {
+        const esquisse = await esquisseRepository.get({ id });
+        return esquisse;
+      }),
+    );
     return esquisses;
   } catch (error) {
     throw new Error(`Failed to fetch selected esquisses for workId ${workId}`);
@@ -42,7 +50,6 @@ export const getEsquisse = async ({
     }
     return esquisse;
   } catch (error) {
-    console.error(`Failed to fetch esquisse with id ${esquisseId}:`, error);
     throw new Error(`Failed to fetch esquisse with id ${esquisseId}`);
   }
 };

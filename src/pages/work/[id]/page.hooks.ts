@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
 import { getEsquisses } from '@/libs/getEsquisse';
+import { getTopImage } from '@/libs/getTopImage';
 import { getWork } from '@/libs/getWorks';
 import { Esquisse } from '@/types/application/esquisse.types';
 import { Work } from '@/types/application/work.types';
 
 export const usePage = ({ workId }: { workId: string }) => {
+  const [imgUrl, setImgUrl] = useState<string>();
   const [work, setWork] = useState<Work | null>(null);
   const [esquisses, setEsquisses] = useState<Esquisse[]>([]);
   const { setFormWork } = useFormWorkContext();
@@ -15,9 +17,14 @@ export const usePage = ({ workId }: { workId: string }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const fetchedImgUrl = await getTopImage({ workId });
       const fetchedWork = await getWork({ workId });
-      const fetchedEsquisses = await getEsquisses();
+      const fetchedEsquisses = await getEsquisses({
+        sortKey: 'asc',
+        limit: 100,
+      });
 
+      setImgUrl(fetchedImgUrl);
       setWork(fetchedWork);
       setEsquisses(fetchedEsquisses);
 
@@ -38,6 +45,7 @@ export const usePage = ({ workId }: { workId: string }) => {
   }, [workId, setFormWork, setMembers]);
 
   return {
+    imgUrl,
     work,
     esquisses,
   };

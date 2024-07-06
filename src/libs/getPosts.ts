@@ -6,7 +6,7 @@ import { getWork } from './getWorks';
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
-    const allEsquisses = await getEsquisses();
+    const allEsquisses = await getEsquisses({ sortKey: 'desc', limit: 4 });
 
     const posts = await Promise.all(
       allEsquisses.map(async (esquisse) => {
