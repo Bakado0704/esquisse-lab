@@ -33,16 +33,18 @@ export const useIconImageInputUnit = ({
     });
 
   useEffect(() => {
-    const iconImageUrl = user?.iconImageUrl;
+    if (user) {
+      const iconImageUrl = user.iconImageUrl;
 
-    if (iconImageUrl) {
-      loadImage(iconImageUrl)
-        .then((image) => {
-          setIconImageData(image);
-        })
-        .catch((error) => {
-          console.error('Error loading images:', error);
-        });
+      if (iconImageUrl) {
+        loadImage(iconImageUrl)
+          .then((image) => {
+            setIconImageData(image);
+          })
+          .catch((error) => {
+            console.error('Error loading images:', error);
+          });
+      }
     }
   }, [user]);
 

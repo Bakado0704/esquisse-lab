@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/user/submitForm';
@@ -15,10 +16,10 @@ export const useUserFormInternal = () => {
   const router = useRouter();
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
+  const { setUser } = useAuthContext();
   const { handleSubmit } = useFormContext<UserFormValue>();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
   const [coverImageData, setCoverImageData] = useState<ImageDataType>();
-
   const onSubmit = async (formData: UserFormValue) => {
     if (processing.current) return;
     processing.current = true;
@@ -26,8 +27,8 @@ export const useUserFormInternal = () => {
     try {
       setLoading(true);
 
-      let iconImageUrl = '';
-      let coverImageUrl = '';
+      let iconImageUrl = iconImageData ? iconImageData.objectUrl : '';
+      let coverImageUrl = coverImageData ? coverImageData.objectUrl : '';
 
       if (iconImageData && iconImageData.file) {
         iconImageUrl = await uploadImageFile({
@@ -54,6 +55,7 @@ export const useUserFormInternal = () => {
       };
 
       const userId = await submitForm(createdFormDate);
+      setUser(createdFormDate);
       router.push(`/user/${userId}`);
 
       setLoading(false);

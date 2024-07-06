@@ -33,15 +33,17 @@ export const useCoverImageInputUnit = ({
     });
 
   useEffect(() => {
-    const coverImageUrl = user?.coverImageUrl;
-    if (coverImageUrl) {
-      loadImage(coverImageUrl)
-        .then((image) => {
-          setCoverImageData(image);
-        })
-        .catch((error) => {
-          console.error('Error loading images:', error);
-        });
+    if (user) {
+      const coverImageUrl = user.coverImageUrl;
+      if (coverImageUrl) {
+        loadImage(coverImageUrl)
+          .then((image) => {
+            setCoverImageData(image);
+          })
+          .catch((error) => {
+            console.error('Error loading images:', error);
+          });
+      }
     }
   }, [user]);
 
