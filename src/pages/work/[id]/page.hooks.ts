@@ -27,7 +27,6 @@ export const usePage = ({ workId }: { workId: string }) => {
       setImgUrl(fetchedImgUrl);
       setWork(fetchedWork);
       setEsquisses(fetchedEsquisses);
-
       setMembers([]);
       if (fetchedWork) {
         setFormWork({

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
 import { getPosts } from '@/libs/getPosts';
@@ -8,6 +9,7 @@ import { Post } from '@/types/application/post.types';
 export const usePage = () => {
   const { setFormWork } = useFormWorkContext();
   const { setMembers } = useMemberContext();
+  const { setEsquisseId } = useEsquisseIdContext();
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -20,6 +22,7 @@ export const usePage = () => {
       }
     };
     fetchAndSetPosts();
+    setEsquisseId('');
     setMembers([]);
     setFormWork({
       workId: '',
