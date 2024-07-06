@@ -10,7 +10,12 @@ const PostIcon = ({ iconImageUrl }: PostIconProps) => {
     <FlexBox>
       {iconImageUrl ? (
         <FlexBox className={styles.iconContainer}>
-          <Image fill src={iconImageUrl} alt='post画像' />
+          <Image
+            fill
+            src={iconImageUrl}
+            alt='post画像'
+            className={styles.iconImage}
+          />
         </FlexBox>
       ) : (
         <div className={styles.icon}>

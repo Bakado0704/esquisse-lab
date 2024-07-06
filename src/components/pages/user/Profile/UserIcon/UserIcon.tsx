@@ -17,7 +17,12 @@ const MemberIcon = ({ user }: MemberIconProps) => {
       <div className={styles.background} />
       {user.iconImageUrl ? (
         <FlexBox className={styles.iconImageContainer}>
-          <Image src={user.iconImageUrl} alt={user.name} fill />
+          <Image
+            src={user.iconImageUrl}
+            alt={user.name}
+            fill
+            className={styles.iconImage}
+          />
         </FlexBox>
       ) : (
         <div className={styles.icon}>
