@@ -8,7 +8,7 @@ import { AllPosts } from '@/components/pages/posts/AllPosts';
 import { usePage } from './page.hooks';
 
 const Page = ({ categoryId }: { categoryId: string }) => {
-  const { posts } = usePage();
+  const { posts } = usePage({ categoryId });
 
   return (
     <>

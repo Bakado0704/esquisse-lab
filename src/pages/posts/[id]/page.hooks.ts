@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getPosts } from '@/libs/getPosts';
+import { getWorksWithTag } from '@/libs/getWorks';
 import { Post } from '@/types/application/post.types';
 
-export const usePage = () => {
+export const usePage = ({ categoryId }: { categoryId: string }) => {
   const { setFormWork } = useFormWorkContext();
   const { setMembers } = useMemberContext();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -13,7 +13,7 @@ export const usePage = () => {
   useEffect(() => {
     const fetchAndSetPosts = async () => {
       try {
-        const fetchPosts = await getPosts();
+        const fetchPosts = await getWorksWithTag({ tag: categoryId });
         setPosts(fetchPosts);
       } catch (error) {
         console.error('Failed to fetch posts:', error);

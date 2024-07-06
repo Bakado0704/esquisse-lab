@@ -1,3 +1,13 @@
+@use '@/styles/mixin' as *;
+
+.iconContainer {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .icon {
   position: relative;
   display: block;
@@ -28,4 +38,8 @@
     border-radius: 50%;
     background-color: var(--w1);
   }
+}
+
+.iconImage {
+  object-fit: cover;
 }

@@ -22,10 +22,41 @@
 }
 
 .imageContainer {
+  position: relative;
   width: 100%;
   height: 15rem;
-  background-color: var(--main1);
   padding: 1.2rem;
+  overflow: hidden;
+
+  &:hover {
+    > .image {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.noImageText {
+  font-size: 1.6rem;
+
+  @include mq(md) {
+    font-size: 1.2rem;
+  }
+}
+
+.noImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--w3);
 }
 
 .cardDetailContainer {

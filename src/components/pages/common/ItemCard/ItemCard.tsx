@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 import { FlexBox, Typography } from '@/components/common';
 
@@ -14,11 +15,12 @@ const ItemCard = ({
   esquisseId,
   transitionDelay,
 }: ItemCardProps) => {
-  const { createdAt, handleItemCard, userName } = useItemCard({
-    workId,
-    userId,
-    esquisseId,
-  });
+  const { createdAt, iconImageUrl, imageUrl, userName, handleItemCard } =
+    useItemCard({
+      workId,
+      userId,
+      esquisseId,
+    });
 
   return (
     <FlexBox
@@ -28,6 +30,19 @@ const ItemCard = ({
       onClick={handleItemCard}
     >
       <FlexBox alignItems='flex-end' className={styles.imageContainer}>
+        {imageUrl ? (
+          <Image fill src={imageUrl} alt='cardImage' className={styles.image} />
+        ) : (
+          <FlexBox
+            justifyContent='center'
+            alignItems='center'
+            className={styles.noImage}
+          >
+            <Typography gothic color='b3' className={styles.noImageText}>
+              NoImage
+            </Typography>
+          </FlexBox>
+        )}
         <Typography color='w1' fontSize='1.2rem'>
           {format(createdAt, 'yyyy.MM.dd')}
         </Typography>
@@ -41,7 +56,7 @@ const ItemCard = ({
           {subject}
         </Typography>
         <FlexBox gap='0.8rem' alignItems='center'>
-          <PostIcon />
+          <PostIcon iconImageUrl={iconImageUrl} />
           <Typography fontSize='1.2rem'>{userName}</Typography>
         </FlexBox>
       </FlexBox>
