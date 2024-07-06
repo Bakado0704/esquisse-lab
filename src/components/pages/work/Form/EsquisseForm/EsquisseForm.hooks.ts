@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { getEsquisse } from '@/libs/getEsquisse';
 import {
@@ -17,6 +18,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
   });
   const { reset } = methods;
   const { formWork } = useFormWorkContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchEsquisse = async () => {
@@ -25,6 +27,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
           uid: formWork.uid,
           esquisseIds: formWork.esquisseIds,
           workId: formWork.workId,
+          workIds: user ? user.workIds : [formWork.workId],
           esquisseId: esquisseId ?? generateId(),
           title: formWork.title,
           concept: formWork.concept,

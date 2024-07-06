@@ -15,11 +15,12 @@ export const submitForm = async (
   const parsedData = parseSubmitObject({
     formData,
   });
-  const { esquisseObj, workObj } = parsedData;
+  const { esquisseObj, workObj, userObj } = parsedData;
   if (status === 'new') {
     await batchCreate({
       esquisseObj,
       workObj,
+      userObj,
     });
   } else if (status === 'esquisseCreate') {
     await batchEsquisseCreate({

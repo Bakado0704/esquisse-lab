@@ -49,25 +49,27 @@ export const useEsquisseFormInternal = () => {
         }),
       );
 
-      const uid = user ? user.id : '';
-      const esquisseId =
-        formData.esquisseId && formData.esquisseId.trim() !== ''
-          ? formData.esquisseId
-          : generateId();
-      const workId =
-        formData.workId && formData.workId.trim() !== ''
-          ? formData.workId
-          : generateId();
+      const esquisseIdExist =
+        formData.esquisseId && formData.esquisseId.trim() !== '';
+      const workIdExist = formData.workId && formData.workId.trim() !== '';
+
+      const uid = user ? user.id : 'unknown';
+      const esquisseId = esquisseIdExist ? formData.esquisseId : generateId();
       const isEsquisseIdIncluded = formData.esquisseIds.includes(esquisseId);
+
+      const workId = workIdExist ? formData.workId : generateId();
+      const workIds = user ? [workId, ...user.workIds] : [workId];
       const esquisseIds = isEsquisseIdIncluded
         ? formData.esquisseIds
         : [esquisseId, ...(formData.esquisseIds ?? [])];
+
       const [topImage, ...additionalImages] = addedImages;
 
       const updatedFormData = {
         ...formData,
         uid,
         workId,
+        workIds,
         esquisseIds,
         esquisseId,
         topImage: topImage ?? null,

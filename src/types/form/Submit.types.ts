@@ -6,6 +6,10 @@ import { Work } from '../firestore/work.types';
 export type EsquisseSubmit = {
   esquisseObj: Esquisse;
   workObj: Work;
+  userObj: Omit<
+    User,
+    'name' | 'lab' | 'coverImageUrl' | 'iconImageUrl' | 'detail'
+  >;
 };
 
 export type WorkSubmit = {
