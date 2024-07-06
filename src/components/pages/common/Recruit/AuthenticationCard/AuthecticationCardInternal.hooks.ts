@@ -40,6 +40,7 @@ export const useAuthenticationUnitInternal = ({
         alert('ログインに成功しました');
         onScroll('fv', 'top');
       });
+      router.push('/home');
       setLoading(false);
     } catch (error) {
       setErrorAlert({ error });

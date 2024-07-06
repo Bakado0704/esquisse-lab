@@ -4,6 +4,8 @@ import { useFormContext } from 'react-hook-form';
 
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
+import { onScroll } from '@/hooks/useScroll';
+import { auth } from '@/libs/firebase/app';
 import { submitForm } from '@/libs/service/form/comment/submitForm';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 
@@ -16,6 +18,12 @@ export const useCommentUnitInternal = () => {
   } = useFormContext<ChatFormValue>();
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
+
+  const isLoginUser = auth.currentUser;
+
+  const handleLogin = () => {
+    onScroll('login', 'top');
+  };
 
   const onSubmit = async (formData: ChatFormValue) => {
     if (processing.current) return;
@@ -34,6 +42,8 @@ export const useCommentUnitInternal = () => {
   };
   return {
     errors,
+    isLoginUser,
+    handleLogin,
     register,
     handleSubmit,
     onSubmit,

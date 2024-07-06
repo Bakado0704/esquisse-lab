@@ -7,10 +7,33 @@ import styles from './CommentUnit.module.scss';
 import { useCommentUnitInternal } from './CommentUnitInternal';
 
 const CommentUnitInternal = () => {
-  const { errors, register, handleSubmit, onSubmit } = useCommentUnitInternal();
+  const { errors, isLoginUser, register, handleSubmit, onSubmit, handleLogin } =
+    useCommentUnitInternal();
 
   return (
-    <FlexBox flexDirection='column' justifyContent='center' gap='1.2rem'>
+    <FlexBox
+      flexDirection='column'
+      justifyContent='center'
+      gap='1.2rem'
+      className={styles.container}
+    >
+      {!isLoginUser && (
+        <FlexBox
+          justifyContent='center'
+          alignItems='center'
+          className={styles.cover}
+        >
+          <Button
+            theme='textPink'
+            onClick={handleLogin}
+            className={styles.handleLogin}
+          >
+            ログインすると
+            <br />
+            コメント機能をお使いいただけます。
+          </Button>
+        </FlexBox>
+      )}
       <TextArea
         label='コメント追加'
         rows={8}
@@ -18,6 +41,7 @@ const CommentUnitInternal = () => {
         {...register('description')}
         error={errors.description?.message}
       />
+
       <FlexBox justifyContent='center' margin='1.2rem 0'>
         <Button
           theme='rectPink'
