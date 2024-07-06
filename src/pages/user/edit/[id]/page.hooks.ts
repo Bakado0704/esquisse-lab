@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useMemberContext } from '@/contexts/member.context';
 import { getUser } from '@/libs/service/firestore/user';
-import { getWorks } from '@/libs/service/firestore/work';
+import { getSelectedWorks } from '@/libs/service/firestore/work';
 import { User } from '@/types/application/user.types'; // User型をインポート
 import { Work } from '@/types/application/work.types'; // Work型をインポート
 
@@ -16,10 +16,12 @@ export const usePage = ({ userId }: { userId: string }) => {
     const fetchData = async () => {
       try {
         const fetchedUser = await getUser({ userId });
-        const fetchedArchiWork = await getWorks({
+        const fetchedArchiWork = await getSelectedWorks({
           workIds: fetchedUser.workIds,
         });
-        const fetchedWebWork = await getWorks({ workIds: fetchedUser.workIds });
+        const fetchedWebWork = await getSelectedWorks({
+          workIds: fetchedUser.workIds,
+        });
 
         setUser(fetchedUser);
         setArchiWork(fetchedArchiWork);
