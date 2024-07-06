@@ -6,14 +6,16 @@ import { ContentUnitProps } from './ContentUnit.types';
 
 const ContentUnit = ({ esquisse }: ContentUnitProps) => {
   const images = [esquisse.topImage ?? '', ...esquisse.additionalImages];
+  const imageExist = images.filter((url) => url.trim() !== '').length > 0;
   return (
     <FlexBox flexDirection='column' gap='2.4rem'>
-      <FlexBox gap='1.2rem' className={styles.imageList}>
-        {images.length > 0 &&
-          images.map((url) => {
+      {imageExist && (
+        <FlexBox gap='1.2rem' className={styles.imageList}>
+          {images.map((url) => {
             return <ContentImage key={url} url={url} />;
           })}
-      </FlexBox>
+        </FlexBox>
+      )}
       <FlexBox flexDirection='column' gap='0.8rem'>
         <Typography fontSize='1.8rem' fontWeight={600}>
           {esquisse.subject}
