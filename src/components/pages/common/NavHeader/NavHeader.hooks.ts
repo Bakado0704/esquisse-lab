@@ -61,6 +61,7 @@ export const useNavHeader = () => {
   };
 
   const onNavigateUser = ({ userId }: { userId: string }) => {
+    setIsMenuOpen(false);
     router.push(`/user/${userId}`);
   };
 
