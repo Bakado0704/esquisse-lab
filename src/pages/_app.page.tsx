@@ -2,6 +2,7 @@ import { Loader } from '@/components/common';
 import { HeaderLayout } from '@/components/layout/HeaderLayout';
 import { AuthProvider } from '@/contexts/auth.context';
 import { ErrorProvider } from '@/contexts/error.context';
+import { EsquissesProvider } from '@/contexts/esquisse.context';
 import { EsquisseIdProvider } from '@/contexts/esquisseId.context';
 import { FormWorkProvider } from '@/contexts/formWork.context';
 import { ModalImageProvider } from '@/contexts/image.context';
@@ -18,14 +19,16 @@ export default function App({ Component, pageProps }: AppProps) {
         <AuthProvider>
           <MemberProvider>
             <FormWorkProvider>
-              <EsquisseIdProvider>
-                <ModalImageProvider>
-                  <HeaderLayout>
-                    <Loader />
-                    <Component {...pageProps} />
-                  </HeaderLayout>
-                </ModalImageProvider>
-              </EsquisseIdProvider>
+              <EsquissesProvider>
+                <EsquisseIdProvider>
+                  <ModalImageProvider>
+                    <HeaderLayout>
+                      <Loader />
+                      <Component {...pageProps} />
+                    </HeaderLayout>
+                  </ModalImageProvider>
+                </EsquisseIdProvider>
+              </EsquissesProvider>
             </FormWorkProvider>
           </MemberProvider>
         </AuthProvider>

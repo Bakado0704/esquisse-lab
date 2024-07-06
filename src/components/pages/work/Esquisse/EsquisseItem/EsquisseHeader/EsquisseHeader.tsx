@@ -9,15 +9,18 @@ import { EsquisseHeaderProps } from './EsquisseHeader.types';
 
 export const EsquisseHeader = ({
   index,
-  userId,
-  esquisseId,
-  createdAt,
+  esquisse,
   isEsquisseActive,
   toggleEsquisse,
 }: EsquisseHeaderProps) => {
-  const { isHostUser, onEditEsquisse, onDeleteEsquisse } = useEsquisseHeader({
+  const {
     esquisseId,
-    userId,
+    createdAt,
+    isHostUser,
+    onEditEsquisse,
+    onDeleteEsquisse,
+  } = useEsquisseHeader({
+    esquisse,
   });
 
   return (

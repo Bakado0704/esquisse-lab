@@ -1,12 +1,13 @@
 import { FlexBox } from '@/components/common';
+import { useEsquisseContext } from '@/contexts/esquisse.context';
 
 import { ButtonUnit } from './ButtonUnit';
 import styles from './Esquisse.module.scss';
-import { EsquisseProps } from './Esquisse.types';
 import { EsquisseItem } from './EsquisseItem';
 import { TitleUnit } from './TtitleUnit';
 
-export const Esquisse = ({ esquisses, userId }: EsquisseProps) => {
+export const Esquisse = () => {
+  const { esquisses } = useEsquisseContext();
   return (
     <FlexBox flexDirection='column' className={styles.container}>
       <div className={styles.bg} />
@@ -17,15 +18,14 @@ export const Esquisse = ({ esquisses, userId }: EsquisseProps) => {
             return (
               <EsquisseItem
                 key={esquisse.id}
-                esquisse={esquisse}
                 index={index}
-                userId={userId}
+                esquisse={esquisse}
               />
             );
           })}
         </FlexBox>
       </FlexBox>
-      <ButtonUnit userId={userId} />
+      <ButtonUnit />
     </FlexBox>
   );
 };

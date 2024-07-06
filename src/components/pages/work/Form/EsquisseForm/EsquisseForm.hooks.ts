@@ -24,21 +24,30 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
     const fetchEsquisse = async () => {
       try {
         let defaultValue: WorkEsquisseFormValue = {
-          uid: formWork.uid,
-          esquisseIds: formWork.esquisseIds,
-          workId: formWork.workId,
-          workIds: user ? user.workIds : [formWork.workId],
+          uid: '',
+          esquisseIds: [],
+          workId: '',
+          workIds: [],
+          title: '',
+          concept: '',
+          tags: [],
           esquisseId: esquisseId ?? generateId(),
           chatIds: [],
-          title: formWork.title,
-          concept: formWork.concept,
-          tags: formWork.tags,
           date: new Date(),
           topImage: null,
           additionalImages: [],
           subject: '',
           description: '',
         };
+
+        if (formWork) {
+          defaultValue.uid = formWork.uid;
+          defaultValue.esquisseIds = formWork.esquisseIds;
+          defaultValue.title = formWork.title;
+          defaultValue.concept = formWork.concept;
+          defaultValue.tags = formWork.tags;
+          defaultValue.workIds = user ? user.workIds : [formWork.workId];
+        }
 
         if (esquisseId) {
           const esquisse = await getEsquisse({ esquisseId });
@@ -57,7 +66,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
     };
 
     fetchEsquisse();
-  }, [esquisseId, formWork, reset]);
+  }, [esquisseId, formWork, user, reset]);
 
   return {
     methods,

@@ -18,6 +18,7 @@ export const useEsquisseItem = ({
   styles,
 }: UseEsquisseItemProps) => {
   const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
+
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
   const [chats, setChats] = useState<Chat[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);

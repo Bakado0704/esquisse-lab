@@ -3,8 +3,8 @@ import { FlexBox, Typography } from '@/components/common';
 import { useButtonUnit } from './ButtonUnit.hooks';
 import styles from './ButtonUnit.module.scss';
 
-const ButtonUnit = ({ userId }: { userId?: string }) => {
-  const { isHostUser, onCreateEsquisse } = useButtonUnit({ userId });
+const ButtonUnit = () => {
+  const { isHostUser, onCreateEsquisse } = useButtonUnit();
 
   return (
     <>

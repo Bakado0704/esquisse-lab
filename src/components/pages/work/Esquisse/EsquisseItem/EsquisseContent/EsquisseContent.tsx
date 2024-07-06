@@ -1,4 +1,5 @@
 import { FlexBox } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import { ChatUnit } from './ChatUnit';
 import { CommentUnit } from './CommentUnit';
@@ -10,8 +11,9 @@ const EsquisseContent = ({
   contentRef,
   esquisse,
   chats,
-  userId,
 }: EsquisseContentProps) => {
+  const { formWork } = useFormWorkContext();
+  const userId = formWork?.uid;
   return (
     <FlexBox
       ref={contentRef}

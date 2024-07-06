@@ -26,14 +26,7 @@ export const usePage = ({ categoryId }: { categoryId: string }) => {
     };
     fetchAndSetPosts();
     setMembers([]);
-    setFormWork({
-      workId: '',
-      uid: '',
-      esquisseIds: [],
-      title: '',
-      concept: '',
-      tags: [],
-    });
+    setFormWork(null);
   }, [setFormWork, setMembers]);
 
   return { posts };

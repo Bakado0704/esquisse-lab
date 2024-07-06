@@ -24,14 +24,7 @@ export const usePage = () => {
     fetchAndSetPosts();
     setEsquisseId('');
     setMembers([]);
-    setFormWork({
-      workId: '',
-      uid: '',
-      esquisseIds: [],
-      title: '',
-      concept: '',
-      tags: [],
-    });
+    setFormWork(null);
   }, []);
 
   return { posts };

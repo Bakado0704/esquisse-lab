@@ -1,18 +1,23 @@
+import classNames from 'classnames';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import { FlexBox } from '@/components/common';
-import { MemberIconProps } from '@/components/pages/common/Members/MemberIcon/MemberIcon.types';
 
+import { useUserIcon } from './UserIcon.hooks';
 import styles from './UserIcon.module.scss';
+import { UserIconProps } from './UserIcon.types';
 
-const MemberIcon = ({ user }: MemberIconProps) => {
-  const router = useRouter();
+const UserIcon = ({ user }: UserIconProps) => {
+  const { isHostUser, onHandleuser } = useUserIcon({ user });
+
   return (
     <FlexBox
       justifyContent='center'
-      className={styles.iconContainer}
-      onClick={() => router.push(`/user/edit/${user.id}`)}
+      className={classNames(
+        styles.iconContainer,
+        isHostUser ? styles.hostIconImageContainer : undefined,
+      )}
+      onClick={onHandleuser}
     >
       <div className={styles.background} />
       {user.iconImageUrl ? (
@@ -34,4 +39,4 @@ const MemberIcon = ({ user }: MemberIconProps) => {
   );
 };
 
-export default MemberIcon;
+export default UserIcon;

@@ -9,18 +9,11 @@ import {
 
 import { WorkFormValue } from '@/types/form/WorkForm.types';
 
-export const initialValue: WorkFormValue = {
-  workId: '',
-  uid: '',
-  esquisseIds: [],
-  title: '',
-  concept: '',
-  tags: [],
-};
+export const initialValue = null;
 
 export const FormWorkContext = createContext<{
-  formWork: WorkFormValue;
-  setFormWork: Dispatch<SetStateAction<WorkFormValue>>;
+  formWork: WorkFormValue | null;
+  setFormWork: Dispatch<SetStateAction<WorkFormValue | null>>;
 }>({
   formWork: initialValue,
   setFormWork: () => {},
@@ -37,7 +30,7 @@ export const useFormWorkContext = () => {
 };
 
 export const FormWorkProvider = ({ children }: { children: ReactNode }) => {
-  const [formWork, setFormWork] = useState<WorkFormValue>(initialValue);
+  const [formWork, setFormWork] = useState<WorkFormValue | null>(initialValue);
 
   const value = {
     formWork,

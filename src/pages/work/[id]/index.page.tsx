@@ -13,15 +13,15 @@ import { usePage } from './page.hooks';
 import styles from './page.module.scss';
 
 const Page = ({ workId }: { workId: string }) => {
-  const { imgUrl, imageSize, modalImage, work, esquisses, onClose } = usePage({
+  const { imgUrl, imageSize, modalImage, onClose } = usePage({
     workId,
   });
 
   return (
     <>
       <Fv imgUrl={imgUrl} />
-      <FvText work={work} />
-      <Esquisse esquisses={esquisses} userId={work?.uid} />
+      <FvText />
+      <Esquisse />
       <Recruit />
       <Concept />
       <Members />

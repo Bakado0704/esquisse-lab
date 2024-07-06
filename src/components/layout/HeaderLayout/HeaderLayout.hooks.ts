@@ -1,25 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import { useEsquisseContext } from '@/contexts/esquisse.context';
-import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useModalImageContext } from '@/contexts/image.context';
-import { useMemberContext } from '@/contexts/member.context';
-import { getEsquisses } from '@/libs/service/firestore/esquisse';
-import { getWork } from '@/libs/service/firestore/work';
-import { getTopImage } from '@/libs/service/topImage';
 
 type ImageSize = {
   width: number;
   height: number;
 };
 
-export const usePage = ({ workId }: { workId: string }) => {
-  const { setFormWork } = useFormWorkContext();
-  const { setMembers } = useMemberContext();
-  const { setEsquisses } = useEsquisseContext();
+export const useHeaderLayout = () => {
   const { modalImage, setModalImage } = useModalImageContext();
-  const [imgUrl, setImgUrl] = useState<string>();
-
   const [imageSize, setImageSize] = useState<ImageSize>({
     width: 0,
     height: 0,
@@ -68,37 +57,9 @@ export const usePage = ({ workId }: { workId: string }) => {
     setModalImage(null);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedImgUrl = await getTopImage({ workId });
-      const fetchedWork = await getWork({ workId });
-      const fetchedEsquisses = await getEsquisses({
-        sortKey: 'asc',
-        limit: 100,
-      });
-
-      setImgUrl(fetchedImgUrl);
-      setEsquisses(fetchedEsquisses);
-      setMembers([]);
-      if (fetchedWork) {
-        setFormWork({
-          workId: fetchedWork.id,
-          uid: fetchedWork.uid,
-          esquisseIds: fetchedWork.esquisseIds,
-          title: fetchedWork.title,
-          concept: fetchedWork.concept,
-          tags: fetchedWork.tags,
-        });
-      }
-    };
-
-    fetchData();
-  }, [workId, setFormWork, setMembers]);
-
   return {
-    imgUrl,
-    imageSize,
     modalImage,
+    imageSize,
     onClose,
   };
 };

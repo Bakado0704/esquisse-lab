@@ -26,7 +26,6 @@
   height: 14rem;
   border-radius: 50%;
   overflow: hidden;
-  cursor: pointer;
 
   @include mq(md) {
     width: 10rem;
@@ -36,11 +35,17 @@
   > img {
     transition: all 0.3s ease;
   }
+}
+
+.hostIconImageContainer {
+  cursor: pointer;
 
   &:hover {
-    > img {
-      transform: scale(1.1);
-      opacity: 0.8;
+    > div {
+      > img {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
     }
   }
 }

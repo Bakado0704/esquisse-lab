@@ -1,15 +1,16 @@
 import { FlexBox } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import { useFvText } from './FvText.hooks';
 import styles from './FvText.module.scss';
-import { FvTextProps } from './FvText.types';
 import { PeriodUnit } from './PeriodUnit';
 import { TagUnit } from './TagUnit';
 import { TitleUnit } from './TitleUnit';
 import { UserUnit } from './UserUnit';
 
-const FvText = ({ work }: FvTextProps) => {
-  const { startDate, endDate } = useFvText({ workId: work?.id });
+const FvText = () => {
+  const { formWork: work } = useFormWorkContext();
+  const { startDate, endDate } = useFvText({ work });
   if (!work) return null;
 
   return (
@@ -17,7 +18,7 @@ const FvText = ({ work }: FvTextProps) => {
       <TitleUnit
         title={work.title}
         concept={work.concept}
-        workId={work.id}
+        workId={work.workId}
         userId={work.uid}
       />
       <UserUnit userId={work.uid} />

@@ -14,17 +14,19 @@ export const useWorkForm = () => {
   const { reset } = methods;
 
   useEffect(() => {
-    const defaultValue: WorkFormValue = {
-      workId: formWork.workId,
-      uid: formWork.uid,
-      esquisseIds: formWork.esquisseIds,
-      title: formWork.title,
-      concept: formWork.concept,
-      tags: formWork.tags,
-    };
+    if (formWork) {
+      const defaultValue: WorkFormValue = {
+        workId: formWork.workId,
+        uid: formWork.uid,
+        esquisseIds: formWork.esquisseIds,
+        title: formWork.title,
+        concept: formWork.concept,
+        tags: formWork.tags,
+      };
 
-    reset(defaultValue);
-  }, []);
+      reset(defaultValue);
+    }
+  }, [formWork]);
 
   return {
     methods,

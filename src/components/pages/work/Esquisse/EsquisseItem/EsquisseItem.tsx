@@ -10,11 +10,7 @@ import { useEsquisseItem } from './EsquisseItem.hooks';
 import styles from './EsquisseItem.module.scss';
 import { EsquisseItemProps } from './EsquisseItem.types';
 
-const EsquisseItemInternal = ({
-  esquisse,
-  userId,
-  index,
-}: EsquisseItemProps) => {
+const EsquisseItemInternal = ({ esquisse, index }: EsquisseItemProps) => {
   const {
     targetId,
     chats,
@@ -42,15 +38,11 @@ const EsquisseItemInternal = ({
       >
         <EsquisseHeader
           index={index}
-          userId={userId}
-          workId={esquisse.workId}
-          esquisseId={esquisse.id}
-          createdAt={esquisse.createdAt}
+          esquisse={esquisse}
           isEsquisseActive={isEsquisseActive}
           toggleEsquisse={toggleEsquisse}
         />
         <EsquisseContent
-          userId={userId}
           esquisse={esquisse}
           contentRef={contentRef}
           chats={chats}
@@ -60,12 +52,12 @@ const EsquisseItemInternal = ({
   );
 };
 
-const EsquisseItem = ({ esquisse, index, userId }: EsquisseItemProps) => {
+const EsquisseItem = ({ esquisse, index }: EsquisseItemProps) => {
   const methods = useForm<ChatFormValue>();
 
   return (
     <FormProvider {...methods}>
-      <EsquisseItemInternal esquisse={esquisse} index={index} userId={userId} />
+      <EsquisseItemInternal esquisse={esquisse} index={index} />
     </FormProvider>
   );
 };
