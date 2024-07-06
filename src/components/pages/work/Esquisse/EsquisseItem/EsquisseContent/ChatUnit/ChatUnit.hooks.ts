@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
+import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
+import { deleteChat } from '@/libs/getChats';
 import { getUser } from '@/libs/getUsers';
 import { User } from '@/types/application/user.types';
 
 export const useChatUnit = ({ userId }: { userId?: string }) => {
   const router = useRouter();
+  const { setLoading } = useLoadingContext();
   const [commentUser, setCommentUser] = useState<User | null>(null);
   const [isHostUser, setIsHostUser] = useState(false);
   const user = auth.currentUser;
@@ -33,7 +36,16 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
     setIsHostUser(user?.uid === userId);
   }, [user, userId]);
 
-  const onDeleteChat = () => {};
+  const onDeleteChat = async ({ chatId }: { chatId: string }) => {
+    setLoading(true);
+    const confirm = window.confirm('コメントを消去します。よろしいですか？');
+    if (confirm) {
+      await deleteChat({ chatId }).then(() => {
+        alert('削除しました');
+      });
+    }
+    setLoading(false);
+  };
 
   const handleUser = () => {
     if (userId) {

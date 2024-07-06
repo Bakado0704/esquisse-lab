@@ -32,7 +32,7 @@ const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
           <FlexBox
             alignItems='center'
             justifyContent='center'
-            onClick={onDeleteChat}
+            onClick={() => onDeleteChat({ chatId: chat.id })}
             className={styles.buttonDelete}
           >
             <Icon iconName='trash' size='1rem' />
