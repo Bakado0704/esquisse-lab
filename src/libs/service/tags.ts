@@ -1,6 +1,8 @@
 import { tags } from '@/dummyData/tags';
 import { TagInfo } from '@/types/firestore/tag.types';
 
+import { tagRepository } from '../repository/firebase';
+
 export const normalizeInput = (input: string) => {
   return input
     .replace(/！/g, '!')
@@ -24,15 +26,33 @@ const removeAlreadyAddedArtists = (
   });
 };
 
-export const createTagDropDown = async (
-  tagInput: string,
-  alreadyAddedTags: TagInfo[],
-): Promise<TagInfo[]> => {
-  const normalizedArtistInput = normalizeInput(tagInput);
-  const isPerfectMatch = tags.some(
-    (artist) => artist.search === normalizedArtistInput,
+export const createTagDropDown = async ({
+  tagInput,
+  alreadyAddedTags,
+}: {
+  tagInput: string;
+  alreadyAddedTags: TagInfo[];
+}): Promise<TagInfo[]> => {
+  const normalizedTagInput = normalizeInput(tagInput);
+  const fetchedTags = await tagRepository.list([
+    [
+      'search',
+      'asc',
+      {
+        startAt: normalizedTagInput,
+        endAt:
+          normalizedTagInput.length === 1
+            ? normalizedTagInput
+            : normalizedTagInput + '\uf8ff',
+      },
+    ],
+  ]);
+  const allTags = [...fetchedTags, ...tags];
+  const isPerfectMatch = allTags.some(
+    (tag) => tag.search === normalizedTagInput,
   );
-  const dropdown = removeAlreadyAddedArtists(tags, alreadyAddedTags);
+
+  const dropdown = removeAlreadyAddedArtists(allTags, alreadyAddedTags);
   if (!isPerfectMatch) {
     dropdown.unshift({
       id: '_single',

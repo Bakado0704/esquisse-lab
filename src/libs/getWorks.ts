@@ -21,7 +21,7 @@ export const getWorksWithTag = async ({
   tag: string;
 }): Promise<Post[]> => {
   const works = await workRepository.list([
-    ['tags', 'array-contains', { id: tag, name: tag }],
+    ['tags', 'array-contains', { name: tag }],
   ]);
 
   const posts = await Promise.all(
