@@ -11,14 +11,14 @@ import { WebWork } from '@/components/pages/user/WebWork';
 import { usePage } from './page.hooks';
 
 const Page = ({ userId }: { userId: string }) => {
-  const { user, archiWork, webWork } = usePage({ userId });
+  const { user, isKadoUser, archiWork, webWork } = usePage({ userId });
 
   return (
     <>
       <Profile user={user} />
       <ArchitectureWork archiWork={archiWork} />
-      <PersonalProject />
-      <WebWork webWork={webWork} />
+      {isKadoUser && <PersonalProject />}
+      {isKadoUser && <WebWork webWork={webWork} />}
       <Recruit />
       <Concept />
       <Members />

@@ -13,6 +13,7 @@ export const usePage = ({ userId }: { userId: string }) => {
   const [webWork, setWebWork] = useState<Work[]>([]);
   const { setFormWork } = useFormWorkContext();
   const { setMembers } = useMemberContext();
+  const isKadoUser = userId === 'sQJhdGuglgb0odRWm90KL2sOQLh2';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +47,7 @@ export const usePage = ({ userId }: { userId: string }) => {
 
   return {
     user,
+    isKadoUser,
     archiWork,
     webWork,
   };
