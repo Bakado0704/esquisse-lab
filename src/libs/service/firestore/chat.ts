@@ -3,16 +3,25 @@ import { Chat } from '@/types/application/chat.types';
 import { chatRepository, esquisseRepository } from '../../repository/firebase';
 
 export const getChats = async ({
-  esquisseId,
+  chatIds,
 }: {
-  esquisseId: string;
+  chatIds: string[];
 }): Promise<Chat[]> => {
   try {
-    const chats = await chatRepository.list([['esquisseId', '==', esquisseId]]);
+    const chats = await Promise.all(
+      chatIds.map(async (chatId) => {
+        const chat = await chatRepository.get({ id: chatId });
+        return chat;
+      }),
+    );
+
     return chats;
   } catch (error) {
-    console.error(`Failed to fetch chats for esquisseId ${esquisseId}:`, error);
-    throw new Error(`Failed to fetch chats for esquisseId ${esquisseId}`);
+    console.error(
+      `Failed to fetch chats for chatIds ${chatIds.join(', ')}:`,
+      error,
+    );
+    throw new Error(`Failed to fetch chats for chatIds ${chatIds.join(', ')}`);
   }
 };
 

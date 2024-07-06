@@ -8,13 +8,13 @@ export const parseSubmitObject = ({
 }: {
   formData: ChatFormValue;
 }): ChatSubmit => {
-  const { esquisseId, description, uid, id, createdAt } = formData;
+  const { esquisseId, description, uid, id, createdAt, chatIds } = formData;
 
   const chatObj: Chat = {
+    id,
     esquisseId,
     description,
     uid,
-    id,
     createdAt,
   };
 
@@ -27,8 +27,8 @@ export const parseSubmitObject = ({
     | 'additionalImages'
     | 'subject'
   > = {
-    id,
-    chatIds: [],
+    id: esquisseId,
+    chatIds: [id, ...chatIds],
   };
 
   return { chatObj, esquisseObj };

@@ -6,9 +6,9 @@ import { useCommentUnit } from './CommentUnit.hooks';
 import styles from './CommentUnit.module.scss';
 import { useCommentUnitInternal } from './CommentUnitInternal';
 
-const CommentUnitInternal = () => {
+const CommentUnitInternal = ({ workId }: { workId: string }) => {
   const { errors, isLoginUser, register, handleSubmit, onSubmit, handleLogin } =
-    useCommentUnitInternal();
+    useCommentUnitInternal({ workId });
 
   return (
     <FlexBox
@@ -59,15 +59,17 @@ const CommentUnitInternal = () => {
 const CommentUnit = ({
   esquisseId,
   uid,
+  workId,
 }: {
   esquisseId: string;
   uid?: string;
+  workId: string;
 }) => {
   const { methods } = useCommentUnit({ esquisseId, uid });
 
   return (
     <FormProvider {...methods}>
-      <CommentUnitInternal />
+      <CommentUnitInternal workId={workId} />
     </FormProvider>
   );
 };

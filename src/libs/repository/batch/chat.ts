@@ -13,6 +13,8 @@ export const exceptForId = <T extends { id: string | undefined }>(
   return newObj;
 };
 
+const esquisseDoc = (esquisseId: string) =>
+  doc(db, FIRESTORE_COLLECTION_NAME.ESQUISSE, esquisseId);
 const chatDoc = (chatId: string) =>
   doc(db, FIRESTORE_COLLECTION_NAME.CHAT, chatId);
 
@@ -33,7 +35,7 @@ export const batchCreate = async ({
 }) => {
   const batch = writeBatch(db);
   batch.set(chatDoc(chatObj.id), exceptForId(chatObj));
-  batch.update(chatDoc(esquisseObj.id), exceptForId(esquisseObj));
+  batch.update(esquisseDoc(esquisseObj.id), exceptForId(esquisseObj));
   await batch.commit();
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
@@ -10,7 +10,6 @@ import { submitForm } from '@/libs/service/form/esquisse/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDatumsType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
-import { generateId } from '@/utils/generateId';
 
 export const useEsquisseFormInternal = () => {
   const processing = useRef(false);
@@ -22,12 +21,6 @@ export const useEsquisseFormInternal = () => {
 
   const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/account');
-    }
-  }, []);
-
   const onSubmit = async (
     formData: WorkEsquisseFormValue,
     status: 'new' | 'esquisseUpdate' | 'esquisseCreate',
@@ -37,6 +30,13 @@ export const useEsquisseFormInternal = () => {
 
     try {
       setLoading(true);
+
+      if (!user) {
+        router.push('/account');
+        setLoading(false);
+        return;
+      }
+
       const addedImages = await Promise.all(
         imageDatums.map(async (image) => {
           if (image.file) {
@@ -49,16 +49,11 @@ export const useEsquisseFormInternal = () => {
         }),
       );
 
-      const esquisseIdExist =
-        formData.esquisseId && formData.esquisseId.trim() !== '';
-      const workIdExist = formData.workId && formData.workId.trim() !== '';
-
-      const uid = user ? user.id : 'unknown';
-      const esquisseId = esquisseIdExist ? formData.esquisseId : generateId();
+      const uid = user.id;
+      const esquisseId = formData.esquisseId;
       const isEsquisseIdIncluded = formData.esquisseIds.includes(esquisseId);
 
-      const workId = workIdExist ? formData.workId : generateId();
-      const workIds = user ? [workId, ...user.workIds] : [workId];
+      const workIds = [formData.workId, ...user.workIds];
       const esquisseIds = isEsquisseIdIncluded
         ? formData.esquisseIds
         : [esquisseId, ...(formData.esquisseIds ?? [])];
@@ -68,13 +63,14 @@ export const useEsquisseFormInternal = () => {
       const updatedFormData = {
         ...formData,
         uid,
-        workId,
         workIds,
         esquisseIds,
         esquisseId,
         topImage: topImage ?? null,
         additionalImages,
       };
+
+      console.log(updatedFormData);
 
       const id = await submitForm(updatedFormData, status);
       router.push(`/work/${id}`);

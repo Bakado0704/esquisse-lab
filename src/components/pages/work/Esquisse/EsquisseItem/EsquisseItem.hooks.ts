@@ -5,32 +5,30 @@ import { useFadeIn } from '@/hooks/useFadeIn';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
 import { getChats } from '@/libs/service/firestore/chat';
 import { Chat } from '@/types/application/chat.types';
+import { Esquisse } from '@/types/application/esquisse.types';
 
 type UseEsquisseItemProps = {
-  esquisseId: string;
+  esquisse: Esquisse;
   styles: {
     readonly [key: string]: string;
   };
 };
 
-export const useEsquisseItem = ({
-  esquisseId,
-  styles,
-}: UseEsquisseItemProps) => {
+export const useEsquisseItem = ({ esquisse, styles }: UseEsquisseItemProps) => {
   const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
 
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
   const [chats, setChats] = useState<Chat[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const targetId = esquisseId + '_id';
+  const targetId = esquisse.id + '_id';
 
   useFadeIn({ targetId, styles });
 
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const fetchedChats = await getChats({ esquisseId });
+        const fetchedChats = await getChats({ chatIds: esquisse.chatIds });
         setChats(fetchedChats);
       } catch (error) {
         console.error('Failed to fetch chats:', error);
@@ -38,10 +36,10 @@ export const useEsquisseItem = ({
     };
 
     fetchChats();
-  }, [esquisseId]);
+  }, [esquisse]);
 
   useEffect(() => {
-    if (esquisseId === selectedEsquisseId) {
+    if (esquisse.id === selectedEsquisseId) {
       setIsEsquisseActive(true);
       onScroll(selectedEsquisseId, 'top');
 
@@ -49,7 +47,7 @@ export const useEsquisseItem = ({
         clearScroll();
       };
     }
-  }, [esquisseId, selectedEsquisseId]);
+  }, [esquisse, selectedEsquisseId]);
 
   useEffect(() => {
     const baseHeight = window.innerWidth <= 768 ? 58 : 72;

@@ -19,7 +19,7 @@ const EsquisseItemInternal = ({ esquisse, index }: EsquisseItemProps) => {
     contentRef,
     toggleEsquisse,
     onEsquisseOpen,
-  } = useEsquisseItem({ esquisseId: esquisse.id, styles });
+  } = useEsquisseItem({ esquisse, styles });
 
   return (
     <FlexBox id={targetId} flexDirection='column' className={styles.container}>

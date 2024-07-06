@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
+import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { auth } from '@/libs/firebase/app';
 import { deleteChat } from '@/libs/service/firestore/chat';
+import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
 import { getUser } from '@/libs/service/firestore/user';
 import { User } from '@/types/application/user.types';
 
 export const useChatUnit = ({ userId }: { userId?: string }) => {
   const router = useRouter();
   const { setLoading } = useLoadingContext();
+  const { setEsquisses } = useEsquisseContext();
   const [commentUser, setCommentUser] = useState<User | null>(null);
   const [isHostUser, setIsHostUser] = useState(false);
   const user = auth.currentUser;
@@ -38,9 +41,11 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
 
   const onDeleteChat = async ({
     chatId,
+    workId,
     esquisseId,
   }: {
     chatId: string;
+    workId: string;
     esquisseId: string;
   }) => {
     setLoading(true);
@@ -50,6 +55,9 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
         alert('削除しました');
       });
     }
+    await getSelectedEsquisses({ workId }).then((esquisse) => {
+      setEsquisses(esquisse);
+    });
     setLoading(false);
   };
 

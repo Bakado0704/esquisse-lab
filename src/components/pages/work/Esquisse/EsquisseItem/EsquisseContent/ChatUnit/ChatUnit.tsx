@@ -8,7 +8,7 @@ import styles from './ChatUnit.module.scss';
 import { ChatUnitProps } from './ChatUnit.types';
 import { PostIcon } from './PostIcon';
 
-const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
+const ChatUnit = ({ chat, userId, workId }: ChatUnitProps) => {
   const { userName, iconImageUrl, isHostUser, onDeleteChat, handleUser } =
     useChatUnit({
       userId,
@@ -33,7 +33,11 @@ const ChatUnit = ({ chat, userId }: ChatUnitProps) => {
             alignItems='center'
             justifyContent='center'
             onClick={() =>
-              onDeleteChat({ chatId: chat.id, esquisseId: chat.esquisseId })
+              onDeleteChat({
+                chatId: chat.id,
+                esquisseId: chat.esquisseId,
+                workId,
+              })
             }
             className={styles.buttonDelete}
           >
