@@ -1,6 +1,10 @@
 import { Esquisse } from '@/types/application/esquisse.types';
 
-import { esquisseRepository, workRepository } from './repository/firebase';
+import {
+  chatRepository,
+  esquisseRepository,
+  workRepository,
+} from './repository/firebase';
 
 export const getEsquisses = async ({
   sortKey,
@@ -51,5 +55,38 @@ export const getEsquisse = async ({
     return esquisse;
   } catch (error) {
     throw new Error(`Failed to fetch esquisse with id ${esquisseId}`);
+  }
+};
+
+export const deleteEsquisse = async ({
+  esquisseId,
+}: {
+  esquisseId: string;
+}): Promise<void> => {
+  try {
+    const esquisse = await esquisseRepository.get({ id: esquisseId });
+    const work = await workRepository.get({ id: esquisse.workId });
+    const filteredEsquisseIds = work.esquisseIds.filter(
+      (id) => id !== esquisseId,
+    );
+
+    await workRepository.update(esquisse.workId, {
+      esquisseIds: filteredEsquisseIds,
+    });
+
+    await Promise.all(
+      esquisse.chatIds.map(async (chatId) => {
+        await chatRepository.deleteDoc({
+          id: chatId,
+        });
+      }),
+    );
+
+    await esquisseRepository.deleteDoc({
+      id: esquisseId,
+    });
+  } catch (error) {
+    console.error(`Failed to delete esquisse with id ${esquisseId}:`, error);
+    throw new Error(`Failed to delete esquisse with id ${esquisseId}`);
   }
 };

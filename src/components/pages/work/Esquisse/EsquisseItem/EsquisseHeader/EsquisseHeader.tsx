@@ -63,7 +63,7 @@ export const EsquisseHeader = ({
                 styles.buttonContainer,
                 styles.buttonDelete,
               )}
-              onClick={onDeleteEsquisse}
+              onClick={() => onDeleteEsquisse({ esquisseId })}
             >
               <Icon iconName='trash' size='2rem' />
             </FlexBox>
