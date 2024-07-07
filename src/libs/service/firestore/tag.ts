@@ -1,4 +1,4 @@
-import { tags } from '@/constants/tags';
+import { tags } from '@/data/tags';
 import { TagInfo } from '@/types/firestore/tag.types';
 
 import { tagRepository } from '../../repository/firebase';

@@ -21,11 +21,12 @@ const WebWork = ({ webWork }: WebWorkProps) => {
         {webWork.map((work, index) => {
           return (
             <ItemCard
-              key={work.id}
-              userId={work.uid}
-              workId={work.id}
-              subject={work.title}
+              key={work.workId}
+              userId={work.userId}
+              workId={work.workId}
+              subject={work.subject}
               transitionDelay={`${index * 0.16}s`}
+              type='web'
             />
           );
         })}

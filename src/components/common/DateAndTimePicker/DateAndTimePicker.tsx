@@ -53,7 +53,7 @@ const DateAndTimePicker = (props: DateAndTimePickerProps) => {
                 error && styles.error,
               )}
               value={value ?? null}
-              format={format ?? 'yyyy/MM/dd HH:mm'}
+              format={format ?? 'yyyy/M/d HH:mm'}
               ampm={false}
               timeSteps={timeSteps}
               onChange={handleDateAndTimeChange}

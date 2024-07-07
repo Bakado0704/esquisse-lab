@@ -4,4 +4,5 @@ export type ItemCardProps = {
   subject: string;
   esquisseId?: string;
   transitionDelay: string;
+  type?: 'archi' | 'web';
 };
