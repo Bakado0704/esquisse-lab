@@ -1,6 +1,6 @@
 import { onAuthStateChanged as onFirebaseAuthStateChanged } from 'firebase/auth';
 
-import { UserInfo } from '@/types/application/userInfomation.types';
+import { UserInfo } from '@/types/application/userInfo.types';
 
 import { auth } from '../firebase/app';
 
