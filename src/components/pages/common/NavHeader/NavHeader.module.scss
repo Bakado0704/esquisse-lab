@@ -1,0 +1,235 @@
+@use '@/styles/mixin' as *;
+
+.headerContainer {
+  position: fixed;
+  width: 100%;
+  height: 6rem;
+  top: 0;
+  left: 0;
+  background-color: var(--w1);
+  z-index: 10000;
+}
+
+.headerContainerInner {
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 4rem;
+
+  @include mq(md) {
+    padding: 0 1.6rem;
+  }
+}
+
+.logoImage {
+  width: 24rem;
+  height: 3.6rem;
+
+  @include mq(md) {
+    width: 21.2rem;
+    height: 3.2rem;
+  }
+}
+
+.iconContainer {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include mq(md) {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+
+    > .iconImg {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.iconImg {
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.icon {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  background-color: var(--w3);
+  border-radius: 50%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: all 0.3s ease-in;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: all 0.3s ease-in;
+    transform: translate(-50%, 15%);
+    z-index: 10;
+  }
+
+  &:hover {
+    background-color: var(--w4);
+
+    &::after {
+      transition: all 0.3s ease-in;
+      width: 45%;
+      height: 45%;
+    }
+
+    &::before {
+      transition: all 0.3s ease-in;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @include mq(md) {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
+.activeLogoImage {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.memberButton {
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--main1);
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent1);
+  }
+}
+
+.loginButton {
+  width: 14rem;
+  height: 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  border-radius: 2.4rem;
+  border: none;
+  background: linear-gradient(270deg, var(--accent1) 0%, var(--accent2) 100%);
+  color: var(--w1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.PcContainer {
+  display: flex;
+  gap: 2.4rem;
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.SpContainer {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.menuButton {
+  position: relative;
+  width: 3.6rem;
+  height: 3.6rem;
+  border: none;
+  background-color: transparent;
+  z-index: 1000;
+
+  > span {
+    position: absolute;
+    left: 50%;
+    width: 2.4rem;
+    height: 0.2rem;
+    background-color: var(--main1);
+    transform: translate(-50%, -50%);
+  }
+
+  > span:nth-child(1) {
+    transform: translate(-50%, calc(-50% + 0.8rem));
+  }
+
+  > span:nth-child(2) {
+    transform: translate(-50%, -50%);
+  }
+
+  > span:nth-child(3) {
+    transform: translate(-50%, calc(-50% - 0.8rem));
+  }
+
+  &:hover {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    > span {
+      background-color: var(--accent1);
+    }
+  }
+}
+
+.menuButtonOpen {
+  > span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  > span:nth-child(2) {
+    display: none;
+  }
+
+  > span:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

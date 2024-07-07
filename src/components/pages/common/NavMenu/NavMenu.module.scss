@@ -1,0 +1,77 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  position: fixed;
+  width: 50vw;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding: 10rem 4rem 4rem;
+  transform: translateX(100%);
+  opacity: 0.9;
+  background-color: var(--w1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  z-index: -100;
+
+  @include mq(md) {
+    width: 80vw;
+  }
+}
+
+.button {
+  justify-content: left;
+
+  > div {
+    > span:first-child {
+      transition: all 0.3s ease;
+      color: var(--main1);
+    }
+
+    > span:last-child {
+      transition: all 0.3s ease;
+      color: var(--main1);
+      opacity: 0.8;
+    }
+  }
+
+  &:hover {
+    > div {
+      > span {
+        transition: all 0.3s ease;
+        color: var(--accent1);
+      }
+    }
+  }
+}
+
+.logoutButton {
+  justify-content: left;
+
+  > div {
+    > span:first-child {
+      transition: all 0.3s ease;
+      color: var(--accent1);
+    }
+
+    > span:last-child {
+      transition: all 0.3s ease;
+      color: var(--accent1);
+      opacity: 0.8;
+    }
+  }
+
+  &:hover {
+    > div {
+      > span {
+        transition: all 0.3s ease;
+        color: var(--main1);
+      }
+    }
+  }
+}
+
+.open {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}

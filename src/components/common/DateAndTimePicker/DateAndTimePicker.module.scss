@@ -1,0 +1,28 @@
+.dateTimePicker {
+  background-color: var(--w11);
+
+  input {
+    width: 100%;
+    max-height: 3.8rem;
+    padding: 1.1rem;
+    font-size: 1.4rem;
+  }
+  svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--b1);
+  }
+}
+
+.error {
+  div {
+    fieldset {
+      border-color: var(--red1);
+    }
+  }
+}
+
+.explanation {
+  font-size: 1.2rem;
+  color: var(--b2);
+}

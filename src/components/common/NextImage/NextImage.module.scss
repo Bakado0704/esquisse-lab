@@ -1,0 +1,9 @@
+.image {
+  opacity: 0;
+  transition: opacity 1s ease;
+  object-fit: cover;
+
+  &.open {
+    opacity: 1;
+  }
+}

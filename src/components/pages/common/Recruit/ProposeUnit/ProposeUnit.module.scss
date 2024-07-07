@@ -1,0 +1,38 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  width: 50%;
+  gap: 10rem;
+
+  @include mq(md) {
+    width: 100%;
+    gap: 3.2rem;
+  }
+}
+
+.title {
+  font-size: 7.2rem;
+  font-weight: 600;
+  line-height: 120%;
+
+  @include mq(md) {
+    font-size: 6.4rem;
+  }
+}
+
+.description {
+  font-weight: 600;
+  font-size: 1.6rem;
+
+  @include mq(md) {
+    font-size: 1.4rem;
+  }
+}
+
+.button {
+  border-radius: 90rem;
+
+  @include mq(md) {
+    width: 100%;
+  }
+}

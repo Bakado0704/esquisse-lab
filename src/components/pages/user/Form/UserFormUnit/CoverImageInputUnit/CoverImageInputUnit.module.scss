@@ -1,0 +1,38 @@
+@use '@/styles/mixin' as *;
+
+.uploadButton {
+  width: 100%;
+  height: 100%;
+  background-color: var(--w3);
+  border-radius: 1rem;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--w4);
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 19.6rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include mq(md) {
+    height: 16rem;
+  }
+}
+
+.image {
+  object-fit: cover;
+}

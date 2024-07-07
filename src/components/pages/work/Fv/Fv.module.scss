@@ -1,0 +1,80 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  margin-bottom: 2rem;
+
+  @include mq(md) {
+    height: 40rem;
+  }
+}
+
+.imageBgContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -100;
+
+  background-repeat: no-repeat;
+  background-position: 100% center;
+  filter: blur(1rem);
+}
+
+.imageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 2rem));
+  z-index: 10;
+  opacity: 0;
+  transition-delay: 0.5s;
+  transition: all 1s ease;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.noImageBg {
+  width: 100%;
+  height: 100%;
+  background-color: var(--w2);
+}
+
+.noImage {
+  width: 100%;
+  height: 100%;
+  background-color: var(--w3);
+}
+
+.noImageText {
+  font-size: 3.2rem;
+
+  @include mq(md) {
+    font-size: 2.4rem;
+  }
+}
+
+.bottomCircle {
+  position: absolute;
+  width: 100vw;
+  left: 50%;
+  bottom: -2rem;
+  transform: translateX(-50%);
+  background: url('/images/home/recruit/bottomCircle.png') no-repeat center;
+  background-size: cover;
+  z-index: -1;
+}

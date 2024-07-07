@@ -1,0 +1,10 @@
+.anchor {
+  color: var(--blue1);
+  font-weight: 300;
+  font-size: 1.4rem;
+
+  &:hover {
+    opacity: 0.6;
+    transition: 0.5s;
+  }
+}
