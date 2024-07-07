@@ -17,7 +17,12 @@ const MemberIcon = ({ user }: MemberIconProps) => {
           className={styles.iconContainerInner}
           onClick={() => router.push(`/user/${user.id}`)}
         >
-          <Image src={user.iconImageUrl} fill alt={user.name} />
+          <Image
+            src={user.iconImageUrl}
+            fill
+            alt={user.name}
+            className={styles.iconImage}
+          />
         </FlexBox>
       ) : (
         <div
