@@ -4,7 +4,7 @@ import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useModalImageContext } from '@/contexts/image.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getEsquisses } from '@/libs/service/firestore/esquisse';
+import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
 import { getWork } from '@/libs/service/firestore/work';
 import { getTopImage } from '@/libs/service/topImage';
 
@@ -72,10 +72,7 @@ export const usePage = ({ workId }: { workId: string }) => {
     const fetchData = async () => {
       const fetchedImgUrl = await getTopImage({ workId });
       const fetchedWork = await getWork({ workId });
-      const fetchedEsquisses = await getEsquisses({
-        sortKey: 'asc',
-        limit: 100,
-      });
+      const fetchedEsquisses = await getSelectedEsquisses({ workId });
 
       setImgUrl(fetchedImgUrl);
       setEsquisses(fetchedEsquisses);
