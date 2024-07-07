@@ -16,32 +16,29 @@ export const useItemCard = ({
   workId,
   esquisseId,
   type,
+  imageUrl,
 }: {
   userId: string;
   workId: string;
   esquisseId?: string;
   type: 'archi' | 'web';
+  imageUrl: string | StaticImageData | null;
 }) => {
   const router = useRouter();
   const { setEsquisseId } = useEsquisseIdContext();
   const { setErrorAlert } = useErrorContext();
   const [user, setUser] = useState<User | null>(null);
   const [period, setPeriod] = useState<Period | null>(null);
-  const [imageUrl, setImageUrl] = useState<string | StaticImageData | null>(
-    null,
-  );
+  const [url, setUrl] = useState<string | StaticImageData | null>(null);
 
   useEffect(() => {
     const fetchPeriod = async () => {
       try {
         if (type == 'archi') {
-          const esquisse = await getTopImage({ workId });
           const periodData = await getPeriod({ workId });
-          setImageUrl(esquisse);
           setPeriod(periodData);
         } else {
           const webWork = webWorks.filter((work) => work.workId === workId)[0];
-          setImageUrl(webWork.imageUrl);
           setPeriod({
             startDate: webWork.startDate,
             endDate: webWork.endDate,
@@ -53,6 +50,22 @@ export const useItemCard = ({
     };
     fetchPeriod();
   }, [workId]);
+
+  useEffect(() => {
+    if (!imageUrl) {
+      const fetchUrl = async () => {
+        try {
+          const topImage = await getTopImage({ workId });
+          setUrl(topImage);
+        } catch (error) {
+          setErrorAlert({ error });
+        }
+      };
+      fetchUrl();
+    } else {
+      setUrl(imageUrl);
+    }
+  }, [imageUrl]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -84,7 +97,7 @@ export const useItemCard = ({
   return {
     createdAt,
     userName,
-    imageUrl,
+    url,
     iconImageUrl,
     handleItemCard,
   };

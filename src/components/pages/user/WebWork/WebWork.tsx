@@ -25,6 +25,7 @@ const WebWork = ({ webWork }: WebWorkProps) => {
               userId={work.userId}
               workId={work.workId}
               subject={work.subject}
+              imageUrl={work.imageUrl}
               transitionDelay={`${index * 0.16}s`}
               type='web'
             />

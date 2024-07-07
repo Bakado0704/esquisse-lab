@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useMemberContext } from '@/contexts/member.context';
-import { getAllWorks, getWorksWithTag } from '@/libs/service/firestore/work';
+import { getAllPosts, getWorksWithTag } from '@/libs/service/firestore/work';
 import { Post } from '@/types/application/post.types';
 
 export const usePage = ({ categoryId }: { categoryId: string }) => {
@@ -14,7 +14,7 @@ export const usePage = ({ categoryId }: { categoryId: string }) => {
     const fetchAndSetPosts = async () => {
       try {
         if (categoryId === '全投稿') {
-          const fetchPosts = await getAllWorks();
+          const fetchPosts = await getAllPosts();
           setPosts(fetchPosts);
         } else {
           const fetchPosts = await getWorksWithTag({ tag: categoryId });

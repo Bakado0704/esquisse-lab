@@ -24,10 +24,10 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
   const iconImageUrl = commentUser ? commentUser.iconImageUrl : null;
 
   useEffect(() => {
-    if (user) {
+    if (chat) {
       const fetchUser = async () => {
         try {
-          const fetchedUser = await getUser({ userId: user.uid });
+          const fetchedUser = await getUser({ userId: chat.uid });
           setCommentUser(fetchedUser);
         } catch (error) {
           console.error('Failed to fetch user:', error);
@@ -36,7 +36,7 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
       };
       fetchUser();
     }
-  }, [user]);
+  }, [chat]);
 
   useEffect(() => {
     setIsHostUser(user?.uid === chat.uid);
