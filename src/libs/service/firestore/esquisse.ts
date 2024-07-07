@@ -36,7 +36,11 @@ export const getSelectedEsquisses = async ({
         return esquisse;
       }),
     );
-    return esquisses;
+    const sortedEsquisses = esquisses.sort((a, b) => {
+      return a.createdAt.getTime() - b.createdAt.getTime();
+    });
+
+    return sortedEsquisses;
   } catch (error) {
     throw new Error(`Failed to fetch selected esquisses for workId ${workId}`);
   }

@@ -14,8 +14,11 @@ export const getChats = async ({
         return chat;
       }),
     );
+    const sortedChats = chats.sort((a, b) => {
+      return a.createdAt.getTime() - b.createdAt.getTime();
+    });
 
-    return chats;
+    return sortedChats;
   } catch (error) {
     console.error(
       `Failed to fetch chats for chatIds ${chatIds.join(', ')}:`,

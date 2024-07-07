@@ -9,7 +9,6 @@ type ImgSize = {
 
 export const useContentImage = ({ url }: { url: string }) => {
   const [imgSize, setImgSize] = useState<ImgSize | null>(null);
-  const [maxHeight, setMaxHeight] = useState(300);
   const { setModalImage } = useModalImageContext();
 
   const loadImage = (imgUrl: string, maxHeight: number) =>
@@ -26,21 +25,9 @@ export const useContentImage = ({ url }: { url: string }) => {
     });
 
   useEffect(() => {
-    const updateMaxHeight = () => {
-      const newMaxHeight = window.innerWidth >= 768 ? 300 : 200;
-      setMaxHeight(newMaxHeight);
-    };
-
-    updateMaxHeight();
-
-    window.addEventListener('resize', updateMaxHeight);
-    return () => window.removeEventListener('resize', updateMaxHeight);
-  }, []);
-
-  useEffect(() => {
     const fetchImageSize = async () => {
       try {
-        const size = await loadImage(url, maxHeight);
+        const size = await loadImage(url, 250);
         setImgSize(size);
       } catch (error) {
         console.error('Error loading image:', error);
@@ -48,7 +35,7 @@ export const useContentImage = ({ url }: { url: string }) => {
     };
 
     fetchImageSize();
-  }, [url, maxHeight]);
+  }, [url]);
 
   return { imgSize, setModalImage };
 };

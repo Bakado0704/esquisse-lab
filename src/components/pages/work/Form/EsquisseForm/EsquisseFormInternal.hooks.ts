@@ -70,8 +70,6 @@ export const useEsquisseFormInternal = () => {
         additionalImages,
       };
 
-      console.log(updatedFormData);
-
       const id = await submitForm(updatedFormData, status);
       router.push(`/work/${id}`);
       setLoading(false);

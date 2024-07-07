@@ -7,6 +7,7 @@ import { ContentUnitProps } from './ContentUnit.types';
 const ContentUnit = ({ esquisse }: ContentUnitProps) => {
   const images = [esquisse.topImage ?? '', ...esquisse.additionalImages];
   const imageExist = images.filter((url) => url.trim() !== '').length > 0;
+
   return (
     <FlexBox flexDirection='column' gap='2.4rem'>
       {imageExist && (

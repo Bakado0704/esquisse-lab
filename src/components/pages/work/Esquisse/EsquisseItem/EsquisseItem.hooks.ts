@@ -59,7 +59,7 @@ export const useEsquisseItem = ({ esquisse, styles }: UseEsquisseItemProps) => {
         containerRef.current.style.height = baseHeight + 'px';
       }
     }
-  }, [isEsquisseActive]);
+  }, [isEsquisseActive, chats, esquisse]);
 
   const toggleEsquisse = () => {
     setIsEsquisseActive(!isEsquisseActive);
