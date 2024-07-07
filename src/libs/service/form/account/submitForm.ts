@@ -9,7 +9,7 @@ import { AccountFormValue } from '@/types/form/AccountForm.types';
 import { parseSubmitObject } from './parseSubmitObject';
 
 const actionCodeSettings = {
-  url: 'http://localhost:3000/register',
+  url: 'https://esquisse-lab.vercel.app/register',
   handleCodeInApp: true,
 };
 
