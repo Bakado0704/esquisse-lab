@@ -25,6 +25,7 @@ const ArchitectureWork = ({ archiWork }: ArchitectureWorkProps) => {
               userId={work.uid}
               workId={work.id}
               subject={work.title}
+              imageUrl={null}
               transitionDelay={`${index * 0.16}s`}
             />
           );

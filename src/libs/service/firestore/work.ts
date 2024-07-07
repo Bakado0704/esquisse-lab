@@ -1,7 +1,7 @@
 import { Post } from '@/types/application/post.types';
 import { Work } from '@/types/application/work.types';
 
-import { workRepository } from '../../repository/firebase';
+import { esquisseRepository, workRepository } from '../../repository/firebase';
 import { getPeriod } from '../period';
 import { getTopImage } from '../topImage';
 
@@ -30,24 +30,25 @@ export const getSelectedWorks = async ({
   return works;
 };
 
-export const getAllWorks = async (): Promise<Post[]> => {
-  const works = await workRepository.list();
+export const getAllPosts = async (): Promise<Post[]> => {
+  const esquisses = await esquisseRepository.list([
+    ['createdAt', 'desc', { limit: 100 }],
+  ]);
 
   const posts = await Promise.all(
-    works.map(async (work) => {
-      const esquisse = await getTopImage({ workId: work.id });
-      const { endDate } = await getPeriod({ workId: work.id });
+    esquisses.map(async (esquisse) => {
+      const work = await workRepository.get({ id: esquisse.workId });
       const user = await getUser({
         userId: work.uid,
       });
       return {
-        id: work.id,
+        id: esquisse.id,
         userId: work.uid,
-        createdAt: endDate,
-        workId: work.id,
-        subject: work.title,
-        description: work.concept,
-        imageUrl: esquisse,
+        createdAt: esquisse.createdAt,
+        workId: esquisse.workId,
+        subject: esquisse.subject,
+        description: esquisse.description,
+        imageUrl: esquisse.topImage,
         iconImageUrl: user.iconImageUrl,
       };
     }),
@@ -67,7 +68,7 @@ export const getWorksWithTag = async ({
 
   const posts = await Promise.all(
     works.map(async (work) => {
-      const esquisse = await getTopImage({ workId: work.id });
+      const topImage = await getTopImage({ workId: work.id });
       const { endDate } = await getPeriod({ workId: work.id });
       const user = await getUser({
         userId: work.uid,
@@ -79,7 +80,7 @@ export const getWorksWithTag = async ({
         workId: work.id,
         subject: work.title,
         description: work.concept,
-        imageUrl: esquisse,
+        imageUrl: topImage,
         iconImageUrl: user.iconImageUrl,
       };
     }),

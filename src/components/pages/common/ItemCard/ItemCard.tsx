@@ -13,28 +13,25 @@ const ItemCard = ({
   userId,
   subject,
   esquisseId,
+  imageUrl,
   transitionDelay,
   type = 'archi',
 }: ItemCardProps) => {
-  const { createdAt, iconImageUrl, imageUrl, userName, handleItemCard } =
+  const { createdAt, iconImageUrl, url, userName, handleItemCard } =
     useItemCard({
       workId,
       userId,
       esquisseId,
       type,
+      imageUrl,
     });
 
   return (
     <FlexBox transitionDelay={transitionDelay} className={styles.cardContainer}>
       <div className={styles.card} onClick={handleItemCard}>
         <FlexBox alignItems='flex-end' className={styles.imageContainer}>
-          {imageUrl ? (
-            <Image
-              fill
-              src={imageUrl}
-              alt='cardImage'
-              className={styles.image}
-            />
+          {url ? (
+            <Image fill src={url} alt='cardImage' className={styles.image} />
           ) : (
             <FlexBox
               justifyContent='center'

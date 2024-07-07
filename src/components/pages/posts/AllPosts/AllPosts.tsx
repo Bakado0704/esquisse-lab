@@ -30,6 +30,7 @@ const AllPosts = ({ posts, categoryId }: AllPostsProps) => {
               key={post.id}
               userId={post.userId}
               workId={post.workId}
+              imageUrl={post.imageUrl}
               subject={post.subject}
               esquisseId={post.id}
               transitionDelay={`${index * 0.16}s`}
