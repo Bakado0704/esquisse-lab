@@ -4,9 +4,9 @@ export const UserSchema = z.object({
   id: z.string(),
   name: z.string(),
   lab: z.string(),
-  coverImageUrl: z.string().optional(),
-  iconImageUrl: z.string().optional(),
-  detail: z.string().optional(),
+  coverImageUrl: z.string().nullable(),
+  iconImageUrl: z.string().nullable(),
+  detail: z.string().nullable(),
   workIds: z.array(z.string()),
 });
 

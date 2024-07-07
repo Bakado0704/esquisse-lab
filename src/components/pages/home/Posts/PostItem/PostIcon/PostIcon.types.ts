@@ -1,3 +1,3 @@
 export type PostIconProps = {
-  iconImageUrl?: string;
+  iconImageUrl: string | null;
 };

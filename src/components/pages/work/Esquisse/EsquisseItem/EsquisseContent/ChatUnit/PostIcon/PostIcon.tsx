@@ -4,7 +4,7 @@ import { FlexBox } from '@/components/common';
 
 import styles from './PostIcon.module.scss';
 
-const PostIcon = ({ iconImageUrl }: { iconImageUrl?: string }) => {
+const PostIcon = ({ iconImageUrl }: { iconImageUrl: string | null }) => {
   return (
     <FlexBox>
       {iconImageUrl ? (

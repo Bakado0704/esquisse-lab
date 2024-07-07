@@ -18,7 +18,7 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
   const [isHostUser, setIsHostUser] = useState(false);
   const user = auth.currentUser;
   const userName = commentUser ? commentUser.name : 'unknown';
-  const iconImageUrl = commentUser ? commentUser.iconImageUrl : undefined;
+  const iconImageUrl = commentUser ? commentUser.iconImageUrl : null;
 
   useEffect(() => {
     if (userId) {

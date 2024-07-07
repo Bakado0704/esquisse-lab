@@ -30,9 +30,9 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
         try {
           let defaultValue: WorkEsquisseFormValue = {
             workIds: user.workIds,
+            uid: user.id,
             esquisseId: esquisseId ?? generateId(),
-            uid: '',
-            workId: '',
+            workId: generateId(),
             esquisseIds: [],
             title: '',
             concept: '',
@@ -46,7 +46,6 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
           };
 
           if (formWork) {
-            defaultValue.uid = formWork.uid;
             defaultValue.workId = formWork.workId;
             defaultValue.esquisseIds = formWork.esquisseIds;
             defaultValue.title = formWork.title;
@@ -56,12 +55,14 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
 
           if (esquisseId) {
             const esquisse = await getEsquisse({ esquisseId });
-            defaultValue.date = esquisse.createdAt;
-            defaultValue.topImage = esquisse.topImage;
-            defaultValue.additionalImages = esquisse.additionalImages;
-            defaultValue.subject = esquisse.subject;
-            defaultValue.description = esquisse.description;
-            defaultValue.chatIds = esquisse.chatIds;
+            if (esquisse) {
+              defaultValue.date = esquisse.createdAt;
+              defaultValue.topImage = esquisse.topImage;
+              defaultValue.additionalImages = esquisse.additionalImages;
+              defaultValue.subject = esquisse.subject;
+              defaultValue.description = esquisse.description;
+              defaultValue.chatIds = esquisse.chatIds;
+            }
           }
 
           reset(defaultValue);

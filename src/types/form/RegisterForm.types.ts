@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const RegisterFormSchema = z.object({
-  iconImageUrl: z.string().optional(),
+  iconImageUrl: z.string().nullable(),
   name: z.string().min(1, '必須項目です'),
   lab: z.string().min(1, '必須項目です'),
 });

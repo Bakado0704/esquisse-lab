@@ -17,17 +17,7 @@ export const useUserForm = ({ userId }: { userId: string }) => {
       try {
         const user = await getUser({ userId });
 
-        const defaultValue: UserFormValue = {
-          id: user ? user.id : '',
-          name: user ? user.name : '',
-          lab: user ? user.lab : '',
-          coverImageUrl: user ? user.coverImageUrl : undefined,
-          iconImageUrl: user ? user.iconImageUrl : undefined,
-          detail: user ? user.detail : '',
-          workIds: user ? user.workIds : [],
-        };
-
-        reset(defaultValue);
+        reset(user);
       } catch (error) {
         console.error(`Failed to fetch user with id ${userId}:`, error);
       }

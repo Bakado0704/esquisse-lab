@@ -29,7 +29,7 @@ export const useRegisterFormInternal = () => {
 
     try {
       setLoading(true);
-      let iconImageUrl = '';
+      let iconImageUrl = null;
 
       if (iconImageData && iconImageData.file) {
         iconImageUrl = await uploadImageFile({
@@ -45,7 +45,7 @@ export const useRegisterFormInternal = () => {
         name: formData.name,
         lab: formData.lab,
         workIds: [],
-        coverImageUrl: undefined,
+        coverImageUrl: null,
         iconImageUrl,
         detail: '',
       };
