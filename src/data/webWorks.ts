@@ -1,4 +1,13 @@
-import fvImg from '@/assets/fv/fv.png';
+import daiwaEsgFundImg from '@/assets/portfolio/daiwaEsgFund.png';
+import daiwaSustainabilityImg from '@/assets/portfolio/daiwaSustainability.png';
+import esquisseLabImg from '@/assets/portfolio/esquisseLab.png';
+import gameImg from '@/assets/portfolio/game.png';
+import ipadmateImg from '@/assets/portfolio/ipadmate.png';
+import ipadmateKidImg from '@/assets/portfolio/ipadmateKids.png';
+import labImg from '@/assets/portfolio/lab.png';
+import mizunoteImg from '@/assets/portfolio/mizunote.png';
+import tekkonImg from '@/assets/portfolio/tekkon.png';
+import ticketDiveImg from '@/assets/portfolio/ticketDive.png';
 import { Web } from '@/types/application/web.types';
 
 const iconImageUrl =
@@ -13,8 +22,8 @@ export const webWorks: Web[] = [
     workId: 'web1',
     subject: 'tekkon',
     link: 'https://tekkon.com/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'tekkonの実装を行いました。',
+    imageUrl: tekkonImg,
     iconImageUrl,
   },
   {
@@ -25,8 +34,8 @@ export const webWorks: Web[] = [
     workId: 'web2',
     subject: '大和ESGファンド',
     link: 'https://www.daiwa-am.co.jp/esg/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: '大和ESGファンドの実装を行いました。',
+    imageUrl: daiwaEsgFundImg,
     iconImageUrl,
   },
   {
@@ -37,8 +46,8 @@ export const webWorks: Web[] = [
     workId: 'web3',
     subject: '大和サステイナビリティ',
     link: 'https://www.daiwa-am.co.jp/company/sustainability',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: '大和サステイナビリティの実装を行いました。',
+    imageUrl: daiwaSustainabilityImg,
     iconImageUrl,
   },
   {
@@ -49,8 +58,8 @@ export const webWorks: Web[] = [
     workId: 'web4',
     subject: 'mizunote',
     link: 'https://mizunote.earth/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'mizunoteの実装を行いました。',
+    imageUrl: mizunoteImg,
     iconImageUrl,
   },
   {
@@ -60,9 +69,9 @@ export const webWorks: Web[] = [
     endDate: new Date('2023-03-01T00:00:00Z'),
     workId: 'web5',
     subject: 'タップゲーム',
-    link: 'https://mizunote.earth/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    link: 'https://github.com/Bakado0704/factoryGame',
+    description: 'ReactNativeを使って、スマホゲームを作りました。',
+    imageUrl: gameImg,
     iconImageUrl,
   },
   {
@@ -73,8 +82,8 @@ export const webWorks: Web[] = [
     workId: 'web6',
     subject: 'ipadmate',
     link: 'https://nft.ipadmate.jp/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'ReactNativeを使って、スマホゲームを作りました。',
+    imageUrl: ipadmateImg,
     iconImageUrl,
   },
   {
@@ -85,8 +94,8 @@ export const webWorks: Web[] = [
     workId: 'web7',
     subject: 'ipadmateKids',
     link: 'https://kids.ipadmate.jp/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'ipadmateKidsの実装を行いました。',
+    imageUrl: ipadmateKidImg,
     iconImageUrl,
   },
   {
@@ -97,20 +106,32 @@ export const webWorks: Web[] = [
     workId: 'web8',
     subject: 'ticketDive',
     link: 'https://ticketdive.com/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'ticketDiveの実装を行いました。',
+    imageUrl: ticketDiveImg,
     iconImageUrl,
   },
   {
     userId: 'sQJhdGuglgb0odRWm90KL2sOQLh2',
     type: '個人制作',
-    startDate: new Date('2023-03-01T00:00:00Z'),
+    startDate: new Date('2024-03-01T00:00:00Z'),
     endDate: new Date(),
     workId: 'web9',
     subject: 'EsquisseLab',
     link: 'https://ticketdive.com/',
-    description: 'こんにちは',
-    imageUrl: fvImg,
+    description: 'EsquisseLabの実装を行いました。',
+    imageUrl: esquisseLabImg,
+    iconImageUrl,
+  },
+  {
+    userId: 'sQJhdGuglgb0odRWm90KL2sOQLh2',
+    type: '個人制作',
+    startDate: new Date('2024-10-01T00:00:00Z'),
+    endDate: new Date(),
+    workId: 'web10',
+    subject: '建築環境学研究室HP',
+    link: 'https://sites.google.com/eis.hokudai.ac.jp/kankyou6/home',
+    description: '北大建築環境学研究室のホームページの実装を行いました。',
+    imageUrl: labImg,
     iconImageUrl,
   },
 ];

@@ -22,7 +22,7 @@ const LinkUnit = ({ link }: LinkUnitProps) => {
           リンク
         </Typography>
         <FlexBox flexWrap='wrap'>
-          <AnchorLink href={link} fontSize='1.2rem' color='b2' target='_blank'>
+          <AnchorLink href={link} fontSize='1.2rem' target='_blank'>
             {link}
           </AnchorLink>
         </FlexBox>
