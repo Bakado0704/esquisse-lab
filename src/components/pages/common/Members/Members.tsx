@@ -23,16 +23,20 @@ const Members = () => {
               Members
             </Typography>
           </FlexBox>
-          <FlexBox className={styles.memberContainer}>
+          <FlexBox justifyContent='left' className={styles.memberContainer}>
             {members.map((user) => {
               return (
                 <FlexBox
                   key={user.name}
+                  justifyContent='center'
                   flexDirection='column'
                   gap='1.6rem'
                   className={styles.member}
                 >
-                  <MemberIcon user={user} />
+                  <FlexBox justifyContent='center'>
+                    <MemberIcon user={user} />
+                  </FlexBox>
+
                   <MemberDetail user={user} />
                 </FlexBox>
               );

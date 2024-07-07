@@ -58,6 +58,12 @@
 }
 
 .member {
+  width: calc((100% - 4rem * 3) / 4);
+
+  @include mq(lg) {
+    width: calc((100% - 4rem * 2) / 3);
+  }
+
   @include mq(sm) {
     width: calc((100% - 4rem) / 2);
   }

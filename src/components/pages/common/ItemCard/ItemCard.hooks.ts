@@ -81,8 +81,6 @@ export const useItemCard = ({
   const userName = user ? user.name : 'unknown';
   const iconImageUrl = user ? user.iconImageUrl : '';
 
-  console.log(period);
-
   return {
     createdAt,
     userName,
