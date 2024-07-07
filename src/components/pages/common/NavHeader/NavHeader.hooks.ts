@@ -40,6 +40,7 @@ export const useNavHeader = () => {
     Logout().then(() => {
       setUser(undefined);
       alert('ログアウトしました');
+      setIsMenuOpen(false);
       router.push('/home');
     });
   };

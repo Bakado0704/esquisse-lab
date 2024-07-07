@@ -14,10 +14,13 @@ const actionCodeSettings = {
 };
 
 export const accountCreate = async (email: string, password: string) => {
-  await createUserWithEmailAndPassword(auth, email, password).catch(() => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error('Error creating account:', error);
     alert('すでにこのメールアドレスは使われています');
-    return;
-  });
+    throw error;
+  }
 };
 
 export const submitForm = async (formData: AccountFormValue): Promise<void> => {
@@ -26,12 +29,15 @@ export const submitForm = async (formData: AccountFormValue): Promise<void> => {
   });
   const accountObj = parsedData;
 
-  await accountCreate(accountObj.email, accountObj.password1);
+  try {
+    await accountCreate(accountObj.email, accountObj.password1);
 
-  if (auth.currentUser) {
-    await sendEmailVerification(auth.currentUser, actionCodeSettings);
-  } else {
-    alert('もう一度お試しください');
-    return;
+    if (auth.currentUser) {
+      await sendEmailVerification(auth.currentUser, actionCodeSettings);
+    } else {
+      alert('もう一度お試しください');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
   }
 };
