@@ -1,23 +1,23 @@
-import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { FormProvider } from 'react-hook-form';
 
 import fvImg from '@/assets/fv/fv.png';
-import { Button, FlexBox } from '@/components/common';
+import { Button, FlexBox, Typography } from '@/components/common';
 
+import { IconImageInputUnit } from './IconImageInputUnit';
 import { LabInputUnit } from './LabInputUnit';
 import { NameInputUnit } from './NameInputUnit';
-import { PasswordInputUnit } from './PasswordInputUnit';
 import { useRegister } from './Register.hooks';
 import styles from './Register.module.scss';
 import { useRegisterFormInternal } from './RegisterInternal.hooks';
 
 const RegisterInternal = () => {
-  const { handleSubmit, onSubmit } = useRegisterFormInternal();
+  const { iconImageData, setIconImageData, handleSubmit, onSubmit } =
+    useRegisterFormInternal();
 
   return (
     <FlexBox
-      gap='3.2rem'
+      gap='1.6em'
       flexDirection='column'
       justifyContent='center'
       className={styles.container}
@@ -27,32 +27,35 @@ const RegisterInternal = () => {
       </FlexBox>
 
       <FlexBox width='100%' justifyContent='center'>
-        <Typography color='var(--w1)' fontWeight={600} fontSize='2.4rem'>
+        <Typography color='w1' fontWeight={600} fontSize='2.4rem'>
           メールアドレスの受信が確認されました！
         </Typography>
       </FlexBox>
 
-      <FlexBox
-        width='100%'
-        gap='1.6rem'
-        flexDirection='column'
-        justifyContent='center'
-        className={styles.formContainer}
-      >
-        <NameInputUnit />
-        <LabInputUnit />
-        <PasswordInputUnit password='password1' label='パスワード' />
-        <PasswordInputUnit password='password2' label='パスワード(確認用)' />
-      </FlexBox>
-
-      <FlexBox width='100%' justifyContent='center'>
-        <Button
-          size='huge'
-          className={styles.button}
-          onClick={handleSubmit((data) => onSubmit(data))}
+      <FlexBox flexDirection='column' gap='3.2rem'>
+        <FlexBox
+          gap='1.6rem'
+          flexDirection='column'
+          justifyContent='center'
+          className={styles.formContainer}
         >
-          アカウントを作成する
-        </Button>
+          <IconImageInputUnit
+            iconImageData={iconImageData}
+            setIconImageData={setIconImageData}
+          />
+          <NameInputUnit />
+          <LabInputUnit />
+        </FlexBox>
+
+        <FlexBox width='100%' justifyContent='center'>
+          <Button
+            size='huge'
+            className={styles.button}
+            onClick={handleSubmit((data) => onSubmit(data))}
+          >
+            アカウントを作成する
+          </Button>
+        </FlexBox>
       </FlexBox>
     </FlexBox>
   );

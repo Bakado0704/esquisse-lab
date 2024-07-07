@@ -1,3 +1,4 @@
+import { batchUpdate } from '@/libs/repository/batch/work';
 import { Work } from '@/types/application/work.types';
 import { WorkFormValue } from '@/types/form/WorkForm.types';
 
@@ -11,10 +12,9 @@ export const submitForm = async (
   });
   const { workObj } = parsedData;
 
-  // await batchUpdate({
-  //   esquisseObj,
-  //   workObj,
-  // });
+  await batchUpdate({
+    workObj,
+  });
 
   return workObj.id;
 };

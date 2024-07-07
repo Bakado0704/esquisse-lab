@@ -13,10 +13,10 @@ const Fv = () => {
   useFadeIn({ targetId: 'fvTitle', styles });
 
   return (
-    <FlexBox className={styles.container}>
+    <FlexBox id='fv' className={styles.container}>
       <FlexBox className={styles.containerInner}>
         <FlexBox id='fvImg' className={styles.imageContainer}>
-          <Image alt='fv' src={fvImg} className={styles.image} />
+          <Image alt='fv' fill src={fvImg} className={styles.image} />
         </FlexBox>
       </FlexBox>
       <FlexBox flexDirection='column' justifyContent='center' gap='2.4rem'>

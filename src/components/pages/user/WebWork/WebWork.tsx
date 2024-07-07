@@ -1,7 +1,5 @@
 import { FlexBox, Typography } from '@/components/common';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { getPeriod } from '@/libs/getPeriod';
-import { getUsers } from '@/libs/getUsers';
 
 import { ItemCard } from '../../common/ItemCard';
 
@@ -21,18 +19,14 @@ const WebWork = ({ webWork }: WebWorkProps) => {
       <div className={styles.bg} />
       <FlexBox id='webWork' className={styles.cardContainer}>
         {webWork.map((work, index) => {
-          const userName = getUsers().find(
-            (user) => user.id === work.uid,
-          )?.name;
-          const { startDate } = getPeriod({ workId: work.id });
           return (
             <ItemCard
-              key={work.id}
-              workId={work.id}
-              subject={work.title}
-              createdAt={startDate}
-              userName={userName}
+              key={work.workId}
+              userId={work.userId}
+              workId={work.workId}
+              subject={work.subject}
               transitionDelay={`${index * 0.16}s`}
+              type='web'
             />
           );
         })}

@@ -1,16 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { ImageDataType, ImageType } from '@/types/form/ImageForm.types';
+import { useAuthContext } from '@/contexts/auth.context';
+import { ImageType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
-export const useCoverImageInputUnit = () => {
-  const [coverImageData, setCoverImageData] = useState<ImageDataType | null>(
-    null,
-  );
+type useCoverImageInputUnitProps = {
+  coverImageData: ImageType | undefined;
+  setCoverImageData: Dispatch<SetStateAction<ImageType | undefined>>;
+};
+
+export const useCoverImageInputUnit = ({
+  coverImageData,
+  setCoverImageData,
+}: useCoverImageInputUnitProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<UserFormValue>();
+  const { user } = useAuthContext();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {
@@ -26,16 +33,19 @@ export const useCoverImageInputUnit = () => {
     });
 
   useEffect(() => {
-    const coverImageUrl = ''; // contextの値を入れる
-
-    loadImage(coverImageUrl)
-      .then((image) => {
-        setCoverImageData(image);
-      })
-      .catch((error) => {
-        console.error('Error loading images:', error);
-      });
-  }, []);
+    if (user) {
+      const coverImageUrl = user.coverImageUrl;
+      if (coverImageUrl) {
+        loadImage(coverImageUrl)
+          .then((image) => {
+            setCoverImageData(image);
+          })
+          .catch((error) => {
+            console.error('Error loading images:', error);
+          });
+      }
+    }
+  }, [user]);
 
   const addImageHandler = async (file: File) => {
     if (!file) return;

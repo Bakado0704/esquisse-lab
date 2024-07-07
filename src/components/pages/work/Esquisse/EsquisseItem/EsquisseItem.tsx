@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { FlexBox } from '@/components/common';
-import { CommentFormValue } from '@/types/form/CommentForm.types';
+import { ChatFormValue } from '@/types/form/ChatForm.types';
 
 import { EsquisseContent } from './EsquisseContent';
 import { EsquisseHeader } from './EsquisseHeader';
@@ -10,11 +10,7 @@ import { useEsquisseItem } from './EsquisseItem.hooks';
 import styles from './EsquisseItem.module.scss';
 import { EsquisseItemProps } from './EsquisseItem.types';
 
-const EsquisseItemInternal = ({
-  esquisse,
-  userId,
-  index,
-}: EsquisseItemProps) => {
+const EsquisseItemInternal = ({ esquisse, index }: EsquisseItemProps) => {
   const {
     targetId,
     chats,
@@ -23,7 +19,7 @@ const EsquisseItemInternal = ({
     contentRef,
     toggleEsquisse,
     onEsquisseOpen,
-  } = useEsquisseItem({ esquisseId: esquisse.id, styles });
+  } = useEsquisseItem({ esquisse, styles });
 
   return (
     <FlexBox id={targetId} flexDirection='column' className={styles.container}>
@@ -42,14 +38,11 @@ const EsquisseItemInternal = ({
       >
         <EsquisseHeader
           index={index}
-          workId={esquisse.workId}
-          esquisseId={esquisse.id}
-          createdAt={esquisse.createdAt}
+          esquisse={esquisse}
           isEsquisseActive={isEsquisseActive}
           toggleEsquisse={toggleEsquisse}
         />
         <EsquisseContent
-          userId={userId}
           esquisse={esquisse}
           contentRef={contentRef}
           chats={chats}
@@ -59,12 +52,12 @@ const EsquisseItemInternal = ({
   );
 };
 
-const EsquisseItem = ({ esquisse, index, userId }: EsquisseItemProps) => {
-  const methods = useForm<CommentFormValue>();
+const EsquisseItem = ({ esquisse, index }: EsquisseItemProps) => {
+  const methods = useForm<ChatFormValue>();
 
   return (
     <FormProvider {...methods}>
-      <EsquisseItemInternal esquisse={esquisse} index={index} userId={userId} />
+      <EsquisseItemInternal esquisse={esquisse} index={index} />
     </FormProvider>
   );
 };

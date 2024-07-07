@@ -8,11 +8,11 @@ import { AllPosts } from '@/components/pages/posts/AllPosts';
 import { usePage } from './page.hooks';
 
 const Page = ({ categoryId }: { categoryId: string }) => {
-  usePage();
+  const { posts } = usePage({ categoryId });
 
   return (
     <>
-      <AllPosts categoryId={categoryId} />
+      <AllPosts posts={posts} categoryId={categoryId} />
       <Recruit />
       <Concept />
       <Members />

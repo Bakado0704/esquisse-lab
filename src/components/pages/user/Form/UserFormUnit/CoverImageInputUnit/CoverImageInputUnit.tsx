@@ -4,9 +4,16 @@ import { FlexBox, Icon, InputLabel, Typography } from '@/components/common';
 
 import { useCoverImageInputUnit } from './CoverImageInputUnit.hooks';
 import styles from './CoverImageInputUnit.module.scss';
+import { CoverImageInputUnitProps } from './CoverImageInputUnit.types';
 
-const CoverImageInputUnit = () => {
-  const { ref, coverImageData, addImageHandler } = useCoverImageInputUnit();
+const CoverImageInputUnit = ({
+  coverImageData,
+  setCoverImageData,
+}: CoverImageInputUnitProps) => {
+  const { ref, addImageHandler } = useCoverImageInputUnit({
+    coverImageData,
+    setCoverImageData,
+  });
 
   return (
     <FlexBox flexDirection='column' gap='0.6rem'>

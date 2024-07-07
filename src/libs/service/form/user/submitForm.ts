@@ -1,3 +1,4 @@
+import { batchUpdate } from '@/libs/repository/batch/user';
 import { Work } from '@/types/application/work.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
@@ -11,9 +12,9 @@ export const submitForm = async (
   });
   const { userObj } = parsedData;
 
-  // await batchUpdate({
-  // userObj
-  // });
+  await batchUpdate({
+    userObj,
+  });
 
   return userObj.id;
 };

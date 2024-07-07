@@ -1,3 +1,5 @@
+import { uploadImageToStorage } from '../repository/storage';
+
 const MAX_WIDTH = 1440;
 
 export const uploadImageFile = async ({
@@ -16,7 +18,6 @@ export const uploadImageFile = async ({
   const randomNumber = getRandomInt(1, 1000000);
   const time = new Date().getTime();
   const fileName = `${randomNumber}_${time}.jpeg`;
-  console.log(fileName);
 
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -28,16 +29,12 @@ export const uploadImageFile = async ({
           image,
           imageDatum.file,
         );
-        console.log(uploadImageFile);
-        // const snapshot = await uploadImageToStorage({
-        //   uploadImageFile,
-        //   fileName,
-        // });
-        // const imageURL =
-        //   process.env.USE_EMULATOR === 'all'
-        //     ? `http://127.0.0.1:9199/${snapshot.metadata.bucket}/${snapshot.metadata.fullPath}`
-        //     : `https://storage.googleapis.com/${snapshot.metadata.bucket}/${snapshot.metadata.fullPath}`;
-        // resolve(imageURL);
+        const imageURL = await uploadImageToStorage({
+          uploadImageFile,
+          fileName,
+        });
+
+        resolve(imageURL);
       } catch (error) {
         console.error(error);
         reject('画像のアップロードに失敗しました。');

@@ -1,5 +1,5 @@
-import { Work } from '@/types/application/work.types';
+import { Web } from '@/types/application/web.types';
 
 export type WebWorkProps = {
-  webWork: Work[];
+  webWork: Web[];
 };

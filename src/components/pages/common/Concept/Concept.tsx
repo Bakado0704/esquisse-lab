@@ -1,5 +1,5 @@
 import { FlexBox, Icon, Typography } from '@/components/common';
-import { conceptList } from '@/dummyData/concept';
+import { conceptList } from '@/components/pages/common/Concept/data';
 import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './Concept.module.scss';

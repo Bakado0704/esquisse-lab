@@ -3,11 +3,19 @@ import { useEffect, useState } from 'react';
 import { DragEndEvent } from '@dnd-kit/core';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { createTagDropDown, normalizeInput } from '@/libs/service/tags';
+import { useLoadingContext } from '@/contexts/loading.context';
+import { batchCreate } from '@/libs/repository/batch/tag';
+import {
+  createTagDropDown,
+  normalizeInput,
+} from '@/libs/service/firestore/tag';
 import { TagInfo } from '@/types/application/tag.types';
+import { Tag } from '@/types/firestore/tag.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
+import { generateId } from '@/utils/generateId';
 
 export const useTagFormUnit = () => {
+  const { setLoading } = useLoadingContext();
   const {
     control,
     formState: { errors },
@@ -36,10 +44,12 @@ export const useTagFormUnit = () => {
       setTagInputDropDown([]);
       setSelectedDropDownIdx(-1);
     } else {
-      createTagDropDown(tagInput, tags).then((tagChoices) => {
-        setTagInputDropDown(tagChoices);
-        setSelectedDropDownIdx(0);
-      });
+      createTagDropDown({ tagInput, alreadyAddedTags: tags }).then(
+        (tagChoices) => {
+          setTagInputDropDown(tagChoices);
+          setSelectedDropDownIdx(0);
+        },
+      );
     }
   }, [tagInput, tags]);
 
@@ -60,27 +70,24 @@ export const useTagFormUnit = () => {
   };
 
   const onSelectDropDown = async (selectedTag: TagInfo) => {
-    // setLoading(true);
+    setLoading(true);
     if (selectedTag.id === '_single') {
-      // firebaseに登録したのち、formに追加
-      // await createArtist(selectedTag.name, user?.uid || '')
-      //   .then((createdArtist) => {
-      //     appendArtist(createdArtist);
-      //     clearErrors('artists');
-      //     setArtistInput('');
-      //   })
-      //   .catch((error) => {
-      //     setErrorAlert({ error });
-      //   });
-      appendTag(selectedTag);
-      clearErrors('tags');
-      setTagInput('');
+      const tagObj: Tag = {
+        id: generateId(),
+        name: selectedTag.name,
+        search: normalizeInput(selectedTag.name),
+      };
+      await batchCreate({ tagObj }).then((createdTag) => {
+        appendTag(createdTag);
+        clearErrors('tags');
+        setTagInput('');
+      });
     } else {
       appendTag(selectedTag);
       clearErrors('tags');
       setTagInput('');
     }
-    //setLoading(false);
+    setLoading(false);
   };
 
   const handleKeyDown = async (

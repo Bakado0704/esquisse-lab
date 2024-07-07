@@ -1,13 +1,11 @@
 import { FlexBox, Typography } from '@/components/common';
 import { ItemCard } from '@/components/pages/common/ItemCard';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { getPosts } from '@/libs/getPosts';
 
 import styles from './AllPosts.module.scss';
 import { AllPostsProps } from './AllPosts.types';
 
-const AllPosts = ({ categoryId }: AllPostsProps) => {
-  const posts = getPosts();
+const AllPosts = ({ posts, categoryId }: AllPostsProps) => {
   useFadeIn({ targetId: 'cardContainer', styles });
 
   return (
@@ -30,9 +28,8 @@ const AllPosts = ({ categoryId }: AllPostsProps) => {
           return (
             <ItemCard
               key={post.id}
-              createdAt={post.createdAt}
+              userId={post.userId}
               workId={post.workId}
-              userName={post.userName}
               subject={post.subject}
               esquisseId={post.id}
               transitionDelay={`${index * 0.16}s`}

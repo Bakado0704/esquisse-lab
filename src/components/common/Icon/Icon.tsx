@@ -6,9 +6,11 @@ import ArrowLarge from '@/assets/image/arrow-large.svg';
 import ArrowSmall from '@/assets/image/arrow-small.svg';
 import Attention from '@/assets/image/attention.svg';
 import BottomCircle from '@/assets/image/bottom-circle.svg';
+import Building from '@/assets/image/building.svg';
 import Calender from '@/assets/image/calender.svg';
 import Close from '@/assets/image/close.svg';
 import Document from '@/assets/image/document.svg';
+import Link from '@/assets/image/link.svg';
 import Pen from '@/assets/image/pen.svg';
 import Support from '@/assets/image/support.svg';
 import Tag from '@/assets/image/tag.svg';
@@ -26,8 +28,10 @@ const ICONS = {
   arrowSmall: <ArrowSmall />,
   attention: <Attention />,
   bottomCircle: <BottomCircle />,
+  building: <Building />,
   calender: <Calender />,
   document: <Document />,
+  link: <Link />,
   pen: <Pen />,
   support: <Support />,
   tag: <Tag />,

@@ -6,18 +6,42 @@ import { useCommentUnit } from './CommentUnit.hooks';
 import styles from './CommentUnit.module.scss';
 import { useCommentUnitInternal } from './CommentUnitInternal';
 
-const CommentUnitInternal = () => {
-  const { errors, register, handleSubmit, onSubmit } = useCommentUnitInternal();
+const CommentUnitInternal = ({ workId }: { workId: string }) => {
+  const { errors, isLoginUser, register, handleSubmit, onSubmit, handleLogin } =
+    useCommentUnitInternal({ workId });
 
   return (
-    <FlexBox flexDirection='column' justifyContent='center' gap='1.2rem'>
+    <FlexBox
+      flexDirection='column'
+      justifyContent='center'
+      gap='1.2rem'
+      className={styles.container}
+    >
+      {!isLoginUser && (
+        <FlexBox
+          justifyContent='center'
+          alignItems='center'
+          className={styles.cover}
+        >
+          <Button
+            theme='textPink'
+            onClick={handleLogin}
+            className={styles.handleLogin}
+          >
+            ログインすると
+            <br />
+            コメント機能をお使いいただけます。
+          </Button>
+        </FlexBox>
+      )}
       <TextArea
         label='コメント追加'
         rows={8}
         placeholder='コメントを入力してください。'
-        {...register('comment')}
-        error={errors.comment?.message}
+        {...register('description')}
+        error={errors.description?.message}
       />
+
       <FlexBox justifyContent='center' margin='1.2rem 0'>
         <Button
           theme='rectPink'
@@ -32,12 +56,20 @@ const CommentUnitInternal = () => {
   );
 };
 
-const CommentUnit = () => {
-  const { methods } = useCommentUnit();
+const CommentUnit = ({
+  esquisseId,
+  uid,
+  workId,
+}: {
+  esquisseId: string;
+  uid?: string;
+  workId: string;
+}) => {
+  const { methods } = useCommentUnit({ esquisseId, uid });
 
   return (
     <FormProvider {...methods}>
-      <CommentUnitInternal />
+      <CommentUnitInternal workId={workId} />
     </FormProvider>
   );
 };

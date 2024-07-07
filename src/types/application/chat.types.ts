@@ -2,6 +2,6 @@ export type Chat = {
   id: string;
   uid: string;
   esquisseId: string;
-  createdAt?: Date;
+  createdAt: Date;
   description: string;
 };

@@ -1,4 +1,5 @@
 import { Esquisse } from '@/types/application/esquisse.types';
+import { User } from '@/types/firestore/user.types';
 import { Work } from '@/types/firestore/work.types';
 import { EsquisseSubmit } from '@/types/form/Submit.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
@@ -9,6 +10,12 @@ export const parseSubmitObject = ({
   formData: WorkEsquisseFormValue;
 }): EsquisseSubmit => {
   const {
+    workId,
+    workIds,
+    esquisseId,
+    esquisseIds,
+    chatIds,
+    uid,
     title,
     concept,
     tags,
@@ -18,11 +25,6 @@ export const parseSubmitObject = ({
     subject,
     description,
   } = formData;
-
-  const workId = ''; //contextから取ってくる
-  const esquisseId = ''; //contextから取ってくる
-  const uid = ''; //contextから取ってくる
-  const esquisseIds: string[] = [];
 
   const workObj: Work = {
     id: workId,
@@ -41,9 +43,16 @@ export const parseSubmitObject = ({
     additionalImages,
     subject,
     description,
+    chatIds,
   };
 
-  console.log(workObj, esquisseObj);
+  const userObj: Omit<
+    User,
+    'name' | 'lab' | 'coverImageUrl' | 'iconImageUrl' | 'detail'
+  > = {
+    id: uid,
+    workIds,
+  };
 
-  return { workObj, esquisseObj };
+  return { workObj, esquisseObj, userObj };
 };

@@ -1,8 +1,8 @@
+import { Esquisse } from '@/types/application/esquisse.types';
+
 export type EsquisseHeaderProps = {
   index: number;
-  workId: string;
-  esquisseId: string;
-  createdAt: Date;
+  esquisse: Esquisse;
   isEsquisseActive: boolean;
   toggleEsquisse: () => void;
 };

@@ -1,25 +1,34 @@
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import { FlexBox, Typography } from '@/components/common';
-import { getUsers } from '@/libs/getUsers';
 
+import { useUserUnit } from './UserUnit.hooks';
 import styles from './UserUnit.module.scss';
 import { UserUnitProps } from './UserUnit.types';
 
 const UserUnit = ({ userId }: UserUnitProps) => {
-  const router = useRouter();
-  const user = getUsers().find((user) => user.id === userId);
-
-  if (!user) return null;
+  const { user, handleUser } = useUserUnit({ userId });
 
   return (
     <FlexBox gap='2rem' alignItems='center'>
-      <div className={styles.icon} />
+      <FlexBox className={styles.iconContainer}>
+        {user && user.iconImageUrl ? (
+          <Image
+            alt='icon'
+            fill
+            src={user.iconImageUrl}
+            className={styles.iconContainer}
+          />
+        ) : (
+          <div className={styles.icon} />
+        )}
+      </FlexBox>
+
       <FlexBox
         flexDirection='column'
         gap='0.4rem'
         className={styles.link}
-        onClick={() => router.push(`/user/${user.id}`)}
+        onClick={handleUser}
       >
         <Typography fontSize='1.6rem' fontWeight={600}>
           設計者

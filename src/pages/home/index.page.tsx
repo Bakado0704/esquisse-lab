@@ -9,13 +9,13 @@ import { usePage } from './page.hooks';
 import styles from './page.module.scss';
 
 const Home = () => {
-  usePage();
+  const { posts } = usePage();
 
   return (
     <>
       <Fv />
       <Separator direction='horizontal' className={styles.separator} />
-      <Posts />
+      <Posts posts={posts} />
       <Recruit />
       <Concept />
       <Members />

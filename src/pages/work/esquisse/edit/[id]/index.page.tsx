@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { EsquisseForm } from '@/components/pages/work/Form/EsquisseForm';
 
 const Page = ({ esquisseId }: { esquisseId: string }) => {
-  return <EsquisseForm esquisseId={esquisseId} />;
+  return <EsquisseForm esquisseId={esquisseId} status='esquisseUpdate' />;
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {

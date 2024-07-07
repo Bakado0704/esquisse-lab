@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { FlexBox } from '@/components/common';
@@ -11,13 +12,22 @@ const MemberIcon = ({ user }: MemberIconProps) => {
     <FlexBox justifyContent='center' className={styles.iconContainer}>
       <div className={styles.backgroundOne} />
       <div className={styles.backgroundTwo} />
-      <div
-        className={styles.icon}
-        onClick={() => router.push(`/user/${user.id}`)}
-      >
-        <span />
-        <span />
-      </div>
+      {user.iconImageUrl ? (
+        <FlexBox
+          className={styles.iconContainerInner}
+          onClick={() => router.push(`/user/${user.id}`)}
+        >
+          <Image src={user.iconImageUrl} fill alt={user.name} />
+        </FlexBox>
+      ) : (
+        <div
+          className={styles.icon}
+          onClick={() => router.push(`/user/${user.id}`)}
+        >
+          <span />
+          <span />
+        </div>
+      )}
     </FlexBox>
   );
 };

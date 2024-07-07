@@ -1,8 +1,8 @@
 export type ItemCardProps = {
   workId: string;
-  createdAt: Date;
+  userId: string;
   subject: string;
-  userName?: string;
   esquisseId?: string;
   transitionDelay: string;
+  type?: 'archi' | 'web';
 };

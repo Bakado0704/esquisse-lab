@@ -1,5 +1,5 @@
-import { TagInfo } from '@/types/application/tag.types';
+import { WorkTag } from '@/types/firestore/tag.types';
 
 export type TagUnitProps = {
-  tags: TagInfo[];
+  tags: WorkTag[];
 };

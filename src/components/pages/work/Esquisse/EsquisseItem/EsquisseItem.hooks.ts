@@ -3,29 +3,43 @@ import { useEffect, useRef, useState } from 'react';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
-import { getChats } from '@/libs/getChats';
+import { getChats } from '@/libs/service/firestore/chat';
+import { Chat } from '@/types/application/chat.types';
+import { Esquisse } from '@/types/application/esquisse.types';
 
 type UseEsquisseItemProps = {
-  esquisseId: string;
+  esquisse: Esquisse;
   styles: {
     readonly [key: string]: string;
   };
 };
 
-export const useEsquisseItem = ({
-  esquisseId,
-  styles,
-}: UseEsquisseItemProps) => {
+export const useEsquisseItem = ({ esquisse, styles }: UseEsquisseItemProps) => {
   const { esquisseId: selectedEsquisseId } = useEsquisseIdContext();
+
   const [isEsquisseActive, setIsEsquisseActive] = useState(false);
+  const [chats, setChats] = useState<Chat[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const targetId = esquisseId + '_id';
+  const targetId = esquisse.id + '_id';
 
   useFadeIn({ targetId, styles });
 
   useEffect(() => {
-    if (esquisseId === selectedEsquisseId) {
+    const fetchChats = async () => {
+      try {
+        const fetchedChats = await getChats({ chatIds: esquisse.chatIds });
+        setChats(fetchedChats);
+      } catch (error) {
+        console.error('Failed to fetch chats:', error);
+      }
+    };
+
+    fetchChats();
+  }, [esquisse]);
+
+  useEffect(() => {
+    if (esquisse.id === selectedEsquisseId) {
       setIsEsquisseActive(true);
       onScroll(selectedEsquisseId, 'top');
 
@@ -33,7 +47,7 @@ export const useEsquisseItem = ({
         clearScroll();
       };
     }
-  }, []);
+  }, [esquisse, selectedEsquisseId]);
 
   useEffect(() => {
     const baseHeight = window.innerWidth <= 768 ? 58 : 72;
@@ -45,13 +59,12 @@ export const useEsquisseItem = ({
         containerRef.current.style.height = baseHeight + 'px';
       }
     }
-  }, [isEsquisseActive]);
-
-  const chats = getChats().filter((chat) => chat.esquisseId === esquisseId);
+  }, [isEsquisseActive, chats, esquisse]);
 
   const toggleEsquisse = () => {
     setIsEsquisseActive(!isEsquisseActive);
   };
+
   const onEsquisseOpen = () => {
     if (!isEsquisseActive) {
       setIsEsquisseActive(true);

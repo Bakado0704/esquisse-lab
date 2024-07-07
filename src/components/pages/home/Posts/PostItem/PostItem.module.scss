@@ -1,0 +1,127 @@
+@use '@/styles/mixin' as *;
+
+.post {
+  padding-top: 2.4rem;
+  gap: 1.8rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  @include mq(md) {
+    gap: 1.2rem;
+  }
+
+  > div {
+    > img {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    > .subject {
+      font-size: 2.4rem;
+      transition: color 0.3s ease;
+
+      @include mq(md) {
+        font-size: 1.8rem;
+      }
+    }
+
+    > .description {
+      font-size: 1.4rem;
+      transition: color 0.3s ease;
+
+      @include mq(md) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    > div {
+      > img {
+        transform: scale(1.1);
+        opacity: 0.8;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      > .subject {
+        color: var(--accent1);
+        transition: color 0.3s ease;
+      }
+
+      > .description {
+        color: var(--accent2);
+        transition: color 0.3s ease;
+      }
+    }
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  height: 50rem;
+  position: relative;
+  overflow: hidden;
+
+  @include mq(md) {
+    height: 40rem;
+  }
+
+  @include mq(sm) {
+    height: 30rem;
+  }
+
+  @include mq(sp) {
+    height: 25rem;
+  }
+
+  @include mq(xs) {
+    height: 20rem;
+  }
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  transition: all 0.3s ease;
+  background-color: var(--w3);
+
+  @include mq(md) {
+    height: 40rem;
+  }
+
+  @include mq(sm) {
+    height: 30rem;
+  }
+
+  @include mq(sp) {
+    height: 25rem;
+  }
+
+  @include mq(xs) {
+    height: 20rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.noImage {
+  font-size: 3.2rem;
+
+  @include mq(md) {
+    font-size: 2.4rem;
+  }
+}
+
+.detailContainer {
+  gap: 1.2rem;
+
+  @include mq(md) {
+    gap: 0.8rem;
+  }
+}

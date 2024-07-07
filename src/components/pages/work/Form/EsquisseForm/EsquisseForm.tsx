@@ -10,7 +10,11 @@ import { useEsquisseForm } from './EsquisseForm.hooks';
 import styles from './EsquisseForm.module.scss';
 import { useEsquisseFormInternal } from './EsquisseFormInternal.hooks';
 
-export const EsquisseFormInternal = () => {
+export const EsquisseFormInternal = ({
+  status,
+}: {
+  status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
+}) => {
   const { router, imageDatums, setImageDatums, handleSubmit, onSubmit } =
     useEsquisseFormInternal();
 
@@ -34,7 +38,7 @@ export const EsquisseFormInternal = () => {
           <Button
             size='large'
             theme='fill'
-            onClick={handleSubmit((data) => onSubmit(data))}
+            onClick={handleSubmit((data) => onSubmit(data, status))}
           >
             投稿する
           </Button>
@@ -45,12 +49,18 @@ export const EsquisseFormInternal = () => {
   );
 };
 
-const EsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
+const EsquisseForm = ({
+  esquisseId,
+  status,
+}: {
+  esquisseId?: string;
+  status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
+}) => {
   const { methods } = useEsquisseForm({ esquisseId });
 
   return (
     <FormProvider {...methods}>
-      <EsquisseFormInternal />
+      <EsquisseFormInternal status={status} />
     </FormProvider>
   );
 };

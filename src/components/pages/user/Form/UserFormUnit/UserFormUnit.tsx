@@ -5,8 +5,14 @@ import { DetailInputUnit } from './DetailInputUnit';
 import { IconImageInputUnit } from './IconImageInputUnit';
 import { LabInputUnit } from './LabInputUnit';
 import { NameInputUnit } from './NameInputUnit';
+import { UserFormUnitProps } from './UserFormUnit.types';
 
-const UserFormUnit = () => {
+const UserFormUnit = ({
+  iconImageData,
+  coverImageData,
+  setIconImageData,
+  setCoverImageData,
+}: UserFormUnitProps) => {
   return (
     <FlexBox gap='2.4rem' flexDirection='column'>
       <LeftBorderTitle
@@ -15,8 +21,14 @@ const UserFormUnit = () => {
       />
       <Card fullWidth>
         <FlexBox gap='2rem' flexDirection='column'>
-          <IconImageInputUnit />
-          <CoverImageInputUnit />
+          <IconImageInputUnit
+            iconImageData={iconImageData}
+            setIconImageData={setIconImageData}
+          />
+          <CoverImageInputUnit
+            coverImageData={coverImageData}
+            setCoverImageData={setCoverImageData}
+          />
           <NameInputUnit />
           <LabInputUnit />
           <DetailInputUnit />

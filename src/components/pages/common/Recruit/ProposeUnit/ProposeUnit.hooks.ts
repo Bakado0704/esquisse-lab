@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 
 import { useMemberContext } from '@/contexts/member.context';
 import { clearScroll, onScroll } from '@/hooks/useScroll';
-import { getUsers } from '@/libs/getUsers';
+import { getUsers } from '@/libs/service/firestore/user';
 
 export const useProposeUnit = () => {
-  const users = getUsers();
   const { members, setMembers } = useMemberContext();
 
   useEffect(() => {
@@ -18,7 +17,8 @@ export const useProposeUnit = () => {
     }
   }, [members]);
 
-  const onScrollMember = () => {
+  const onScrollMember = async () => {
+    const users = await getUsers();
     setMembers(users);
     onScroll('member', 'top');
   };

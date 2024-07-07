@@ -1,4 +1,5 @@
 import { FlexBox } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import { ChatUnit } from './ChatUnit';
 import { CommentUnit } from './CommentUnit';
@@ -10,8 +11,9 @@ const EsquisseContent = ({
   contentRef,
   esquisse,
   chats,
-  userId,
 }: EsquisseContentProps) => {
+  const { formWork } = useFormWorkContext();
+  const userId = formWork?.uid;
   return (
     <FlexBox
       ref={contentRef}
@@ -21,8 +23,23 @@ const EsquisseContent = ({
     >
       <ContentUnit esquisse={esquisse} />
       <div className={styles.separator} />
-      <ChatUnit chats={chats} userId={userId} />
-      <CommentUnit />
+      <FlexBox gap='2.4rem' flexDirection='column'>
+        {chats.map((chat) => {
+          return (
+            <ChatUnit
+              key={chat.id}
+              chat={chat}
+              userId={userId}
+              workId={esquisse.workId}
+            />
+          );
+        })}
+      </FlexBox>
+      <CommentUnit
+        esquisseId={esquisse.id}
+        uid={userId}
+        workId={esquisse.workId}
+      />
     </FlexBox>
   );
 };

@@ -3,8 +3,12 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
+import { useAuthContext } from '@/contexts/auth.context';
+import { useErrorContext } from '@/contexts/error.context';
+import { useLoadingContext } from '@/contexts/loading.context';
 import { useFadeIn } from '@/hooks/useFadeIn';
-import { submitForm } from '@/libs/service/form/login/submitForm';
+import { onScroll } from '@/hooks/useScroll';
+import { Login } from '@/libs/service/form/authentication/login';
 import { LoginFormValue } from '@/types/form/LoginForm.types';
 
 type AuthenticationFormPrpos = {
@@ -16,6 +20,9 @@ type AuthenticationFormPrpos = {
 export const useAuthenticationUnitInternal = ({
   styles,
 }: AuthenticationFormPrpos) => {
+  const { setUser } = useAuthContext();
+  const { setLoading } = useLoadingContext();
+  const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<LoginFormValue>();
   const processing = useRef(false);
   const router = useRouter();
@@ -27,16 +34,19 @@ export const useAuthenticationUnitInternal = ({
     processing.current = true;
 
     try {
-      // setLoading(true);
-
-      await submitForm(formData);
-      // router.push(`/work/${eventId}`);
-      // setLoading(false);
+      setLoading(true);
+      await Login(formData).then((user) => {
+        setUser(user);
+        alert('ログインに成功しました');
+        onScroll('fv', 'top');
+      });
+      router.push('/home');
+      setLoading(false);
     } catch (error) {
-      // setErrorAlert({ error });
-      processing.current = false;
-      // setLoading(false);
+      setErrorAlert({ error });
+      setLoading(false);
     }
+    processing.current = false;
   };
   return {
     router,

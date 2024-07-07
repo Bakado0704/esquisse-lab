@@ -1,0 +1,10 @@
+@use '@/styles/mixin' as *;
+
+.container {
+  padding: 4rem 0;
+  gap: 2.8rem;
+
+  @include mq(md) {
+    gap: 2rem;
+  }
+}

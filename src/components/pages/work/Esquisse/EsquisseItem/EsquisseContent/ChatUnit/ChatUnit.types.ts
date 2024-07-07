@@ -1,6 +1,7 @@
 import { Chat } from '@/types/application/chat.types';
 
 export type ChatUnitProps = {
-  chats: Chat[];
+  chat: Chat;
   userId?: string;
+  workId: string;
 };

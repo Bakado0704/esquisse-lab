@@ -11,10 +11,13 @@ import styles from './NavHeader.module.scss';
 
 const NavHeader = () => {
   const {
+    user,
     isFormPage,
     isMenuOpen,
+    onLogout,
     onMenuOpen,
     onNavigateTop,
+    onNavigateUser,
     onScrollMember,
     onScrollLogin,
   } = useNavHeader();
@@ -26,9 +29,12 @@ const NavHeader = () => {
       className={styles.headerContainer}
     >
       <NavMenu
+        user={user}
         isMenuOpen={isMenuOpen}
+        onLogout={onLogout}
         onScrollMember={onScrollMember}
         onScrollLogin={onScrollLogin}
+        onNavigateUser={onNavigateUser}
       />
       <FlexBox
         alignItems='center'
@@ -44,38 +50,68 @@ const NavHeader = () => {
           )}
           onClick={onNavigateTop}
         />
+
         {!isFormPage && (
-          <FlexBox className={styles.PcContainer}>
-            <Button
-              theme='textIndigo'
-              className={styles.memberButton}
-              onClick={onScrollMember}
-            >
-              Members
-            </Button>
-            <Button
-              theme='fill'
-              className={styles.loginButton}
-              onClick={onScrollLogin}
-            >
-              ログイン
-            </Button>
-          </FlexBox>
-        )}
-        {!isFormPage && (
-          <FlexBox className={styles.SpContainer}>
-            <button
-              className={classNames(
-                styles.menuButton,
-                isMenuOpen ? styles.menuButtonOpen : undefined,
+          <>
+            <FlexBox className={styles.PcContainer}>
+              <Button
+                theme='textIndigo'
+                className={styles.memberButton}
+                onClick={onScrollMember}
+              >
+                Members
+              </Button>
+
+              {user && (
+                <Button
+                  theme='textIndigo'
+                  className={styles.memberButton}
+                  onClick={onLogout}
+                >
+                  Logout
+                </Button>
               )}
-              onClick={onMenuOpen}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-          </FlexBox>
+
+              {user && user.iconImageUrl && (
+                <FlexBox
+                  className={styles.iconContainer}
+                  onClick={() => onNavigateUser({ userId: user.id })}
+                >
+                  <Image
+                    src={user.iconImageUrl}
+                    alt='icon'
+                    fill
+                    className={styles.iconImg}
+                  />
+                </FlexBox>
+              )}
+
+              {user && !user.iconImageUrl && <div className={styles.icon} />}
+
+              {!user && (
+                <Button
+                  theme='fill'
+                  className={styles.loginButton}
+                  onClick={onScrollLogin}
+                >
+                  ログイン
+                </Button>
+              )}
+            </FlexBox>
+            <FlexBox className={styles.SpContainer}>
+              <button
+                className={classNames(
+                  styles.menuButton,
+                  isMenuOpen ? styles.menuButtonOpen : undefined,
+                )}
+                onClick={onMenuOpen}
+              >
+                <span />
+                <span />
+                <span />
+              </button>
+            </FlexBox>
+          </>
         )}
       </FlexBox>
     </FlexBox>

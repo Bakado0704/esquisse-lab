@@ -16,10 +16,9 @@ export const useRegister = () => {
 
   useEffect(() => {
     const defaultValue: RegisterFormValue = {
+      iconImageUrl: null,
       name: '',
       lab: '',
-      password1: '',
-      password2: '',
     };
 
     reset(defaultValue);

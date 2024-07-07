@@ -7,11 +7,7 @@ export const parseSubmitObject = ({
 }: {
   formData: WorkFormValue;
 }): WorkSubmit => {
-  const { title, concept, tags } = formData;
-
-  const workId = ''; //contextから取ってくる
-  const uid = ''; //contextから取ってくる
-  const esquisseIds: string[] = [];
+  const { title, concept, tags, workId, uid, esquisseIds } = formData;
 
   const workObj: Work = {
     id: workId,
@@ -21,8 +17,6 @@ export const parseSubmitObject = ({
     tags,
     esquisseIds,
   };
-
-  console.log(workObj);
 
   return { workObj };
 };

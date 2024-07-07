@@ -1,16 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { ImageDataType, ImageType } from '@/types/form/ImageForm.types';
+import { useAuthContext } from '@/contexts/auth.context';
+import { ImageType } from '@/types/form/ImageForm.types';
 import { UserFormValue } from '@/types/form/UserForm.types';
 
-export const useIconImageInputUnit = () => {
-  const [iconImageData, setIconImageData] = useState<ImageDataType | null>(
-    null,
-  );
+type useIconImageInputUnitProps = {
+  iconImageData: ImageType | undefined;
+  setIconImageData: Dispatch<SetStateAction<ImageType | undefined>>;
+};
+
+export const useIconImageInputUnit = ({
+  iconImageData,
+  setIconImageData,
+}: useIconImageInputUnitProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<UserFormValue>();
+  const { user } = useAuthContext();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {
@@ -26,21 +33,23 @@ export const useIconImageInputUnit = () => {
     });
 
   useEffect(() => {
-    const iconImageUrl = ''; // contextの値を入れる
+    if (user) {
+      const iconImageUrl = user.iconImageUrl;
 
-    loadImage(iconImageUrl)
-      .then((image) => {
-        setIconImageData(image);
-      })
-      .catch((error) => {
-        console.error('Error loading images:', error);
-      });
-  }, []);
+      if (iconImageUrl) {
+        loadImage(iconImageUrl)
+          .then((image) => {
+            setIconImageData(image);
+          })
+          .catch((error) => {
+            console.error('Error loading images:', error);
+          });
+      }
+    }
+  }, [user]);
 
   const addImageHandler = async (file: File) => {
     if (!file) return;
-
-    console.log('ddd');
 
     const objectUrl = URL.createObjectURL(file);
     loadImage(objectUrl)
@@ -50,7 +59,6 @@ export const useIconImageInputUnit = () => {
           objectUrl: objectUrl,
           imgSize: imageType.imgSize,
         };
-        console.log('ccc');
         setIconImageData(newImage);
       })
       .catch((error) => {
@@ -66,7 +74,6 @@ export const useIconImageInputUnit = () => {
 
   return {
     ref,
-    iconImageData,
     addImageHandler,
   };
 };

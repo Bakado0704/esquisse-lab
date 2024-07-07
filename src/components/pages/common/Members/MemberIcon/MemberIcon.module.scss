@@ -1,23 +1,63 @@
 @use '@/styles/mixin' as *;
 
-.icon {
+.iconContainer {
   position: relative;
-  display: block;
   width: 16rem;
   height: 16rem;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: var(--b3);
+  cursor: pointer;
 
   @include mq(md) {
     width: 14rem;
     height: 14rem;
   }
 
+  > .iconContainerInner {
+    > img {
+      transition: all 0.3s ease;
+    }
+  }
+
+  &:hover {
+    > .icon {
+      > span:first-child {
+        width: 45%;
+        height: 45%;
+      }
+      > span:last-child {
+        width: 85%;
+        height: 85%;
+      }
+    }
+    > .iconContainerInner {
+      > img {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.iconContainerInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--b3);
+
   > span:first-child {
     position: absolute;
-    width: 6rem;
-    height: 6rem;
+    width: 40%;
+    height: 40%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -28,32 +68,14 @@
 
   > span:last-child {
     position: absolute;
-    width: 10rem;
-    height: 10rem;
+    width: 80%;
+    height: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, 20%);
     border-radius: 50%;
     background-color: var(--w1);
     transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
-  }
-}
-
-.iconContainer {
-  position: relative;
-  cursor: pointer;
-
-  &:hover {
-    > .icon {
-      > span:first-child {
-        width: 6.5rem;
-        height: 6.5rem;
-      }
-      > span:last-child {
-        width: 11rem;
-        height: 11rem;
-      }
-    }
   }
 }
 

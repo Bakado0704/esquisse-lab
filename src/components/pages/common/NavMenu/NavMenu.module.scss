@@ -6,9 +6,9 @@
   height: 100%;
   top: 0;
   right: 0;
-  padding: 10rem 4rem;
+  padding: 10rem 4rem 4rem;
   transform: translateX(100%);
-  opacity: 0.8;
+  opacity: 0.9;
   background-color: var(--w1);
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -39,7 +39,33 @@
     > div {
       > span {
         transition: all 0.3s ease;
-        color: var(--accnet1);
+        color: var(--accent1);
+      }
+    }
+  }
+}
+
+.logoutButton {
+  justify-content: left;
+
+  > div {
+    > span:first-child {
+      transition: all 0.3s ease;
+      color: var(--accent1);
+    }
+
+    > span:last-child {
+      transition: all 0.3s ease;
+      color: var(--accent1);
+      opacity: 0.8;
+    }
+  }
+
+  &:hover {
+    > div {
+      > span {
+        transition: all 0.3s ease;
+        color: var(--main1);
       }
     }
   }

@@ -42,7 +42,7 @@ const Members = () => {
             <Button
               size='huge'
               className={styles.button}
-              onClick={() => router.push('/register')}
+              onClick={() => router.push('/account')}
             >
               メンバーになる
             </Button>

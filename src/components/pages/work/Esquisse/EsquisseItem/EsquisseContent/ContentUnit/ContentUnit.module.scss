@@ -2,30 +2,25 @@
 
 .imageList {
   width: 100%;
-  height: 30rem;
+  height: 25rem;
   overflow: scroll;
 
   &::-webkit-scrollbar {
     display: none;
   }
-
-  @include mq(md) {
-    height: 20rem;
-  }
 }
 
-.imageContainer {
-  position: relative;
-  min-width: 40rem;
-  height: 100%;
-
-  @include mq(md) {
-    min-width: 30rem;
-  }
-}
-
-.image {
+.noImage {
   width: 100%;
-  height: 100%;
-  border-radius: 2rem;
+  height: 25rem;
+  background-color: var(--w3);
+  border-radius: 1rem;
+}
+
+.noImageText {
+  font-size: 3.2rem;
+
+  @include mq(md) {
+    font-size: 2.4rem;
+  }
 }
