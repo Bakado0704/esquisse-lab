@@ -35,11 +35,7 @@ const EsquisseContent = ({
           );
         })}
       </FlexBox>
-      <CommentUnit
-        esquisseId={esquisse.id}
-        uid={userId}
-        workId={esquisse.workId}
-      />
+      <CommentUnit esquisseId={esquisse.id} workId={esquisse.workId} />
     </FlexBox>
   );
 };
