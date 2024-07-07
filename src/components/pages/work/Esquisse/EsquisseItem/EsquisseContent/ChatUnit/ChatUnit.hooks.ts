@@ -8,9 +8,12 @@ import { auth } from '@/libs/firebase/app';
 import { deleteChat } from '@/libs/service/firestore/chat';
 import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
 import { getUser } from '@/libs/service/firestore/user';
+import { Chat } from '@/types/application/chat.types';
 import { User } from '@/types/application/user.types';
 
-export const useChatUnit = ({ userId }: { userId?: string }) => {
+type ChatUnitProps = { userId?: string; chat: Chat };
+
+export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
   const router = useRouter();
   const { setLoading } = useLoadingContext();
   const { setEsquisses } = useEsquisseContext();
@@ -21,10 +24,10 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
   const iconImageUrl = commentUser ? commentUser.iconImageUrl : null;
 
   useEffect(() => {
-    if (userId) {
+    if (user) {
       const fetchUser = async () => {
         try {
-          const fetchedUser = await getUser({ userId });
+          const fetchedUser = await getUser({ userId: user.uid });
           setCommentUser(fetchedUser);
         } catch (error) {
           console.error('Failed to fetch user:', error);
@@ -33,10 +36,10 @@ export const useChatUnit = ({ userId }: { userId?: string }) => {
       };
       fetchUser();
     }
-  }, [userId]);
+  }, [user]);
 
   useEffect(() => {
-    setIsHostUser(user?.uid === userId);
+    setIsHostUser(user?.uid === chat.uid);
   }, [user, userId]);
 
   const onDeleteChat = async ({

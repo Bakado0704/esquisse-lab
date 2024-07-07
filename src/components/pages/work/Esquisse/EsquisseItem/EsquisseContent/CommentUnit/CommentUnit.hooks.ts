@@ -3,33 +3,36 @@ import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
+import { auth } from '@/libs/firebase/app';
 import { ChatFormSchema, ChatFormValue } from '@/types/form/ChatForm.types';
 import { generateId } from '@/utils/generateId';
 
 type useCommentUnitProps = {
   esquisseId: string;
-  uid?: string;
 };
 
-export const useCommentUnit = ({ esquisseId, uid }: useCommentUnitProps) => {
+export const useCommentUnit = ({ esquisseId }: useCommentUnitProps) => {
   const methods = useForm<ChatFormValue>({
     resolver: zodResolver(ChatFormSchema),
   });
   const { reset } = methods;
+  const user = auth.currentUser;
 
   useEffect(() => {
-    const id = generateId();
-    const defaultValue: ChatFormValue = {
-      id,
-      uid: uid ?? '',
-      esquisseId,
-      chatIds: [],
-      description: '',
-      createdAt: new Date(),
-    };
+    if (user) {
+      const id = generateId();
+      const defaultValue: ChatFormValue = {
+        id,
+        uid: user.uid,
+        esquisseId,
+        chatIds: [],
+        description: '',
+        createdAt: new Date(),
+      };
 
-    reset(defaultValue);
-  }, []);
+      reset(defaultValue);
+    }
+  }, [user]);
 
   return {
     methods,

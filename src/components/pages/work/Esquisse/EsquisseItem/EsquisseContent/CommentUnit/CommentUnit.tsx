@@ -58,14 +58,12 @@ const CommentUnitInternal = ({ workId }: { workId: string }) => {
 
 const CommentUnit = ({
   esquisseId,
-  uid,
   workId,
 }: {
   esquisseId: string;
-  uid?: string;
   workId: string;
 }) => {
-  const { methods } = useCommentUnit({ esquisseId, uid });
+  const { methods } = useCommentUnit({ esquisseId });
 
   return (
     <FormProvider {...methods}>

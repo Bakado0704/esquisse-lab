@@ -12,6 +12,7 @@ const ChatUnit = ({ chat, userId, workId }: ChatUnitProps) => {
   const { userName, iconImageUrl, isHostUser, onDeleteChat, handleUser } =
     useChatUnit({
       userId,
+      chat,
     });
 
   return (
