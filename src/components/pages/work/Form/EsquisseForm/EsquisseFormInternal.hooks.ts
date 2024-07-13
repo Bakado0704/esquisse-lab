@@ -32,7 +32,8 @@ export const useEsquisseFormInternal = () => {
       setLoading(true);
 
       if (!user) {
-        router.push('/account');
+        alert('ログインしてください');
+        router.push('/home');
         setLoading(false);
         return;
       }
