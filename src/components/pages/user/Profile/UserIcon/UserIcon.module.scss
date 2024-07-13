@@ -62,7 +62,6 @@
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--b3);
-  cursor: pointer;
 
   @include mq(md) {
     width: 10rem;
@@ -102,6 +101,10 @@
       height: 7rem;
     }
   }
+}
+
+.hostIcon {
+  cursor: pointer;
 
   &:hover {
     > span:first-child {
