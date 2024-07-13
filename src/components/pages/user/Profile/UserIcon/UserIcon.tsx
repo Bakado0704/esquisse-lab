@@ -11,17 +11,16 @@ const UserIcon = ({ user }: UserIconProps) => {
   const { isHostUser, onHandleuser } = useUserIcon({ user });
 
   return (
-    <FlexBox
-      justifyContent='center'
-      className={classNames(
-        styles.iconContainer,
-        isHostUser ? styles.hostIconImageContainer : undefined,
-      )}
-      onClick={onHandleuser}
-    >
+    <FlexBox justifyContent='center' className={styles.iconContainer}>
       <div className={styles.background} />
       {user.iconImageUrl ? (
-        <FlexBox className={styles.iconImageContainer}>
+        <FlexBox
+          className={classNames(
+            styles.iconImageContainer,
+            isHostUser ? styles.hostIconImageContainer : undefined,
+          )}
+          onClick={onHandleuser}
+        >
           <Image
             src={user.iconImageUrl}
             alt={user.name}
@@ -30,7 +29,13 @@ const UserIcon = ({ user }: UserIconProps) => {
           />
         </FlexBox>
       ) : (
-        <div className={styles.icon}>
+        <div
+          className={classNames(
+            styles.icon,
+            isHostUser ? styles.hostIcon : undefined,
+          )}
+          onClick={onHandleuser}
+        >
           <span />
           <span />
         </div>

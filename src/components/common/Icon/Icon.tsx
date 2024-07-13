@@ -30,6 +30,7 @@ const ICONS = {
   bottomCircle: <BottomCircle />,
   building: <Building />,
   calender: <Calender />,
+  close: <Close />,
   document: <Document />,
   link: <Link />,
   pen: <Pen />,
@@ -37,7 +38,6 @@ const ICONS = {
   tag: <Tag />,
   teacher: <Teacher />,
   trash: <Trash />,
-  close: <Close />,
   upload: <Upload />,
 } as const;
 
