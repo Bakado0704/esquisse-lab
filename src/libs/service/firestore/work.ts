@@ -27,7 +27,20 @@ export const getSelectedWorks = async ({
     }),
   );
 
-  return works;
+  const workWithDate = await Promise.all(
+    works.map(async (work) => {
+      const { startDate } = await getPeriod({ workId: work.id });
+      return { work, startDate };
+    }),
+  );
+
+  const sortedWorks = workWithDate.sort((a, b) => {
+    return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+  });
+
+  const filteredWorks = sortedWorks.map(({ work }) => work);
+
+  return filteredWorks;
 };
 
 export const getAllPosts = async (): Promise<Post[]> => {
