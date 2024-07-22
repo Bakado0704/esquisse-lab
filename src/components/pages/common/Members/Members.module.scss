@@ -69,6 +69,46 @@
   }
 }
 
+.iconContainer {
+  position: relative;
+}
+
+.backgroundOne {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 50%;
+  background-color: var(--w1);
+  z-index: -3;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+
+  @include mq(md) {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.backgroundTwo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background-color: var(--w1);
+  z-index: -3;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+
+  @include mq(md) {
+    width: 16rem;
+    height: 16rem;
+  }
+}
+
 .button {
   border-radius: 90rem;
   background: var(--b1);

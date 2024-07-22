@@ -1,15 +1,12 @@
-import { useRouter } from 'next/navigation';
-
 import { Button, FlexBox, Typography } from '@/components/common';
-import { useMemberContext } from '@/contexts/member.context';
 
-import { MemberDetail } from './MemberDetail';
-import { MemberIcon } from './MemberIcon';
+import { UserIcon } from '../UserIcon';
+
+import { useMembers } from './Members.hooks';
 import styles from './Members.module.scss';
 
 const Members = () => {
-  const { members } = useMemberContext();
-  const router = useRouter();
+  const { router, members, iconSize } = useMembers();
 
   return (
     <FlexBox id='member' className={styles.container}>
@@ -33,11 +30,39 @@ const Members = () => {
                   gap='1.6rem'
                   className={styles.member}
                 >
-                  <FlexBox justifyContent='center'>
-                    <MemberIcon user={user} />
+                  <FlexBox
+                    justifyContent='center'
+                    className={styles.iconContainer}
+                  >
+                    <div className={styles.backgroundOne} />
+                    <div className={styles.backgroundTwo} />
+                    <UserIcon
+                      user={user}
+                      isRouterActive={true}
+                      size={iconSize}
+                      href={`/user/${user.id}`}
+                    />
                   </FlexBox>
 
-                  <MemberDetail user={user} />
+                  <FlexBox flexDirection='column' gap='1rem'>
+                    <Typography
+                      ellipsis
+                      color='w1'
+                      textAlign='center'
+                      fontSize='1.4rem'
+                      fontWeight={600}
+                    >
+                      {user.name}
+                    </Typography>
+                    <Typography
+                      ellipsis
+                      color='w1'
+                      textAlign='center'
+                      fontSize='1.2rem'
+                    >
+                      {user.lab}
+                    </Typography>
+                  </FlexBox>
                 </FlexBox>
               );
             })}
