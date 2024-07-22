@@ -1,0 +1,78 @@
+@use '@/styles/mixin' as *;
+
+.iconContainer {
+  position: relative;
+}
+
+.iconImageContainer {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+
+  > img {
+    transition: all 0.3s ease;
+  }
+}
+
+.activeIconImageContainer {
+  cursor: pointer;
+
+  &:hover {
+    > img {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}
+
+.iconImage {
+  object-fit: cover;
+}
+
+.icon {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--b3);
+
+  > span:first-child {
+    position: absolute;
+    width: 35%;
+    height: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+  }
+
+  > span:last-child {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    border-radius: 50%;
+    background-color: var(--w1);
+    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+  }
+}
+
+.hostIcon {
+  cursor: pointer;
+
+  &:hover {
+    > span:first-child {
+      width: 40%;
+      height: 40%;
+    }
+
+    > span:last-child {
+      width: 64%;
+      height: 64%;
+    }
+  }
+}
