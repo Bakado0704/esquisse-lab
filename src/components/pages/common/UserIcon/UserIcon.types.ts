@@ -1,7 +1,7 @@
-import { User } from '@/types/application/user.types';
+import { StaticImageData } from 'next/image';
 
 export type UserIconProps = {
-  user: User;
+  iconImageUrl: string | StaticImageData | null;
   isRouterActive: boolean;
   href: string;
   size: string;

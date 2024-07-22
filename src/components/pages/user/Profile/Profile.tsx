@@ -31,7 +31,7 @@ const Profile = ({ user }: ProfileProps) => {
         <FlexBox justifyContent='center' className={styles.iconContainer}>
           <div className={styles.bgIcon} />
           <UserIcon
-            user={user}
+            iconImageUrl={user.iconImageUrl}
             isRouterActive={isRouterActive}
             href={href}
             size={iconSize}

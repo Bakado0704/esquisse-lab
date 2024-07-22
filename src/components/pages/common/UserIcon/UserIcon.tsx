@@ -7,12 +7,17 @@ import { useUserIcon } from './UserIcon.hooks';
 import styles from './UserIcon.module.scss';
 import { UserIconProps } from './UserIcon.types';
 
-const UserIcon = ({ user, isRouterActive, href, size }: UserIconProps) => {
+const UserIcon = ({
+  iconImageUrl,
+  isRouterActive,
+  href,
+  size,
+}: UserIconProps) => {
   const { onHandleUser } = useUserIcon({ href, isRouterActive });
 
   return (
     <FlexBox justifyContent='center' className={styles.iconContainer}>
-      {user.iconImageUrl ? (
+      {iconImageUrl ? (
         <FlexBox
           className={classNames(
             styles.iconImageContainer,
@@ -23,8 +28,8 @@ const UserIcon = ({ user, isRouterActive, href, size }: UserIconProps) => {
           onClick={onHandleUser}
         >
           <Image
-            src={user.iconImageUrl}
-            alt={user.name}
+            src={iconImageUrl}
+            alt='アイコン画像'
             fill
             className={styles.iconImage}
           />

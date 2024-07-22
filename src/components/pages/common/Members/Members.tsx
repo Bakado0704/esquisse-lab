@@ -37,7 +37,7 @@ const Members = () => {
                     <div className={styles.backgroundOne} />
                     <div className={styles.backgroundTwo} />
                     <UserIcon
-                      user={user}
+                      iconImageUrl={user.iconImageUrl}
                       isRouterActive={true}
                       size={iconSize}
                       href={`/user/${user.id}`}
