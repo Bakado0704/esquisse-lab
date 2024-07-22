@@ -10,8 +10,6 @@ import { UserIconProps } from './UserIcon.types';
 const UserIcon = ({ user, isRouterActive, href, size }: UserIconProps) => {
   const { onHandleUser } = useUserIcon({ href, isRouterActive });
 
-  console.log(isRouterActive);
-
   return (
     <FlexBox justifyContent='center' className={styles.iconContainer}>
       {user.iconImageUrl ? (
