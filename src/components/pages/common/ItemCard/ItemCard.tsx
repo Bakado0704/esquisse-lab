@@ -3,10 +3,11 @@ import Image from 'next/image';
 
 import { FlexBox, Typography } from '@/components/common';
 
+import { UserIcon } from '../UserIcon';
+
 import { useItemCard } from './ItemCard.hooks';
 import styles from './ItemCard.module.scss';
 import { ItemCardProps } from './ItemCard.types';
-import { PostIcon } from './PostIcon';
 
 const ItemCard = ({
   workId,
@@ -56,7 +57,12 @@ const ItemCard = ({
             {subject}
           </Typography>
           <FlexBox gap='0.8rem' alignItems='center'>
-            <PostIcon iconImageUrl={iconImageUrl} />
+            <UserIcon
+              iconImageUrl={iconImageUrl}
+              size='3rem'
+              isRouterActive={false}
+              href=''
+            />
             <Typography fontSize='1.2rem'>{userName}</Typography>
           </FlexBox>
         </FlexBox>
