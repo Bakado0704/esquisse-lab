@@ -2,11 +2,14 @@ import Image from 'next/image';
 
 import { FlexBox, Typography } from '@/components/common';
 
+import { UserIcon } from '../../common/UserIcon';
+
+import { useProfile } from './Profile.hooks';
 import styles from './Profile.module.scss';
 import { ProfileProps } from './Profile.types';
-import { UserIcon } from './UserIcon';
 
 const Profile = ({ user }: ProfileProps) => {
+  const { isRouterActive, href, iconSize } = useProfile({ user });
   if (!user) return;
 
   return (
@@ -24,7 +27,17 @@ const Profile = ({ user }: ProfileProps) => {
             <div className={styles.bg} />
           )}
         </FlexBox>
-        <UserIcon user={user} />
+
+        <FlexBox justifyContent='center' className={styles.iconContainer}>
+          <div className={styles.bgIcon} />
+          <UserIcon
+            user={user}
+            isRouterActive={isRouterActive}
+            href={href}
+            size={iconSize}
+          />
+        </FlexBox>
+
         <FlexBox justifyContent='center' flexDirection='column' gap='2.4rem'>
           <FlexBox flexDirection='column' gap='0.8rem'>
             <Typography fontSize='1.2rem' fontWeight={600} textAlign='center'>
