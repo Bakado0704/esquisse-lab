@@ -24,7 +24,8 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
 
   useEffect(() => {
     if (!user) {
-      router.push('/account');
+      alert('ログインしてください');
+      router.push('/home');
     } else {
       const fetchEsquisse = async () => {
         try {

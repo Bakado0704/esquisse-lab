@@ -9,6 +9,7 @@ import { User } from '@/types/application/user.types';
 export const usePostItem = ({ userId }: { userId: string }) => {
   const { setEsquisseId } = useEsquisseIdContext();
   const [user, setUser] = useState<User | null>(null);
+  const [iconSize, setIconSize] = useState<string>('5.6rem');
   const router = useRouter();
 
   useEffect(() => {
@@ -23,6 +24,20 @@ export const usePostItem = ({ userId }: { userId: string }) => {
 
     fetchUser();
   }, [userId]);
+
+  useEffect(() => {
+    const updateIconSize = () => {
+      const size = window.innerWidth <= 768 ? '4rem' : '5.6rem';
+      setIconSize(size);
+    };
+
+    updateIconSize();
+    window.addEventListener('resize', updateIconSize);
+
+    return () => {
+      window.removeEventListener('resize', updateIconSize);
+    };
+  }, []);
 
   const handlePost = ({
     esquisseId,
@@ -39,6 +54,7 @@ export const usePostItem = ({ userId }: { userId: string }) => {
 
   return {
     router,
+    iconSize,
     userName,
     handlePost,
   };

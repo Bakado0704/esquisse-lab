@@ -36,7 +36,7 @@ const Fv = () => {
         </FlexBox>
         <Button
           theme='rectPink'
-          size='large'
+          size='medium'
           className={styles.button}
           onClick={() => router.push('/work/new')}
         >

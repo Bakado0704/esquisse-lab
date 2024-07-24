@@ -106,7 +106,7 @@
   background-color: transparent;
 }
 
-.huge {
+.large {
   width: 24rem;
   height: 6rem;
 
@@ -116,7 +116,7 @@
   }
 }
 
-.large {
+.medium {
   width: 18rem;
   height: 4.4rem;
 
@@ -126,14 +126,7 @@
   }
 }
 
-.medium {
-  span {
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
-}
-
-.small {
+.none {
   span {
     font-size: 1.4rem;
     font-weight: 600;

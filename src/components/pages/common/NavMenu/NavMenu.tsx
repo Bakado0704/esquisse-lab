@@ -25,6 +25,7 @@ const NavMenu = ({
     >
       <FlexBox flexDirection='column' gap='2.4rem'>
         <Button
+          size='none'
           theme='textIndigo'
           className={styles.button}
           onClick={onScrollMember}
@@ -39,6 +40,7 @@ const NavMenu = ({
 
         {!user && (
           <Button
+            size='none'
             theme='textIndigo'
             className={styles.button}
             onClick={onScrollLogin}
@@ -54,6 +56,7 @@ const NavMenu = ({
 
         {user && (
           <Button
+            size='none'
             theme='textIndigo'
             className={styles.button}
             onClick={() => {
@@ -72,6 +75,7 @@ const NavMenu = ({
 
       {user && (
         <Button
+          size='none'
           theme='textIndigo'
           className={styles.logoutButton}
           onClick={onLogout}

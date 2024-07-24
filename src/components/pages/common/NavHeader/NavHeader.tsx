@@ -55,6 +55,7 @@ const NavHeader = () => {
           <>
             <FlexBox className={styles.PcContainer}>
               <Button
+                size='none'
                 theme='textIndigo'
                 className={styles.memberButton}
                 onClick={onScrollMember}
@@ -64,6 +65,7 @@ const NavHeader = () => {
 
               {user && (
                 <Button
+                  size='none'
                   theme='textIndigo'
                   className={styles.memberButton}
                   onClick={onLogout}
