@@ -11,7 +11,7 @@ export type ButtonProps = {
     | 'textPink'
     | 'textIndigo'
     | 'outlineWhite';
-  size?: 'huge' | 'large' | 'medium' | 'small';
+  size?: 'large' | 'medium' | 'none';
   fullWidth?: boolean;
   onClick?: JSX.IntrinsicElements['button']['onClick'];
   type?: JSX.IntrinsicElements['button']['type'];

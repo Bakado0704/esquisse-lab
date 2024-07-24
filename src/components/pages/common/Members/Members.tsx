@@ -69,7 +69,7 @@ const Members = () => {
           </FlexBox>
           <FlexBox justifyContent='center'>
             <Button
-              size='huge'
+              size='large'
               className={styles.button}
               onClick={() => router.push('/account')}
             >

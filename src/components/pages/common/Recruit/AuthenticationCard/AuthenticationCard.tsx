@@ -26,6 +26,7 @@ const AuthenticationUnitInternal = () => {
         </FlexBox>
         <FlexBox flexDirection='column' className={styles.buttonContainer}>
           <Button
+            fullWidth
             className={styles.loginButton}
             onClick={handleSubmit((data) => onSubmit(data))}
           >
@@ -33,6 +34,7 @@ const AuthenticationUnitInternal = () => {
           </Button>
           <Separator direction='horizontal' />
           <Button
+            fullWidth
             className={styles.accountButton}
             onClick={() => router.push('/account')}
           >

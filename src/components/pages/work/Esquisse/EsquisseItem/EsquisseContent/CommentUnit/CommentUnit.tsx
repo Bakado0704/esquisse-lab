@@ -45,7 +45,7 @@ const CommentUnitInternal = ({ workId }: { workId: string }) => {
       <FlexBox justifyContent='center' margin='1.2rem 0'>
         <Button
           theme='rectPink'
-          size='medium'
+          size='none'
           className={styles.button}
           onClick={handleSubmit((data) => onSubmit(data))}
         >

@@ -29,14 +29,14 @@ export const EsquisseFormInternal = ({
         />
         <FlexBox justifyContent='center' gap='2.4rem'>
           <Button
-            size='large'
+            size='medium'
             theme='outlineWhite'
             onClick={() => router.back()}
           >
             前の画面に戻る
           </Button>
           <Button
-            size='large'
+            size='medium'
             theme='fill'
             onClick={handleSubmit((data) => onSubmit(data, status))}
           >

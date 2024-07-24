@@ -49,7 +49,7 @@ const RegisterInternal = () => {
 
         <FlexBox width='100%' justifyContent='center'>
           <Button
-            size='huge'
+            size='large'
             className={styles.button}
             onClick={handleSubmit((data) => onSubmit(data))}
           >

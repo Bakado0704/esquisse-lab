@@ -20,7 +20,7 @@ const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
         {isHostUser && (
           <Button
             theme='rectBlack'
-            size='small'
+            size='none'
             className={styles.button}
             onClick={onEditWork}
           >
