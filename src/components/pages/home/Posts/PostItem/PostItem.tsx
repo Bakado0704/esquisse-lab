@@ -1,14 +1,16 @@
 import { format } from 'date-fns';
 
 import { FlexBox, NextImage, Separator, Typography } from '@/components/common';
+import { UserIcon } from '@/components/pages/common/UserIcon';
 
-import { PostIcon } from './PostIcon';
 import { usePostItem } from './PostItem.hooks';
 import styles from './PostItem.module.scss';
 import { PostItemProps } from './PostItem.types';
 
 const PostItem = ({ post }: PostItemProps) => {
-  const { userName, handlePost } = usePostItem({ userId: post.userId });
+  const { userName, iconSize, handlePost } = usePostItem({
+    userId: post.userId,
+  });
 
   return (
     <FlexBox
@@ -38,7 +40,12 @@ const PostItem = ({ post }: PostItemProps) => {
       </FlexBox>
       <FlexBox flexDirection='column' className={styles.detailContainer}>
         <FlexBox gap='1.6rem' alignItems='center'>
-          <PostIcon iconImageUrl={post.iconImageUrl} />
+          <UserIcon
+            iconImageUrl={post.iconImageUrl}
+            isRouterActive={false}
+            href=''
+            size={iconSize}
+          />
           <FlexBox
             flexDirection='column'
             gap='0.8rem'
