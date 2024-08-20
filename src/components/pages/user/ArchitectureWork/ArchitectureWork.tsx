@@ -18,18 +18,24 @@ const ArchitectureWork = ({ archiWork }: ArchitectureWorkProps) => {
       </FlexBox>
       <div className={styles.bg} />
       <FlexBox id='architectureWork' className={styles.cardContainer}>
-        {archiWork.map((work, index) => {
-          return (
-            <ItemCard
-              key={work.id}
-              userId={work.uid}
-              workId={work.id}
-              subject={work.title}
-              imageUrl={null}
-              transitionDelay={`${index * 0.16}s`}
-            />
-          );
-        })}
+        {archiWork.length ? (
+          archiWork.map((work, index) => {
+            return (
+              <ItemCard
+                key={work.id}
+                userId={work.uid}
+                workId={work.id}
+                subject={work.title}
+                imageUrl={null}
+                transitionDelay={`${index * 0.16}s`}
+              />
+            );
+          })
+        ) : (
+          <FlexBox width='100%' justifyContent='center'>
+            <Typography>作品が登録されていません</Typography>
+          </FlexBox>
+        )}
       </FlexBox>
     </FlexBox>
   );
