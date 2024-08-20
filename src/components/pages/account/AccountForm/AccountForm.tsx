@@ -1,11 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { Typography } from '@mui/material';
-import Image from 'next/image';
 import { FormProvider } from 'react-hook-form';
 
-import fvImg from '@/assets/fv/fv.png';
-import { Button, FlexBox } from '@/components/common';
+import { Button, FlexBox, Typography } from '@/components/common';
+import { ImageLayout } from '@/components/layout/ImageLayout';
 
 import { useAccountForm } from './AccountForm.hooks';
 import styles from './AccountForm.module.scss';
@@ -18,61 +16,57 @@ const AccountUnitInternal = ({
 }: {
   setPage: Dispatch<SetStateAction<'email' | 'account'>>;
 }) => {
-  const { handleSubmit, onSubmit } = useAccountFormInternal({ setPage });
+  const { submitHandler } = useAccountFormInternal({ setPage });
 
   return (
-    <FlexBox
-      gap='2.4rem'
-      flexDirection='column'
-      justifyContent='center'
-      className={styles.container}
-    >
-      <FlexBox className={styles.bg}>
-        <Image fill src={fvImg} alt='fv' style={{ objectFit: 'cover' }} />
-      </FlexBox>
-
+    <ImageLayout>
       <FlexBox
-        gap='0.4rem'
-        width='100%'
+        gap='2.4rem'
         flexDirection='column'
         justifyContent='center'
+        className={styles.container}
       >
-        <Typography
-          color='var(--w1)'
-          fontWeight={600}
-          fontSize='2.4rem'
-          textAlign='center'
-        >
-          アカウントの作成
-        </Typography>
-        <Typography color='var(--w1)' fontSize='1.2rem' textAlign='center'>
-          EsquisseLabのアカウントを作成するために、メールアドレス・パスワードを設定してください。
-        </Typography>
-      </FlexBox>
-
-      <FlexBox
-        width='100%'
-        gap='4.8rem'
-        flexDirection='column'
-        justifyContent='center'
-        className={styles.formContainer}
-      >
-        <FlexBox gap='2rem' flexDirection='column'>
-          <EmailInputUnit />
-          <PasswordInputUnit password='password1' label='パスワード' />
-          <PasswordInputUnit password='password2' label='パスワード(確認用)' />
-        </FlexBox>
-        <FlexBox width='100%' justifyContent='center'>
-          <Button
-            size='large'
-            className={styles.button}
-            onClick={handleSubmit((data) => onSubmit(data))}
+        <FlexBox gap='0.8rem' flexDirection='column' justifyContent='center'>
+          <Typography
+            color='w1'
+            fontWeight={600}
+            fontSize='2.4rem'
+            textAlign='center'
           >
-            メールを送信する
-          </Button>
+            アカウントの作成
+          </Typography>
+          <Typography color='w1' fontSize='1.2rem' textAlign='center'>
+            EsquisseLabのアカウントを作成するために、メールアドレス・パスワードを設定してください。
+          </Typography>
+        </FlexBox>
+
+        <FlexBox
+          width='100%'
+          gap='4.8rem'
+          flexDirection='column'
+          justifyContent='center'
+          className={styles.formContainer}
+        >
+          <FlexBox gap='2rem' flexDirection='column'>
+            <EmailInputUnit />
+            <PasswordInputUnit password='password1' label='パスワード' />
+            <PasswordInputUnit
+              password='password2'
+              label='パスワード(確認用)'
+            />
+          </FlexBox>
+          <FlexBox justifyContent='center'>
+            <Button
+              size='large'
+              className={styles.button}
+              onClick={submitHandler}
+            >
+              メールを送信する
+            </Button>
+          </FlexBox>
         </FlexBox>
       </FlexBox>
-    </FlexBox>
+    </ImageLayout>
   );
 };
 
