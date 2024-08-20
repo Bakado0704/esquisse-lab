@@ -19,12 +19,12 @@ const UserIcon = ({
     <FlexBox justifyContent='center' className={styles.iconContainer}>
       {iconImageUrl ? (
         <FlexBox
+          width={size}
+          height={size}
           className={classNames(
             styles.iconImageContainer,
             isRouterActive ? styles.activeIconImageContainer : undefined,
           )}
-          width={size}
-          height={size}
           onClick={onHandleUser}
         >
           <Image
@@ -35,17 +35,18 @@ const UserIcon = ({
           />
         </FlexBox>
       ) : (
-        <div
+        <FlexBox
+          width={size}
+          height={size}
           className={classNames(
-            styles.icon,
-            isRouterActive ? styles.hostIcon : undefined,
+            styles.guestIcon,
+            isRouterActive ? styles.activeGuestIcon : undefined,
           )}
-          style={{ width: size, height: size }}
           onClick={onHandleUser}
         >
           <span />
           <span />
-        </div>
+        </FlexBox>
       )}
     </FlexBox>
   );
