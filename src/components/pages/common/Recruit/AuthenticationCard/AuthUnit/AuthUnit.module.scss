@@ -1,0 +1,36 @@
+@use '@/styles/mixin' as *;
+
+.cardInner {
+  max-width: 38rem;
+  margin: 0 auto;
+
+  @include mq(md) {
+    max-width: none;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 3.2rem;
+  line-height: 150%;
+}
+
+.input {
+  border-radius: 90rem;
+  border: 3px solid var(--b3);
+  max-height: 4.8rem;
+}
+
+.buttonContainer {
+  padding-top: 3.2rem;
+  gap: 1.6rem;
+}
+
+.loginButton {
+  height: 4.8rem;
+}
+
+.accountButton {
+  height: 4.8rem;
+  background: var(--accent3);
+}
