@@ -9,13 +9,14 @@ import { Esquisse } from '@/components/pages/work/Esquisse';
 import { Fv } from '@/components/pages/work/Fv';
 import { FvText } from '@/components/pages/work/FvText';
 
-import { usePage } from './page.hooks';
+import { FetchWorkData, WorkData } from './fetchWorkData';
 import styles from './page.module.scss';
+import { useImage } from './useImage.hooks';
+import { useWorkAndEsquisses } from './useWorkAndEsquisses.hooks';
 
-const Page = ({ workId }: { workId: string }) => {
-  const { imgUrl, imageSize, modalImage, onClose } = usePage({
-    workId,
-  });
+const Page = ({ imgUrl, work, esquisses }: WorkData) => {
+  const { imageSize, modalImage, onClose } = useImage();
+  useWorkAndEsquisses({ work, esquisses });
 
   return (
     <>
@@ -42,15 +43,21 @@ const Page = ({ workId }: { workId: string }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
+
   if (typeof id !== 'string')
     return {
       notFound: true,
     };
-  return {
-    props: {
-      workId: id,
-    },
-  };
+  else {
+    const { imgUrl, work, esquisses } = await FetchWorkData({ workId: id });
+    return {
+      props: {
+        imgUrl,
+        work,
+        esquisses,
+      },
+    };
+  }
 };
 
 export default Page;
