@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { auth } from '@/libs/firebase/app';
+import { useAuthContext } from '@/contexts/auth.context';
 import { User } from '@/types/application/user.types';
 
 interface UseProfileProps {
@@ -9,7 +9,8 @@ interface UseProfileProps {
 
 export const useProfile = ({ user }: UseProfileProps) => {
   const [iconSize, setIconSize] = useState<string>('10rem');
-  const isRouterActive = user ? user.id === auth.currentUser?.uid : false;
+  const { user: currentUser } = useAuthContext();
+  const isRouterActive = user ? user.id === currentUser?.id : false;
   const href = user ? `/user/edit/${user.id}` : '';
 
   useEffect(() => {

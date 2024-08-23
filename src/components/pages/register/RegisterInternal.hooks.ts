@@ -6,7 +6,6 @@ import { useFormContext } from 'react-hook-form';
 import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
-import { auth } from '@/libs/firebase/app';
 import { getUser } from '@/libs/service/firestore/user';
 import { submitForm } from '@/libs/service/form/register/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
@@ -20,7 +19,7 @@ export const useRegisterFormInternal = () => {
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<RegisterFormValue>();
-  const { setUser } = useAuthContext();
+  const { user, setUser } = useAuthContext();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
 
   const onSubmit = async (formData: RegisterFormValue) => {
@@ -41,7 +40,7 @@ export const useRegisterFormInternal = () => {
       }
 
       const createdFormData = {
-        id: auth.currentUser ? auth.currentUser.uid : generateId(),
+        id: user ? user.id : generateId(),
         name: formData.name,
         lab: formData.lab,
         workIds: [],

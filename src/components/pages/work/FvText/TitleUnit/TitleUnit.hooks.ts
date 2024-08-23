@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { auth } from '@/libs/firebase/app';
+import { useAuthContext } from '@/contexts/auth.context';
 
 type useTitleUnitProps = {
   workId: string;
@@ -9,10 +9,9 @@ type useTitleUnitProps = {
 
 export const useTitleUnit = ({ workId, userId }: useTitleUnitProps) => {
   const router = useRouter();
-  const onEditWork = () => {
-    router.push(`./edit/${workId}`);
-  };
-  const isHostUser = auth.currentUser?.uid === userId;
+  const { user } = useAuthContext();
+  const onEditWork = () => router.push(`./edit/${workId}`);
+  const isHostUser = user?.id === userId;
 
   return {
     isHostUser,
