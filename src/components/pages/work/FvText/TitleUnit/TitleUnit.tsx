@@ -8,7 +8,7 @@ const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
   const { isHostUser, onEditWork } = useTitleUnit({ workId, userId });
 
   return (
-    <FlexBox flexDirection='column' gap='0.8rem'>
+    <FlexBox flexDirection='column' gap='1.8rem'>
       <FlexBox
         gap='0.8rem'
         justifyContent='space-between'
@@ -33,7 +33,7 @@ const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
           </Button>
         )}
       </FlexBox>
-      <Typography fontSize='1.2rem' color='b2'>
+      <Typography fontSize='1.2rem' color='b2' lineHeight='150%'>
         {concept}
       </Typography>
     </FlexBox>
