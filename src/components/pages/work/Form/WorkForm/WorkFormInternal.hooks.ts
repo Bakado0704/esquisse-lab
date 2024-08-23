@@ -30,9 +30,12 @@ export const useWorkFormInternal = () => {
       setLoading(false);
     }
   };
+
+  const submitHandler = handleSubmit((data) => onSubmit(data));
+  const pageBack = () => router.back();
+
   return {
-    router,
-    handleSubmit,
-    onSubmit,
+    submitHandler,
+    pageBack,
   };
 };

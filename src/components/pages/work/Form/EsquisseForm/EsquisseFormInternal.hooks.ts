@@ -53,12 +53,10 @@ export const useEsquisseFormInternal = () => {
       const uid = user.id;
       const esquisseId = formData.esquisseId;
       const isEsquisseIdIncluded = formData.esquisseIds.includes(esquisseId);
-
       const workIds = [formData.workId, ...user.workIds];
       const esquisseIds = isEsquisseIdIncluded
         ? formData.esquisseIds
         : [esquisseId, ...(formData.esquisseIds ?? [])];
-
       const [topImage, ...additionalImages] = addedImages;
 
       const updatedFormData = {
@@ -81,11 +79,14 @@ export const useEsquisseFormInternal = () => {
     }
   };
 
+  const submitHandler = (status: 'new' | 'esquisseUpdate' | 'esquisseCreate') =>
+    handleSubmit((data) => onSubmit(data, status));
+  const pageBack = () => router.back();
+
   return {
-    router,
     imageDatums,
     setImageDatums,
-    handleSubmit,
-    onSubmit,
+    submitHandler,
+    pageBack,
   };
 };
