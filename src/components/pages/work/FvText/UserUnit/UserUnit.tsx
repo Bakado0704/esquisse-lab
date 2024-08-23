@@ -1,12 +1,13 @@
 import { FlexBox, Typography } from '@/components/common';
 import { UserIcon } from '@/components/pages/common/UserIcon';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import { useUserUnit } from './UserUnit.hooks';
 import styles from './UserUnit.module.scss';
-import { UserUnitProps } from './UserUnit.types';
 
-const UserUnit = ({ userId }: UserUnitProps) => {
-  const { user } = useUserUnit({ userId });
+const UserUnit = () => {
+  const { formWork: work } = useFormWorkContext();
+  const { user } = useUserUnit({ userId: work?.uid });
 
   return (
     <FlexBox gap='2rem' alignItems='center'>
@@ -26,7 +27,7 @@ const UserUnit = ({ userId }: UserUnitProps) => {
           設計者
         </Typography>
         <Typography fontSize='1.2rem' color='b2'>
-          {user?.name}
+          {user ? user.name : '未設定'}
         </Typography>
       </FlexBox>
     </FlexBox>

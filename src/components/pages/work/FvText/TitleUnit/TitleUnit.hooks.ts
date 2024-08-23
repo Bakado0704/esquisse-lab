@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuthContext } from '@/contexts/auth.context';
 
 type useTitleUnitProps = {
-  workId: string;
+  workId?: string;
   userId?: string;
 };
 

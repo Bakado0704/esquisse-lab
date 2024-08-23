@@ -1,12 +1,13 @@
 import { useRouter } from 'next/navigation';
 
 import { FlexBox, Icon, Typography } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import styles from './TagUnit.module.scss';
-import { TagUnitProps } from './TagUnit.types';
 
-const TagUnit = ({ tags }: TagUnitProps) => {
+const TagUnit = () => {
   const router = useRouter();
+  const { formWork: work } = useFormWorkContext();
 
   return (
     <FlexBox gap='2rem' alignItems='center'>
@@ -26,20 +27,21 @@ const TagUnit = ({ tags }: TagUnitProps) => {
           タグ
         </Typography>
         <FlexBox flexWrap='wrap'>
-          {tags.map((tag, index) => {
-            return (
-              <FlexBox
-                key={index}
-                onClick={() => router.push(`/posts/${tag.name}`)}
-                className={styles.link}
-              >
-                {index !== 0 && <Typography>・</Typography>}
-                <Typography key={index} fontSize='1.2rem' color='b2'>
-                  {tag.name}
-                </Typography>
-              </FlexBox>
-            );
-          })}
+          {work &&
+            work.tags.map((tag, index) => {
+              return (
+                <FlexBox
+                  key={index}
+                  onClick={() => router.push(`/posts/${tag.name}`)}
+                  className={styles.link}
+                >
+                  {index !== 0 && <Typography>・</Typography>}
+                  <Typography key={index} fontSize='1.2rem' color='b2'>
+                    {tag.name}
+                  </Typography>
+                </FlexBox>
+              );
+            })}
         </FlexBox>
       </FlexBox>
     </FlexBox>

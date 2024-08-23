@@ -1,11 +1,15 @@
 import { Button, FlexBox, Icon, Typography } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
 
 import { useTitleUnit } from './TitleUnit.hooks';
 import styles from './TitleUnit.module.scss';
-import { TitleUnitProps } from './TitleUnit.types';
 
-const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
-  const { isHostUser, onEditWork } = useTitleUnit({ workId, userId });
+const TitleUnit = () => {
+  const { formWork: work } = useFormWorkContext();
+  const { isHostUser, onEditWork } = useTitleUnit({
+    workId: work?.workId,
+    userId: work?.uid,
+  });
 
   return (
     <FlexBox flexDirection='column' gap='1.8rem'>
@@ -15,7 +19,7 @@ const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
         alignItems='flex-start'
       >
         <Typography fontWeight={600} className={styles.title}>
-          {title}
+          {work ? work.title : '未設定'}
         </Typography>
         {isHostUser && (
           <Button
@@ -34,7 +38,7 @@ const TitleUnit = ({ title, concept, workId, userId }: TitleUnitProps) => {
         )}
       </FlexBox>
       <Typography fontSize='1.2rem' color='b2' lineHeight='150%'>
-        {concept}
+        {work ? work.concept : 'コンセプト'}
       </Typography>
     </FlexBox>
   );
