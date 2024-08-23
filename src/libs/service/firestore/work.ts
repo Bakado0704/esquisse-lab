@@ -43,11 +43,14 @@ export const getSelectedWorks = async ({
   return filteredWorks;
 };
 
-export const getAllPosts = async (): Promise<Post[]> => {
+export const getAllPosts = async ({
+  tailDate,
+}: {
+  tailDate: Date;
+}): Promise<Post[]> => {
   const esquisses = await esquisseRepository.list([
-    ['createdAt', 'desc', { limit: 100 }],
+    ['createdAt', 'desc', { startAfter: tailDate, limit: 16 }],
   ]);
-
   const posts = await Promise.all(
     esquisses.map(async (esquisse) => {
       const work = await workRepository.get({ id: esquisse.workId });
@@ -72,32 +75,41 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 export const getWorksWithTag = async ({
   tag,
+  tailDate,
 }: {
   tag: string;
+  tailDate: Date;
 }): Promise<Post[]> => {
   const works = await workRepository.list([
     ['tags', 'array-contains', { name: tag }],
   ]);
 
-  const posts = await Promise.all(
+  const filteredPosts = await Promise.all(
     works.map(async (work) => {
-      const topImage = await getTopImage({ workId: work.id });
       const { endDate } = await getPeriod({ workId: work.id });
-      const user = await getUser({
-        userId: work.uid,
-      });
-      return {
-        id: work.id,
-        userId: work.uid,
-        createdAt: endDate,
-        workId: work.id,
-        subject: work.title,
-        description: work.concept,
-        imageUrl: topImage,
-        iconImageUrl: user.iconImageUrl,
-      };
+      const createdAt = new Date(endDate);
+
+      if (createdAt >= tailDate) {
+        const topImage = await getTopImage({ workId: work.id });
+        const user = await getUser({ userId: work.uid });
+
+        return {
+          id: work.id,
+          userId: work.uid,
+          createdAt: endDate,
+          workId: work.id,
+          subject: work.title,
+          description: work.concept,
+          imageUrl: topImage,
+          iconImageUrl: user.iconImageUrl,
+        };
+      } else {
+        return undefined;
+      }
     }),
   );
+
+  const posts = filteredPosts.filter((post) => post !== undefined);
 
   return posts;
 };

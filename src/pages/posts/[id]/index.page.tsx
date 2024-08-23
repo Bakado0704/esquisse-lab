@@ -5,14 +5,10 @@ import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
 import { AllPosts } from '@/components/pages/posts/AllPosts';
 
-import { usePage } from './page.hooks';
-
 const Page = ({ categoryId }: { categoryId: string }) => {
-  const { posts } = usePage({ categoryId });
-
   return (
     <>
-      <AllPosts posts={posts} categoryId={categoryId} />
+      <AllPosts categoryId={categoryId} />
       <Recruit />
       <Concept />
       <Members />
