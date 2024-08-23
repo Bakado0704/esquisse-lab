@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+
+const { withSuperjson } = require('next-superjson');
 const nextConfig = {
   optimizeFonts: false,
   reactStrictMode: true,
@@ -14,9 +16,9 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/', // リダイレクト元のURL
-        destination: '/home', // リダイレクト先のURL
-        permanent: true, // 永続的なリダイレクトかのフラグ
+        source: '/',
+        destination: '/',
+        permanent: true,
       },
     ];
   },
@@ -25,4 +27,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withSuperjson()(nextConfig);
