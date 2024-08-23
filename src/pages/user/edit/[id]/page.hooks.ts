@@ -19,8 +19,6 @@ export const usePage = ({ userId }: { userId: string }) => {
     };
 
     fetchData();
-
-    setMembers([]);
   }, [userId, setMembers]);
 
   return {

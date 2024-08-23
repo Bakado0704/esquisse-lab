@@ -4,8 +4,11 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from 'react';
+
+import { useRouter } from 'next/router';
 
 import { WorkFormValue } from '@/types/form/WorkForm.types';
 
@@ -31,11 +34,16 @@ export const useFormWorkContext = () => {
 
 export const FormWorkProvider = ({ children }: { children: ReactNode }) => {
   const [formWork, setFormWork] = useState<WorkFormValue | null>(initialValue);
+  const router = useRouter();
 
   const value = {
     formWork,
     setFormWork,
   };
+
+  useEffect(() => {
+    if (router.pathname === '/home') setFormWork(null);
+  }, [router.pathname]);
 
   return (
     <FormWorkContext.Provider value={value}>

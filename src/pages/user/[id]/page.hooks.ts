@@ -34,9 +34,6 @@ export const usePage = ({ userId }: { userId: string }) => {
     };
 
     fetchData();
-
-    setMembers([]);
-    setFormWork(null);
   }, [userId, setFormWork, setMembers]);
 
   return {
