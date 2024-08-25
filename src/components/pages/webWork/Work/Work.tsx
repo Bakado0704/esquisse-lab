@@ -1,4 +1,5 @@
 import { FlexBox } from '@/components/common';
+import { webWorks } from '@/data/webWorks';
 
 import { Fv } from './Fv';
 import { LinkUnit } from './LinkUnit';
@@ -7,10 +8,10 @@ import { TitleUnit } from './TitleUnit';
 import { TypeUnit } from './TypeUnit';
 import { UserUnit } from './UserUnit';
 import styles from './Work.module.scss';
-import { WorkProps } from './Work.types';
 
-const Work = ({ webWork }: WorkProps) => {
-  if (!webWork) return;
+const Work = ({ workId }: { workId: string }) => {
+  const webWork = webWorks.filter((work) => work.workId === workId)[0];
+
   return (
     <>
       <Fv imgUrl={webWork.imageUrl} />
