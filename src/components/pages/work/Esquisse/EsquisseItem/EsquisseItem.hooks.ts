@@ -50,7 +50,7 @@ export const useEsquisseItem = ({ esquisse, styles }: UseEsquisseItemProps) => {
   }, [esquisse, selectedEsquisseId]);
 
   useEffect(() => {
-    const baseHeight = window.innerWidth <= 768 ? 58 : 72;
+    const baseHeight = window.innerWidth <= 768 ? 57 : 71;
     if (containerRef.current && contentRef.current) {
       if (isEsquisseActive) {
         containerRef.current.style.height =

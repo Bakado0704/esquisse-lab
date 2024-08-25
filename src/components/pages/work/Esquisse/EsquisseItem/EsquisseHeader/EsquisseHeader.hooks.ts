@@ -1,10 +1,10 @@
 import { useRouter } from 'next/navigation';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useFormWorkContext } from '@/contexts/formWork.context';
 import { useLoadingContext } from '@/contexts/loading.context';
-import { auth } from '@/libs/firebase/app';
 import {
   deleteEsquisse,
   getSelectedEsquisses,
@@ -16,12 +16,13 @@ type useEsquisseHeaderProps = { esquisse: Esquisse };
 export const useEsquisseHeader = ({ esquisse }: useEsquisseHeaderProps) => {
   const router = useRouter();
   const { id: esquisseId, createdAt } = esquisse;
+  const { user } = useAuthContext();
   const { formWork } = useFormWorkContext();
   const { setEsquisseId } = useEsquisseIdContext();
   const { setEsquisses } = useEsquisseContext();
   const { setLoading } = useLoadingContext();
   const userId = formWork?.uid;
-  const isHostUser = auth.currentUser?.uid === userId;
+  const isHostUser = user?.id === userId;
   const onEditEsquisse = () => {
     setEsquisseId(esquisseId);
     router.push(`/work/esquisse/edit/${esquisseId}`);

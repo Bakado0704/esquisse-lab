@@ -4,8 +4,11 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from 'react';
+
+import { useRouter } from 'next/router';
 
 const initialValue = '';
 
@@ -35,6 +38,11 @@ export const useEsquisseIdContext = () => {
 
 export const EsquisseIdProvider = ({ children }: { children: ReactNode }) => {
   const [esquisseId, setEsquisseId] = useState<string>(initialValue);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.pathname === '/home') setEsquisseId('');
+  }, [router.pathname]);
 
   const value = {
     esquisseId,

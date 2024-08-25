@@ -1,12 +1,12 @@
 import { FlexBox, Typography } from '@/components/common';
+import { webWorks } from '@/data/webWorks';
 import { useFadeIn } from '@/hooks/useFadeIn';
 
 import { ItemCard } from '../../common/ItemCard';
 
 import styles from './WebWork.module.scss';
-import { WebWorkProps } from './WebWork.types';
 
-const WebWork = ({ webWork }: WebWorkProps) => {
+const WebWork = () => {
   useFadeIn({ targetId: 'webWork', styles });
 
   return (
@@ -18,7 +18,7 @@ const WebWork = ({ webWork }: WebWorkProps) => {
       </FlexBox>
       <div className={styles.bg} />
       <FlexBox id='webWork' className={styles.cardContainer}>
-        {webWork.map((work, index) => {
+        {webWorks.map((work, index) => {
           return (
             <ItemCard
               key={work.workId}

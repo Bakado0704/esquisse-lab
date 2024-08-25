@@ -2,16 +2,15 @@ import { GetServerSideProps } from 'next';
 
 import { UserForm } from '@/components/pages/user/Form';
 import { Profile } from '@/components/pages/user/Profile';
+import { User } from '@/types/application/user.types';
 
-import { usePage } from './page.hooks';
+import { FetchEditUserPageData } from './fetchEditUserPageData';
 
-const Page = ({ userId }: { userId: string }) => {
-  const { user } = usePage({ userId });
-
+const Page = ({ user }: { user: User }) => {
   return (
     <>
       <Profile user={user} />
-      <UserForm userId={userId} />
+      <UserForm user={user} />
     </>
   );
 };
@@ -22,11 +21,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     return {
       notFound: true,
     };
-  return {
-    props: {
-      userId: id,
-    },
-  };
+  else {
+    const { user } = await FetchEditUserPageData({ userId: id });
+    return {
+      props: {
+        user,
+      },
+    };
+  }
 };
 
 export default Page;

@@ -5,16 +5,10 @@ import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
 import { Work } from '@/components/pages/webWork/Work';
 
-import { usePage } from './page.hooks';
-
 const Page = ({ workId }: { workId: string }) => {
-  const { webWork } = usePage({
-    workId,
-  });
-
   return (
     <>
-      <Work webWork={webWork} />
+      <Work workId={workId} />
       <Recruit />
       <Concept />
       <Members />

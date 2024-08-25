@@ -1,12 +1,16 @@
-import { FlexBox, Typography } from '@/components/common';
+import { Button, FlexBox, Typography } from '@/components/common';
 import { ItemCard } from '@/components/pages/common/ItemCard';
 import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './AllPosts.module.scss';
 import { AllPostsProps } from './AllPosts.types';
+import { usePostsPage } from './usePostsPage.hooks';
 
-const AllPosts = ({ posts, categoryId }: AllPostsProps) => {
+const AllPosts = ({ categoryId }: AllPostsProps) => {
   useFadeIn({ targetId: 'cardContainer', styles });
+  const { posts, hasNextPage, fetchPost, isFetchingNextPage } = usePostsPage({
+    categoryId,
+  });
 
   return (
     <FlexBox gap='3.2rem' flexDirection='column' className={styles.container}>
@@ -37,6 +41,13 @@ const AllPosts = ({ posts, categoryId }: AllPostsProps) => {
             />
           );
         })}
+      </FlexBox>
+      <FlexBox justifyContent='center'>
+        {hasNextPage && !isFetchingNextPage && (
+          <Button size='none' theme='textPink' onClick={fetchPost}>
+            もっと見る
+          </Button>
+        )}
       </FlexBox>
     </FlexBox>
   );

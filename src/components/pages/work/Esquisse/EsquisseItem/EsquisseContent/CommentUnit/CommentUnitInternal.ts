@@ -6,7 +6,6 @@ import { useErrorContext } from '@/contexts/error.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { onScroll } from '@/hooks/useScroll';
-import { auth } from '@/libs/firebase/app';
 import {
   getEsquisse,
   getSelectedEsquisses,
@@ -25,8 +24,6 @@ export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
   const { setEsquisses } = useEsquisseContext();
-
-  const isLoginUser = auth.currentUser;
 
   const handleLogin = () => {
     onScroll('login', 'top');
@@ -59,7 +56,6 @@ export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
 
   return {
     errors,
-    isLoginUser,
     handleLogin,
     register,
     handleSubmit,

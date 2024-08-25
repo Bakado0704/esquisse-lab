@@ -1,11 +1,16 @@
 import { format } from 'date-fns';
 
 import { FlexBox, Icon, Typography } from '@/components/common';
+import { useFormWorkContext } from '@/contexts/formWork.context';
+
+import { useFvText } from '../FvText.hooks';
 
 import styles from './PeriodUnit.module.scss';
-import { PeriodUnitProps } from './PeriodUnit.types';
 
-const PeriodUnit = ({ startDate, endDate }: PeriodUnitProps) => {
+const PeriodUnit = () => {
+  const { formWork: work } = useFormWorkContext();
+  const { startDate, endDate } = useFvText({ work });
+
   return (
     <FlexBox gap='2rem' alignItems='center'>
       <FlexBox

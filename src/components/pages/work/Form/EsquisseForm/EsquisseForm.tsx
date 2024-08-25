@@ -15,7 +15,7 @@ export const EsquisseFormInternal = ({
 }: {
   status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
 }) => {
-  const { router, imageDatums, setImageDatums, handleSubmit, onSubmit } =
+  const { imageDatums, setImageDatums, submitHandler, pageBack } =
     useEsquisseFormInternal();
 
   return (
@@ -24,22 +24,15 @@ export const EsquisseFormInternal = ({
         <div className={styles.bg} />
         <EsquisseFormBaseUnit />
         <EsquisseFormAdviseUnit
+          status={status}
           imageDatums={imageDatums}
           setImageDatums={setImageDatums}
         />
         <FlexBox justifyContent='center' gap='2.4rem'>
-          <Button
-            size='medium'
-            theme='outlineWhite'
-            onClick={() => router.back()}
-          >
+          <Button size='medium' theme='outlineWhite' onClick={pageBack}>
             前の画面に戻る
           </Button>
-          <Button
-            size='medium'
-            theme='fill'
-            onClick={handleSubmit((data) => onSubmit(data, status))}
-          >
+          <Button size='medium' theme='fill' onClick={submitHandler(status)}>
             投稿する
           </Button>
         </FlexBox>
@@ -56,7 +49,7 @@ const EsquisseForm = ({
   esquisseId?: string;
   status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
 }) => {
-  const { methods } = useEsquisseForm({ esquisseId });
+  const { methods } = useEsquisseForm({ esquisseId, status });
 
   return (
     <FormProvider {...methods}>

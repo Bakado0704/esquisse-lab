@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { AccountForm } from '@/components/pages/account/AccountForm';
 import { EmailSend } from '@/components/pages/account/EmailSend';
-import { NavFooter } from '@/components/pages/common/NavFooter';
 
 const Home = () => {
   const [page, setPage] = useState<'account' | 'email'>('account');
@@ -16,12 +15,7 @@ const Home = () => {
     }
   };
 
-  return (
-    <>
-      {contents(page)}
-      <NavFooter />
-    </>
-  );
+  return <> {contents(page)}</>;
 };
 
 export default Home;

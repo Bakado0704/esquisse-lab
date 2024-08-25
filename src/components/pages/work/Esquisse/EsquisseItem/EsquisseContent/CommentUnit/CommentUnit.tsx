@@ -1,13 +1,15 @@
 import { FormProvider } from 'react-hook-form';
 
 import { Button, FlexBox, TextArea } from '@/components/common';
+import { useAuthContext } from '@/contexts/auth.context';
 
 import { useCommentUnit } from './CommentUnit.hooks';
 import styles from './CommentUnit.module.scss';
 import { useCommentUnitInternal } from './CommentUnitInternal';
 
 const CommentUnitInternal = ({ workId }: { workId: string }) => {
-  const { errors, isLoginUser, register, handleSubmit, onSubmit, handleLogin } =
+  const { user } = useAuthContext();
+  const { errors, register, handleSubmit, onSubmit, handleLogin } =
     useCommentUnitInternal({ workId });
 
   return (
@@ -17,7 +19,7 @@ const CommentUnitInternal = ({ workId }: { workId: string }) => {
       gap='1.2rem'
       className={styles.container}
     >
-      {!isLoginUser && (
+      {!user && (
         <FlexBox
           justifyContent='center'
           alignItems='center'

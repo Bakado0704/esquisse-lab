@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
+import { useAuthContext } from '@/contexts/auth.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
-import { auth } from '@/libs/firebase/app';
 import { deleteChat } from '@/libs/service/firestore/chat';
 import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
 import { getUser } from '@/libs/service/firestore/user';
@@ -16,10 +16,10 @@ type ChatUnitProps = { userId?: string; chat: Chat };
 export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
   const router = useRouter();
   const { setLoading } = useLoadingContext();
+  const { user } = useAuthContext();
   const { setEsquisses } = useEsquisseContext();
   const [commentUser, setCommentUser] = useState<User | null>(null);
   const [isHostUser, setIsHostUser] = useState(false);
-  const user = auth.currentUser;
   const userName = commentUser ? commentUser.name : 'unknown';
   const iconImageUrl = commentUser ? commentUser.iconImageUrl : null;
 
@@ -39,7 +39,7 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
   }, [chat]);
 
   useEffect(() => {
-    setIsHostUser(user?.uid === chat.uid);
+    setIsHostUser(user?.id === chat.uid);
   }, [user, userId]);
 
   const onDeleteChat = async ({

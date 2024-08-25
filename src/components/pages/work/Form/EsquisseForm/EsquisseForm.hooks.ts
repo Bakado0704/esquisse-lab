@@ -13,7 +13,12 @@ import {
 } from '@/types/form/WorkEsquisseForm.types';
 import { generateId } from '@/utils/generateId';
 
-export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
+type EsquisseFormType = {
+  esquisseId?: string;
+  status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
+};
+
+export const useEsquisseForm = ({ esquisseId, status }: EsquisseFormType) => {
   const router = useRouter();
   const methods = useForm<WorkEsquisseFormValue>({
     resolver: zodResolver(WorkEsquisseFormSchema),
@@ -54,7 +59,7 @@ export const useEsquisseForm = ({ esquisseId }: { esquisseId?: string }) => {
             defaultValue.tags = formWork.tags;
           }
 
-          if (esquisseId) {
+          if (esquisseId && status === 'esquisseUpdate') {
             const esquisse = await getEsquisse({ esquisseId });
             if (esquisse) {
               defaultValue.date = esquisse.createdAt;

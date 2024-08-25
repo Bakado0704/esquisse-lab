@@ -10,7 +10,7 @@ import styles from './WorkForm.module.scss';
 import { useWorkFormInternal } from './WorkFormInternal.hooks';
 
 export const WorkFormInternal = () => {
-  const { router, handleSubmit, onSubmit } = useWorkFormInternal();
+  const { submitHandler, pageBack } = useWorkFormInternal();
 
   return (
     <FlexBox flexDirection='column'>
@@ -18,18 +18,10 @@ export const WorkFormInternal = () => {
         <div className={styles.bg} />
         <EsquisseFormBaseUnit />
         <FlexBox justifyContent='center' gap='2.4rem'>
-          <Button
-            size='medium'
-            theme='outlineWhite'
-            onClick={() => router.back()}
-          >
+          <Button size='medium' theme='outlineWhite' onClick={pageBack}>
             前の画面に戻る
           </Button>
-          <Button
-            size='medium'
-            theme='fill'
-            onClick={handleSubmit((data) => onSubmit(data))}
-          >
+          <Button size='medium' theme='fill' onClick={submitHandler}>
             投稿する
           </Button>
         </FlexBox>

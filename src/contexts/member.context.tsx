@@ -4,8 +4,11 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from 'react';
+
+import { useRouter } from 'next/router';
 
 import { User } from '@/types/application/user.types';
 
@@ -21,6 +24,11 @@ export const useMemberContext = () => useContext(MemberContext);
 
 export const MemberProvider = ({ children }: { children?: ReactNode }) => {
   const [members, setMembers] = useState<User[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    setMembers([]);
+  }, [router.pathname]);
 
   const value = { members, setMembers };
 

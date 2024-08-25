@@ -1,6 +1,7 @@
 import { FormProvider } from 'react-hook-form';
 
 import { Button, FlexBox } from '@/components/common';
+import { User } from '@/types/application/user.types';
 
 import { NavFooter } from '../../common/NavFooter';
 
@@ -52,8 +53,8 @@ export const UserFormInternal = () => {
   );
 };
 
-const UserForm = ({ userId }: { userId: string }) => {
-  const { methods } = useUserForm({ userId });
+const UserForm = ({ user }: { user: User }) => {
+  const { methods } = useUserForm({ user });
 
   return (
     <FormProvider {...methods}>

@@ -16,7 +16,6 @@ export const useAccountFormInternal = ({
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<AccountFormValue>();
-
   const onSubmit = async (formData: AccountFormValue) => {
     if (processing.current) return;
     processing.current = true;
@@ -32,8 +31,10 @@ export const useAccountFormInternal = ({
       setLoading(false);
     }
   };
+
+  const submitHandler = handleSubmit((data) => onSubmit(data));
+
   return {
-    handleSubmit,
-    onSubmit,
+    submitHandler,
   };
 };
