@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
+import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { submitForm } from '@/libs/service/form/esquisse/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
@@ -17,6 +18,7 @@ export const useEsquisseFormInternal = () => {
   const { setLoading } = useLoadingContext();
   const { user } = useAuthContext();
   const { setErrorAlert } = useErrorContext();
+  const { setEsquisseId } = useEsquisseIdContext();
   const { handleSubmit } = useFormContext<WorkEsquisseFormValue>();
 
   const [imageDatums, setImageDatums] = useState<ImageDatumsType>([]);
@@ -70,6 +72,7 @@ export const useEsquisseFormInternal = () => {
       };
 
       const id = await submitForm(updatedFormData, status);
+      setEsquisseId(esquisseId);
       router.push(`/work/${id}`);
       setLoading(false);
     } catch (error) {
