@@ -10,7 +10,7 @@ const Page = ({ user }: { user: User }) => {
   return (
     <>
       <Profile user={user} />
-      <UserForm userId={user.id} />
+      <UserForm user={user} />
     </>
   );
 };
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       notFound: true,
     };
   else {
-    const user = await FetchEditUserPageData({ userId: id });
+    const { user } = await FetchEditUserPageData({ userId: id });
     return {
       props: {
         user,

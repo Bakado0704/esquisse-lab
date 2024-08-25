@@ -13,20 +13,19 @@ const Profile = ({ user }: { user: User }) => {
 
   return (
     <FlexBox gap='3.2rem' flexDirection='column' className={styles.container}>
+      <FlexBox className={styles.bgContainer}>
+        {user.coverImageUrl ? (
+          <Image
+            alt='bg'
+            fill
+            src={user.coverImageUrl}
+            className={styles.coverImage}
+          />
+        ) : (
+          <div className={styles.bg} />
+        )}
+      </FlexBox>
       <FlexBox justifyContent='center' flexDirection='column' gap='1.2rem'>
-        <FlexBox className={styles.bgContainer}>
-          {user && user.coverImageUrl ? (
-            <Image
-              alt='bg'
-              fill
-              src={user.coverImageUrl}
-              className={styles.coverImage}
-            />
-          ) : (
-            <div className={styles.bg} />
-          )}
-        </FlexBox>
-
         <FlexBox justifyContent='center' className={styles.iconContainer}>
           <div className={styles.bgIcon} />
           <UserIcon
@@ -47,9 +46,11 @@ const Profile = ({ user }: { user: User }) => {
             </Typography>
           </FlexBox>
 
-          <Typography fontSize='1.2rem' color='b2' textAlign='center'>
-            {user.detail}
-          </Typography>
+          {user.detail && (
+            <Typography fontSize='1.2rem' color='b2' textAlign='center'>
+              {user.detail}
+            </Typography>
+          )}
         </FlexBox>
       </FlexBox>
     </FlexBox>

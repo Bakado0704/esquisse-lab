@@ -35,8 +35,8 @@
 
 .bgContainer {
   position: absolute;
+  top: 0;
   left: 50%;
-  bottom: 19rem;
   width: 100vw;
   height: 25rem;
   overflow: hidden;
@@ -44,7 +44,7 @@
 
   @include mq(md) {
     height: 19rem;
-    bottom: 17rem;
+    bottom: 15.8rem;
   }
 }
 

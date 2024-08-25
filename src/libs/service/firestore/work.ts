@@ -87,9 +87,8 @@ export const getWorksWithTag = async ({
   const filteredPosts = await Promise.all(
     works.map(async (work) => {
       const { endDate } = await getPeriod({ workId: work.id });
-      const createdAt = new Date(endDate);
 
-      if (createdAt >= tailDate) {
+      if (endDate < tailDate) {
         const topImage = await getTopImage({ workId: work.id });
         const user = await getUser({ userId: work.uid });
 
@@ -109,9 +108,10 @@ export const getWorksWithTag = async ({
     }),
   );
 
-  const posts: Post[] = filteredPosts.filter(
-    (post): post is Post => post !== undefined,
-  );
+  const posts: Post[] = filteredPosts
+    .filter((post): post is Post => post !== undefined)
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    .slice(0, 16);
 
   return posts;
 };
