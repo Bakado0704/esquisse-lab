@@ -8,17 +8,17 @@ import { PersonalProject } from '@/components/pages/user/PersonalProject';
 import { Profile } from '@/components/pages/user/Profile';
 import { WebWork } from '@/components/pages/user/WebWork';
 
-import { usePage } from './page.hooks';
+import { FetchUserPageData, userPageData } from './fetchUserPageData';
 
-const Page = ({ userId }: { userId: string }) => {
-  const { user, isKadoUser, archiWork, webWork } = usePage({ userId });
+const Page = ({ user, architectureWork }: userPageData) => {
+  const isKadoUser = user?.id === 'sQJhdGuglgb0odRWm90KL2sOQLh2';
 
   return (
     <>
       <Profile user={user} />
-      <ArchitectureWork archiWork={archiWork} />
+      <ArchitectureWork architectureWork={architectureWork} />
       {isKadoUser && <PersonalProject />}
-      {isKadoUser && <WebWork webWork={webWork} />}
+      {isKadoUser && <WebWork />}
       <Recruit />
       <Concept />
       <Members />
@@ -28,15 +28,20 @@ const Page = ({ userId }: { userId: string }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
+
   if (typeof id !== 'string')
     return {
       notFound: true,
     };
-  return {
-    props: {
-      userId: id,
-    },
-  };
+  else {
+    const { user, architectureWork } = await FetchUserPageData({ userId: id });
+    return {
+      props: {
+        user,
+        architectureWork,
+      },
+    };
+  }
 };
 
 export default Page;

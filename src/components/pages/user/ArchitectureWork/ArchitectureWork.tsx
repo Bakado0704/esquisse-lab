@@ -6,7 +6,7 @@ import { ItemCard } from '../../common/ItemCard';
 import styles from './ArchitectureWork.module.scss';
 import { ArchitectureWorkProps } from './ArchitectureWork.types';
 
-const ArchitectureWork = ({ archiWork }: ArchitectureWorkProps) => {
+const ArchitectureWork = ({ architectureWork }: ArchitectureWorkProps) => {
   useFadeIn({ targetId: 'architectureWork', styles });
 
   return (
@@ -18,8 +18,8 @@ const ArchitectureWork = ({ archiWork }: ArchitectureWorkProps) => {
       </FlexBox>
       <div className={styles.bg} />
       <FlexBox id='architectureWork' className={styles.cardContainer}>
-        {archiWork.length ? (
-          archiWork.map((work, index) => {
+        {architectureWork.length ? (
+          architectureWork.map((work, index) => {
             return (
               <ItemCard
                 key={work.id}

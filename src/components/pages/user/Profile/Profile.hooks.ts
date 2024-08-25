@@ -3,11 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuthContext } from '@/contexts/auth.context';
 import { User } from '@/types/application/user.types';
 
-interface UseProfileProps {
-  user: User | null;
-}
-
-export const useProfile = ({ user }: UseProfileProps) => {
+export const useProfile = ({ user }: { user: User }) => {
   const [iconSize, setIconSize] = useState<string>('10rem');
   const { user: currentUser } = useAuthContext();
   const isRouterActive = user ? user.id === currentUser?.id : false;

@@ -1,16 +1,15 @@
 import Image from 'next/image';
 
 import { FlexBox, Typography } from '@/components/common';
+import { User } from '@/types/application/user.types';
 
 import { UserIcon } from '../../common/UserIcon';
 
 import { useProfile } from './Profile.hooks';
 import styles from './Profile.module.scss';
-import { ProfileProps } from './Profile.types';
 
-const Profile = ({ user }: ProfileProps) => {
+const Profile = ({ user }: { user: User }) => {
   const { isRouterActive, href, iconSize } = useProfile({ user });
-  if (!user) return;
 
   return (
     <FlexBox gap='3.2rem' flexDirection='column' className={styles.container}>
