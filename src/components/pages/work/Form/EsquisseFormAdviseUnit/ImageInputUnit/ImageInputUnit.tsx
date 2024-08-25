@@ -7,10 +7,12 @@ import styles from './ImageInputUnit.module.scss';
 import { ImageInputUnitProps } from './ImageInputUnit.types';
 
 const ImageInputUnit = ({
+  status,
   imageDatums,
   setImageDatums,
 }: ImageInputUnitProps) => {
   const { ref, addImageHandler, deleteImageHandler } = useImageInputUnit({
+    status,
     imageDatums,
     setImageDatums,
   });

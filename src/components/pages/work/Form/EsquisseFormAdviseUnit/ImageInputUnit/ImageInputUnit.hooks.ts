@@ -8,11 +8,13 @@ import { ImageDatumsType, ImageType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 
 type ImageInputUnitType = {
+  status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
   imageDatums: ImageDatumsType;
   setImageDatums: Dispatch<SetStateAction<ImageDatumsType>>;
 };
 
 export const useImageInputUnit = ({
+  status,
   imageDatums,
   setImageDatums,
 }: ImageInputUnitType) => {
@@ -42,7 +44,7 @@ export const useImageInputUnit = ({
         const initialUrls = [topImageUrl, ...additionalImagesUrls].filter(
           (url) => url,
         );
-        if (initialUrls.length > 0) {
+        if (initialUrls.length > 0 && status === 'esquisseUpdate') {
           const images = await Promise.all(
             initialUrls.map((imgUrl) => loadImage(imgUrl)),
           );
@@ -54,7 +56,7 @@ export const useImageInputUnit = ({
     };
 
     fetchImages();
-  }, [esquisseId, setImageDatums]);
+  }, [esquisseId, status, setImageDatums]);
 
   const addImageHandler = async (file: File) => {
     if (!file) return;

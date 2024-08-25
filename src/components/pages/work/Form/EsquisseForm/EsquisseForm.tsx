@@ -24,6 +24,7 @@ export const EsquisseFormInternal = ({
         <div className={styles.bg} />
         <EsquisseFormBaseUnit />
         <EsquisseFormAdviseUnit
+          status={status}
           imageDatums={imageDatums}
           setImageDatums={setImageDatums}
         />
@@ -48,7 +49,7 @@ const EsquisseForm = ({
   esquisseId?: string;
   status: 'new' | 'esquisseUpdate' | 'esquisseCreate';
 }) => {
-  const { methods } = useEsquisseForm({ esquisseId });
+  const { methods } = useEsquisseForm({ esquisseId, status });
 
   return (
     <FormProvider {...methods}>

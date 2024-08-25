@@ -7,6 +7,7 @@ import { ImageInputUnit } from './ImageInputUnit';
 import { SubjectFormUnit } from './SubjectFormUnit';
 
 const EsquisseFormAdviseUnit = ({
+  status,
   imageDatums,
   setImageDatums,
 }: EsquisseFormAdviseUnitProps) => {
@@ -20,6 +21,7 @@ const EsquisseFormAdviseUnit = ({
         <FlexBox flexDirection='column' gap='2.4rem'>
           <DateInputUnit />
           <ImageInputUnit
+            status={status}
             imageDatums={imageDatums}
             setImageDatums={setImageDatums}
           />
