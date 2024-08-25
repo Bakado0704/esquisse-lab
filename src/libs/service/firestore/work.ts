@@ -100,7 +100,7 @@ export const getWorksWithTag = async ({
           workId: work.id,
           subject: work.title,
           description: work.concept,
-          imageUrl: topImage,
+          imageUrl: topImage || null,
           iconImageUrl: user.iconImageUrl,
         };
       } else {
@@ -109,7 +109,9 @@ export const getWorksWithTag = async ({
     }),
   );
 
-  const posts = filteredPosts.filter((post) => post !== undefined);
+  const posts: Post[] = filteredPosts.filter(
+    (post): post is Post => post !== undefined,
+  );
 
   return posts;
 };
