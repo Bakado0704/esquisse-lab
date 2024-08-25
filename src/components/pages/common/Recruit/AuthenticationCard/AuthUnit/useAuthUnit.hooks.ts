@@ -33,7 +33,7 @@ export const useAuthUnit = () => {
         alert('ログインに成功しました');
         onScroll('fv', 'top');
       });
-      router.push('/home');
+      router.push('/');
       setLoading(false);
     } catch (error) {
       setErrorAlert({ error });

@@ -42,7 +42,7 @@ export const FormWorkProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (router.pathname === '/home') setFormWork(null);
+    if (router.pathname === '/') setFormWork(null);
   }, [router.pathname]);
 
   return (

@@ -32,7 +32,7 @@ export const useNavHeader = () => {
 
   const onNavigateTop = () => {
     if (!isFormPage) {
-      router.push('/home');
+      router.push('/');
     }
   };
 
@@ -41,7 +41,7 @@ export const useNavHeader = () => {
       setUser(undefined);
       alert('ログアウトしました');
       setIsMenuOpen(false);
-      router.push('/home');
+      router.push('/');
     });
   };
 

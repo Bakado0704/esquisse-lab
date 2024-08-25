@@ -41,7 +41,7 @@ export const EsquisseIdProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.pathname === '/home') setEsquisseId('');
+    if (router.pathname === '/') setEsquisseId('');
   }, [router.pathname]);
 
   const value = {

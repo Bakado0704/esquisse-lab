@@ -54,7 +54,7 @@ export const useRegisterFormInternal = () => {
         setUser(userInfo);
       });
 
-      router.push(`/home`);
+      router.push(`/`);
       setLoading(false);
     } catch (error) {
       setErrorAlert({ error });

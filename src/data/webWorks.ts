@@ -117,7 +117,7 @@ export const webWorks: Web[] = [
     endDate: new Date(),
     workId: 'web9',
     subject: 'EsquisseLab',
-    link: 'https://esquisse-lab.vercel.app/home',
+    link: 'https://esquisse-lab.vercel.app',
     description: 'EsquisseLabの実装を行いました。',
     imageUrl: esquisseLabImg,
     iconImageUrl,

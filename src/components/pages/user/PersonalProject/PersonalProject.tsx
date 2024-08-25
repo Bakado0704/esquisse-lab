@@ -21,7 +21,7 @@ const PersonalProject = () => {
       <TextContainerSpTop />
       <FlexBox
         className={styles.imageContainer}
-        onClick={() => router.push('/home')}
+        onClick={() => router.push('/')}
       >
         <Image
           id='portfolioImg'
