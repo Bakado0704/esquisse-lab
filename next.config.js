@@ -13,15 +13,6 @@ const nextConfig = {
     });
     return config;
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/',
-        permanent: true,
-      },
-    ];
-  },
   images: {
     domains: ['firebasestorage.googleapis.com'],
   },

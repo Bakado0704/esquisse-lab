@@ -30,7 +30,7 @@ export const useEsquisseForm = ({ esquisseId, status }: EsquisseFormType) => {
   useEffect(() => {
     if (!user) {
       alert('ログインしてください');
-      router.push('/home');
+      router.push('/');
     } else {
       const fetchEsquisse = async () => {
         try {

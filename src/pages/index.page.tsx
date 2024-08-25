@@ -6,9 +6,9 @@ import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
 import { Fv } from '@/components/pages/home/Fv';
 import { Posts } from '@/components/pages/home/Posts';
-import { getPosts } from '@/libs/service/posts';
 import { Post } from '@/types/application/post.types';
 
+import { FetchHomePageData } from './fetchHomePageData';
 import styles from './page.module.scss';
 
 const Home = ({ posts }: { posts: Post[] }) => {
@@ -25,7 +25,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await getPosts();
+  const { posts } = await FetchHomePageData();
   if (!Array.isArray(posts)) {
     return {
       notFound: true,
