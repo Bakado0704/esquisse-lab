@@ -52,7 +52,7 @@ const PostItem = ({ post }: PostItemProps) => {
             className={styles.detail}
           >
             <Typography fontSize='1.2rem' color='b2'>
-              {format(post.createdAt, 'yyyy年MM月dd日')}
+              {format(post.createdAt, 'yyyy年M月d日')}
             </Typography>
             <Typography fontSize='1.2rem' color='b2'>
               {userName}
