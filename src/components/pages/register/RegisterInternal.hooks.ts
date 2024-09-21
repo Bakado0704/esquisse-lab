@@ -6,12 +6,12 @@ import { useFormContext } from 'react-hook-form';
 import { useAuthContext } from '@/contexts/auth.context';
 import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
+import { auth } from '@/libs/firebase/app';
 import { getUser } from '@/libs/service/firestore/user';
 import { submitForm } from '@/libs/service/form/register/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDataType } from '@/types/form/ImageForm.types';
 import { RegisterFormValue } from '@/types/form/RegisterForm.types';
-import { generateId } from '@/utils/generateId';
 
 export const useRegisterFormInternal = () => {
   const processing = useRef(false);
@@ -19,15 +19,21 @@ export const useRegisterFormInternal = () => {
   const { setLoading } = useLoadingContext();
   const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<RegisterFormValue>();
-  const { user, setUser } = useAuthContext();
+  const { setUser } = useAuthContext();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
 
   const onSubmit = async (formData: RegisterFormValue) => {
     if (processing.current) return;
     processing.current = true;
 
+    if (!auth.currentUser) {
+      alert('ユーザが存在しません。管理者に問い合わせてください');
+      return;
+    }
+
     try {
       setLoading(true);
+
       let iconImageUrl = null;
 
       if (iconImageData && iconImageData.file) {
@@ -40,7 +46,7 @@ export const useRegisterFormInternal = () => {
       }
 
       const createdFormData = {
-        id: user ? user.id : generateId(),
+        id: auth.currentUser.uid,
         name: formData.name,
         lab: formData.lab,
         workIds: [],
