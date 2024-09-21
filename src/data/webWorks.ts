@@ -1,11 +1,13 @@
 import daiwaEsgFundImg from '@/assets/portfolio/daiwaEsgFund.png';
 import daiwaSustainabilityImg from '@/assets/portfolio/daiwaSustainability.png';
-import esquisseLabImg from '@/assets/portfolio/esquisseLab.png';
 import gameImg from '@/assets/portfolio/game.png';
 import ipadmateImg from '@/assets/portfolio/ipadmate.png';
 import ipadmateKidImg from '@/assets/portfolio/ipadmateKids.png';
 import labImg from '@/assets/portfolio/lab.png';
 import mizunoteImg from '@/assets/portfolio/mizunote.png';
+import esquisseLabImg from '@/assets/portfolio/portfolio.png';
+import rakutenImg from '@/assets/portfolio/rakuten.png';
+import teachMeBizImg from '@/assets/portfolio/studist.webp';
 import tekkonImg from '@/assets/portfolio/tekkon.png';
 import ticketDiveImg from '@/assets/portfolio/ticketDive.png';
 import { Web } from '@/types/application/web.types';
@@ -104,7 +106,7 @@ export const webWorks: Web[] = [
     startDate: new Date('2023-10-01T00:00:00Z'),
     endDate: new Date(),
     workId: 'web8',
-    subject: 'ticketDive',
+    subject: 'TicketDive',
     link: 'https://ticketdive.com/',
     description: 'ticketDiveの実装を行いました。',
     imageUrl: ticketDiveImg,
@@ -132,6 +134,31 @@ export const webWorks: Web[] = [
     link: 'https://sites.google.com/eis.hokudai.ac.jp/kankyou6/home',
     description: '北大建築環境学研究室のホームページの実装を行いました。',
     imageUrl: labImg,
+    iconImageUrl,
+  },
+  {
+    userId: 'sQJhdGuglgb0odRWm90KL2sOQLh2',
+    type: 'インターン(楽天グループ)',
+    startDate: new Date('2024-08-05T00:00:00Z'),
+    endDate: new Date('2024-08-09T00:00:00Z'),
+    workId: 'web11',
+    subject: '避難所評価アプリ',
+    link: 'https://evac-deploy-v01d42s-projects.vercel.app/',
+    description:
+      'テーマは「日本の防災・減災を推進するため、楽天のサービスを活用した革新的なソリューションを開発する」というもので、「楽天のAPIを使用する」という制約がありました。この制約により、議論は難航しましたが、最終的に「自治体向けに避難所の物資在庫を管理・点数化し、その評価を地図上で市民に公開することで防災意識を高める、避難所評価アプリ」を開発することになりました。',
+    imageUrl: rakutenImg,
+    iconImageUrl,
+  },
+  {
+    userId: 'sQJhdGuglgb0odRWm90KL2sOQLh2',
+    type: 'インターン(株式会社スタディスト)',
+    startDate: new Date('2024-09-01T00:00:00Z'),
+    endDate: new Date(),
+    workId: 'web12',
+    subject: 'TeachMeBiz',
+    link: 'https://biz.teachme.jp/',
+    description: 'TeachMeBizの実装を行いました。',
+    imageUrl: teachMeBizImg,
     iconImageUrl,
   },
 ];
