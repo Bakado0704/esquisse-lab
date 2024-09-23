@@ -15,7 +15,7 @@ const ProposeUnit = () => {
           Kado Team
         </Typography>
         <Typography lineHeight='180%' color='w1' className={styles.description}>
-          チーム角は経験豊富な講師を探しています。
+          チーム角は経験豊富な講師を探しています
           <br />
           チームに加わり、新たな旅に出かけましょう
         </Typography>
