@@ -63,7 +63,9 @@ const ItemCard = ({
               isRouterActive={false}
               href=''
             />
-            <Typography fontSize='1.2rem'>{userName}</Typography>
+            <Typography fontSize='1.2rem' ellipsis>
+              {userName}
+            </Typography>
           </FlexBox>
         </FlexBox>
       </div>
