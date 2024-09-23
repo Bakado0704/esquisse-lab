@@ -1,13 +1,73 @@
 ## Esquisse Lab
 
+<<<<<<< Updated upstream
 ```
 https://esquisse-lab.vercel.app/
+=======
+## Getting Started
+
+First, run the development server:
+
+<<<<<<< Updated upstream
+=======
+北大建築学科向けに、建築作品の制作過程を共有し、議論するためのプラットフォームを開発しました。  
+このプラットフォームでは、投稿と作品が連動しており、制作の進捗を視覚的に追うことができるのが特徴です。  
+
+## なぜ作ったのか
+
+このプロジェクトは、「他の学生がどうやって作品制作しているのか、その過程を見たい」という個人的な願望から生まれました。  
+完成品ではなく、作品がどのように成長してきたのかを共有することで、学生間での学びを深めたいと考え、このプラットフォームを作成しました。  
+
+## 主な機能
+
+投稿機能: 制作過程を投稿・編集ができ、その投稿が作品に紐づき、記録されます。  
+作品の進捗表示: 作品の変遷を「これまでの歩み」として表示し、過去の制作過程を追うことができます。  
+議論機能: 投稿に対してコメントを残し、ユーザー同士で意見交換が可能です。  
+タグ付けとフィルター機能: 作品を課題ごとにタグ付けし、タグをクリックすることで関連する作品を一覧表示できます。  
+ユーザー認証: ログイン、ログアウト、サインアップ機能を提供します。  
+アカウント編集機能: 名前、アイコン画像、カバー画像、ひとことを自由に編集できます。  
+メンバー表示機能: 角チームに所属する講師の一覧を表示し、講師の作品を一括で閲覧できる機能を提供します。  
+
+## 使用技術
+
+フロントエンド: Next.js, React, Typescript  
+デプロイ: Vercel  
+バックエンド: Firebase  
+デザイン: Figma, Illustrator  
+
+## セットアップ方法
+
+1.リポジトリをクローンします。
+```bash
+git clone https://github.com/Bakado0704/esquisse-lab.git
+cd esquisse-lab
+```
+2.必要な依存関係をインストールします。
+``` bash
+npm install
+```
+3.アプリを起動します。
+>>>>>>> Stashed changes
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+>>>>>>> Stashed changes
 ```
 
 ## 概要
 
+<<<<<<< Updated upstream
 北大建築学科向けに、建築作品の制作過程を共有し、議論するためのプラットフォームを開発しました。
 このプラットフォームでは、投稿と作品が連動しており、制作の進捗を視覚的に追うことができるのが特徴です。
+=======
+<<<<<<< Updated upstream
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+>>>>>>> Stashed changes
 
 ## なぜ作ったのか
 
@@ -33,6 +93,7 @@ https://esquisse-lab.vercel.app/
 
 ## セットアップ方法
 
+<<<<<<< Updated upstream
 1.リポジトリをクローンします。
 ```bash
 git clone https://github.com/Bakado0704/esquisse-lab.git
@@ -52,3 +113,10 @@ npm run dev
 
 本作品のコンセプトに共感し、過去の作品を投稿してくれた川井くん、杉本、肥田野くん、茂崎くんに、心より感謝申し上げます。
 この場を借りて、深く御礼申し上げます。
+=======
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+=======
+本作品のコンセプトに共感し、過去の作品を投稿してくれた川井くん、杉本、肥田野くん、茂崎くんに、心より感謝申し上げます。  
+この場を借りて、深く御礼申し上げます。
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
