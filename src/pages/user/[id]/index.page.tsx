@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 
+import { FlexBox } from '@/components/common';
 import { Concept } from '@/components/pages/common/Concept';
 import { Members } from '@/components/pages/common/Members';
 import { Recruit } from '@/components/pages/common/Recruit';
@@ -9,12 +10,13 @@ import { Profile } from '@/components/pages/user/Profile';
 import { WebWork } from '@/components/pages/user/WebWork';
 
 import { FetchUserPageData, userPageData } from './fetchUserPageData';
+import { useUser } from './useUser.hooks';
 
 const Page = ({ user, architectureWork }: userPageData) => {
-  const isKadoUser = user?.id === 'sQJhdGuglgb0odRWm90KL2sOQLh2';
+  const { isKadoUser } = useUser({ user });
 
   return (
-    <>
+    <FlexBox id='userPage' flexDirection='column'>
       <Profile user={user} />
       <ArchitectureWork architectureWork={architectureWork} />
       {isKadoUser && <PersonalProject />}
@@ -22,7 +24,7 @@ const Page = ({ user, architectureWork }: userPageData) => {
       <Recruit />
       <Concept />
       <Members />
-    </>
+    </FlexBox>
   );
 };
 
