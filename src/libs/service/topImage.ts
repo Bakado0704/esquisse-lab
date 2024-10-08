@@ -1,4 +1,4 @@
-import { getSelectedEsquisses } from './firestore/esquisse';
+import { getSelectedEsquisses } from '../repository/individual/esquisse';
 
 export const getTopImage = async ({
   workId,

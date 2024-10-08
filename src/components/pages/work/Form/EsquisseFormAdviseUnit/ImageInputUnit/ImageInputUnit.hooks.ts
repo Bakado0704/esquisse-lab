@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
-import { getEsquisse } from '@/libs/service/firestore/esquisse';
+import { getEsquisse } from '@/libs/repository/individual/esquisse';
 import { ImageDatumsType, ImageType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
 

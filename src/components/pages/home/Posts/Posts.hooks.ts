@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
-import { getUser } from '@/libs/service/firestore/user';
+import { getUser } from '@/libs/repository/individual/user';
 import { User } from '@/types/application/user.types';
 
 export const usePosts = ({ userId }: { userId: string }) => {

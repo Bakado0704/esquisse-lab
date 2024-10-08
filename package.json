@@ -6,12 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "lint:eslint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --check --ignore-unknown src",
-    "lint:css": "stylelint \"src/**/*.scss\"",
-    "format:css": "prettier-stylelint --write \"src/**/*.scss\"",
-    "format": "npm run lint:eslint -- --fix && prettier --write --list-different src",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run lint:eslint -- --fix && prettier --write --list-different .",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -53,11 +51,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.7.1",
-    "prettier-stylelint": "^0.4.2",
-    "sass": "^1.72.0",
-    "stylelint": "^16.6.1",
-    "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-recommended-scss": "^14.0.0",
-    "stylelint-scss": "^6.3.1"
+    "sass": "^1.72.0"
   }
 }

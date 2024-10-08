@@ -1,4 +1,4 @@
-import { getSelectedEsquisses } from './firestore/esquisse';
+import { getSelectedEsquisses } from '../repository/individual/esquisse';
 
 export type Period = {
   startDate: Date;
@@ -10,30 +10,25 @@ export const getPeriod = async ({
 }: {
   workId: string;
 }): Promise<Period> => {
-  try {
-    const esquisses = await getSelectedEsquisses({ workId });
+  const esquisses = await getSelectedEsquisses({ workId });
 
-    if (esquisses.length === 0) {
-      const now = new Date();
-      return {
-        startDate: now,
-        endDate: now,
-      };
-    }
-
-    const startDate = new Date(
-      Math.min(...esquisses.map((esquisse) => esquisse.createdAt.getTime())),
-    );
-    const endDate = new Date(
-      Math.max(...esquisses.map((esquisse) => esquisse.createdAt.getTime())),
-    );
-
+  if (esquisses.length === 0) {
+    const now = new Date();
     return {
-      startDate,
-      endDate,
+      startDate: now,
+      endDate: now,
     };
-  } catch (error) {
-    console.error('Error fetching period:', error);
-    throw new Error('Failed to fetch period');
   }
+
+  const startDate = new Date(
+    Math.min(...esquisses.map((esquisse) => esquisse.createdAt.getTime())),
+  );
+  const endDate = new Date(
+    Math.max(...esquisses.map((esquisse) => esquisse.createdAt.getTime())),
+  );
+
+  return {
+    startDate,
+    endDate,
+  };
 };

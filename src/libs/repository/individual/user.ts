@@ -5,8 +5,7 @@ export const getUsers = async (): Promise<User[]> => {
   try {
     const users = await userRepository.list();
     return users;
-  } catch (error) {
-    console.error('Failed to fetch users:', error);
+  } catch {
     throw new Error('Failed to fetch users');
   }
 };
@@ -22,8 +21,7 @@ export const getUser = async ({
       throw new Error('User not found');
     }
     return user;
-  } catch (error) {
-    console.error(`Failed to fetch user with ID ${userId}:`, error);
+  } catch {
     throw new Error(`Failed to fetch user with ID ${userId}`);
   }
 };

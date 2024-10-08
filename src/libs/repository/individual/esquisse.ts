@@ -18,7 +18,7 @@ export const getEsquisses = async ({
       ['createdAt', sortKey, { limit }],
     ]);
     return esquisses;
-  } catch (error) {
+  } catch {
     throw new Error('Failed to fetch esquisses');
   }
 };
@@ -41,7 +41,7 @@ export const getSelectedEsquisses = async ({
     });
 
     return sortedEsquisses;
-  } catch (error) {
+  } catch {
     throw new Error(`Failed to fetch selected esquisses for workId ${workId}`);
   }
 };
@@ -57,7 +57,7 @@ export const getEsquisse = async ({
       throw new Error(`Esquisse with id ${esquisseId} not found`);
     }
     return esquisse;
-  } catch (error) {
+  } catch {
     throw new Error(`Failed to fetch esquisse with id ${esquisseId}`);
   }
 };
@@ -89,8 +89,7 @@ export const deleteEsquisse = async ({
     await esquisseRepository.deleteDoc({
       id: esquisseId,
     });
-  } catch (error) {
-    console.error(`Failed to delete esquisse with id ${esquisseId}:`, error);
+  } catch {
     throw new Error(`Failed to delete esquisse with id ${esquisseId}`);
   }
 };
