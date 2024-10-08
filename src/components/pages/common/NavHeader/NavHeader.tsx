@@ -5,6 +5,7 @@ import logo from '@/assets/logo/esquisse-lab.png';
 import { Button, FlexBox } from '@/components/common';
 
 import { NavMenu } from '../NavMenu';
+import { UserIcon } from '../UserIcon';
 
 import { useNavHeader } from './NavHeader.hooks';
 import styles from './NavHeader.module.scss';
@@ -53,7 +54,7 @@ const NavHeader = () => {
 
         {!isFormPage && (
           <>
-            <FlexBox className={styles.PcContainer}>
+            <FlexBox gap='2.4rem' className={styles.PcContainer}>
               <Button
                 size='none'
                 theme='textIndigo'
@@ -64,31 +65,23 @@ const NavHeader = () => {
               </Button>
 
               {user && (
-                <Button
-                  size='none'
-                  theme='textIndigo'
-                  className={styles.memberButton}
-                  onClick={onLogout}
-                >
-                  Logout
-                </Button>
-              )}
-
-              {user && user.iconImageUrl && (
-                <FlexBox
-                  className={styles.iconContainer}
-                  onClick={() => onNavigateUser({ userId: user.id })}
-                >
-                  <Image
-                    src={user.iconImageUrl}
-                    alt='icon'
-                    fill
-                    className={styles.iconImg}
+                <FlexBox gap='2.4rem'>
+                  <Button
+                    size='none'
+                    theme='textIndigo'
+                    className={styles.memberButton}
+                    onClick={onLogout}
+                  >
+                    Logout
+                  </Button>
+                  <UserIcon
+                    iconImageUrl={user.iconImageUrl}
+                    href={`/user/${user.id}`}
+                    size='3.6rem'
+                    isRouterActive={true}
                   />
                 </FlexBox>
               )}
-
-              {user && !user.iconImageUrl && <div className={styles.icon} />}
 
               {!user && (
                 <Button
