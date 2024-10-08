@@ -51,11 +51,6 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.7.1",
-    "prettier-stylelint": "^0.4.2",
-    "sass": "^1.72.0",
-    "stylelint": "^16.6.1",
-    "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-recommended-scss": "^14.0.0",
-    "stylelint-scss": "^6.3.1"
+    "sass": "^1.72.0"
   }
 }
