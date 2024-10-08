@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import { StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { useErrorContext } from '@/contexts/error.context';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { webWorks } from '@/data/webWorks';
-import { getUser } from '@/libs/service/firestore/user';
+import { getUser } from '@/libs/repository/individual/user';
 import { Period, getPeriod } from '@/libs/service/period';
 import { getTopImage } from '@/libs/service/topImage';
 import { User } from '@/types/application/user.types';
@@ -26,26 +25,21 @@ export const useItemCard = ({
 }) => {
   const router = useRouter();
   const { setEsquisseId } = useEsquisseIdContext();
-  const { setErrorAlert } = useErrorContext();
   const [user, setUser] = useState<User | null>(null);
   const [period, setPeriod] = useState<Period | null>(null);
   const [url, setUrl] = useState<string | StaticImageData | null>(null);
 
   useEffect(() => {
     const fetchPeriod = async () => {
-      try {
-        if (type == 'archi') {
-          const periodData = await getPeriod({ workId });
-          setPeriod(periodData);
-        } else {
-          const webWork = webWorks.filter((work) => work.workId === workId)[0];
-          setPeriod({
-            startDate: webWork.startDate,
-            endDate: webWork.endDate,
-          });
-        }
-      } catch (error) {
-        setErrorAlert({ error });
+      if (type == 'archi') {
+        const periodData = await getPeriod({ workId });
+        setPeriod(periodData);
+      } else {
+        const webWork = webWorks.filter((work) => work.workId === workId)[0];
+        setPeriod({
+          startDate: webWork.startDate,
+          endDate: webWork.endDate,
+        });
       }
     };
     fetchPeriod();
@@ -54,12 +48,8 @@ export const useItemCard = ({
   useEffect(() => {
     if (!imageUrl) {
       const fetchUrl = async () => {
-        try {
-          const topImage = await getTopImage({ workId });
-          setUrl(topImage);
-        } catch (error) {
-          setErrorAlert({ error });
-        }
+        const topImage = await getTopImage({ workId });
+        setUrl(topImage);
       };
       fetchUrl();
     } else {

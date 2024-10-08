@@ -2,14 +2,13 @@ import { useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { useErrorContext } from '@/contexts/error.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
 import { onScroll } from '@/hooks/useScroll';
 import {
   getEsquisse,
   getSelectedEsquisses,
-} from '@/libs/service/firestore/esquisse';
+} from '@/libs/repository/individual/esquisse';
 import { submitForm } from '@/libs/service/form/comment/submitForm';
 import { ChatFormValue } from '@/types/form/ChatForm.types';
 
@@ -22,7 +21,6 @@ export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
     register,
   } = useFormContext<ChatFormValue>();
   const { setLoading } = useLoadingContext();
-  const { setErrorAlert } = useErrorContext();
   const { setEsquisses } = useEsquisseContext();
 
   const handleLogin = () => {
@@ -48,7 +46,6 @@ export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
       setValue('description', '');
       setLoading(false);
     } catch (error) {
-      setErrorAlert({ error });
       processing.current = false;
       setLoading(false);
     }

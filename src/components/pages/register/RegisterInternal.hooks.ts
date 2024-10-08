@@ -4,9 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
 import { useAuthContext } from '@/contexts/auth.context';
-import { useErrorContext } from '@/contexts/error.context';
 import { useLoadingContext } from '@/contexts/loading.context';
-import { getUser } from '@/libs/service/firestore/user';
+import { getUser } from '@/libs/repository/individual/user';
 import { submitForm } from '@/libs/service/form/register/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDataType } from '@/types/form/ImageForm.types';
@@ -17,7 +16,6 @@ export const useRegisterFormInternal = () => {
   const processing = useRef(false);
   const router = useRouter();
   const { setLoading } = useLoadingContext();
-  const { setErrorAlert } = useErrorContext();
   const { handleSubmit } = useFormContext<RegisterFormValue>();
   const { user, setUser } = useAuthContext();
   const [iconImageData, setIconImageData] = useState<ImageDataType>();
@@ -57,7 +55,6 @@ export const useRegisterFormInternal = () => {
       router.push(`/`);
       setLoading(false);
     } catch (error) {
-      setErrorAlert({ error });
       processing.current = false;
       setLoading(false);
     }
