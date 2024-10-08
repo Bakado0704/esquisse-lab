@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 import { useAuthContext } from '@/contexts/auth.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
-import { deleteChat } from '@/libs/service/firestore/chat';
-import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
-import { getUser } from '@/libs/service/firestore/user';
+import { deleteChat } from '@/libs/repository/individual/chat';
+import { getSelectedEsquisses } from '@/libs/repository/individual/esquisse';
+import { getUser } from '@/libs/repository/individual/user';
 import { Chat } from '@/types/application/chat.types';
 import { User } from '@/types/application/user.types';
 

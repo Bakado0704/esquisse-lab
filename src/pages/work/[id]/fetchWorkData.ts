@@ -1,5 +1,5 @@
-import { getSelectedEsquisses } from '@/libs/service/firestore/esquisse';
-import { getWork } from '@/libs/service/firestore/work';
+import { getSelectedEsquisses } from '@/libs/repository/individual/esquisse';
+import { getWork } from '@/libs/repository/individual/work';
 import { getTopImage } from '@/libs/service/topImage';
 import { Esquisse } from '@/types/application/esquisse.types';
 import { Work } from '@/types/application/work.types';

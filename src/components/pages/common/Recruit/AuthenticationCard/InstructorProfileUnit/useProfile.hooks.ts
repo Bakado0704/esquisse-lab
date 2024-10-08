@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { getUsers } from '@/libs/service/firestore/user';
+import { getUsers } from '@/libs/repository/individual/user';
 import { User } from '@/types/application/user.types';
 
 export const useProfile = () => {

@@ -1,5 +1,5 @@
-import { getUser } from '@/libs/service/firestore/user';
-import { getSelectedWorks } from '@/libs/service/firestore/work';
+import { getUser } from '@/libs/repository/individual/user';
+import { getSelectedWorks } from '@/libs/repository/individual/work';
 import { User } from '@/types/application/user.types';
 import { Work } from '@/types/application/work.types';
 

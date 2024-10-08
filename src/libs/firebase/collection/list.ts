@@ -1,8 +1,8 @@
 import { collection, getDocs } from 'firebase/firestore';
 
+import { timestampToDate } from '../../service/timestampToDate';
 import { db } from '../app';
 import { CustomQueryConstraint, queryRef } from '../factory/query';
-import { timestampToDate } from '../timestampToDate';
 
 type Props<T> = {
   path: string;

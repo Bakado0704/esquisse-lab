@@ -1,9 +1,9 @@
+import { getPeriod } from '@/libs/service/period';
+import { getTopImage } from '@/libs/service/topImage';
 import { Post } from '@/types/application/post.types';
 import { Work } from '@/types/application/work.types';
 
 import { esquisseRepository, workRepository } from '../../repository/firebase';
-import { getPeriod } from '../period';
-import { getTopImage } from '../topImage';
 
 import { getUser } from './user';
 
@@ -12,8 +12,12 @@ export const getWork = async ({
 }: {
   workId: string;
 }): Promise<Work> => {
-  const work = await workRepository.get({ id: workId });
-  return work;
+  try {
+    const work = await workRepository.get({ id: workId });
+    return work;
+  } catch {
+    throw new Error(`Failed to fetch work with ${workId}`);
+  }
 };
 
 export const getSelectedWorks = async ({
@@ -26,20 +30,17 @@ export const getSelectedWorks = async ({
       return await getWork({ workId });
     }),
   );
-
   const workWithDate = await Promise.all(
     works.map(async (work) => {
       const { startDate } = await getPeriod({ workId: work.id });
       return { work, startDate };
     }),
   );
-
   const sortedWorks = workWithDate.sort((a, b) => {
     return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
   });
 
   const filteredWorks = sortedWorks.map(({ work }) => work);
-
   return filteredWorks;
 };
 

@@ -8,7 +8,7 @@ import { batchCreate } from '@/libs/repository/batch/tag';
 import {
   createTagDropDown,
   normalizeInput,
-} from '@/libs/service/firestore/tag';
+} from '@/libs/repository/individual/tag';
 import { TagInfo } from '@/types/application/tag.types';
 import { Tag } from '@/types/firestore/tag.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';

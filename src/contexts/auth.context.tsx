@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 import { onAuthStateChanged } from '@/libs/repository/auth';
-import { getUser } from '@/libs/service/firestore/user';
+import { getUser } from '@/libs/repository/individual/user';
 import { User } from '@/types/application/user.types';
 
 type AuthContextType = {

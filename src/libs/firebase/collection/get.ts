@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore';
 
+import { timestampToDate } from '../../service/timestampToDate';
 import { db } from '../app';
-import { timestampToDate } from '../timestampToDate';
 
 type Props<T> = {
   path: string;

@@ -19,11 +19,7 @@ export const getChats = async ({
     });
 
     return sortedChats;
-  } catch (error) {
-    console.error(
-      `Failed to fetch chats for chatIds ${chatIds.join(', ')}:`,
-      error,
-    );
+  } catch {
     throw new Error(`Failed to fetch chats for chatIds ${chatIds.join(', ')}`);
   }
 };
@@ -45,8 +41,7 @@ export const deleteChat = async ({
     await chatRepository.deleteDoc({
       id: chatId,
     });
-  } catch (error) {
-    console.error(`Failed to delete chat with id ${chatId}:`, error);
+  } catch {
     throw new Error(`Failed to delete chat with id ${chatId}`);
   }
 };

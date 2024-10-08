@@ -1,10 +1,9 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from '@/libs/firebase/app';
+import { getUser } from '@/libs/repository/individual/user';
 import { User } from '@/types/application/user.types';
 import { LoginFormValue } from '@/types/form/LoginForm.types';
-
-import { getUser } from '../../firestore/user';
 
 import { parseSubmitObject } from './parseSubmitObject';
 

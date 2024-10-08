@@ -1,6 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { getAllPosts, getWorksWithTag } from '@/libs/service/firestore/work';
+import {
+  getAllPosts,
+  getWorksWithTag,
+} from '@/libs/repository/individual/work';
 
 type PostPageType = {
   uid?: string;

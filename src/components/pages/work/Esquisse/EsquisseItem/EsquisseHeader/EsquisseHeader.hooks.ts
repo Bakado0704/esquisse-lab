@@ -8,7 +8,7 @@ import { useLoadingContext } from '@/contexts/loading.context';
 import {
   deleteEsquisse,
   getSelectedEsquisses,
-} from '@/libs/service/firestore/esquisse';
+} from '@/libs/repository/individual/esquisse';
 import { Esquisse } from '@/types/application/esquisse.types';
 
 type useEsquisseHeaderProps = { esquisse: Esquisse };
