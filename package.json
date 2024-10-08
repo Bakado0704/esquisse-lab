@@ -6,12 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "lint:eslint": "eslint --ext .ts,.tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --check --ignore-unknown src",
-    "lint:css": "stylelint \"src/**/*.scss\"",
-    "format:css": "prettier-stylelint --write \"src/**/*.scss\"",
-    "format": "npm run lint:eslint -- --fix && prettier --write --list-different src",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run lint:eslint -- --fix && prettier --write --list-different .",
     "prepare": "husky install"
   },
   "lint-staged": {
