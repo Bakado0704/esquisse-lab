@@ -1,3 +1,4 @@
+import { FlexBox } from '@/components/common';
 import { NavHead } from '@/components/pages/common/NavHead';
 import { NavHeader } from '@/components/pages/common/NavHeader';
 
@@ -10,7 +11,9 @@ const HeaderLayout = ({ children }: HeaderLayoutProps) => {
       <div className={styles.sectionWrapInner}>
         <NavHead />
         <NavHeader />
-        <div className={styles.container}>{children}</div>
+        <FlexBox flexDirection='column' className={styles.container}>
+          {children}
+        </FlexBox>
       </div>
     </div>
   );
