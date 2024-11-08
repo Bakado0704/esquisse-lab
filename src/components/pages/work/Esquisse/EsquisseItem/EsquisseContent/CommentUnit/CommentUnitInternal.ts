@@ -15,8 +15,8 @@ import { ChatFormValue } from '@/types/form/ChatForm.types';
 export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
   const processing = useRef(false);
   const {
-    setValue,
     formState: { errors },
+    setValue,
     handleSubmit,
     register,
   } = useFormContext<ChatFormValue>();
@@ -35,19 +35,21 @@ export const useCommentUnitInternal = ({ workId }: { workId: string }) => {
       setLoading(true);
 
       const esquisse = await getEsquisse({ esquisseId: formData.esquisseId });
+      if (!esquisse) return;
+
       const createdFormData = {
         ...formData,
         chatIds: [...esquisse.chatIds],
       };
       await submitForm(createdFormData);
-      await getSelectedEsquisses({ workId }).then((esquisses) => {
-        setEsquisses(esquisses);
-      });
+      const esquisses = await getSelectedEsquisses({ workId });
+      setEsquisses(esquisses);
       setValue('description', '');
+    } catch {
+      alert('コメントの送信中にエラーが発生しました。再度お試しください。');
+    } finally {
       setLoading(false);
-    } catch (error) {
       processing.current = false;
-      setLoading(false);
     }
   };
 

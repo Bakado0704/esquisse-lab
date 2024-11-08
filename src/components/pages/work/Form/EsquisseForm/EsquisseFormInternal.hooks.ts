@@ -6,6 +6,7 @@ import { useFormContext } from 'react-hook-form';
 import { useAuthContext } from '@/contexts/auth.context';
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
 import { useLoadingContext } from '@/contexts/loading.context';
+import { getUser } from '@/libs/repository/individual/user';
 import { submitForm } from '@/libs/service/form/esquisse/submitForm';
 import { uploadImageFile } from '@/libs/service/uploadImage';
 import { ImageDatumsType } from '@/types/form/ImageForm.types';
@@ -38,6 +39,7 @@ export const useEsquisseFormInternal = () => {
         return;
       }
 
+      const updatedUser = await getUser({ userId: user.id });
       const addedImages = await Promise.all(
         imageDatums.map(async (image) => {
           if (image.file) {
@@ -50,10 +52,10 @@ export const useEsquisseFormInternal = () => {
         }),
       );
 
-      const uid = user.id;
+      const uid = updatedUser.id;
       const esquisseId = formData.esquisseId;
       const isEsquisseIdIncluded = formData.esquisseIds.includes(esquisseId);
-      const workIds = [formData.workId, ...user.workIds];
+      const workIds = [formData.workId, ...updatedUser.workIds];
       const esquisseIds = isEsquisseIdIncluded
         ? formData.esquisseIds
         : [esquisseId, ...(formData.esquisseIds ?? [])];
@@ -72,8 +74,9 @@ export const useEsquisseFormInternal = () => {
       const id = await submitForm(updatedFormData, status);
       setEsquisseId(esquisseId);
       router.push(`/work/${id}`);
-      setLoading(false);
     } catch (error) {
+      alert('フォームの送信中にエラーが発生しました。もう一度お試しください。');
+    } finally {
       processing.current = false;
       setLoading(false);
     }

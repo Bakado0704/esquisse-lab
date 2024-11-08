@@ -49,16 +49,20 @@ export const getSelectedEsquisses = async ({
 export const getEsquisse = async ({
   esquisseId,
 }: {
-  esquisseId: string;
-}): Promise<Esquisse> => {
-  try {
-    const esquisse = await esquisseRepository.get({ id: esquisseId });
-    if (!esquisse) {
-      throw new Error(`Esquisse with id ${esquisseId} not found`);
+  esquisseId?: string;
+}): Promise<Esquisse | undefined> => {
+  if (esquisseId) {
+    try {
+      const esquisse = await esquisseRepository.get({ id: esquisseId });
+      if (!esquisse) {
+        throw new Error(`Esquisse with id ${esquisseId} not found`);
+      }
+      return esquisse;
+    } catch {
+      throw new Error(`Failed to fetch esquisse with id ${esquisseId}`);
     }
-    return esquisse;
-  } catch {
-    throw new Error(`Failed to fetch esquisse with id ${esquisseId}`);
+  } else {
+    return;
   }
 };
 

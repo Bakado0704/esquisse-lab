@@ -42,7 +42,7 @@ export const useHeaderLayout = () => {
 
           setImageSize({ width, height });
         } catch (error) {
-          console.error('Error loading images:', error);
+          throw new Error('画像を取得できませんでした');
         }
       }
     };

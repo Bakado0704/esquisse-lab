@@ -36,7 +36,7 @@ export const batchCreate = async ({
   const batch = writeBatch(db);
   batch.set(workDoc(workObj.id), exceptForId(workObj));
   batch.set(esquisseDoc(esquisseObj.id), exceptForId(esquisseObj));
-  batch.update(userDoc(userObj.id), exceptForId(userObj));
+  batch.update(userDoc(userObj.id), exceptForId(userObj)); // ここでuserObjのworkIdsが置き換わってしまっている
   await batch.commit();
 };
 

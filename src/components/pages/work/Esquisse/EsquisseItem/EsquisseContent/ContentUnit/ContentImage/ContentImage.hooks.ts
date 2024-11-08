@@ -30,7 +30,7 @@ export const useContentImage = ({ url }: { url: string }) => {
         const size = await loadImage(url, 250);
         setImgSize(size);
       } catch (error) {
-        console.error('Error loading image:', error);
+        throw new Error('画像を取得できませんでした');
       }
     };
 
