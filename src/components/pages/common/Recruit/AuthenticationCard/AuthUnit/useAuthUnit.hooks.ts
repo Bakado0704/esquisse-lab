@@ -26,18 +26,21 @@ export const useAuthUnit = () => {
 
     try {
       setLoading(true);
-      await Login(formData).then((user) => {
-        setUser(user);
-        alert('ログインに成功しました');
-        onScroll('fv', 'top');
-      });
+      const user = await Login(formData);
+      setUser(user);
+      alert('ログインに成功しました');
+      onScroll('fv', 'top');
       router.push('/');
-      setLoading(false);
     } catch (error) {
+      alert(
+        'ログインに失敗しました。メールアドレスとパスワードが正しいかご確認ください。',
+      );
+    } finally {
       setLoading(false);
+      processing.current = false;
     }
-    processing.current = false;
   };
+
   const submitHandler = handleSubmit((data) => onSubmit(data));
   const navigateToAccount = () => router.push('/account');
 

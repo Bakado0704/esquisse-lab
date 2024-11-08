@@ -29,8 +29,7 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
         try {
           const fetchedUser = await getUser({ userId: chat.uid });
           setCommentUser(fetchedUser);
-        } catch (error) {
-          console.error('Failed to fetch user:', error);
+        } catch {
           setCommentUser(null);
         }
       };
@@ -52,16 +51,25 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
     esquisseId: string;
   }) => {
     setLoading(true);
-    const confirm = window.confirm('コメントを消去します。よろしいですか？');
-    if (confirm) {
-      await deleteChat({ chatId, esquisseId }).then(() => {
+    const isConfirmed = window.confirm(
+      'コメントを消去します。よろしいですか？',
+    );
+
+    if (isConfirmed) {
+      try {
+        await deleteChat({ chatId, esquisseId });
         alert('削除しました');
-      });
+
+        const esquisse = await getSelectedEsquisses({ workId });
+        setEsquisses(esquisse);
+      } catch (error) {
+        alert('削除中にエラーが発生しました。もう一度お試しください。');
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
     }
-    await getSelectedEsquisses({ workId }).then((esquisse) => {
-      setEsquisses(esquisse);
-    });
-    setLoading(false);
   };
 
   const handleUser = () => {

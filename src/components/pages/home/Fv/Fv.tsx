@@ -1,14 +1,14 @@
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
 import fvImg from '@/assets/fv/fv.png';
 import { Button, FlexBox, Icon, Typography } from '@/components/common';
 import { useFadeIn } from '@/hooks/useFadeIn';
 
 import styles from './Fv.module.scss';
+import { useNavigate } from './useNavigate.hooks';
 
 const Fv = () => {
-  const router = useRouter();
+  const { NavigateToNew } = useNavigate();
   useFadeIn({ targetId: 'fvImg', styles });
   useFadeIn({ targetId: 'fvTitle', styles });
 
@@ -38,7 +38,7 @@ const Fv = () => {
           theme='rectPink'
           size='medium'
           className={styles.button}
-          onClick={() => router.push('/work/new')}
+          onClick={NavigateToNew}
         >
           投稿する
         </Button>

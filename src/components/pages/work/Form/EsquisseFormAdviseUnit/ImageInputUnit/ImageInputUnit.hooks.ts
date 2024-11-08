@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { useEsquisseIdContext } from '@/contexts/esquisseId.context';
+import { useLoadingContext } from '@/contexts/loading.context';
 import { getEsquisse } from '@/libs/repository/individual/esquisse';
 import { ImageDatumsType, ImageType } from '@/types/form/ImageForm.types';
 import { WorkEsquisseFormValue } from '@/types/form/WorkEsquisseForm.types';
@@ -21,6 +22,7 @@ export const useImageInputUnit = ({
   const ref = useRef<HTMLInputElement>(null);
   const { setValue } = useFormContext<WorkEsquisseFormValue>();
   const { esquisseId } = useEsquisseIdContext();
+  const { setLoading } = useLoadingContext();
 
   const loadImage = (imgUrl: string) =>
     new Promise<ImageType>((resolve) => {
@@ -37,22 +39,31 @@ export const useImageInputUnit = ({
 
   useEffect(() => {
     const fetchImages = async () => {
+      if (status !== 'esquisseUpdate') return;
+
       try {
+        setLoading(true);
         const esquisse = await getEsquisse({ esquisseId });
+        if (!esquisse) return;
+
         const topImageUrl = esquisse.topImage ?? '';
         const additionalImagesUrls = esquisse.additionalImages;
         const initialUrls = [topImageUrl, ...additionalImagesUrls].filter(
           (url) => url,
         );
-        if (initialUrls.length > 0 && status === 'esquisseUpdate') {
-          const images = await Promise.all(
-            initialUrls.map((imgUrl) => loadImage(imgUrl)),
-          );
-          setImageDatums(images);
-        }
+        if (initialUrls.length === 0) return;
+
+        const images = await loadImages(initialUrls);
+        setImageDatums(images);
       } catch (error) {
-        console.error('Error fetching or loading images:', error);
+        alert('エラーが発生しました。もう一度お試しください。');
+      } finally {
+        setLoading(false);
       }
+    };
+
+    const loadImages = async (urls: string[]) => {
+      return await Promise.all(urls.map((url) => loadImage(url)));
     };
 
     fetchImages();
@@ -60,6 +71,7 @@ export const useImageInputUnit = ({
 
   const addImageHandler = async (file: File) => {
     if (!file) return;
+    setLoading(true);
     const objectUrl = URL.createObjectURL(file);
     loadImage(objectUrl)
       .then((imageType) => {
@@ -76,8 +88,11 @@ export const useImageInputUnit = ({
         };
         setImageDatums((currentDatum) => [...currentDatum, newImage]);
       })
-      .catch((error) => {
-        console.error('Error loading images:', error);
+      .catch(() => {
+        alert('画像をアップロードできませんでした。もう一度お試しください');
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 

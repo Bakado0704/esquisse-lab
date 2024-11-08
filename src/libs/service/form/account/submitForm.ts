@@ -16,10 +16,8 @@ const actionCodeSettings = {
 export const accountCreate = async (email: string, password: string) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.error('Error creating account:', error);
+  } catch {
     alert('すでにこのメールアドレスは使われています');
-    throw error;
   }
 };
 
@@ -38,6 +36,6 @@ export const submitForm = async (formData: AccountFormValue): Promise<void> => {
       alert('もう一度お試しください');
     }
   } catch (error) {
-    console.error('Error submitting form:', error);
+    alert('もう一度お試しください');
   }
 };

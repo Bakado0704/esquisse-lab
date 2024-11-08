@@ -29,19 +29,23 @@ export const useEsquisseHeader = ({ esquisse }: useEsquisseHeaderProps) => {
   };
 
   const onDeleteEsquisse = async ({ esquisseId }: { esquisseId: string }) => {
-    setLoading(true);
     const confirm = window.confirm('エスキスを消去します。よろしいですか？');
-    if (confirm) {
-      await deleteEsquisse({ esquisseId }).then(() => {
-        alert('削除しました');
+    if (!confirm) return;
+
+    setLoading(true);
+    try {
+      await deleteEsquisse({ esquisseId });
+      alert('削除しました');
+
+      const updatedEsquisses = await getSelectedEsquisses({
+        workId: esquisse.workId,
       });
-      await getSelectedEsquisses({ workId: esquisse.workId }).then(
-        (esquisse) => {
-          setEsquisses(esquisse);
-        },
-      );
+      setEsquisses(updatedEsquisses);
+    } catch (error) {
+      alert('削除中にエラーが発生しました。もう一度お試しください。');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return {
