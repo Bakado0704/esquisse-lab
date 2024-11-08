@@ -11,12 +11,8 @@ export const useUserUnit = ({ userId }: { userId: string }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const userData = await getUser({ userId });
-        setUser(userData);
-      } catch (error) {
-        console.error(`Failed to fetch user with id ${userId}:`, error);
-      }
+      const userData = await getUser({ userId });
+      setUser(userData);
     };
 
     fetchUser();

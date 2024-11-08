@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         try {
           const userInfo = await getUser({ userId: authUser.uid });
           setUser(userInfo);
-        } catch (error) {
+        } catch {
           setUser(undefined);
         }
       } else {

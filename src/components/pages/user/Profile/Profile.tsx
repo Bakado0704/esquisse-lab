@@ -47,7 +47,12 @@ const Profile = ({ user }: { user: User }) => {
           </FlexBox>
 
           {user.detail && (
-            <Typography fontSize='1.2rem' color='b2' textAlign='center'>
+            <Typography
+              fontSize='1.2rem'
+              color='b2'
+              textAlign='center'
+              lineHeight='150%'
+            >
               {user.detail}
             </Typography>
           )}

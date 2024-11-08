@@ -3,11 +3,11 @@
 .container {
   position: relative;
   width: 100%;
-  height: 60rem;
+  min-height: 60rem;
 
   @include mq(md) {
-    height: calc(100vh - 6rem);
-    height: calc(100dvh - 6rem);
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100dvh - 6rem);
   }
 }
 

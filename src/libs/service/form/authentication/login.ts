@@ -14,15 +14,7 @@ export const Login = async (formData: LoginFormValue): Promise<User> => {
   const { email, password } = parsedData;
 
   const { user } = await signInWithEmailAndPassword(auth, email, password);
-  const userInfo = await getUser({ userId: user.uid }).catch((error) => {
-    if (typeof error === 'string') {
-      throw {
-        code: 'auth/firestore-error',
-        message: error,
-      };
-    }
-    throw error;
-  });
+  const userInfo = await getUser({ userId: user.uid });
 
   return userInfo;
 };

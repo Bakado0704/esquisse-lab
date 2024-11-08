@@ -54,13 +54,13 @@ export const useRegisterFormInternal = () => {
       };
 
       await submitForm(createdFormData);
-      await getUser({ userId: createdFormData.id }).then((userInfo) => {
-        setUser(userInfo);
-      });
 
+      const userInfo = await getUser({ userId: createdFormData.id });
+      setUser(userInfo);
       router.push(`/`);
-      setLoading(false);
-    } catch (error) {
+    } catch {
+      alert('フォームの送信中にエラーが発生しました。もう一度お試しください。');
+    } finally {
       processing.current = false;
       setLoading(false);
     }

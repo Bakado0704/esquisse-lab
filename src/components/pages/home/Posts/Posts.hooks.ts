@@ -13,12 +13,8 @@ export const usePosts = ({ userId }: { userId: string }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const fetchedUser = await getUser({ userId });
-        setUser(fetchedUser);
-      } catch (error) {
-        console.error('Failed to fetch user:', error);
-      }
+      const fetchedUser = await getUser({ userId });
+      setUser(fetchedUser);
     };
 
     fetchUser();

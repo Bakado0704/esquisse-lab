@@ -31,50 +31,47 @@ export const useEsquisseForm = ({ esquisseId, status }: EsquisseFormType) => {
     if (!user) {
       alert('ログインしてください');
       router.push('/');
+      return;
     } else {
       const fetchEsquisse = async () => {
-        try {
-          let defaultValue: WorkEsquisseFormValue = {
-            workIds: user.workIds,
-            uid: user.id,
-            esquisseId: esquisseId ?? generateId(),
-            workId: generateId(),
-            esquisseIds: [],
-            title: '',
-            concept: '',
-            tags: [],
-            date: new Date(),
-            topImage: null,
-            additionalImages: [],
-            subject: '',
-            description: '',
-            chatIds: [],
-          };
+        let defaultValue: WorkEsquisseFormValue = {
+          workIds: user.workIds,
+          uid: user.id,
+          esquisseId: esquisseId ?? generateId(),
+          workId: generateId(),
+          esquisseIds: [],
+          title: '',
+          concept: '',
+          tags: [],
+          date: new Date(),
+          topImage: null,
+          additionalImages: [],
+          subject: '',
+          description: '',
+          chatIds: [],
+        };
 
-          if (formWork) {
-            defaultValue.workId = formWork.workId;
-            defaultValue.esquisseIds = formWork.esquisseIds;
-            defaultValue.title = formWork.title;
-            defaultValue.concept = formWork.concept;
-            defaultValue.tags = formWork.tags;
-          }
-
-          if (esquisseId && status === 'esquisseUpdate') {
-            const esquisse = await getEsquisse({ esquisseId });
-            if (esquisse) {
-              defaultValue.date = esquisse.createdAt;
-              defaultValue.topImage = esquisse.topImage;
-              defaultValue.additionalImages = esquisse.additionalImages;
-              defaultValue.subject = esquisse.subject;
-              defaultValue.description = esquisse.description;
-              defaultValue.chatIds = esquisse.chatIds;
-            }
-          }
-
-          reset(defaultValue);
-        } catch (error) {
-          console.error('Failed to fetch esquisse:', error);
+        if (formWork) {
+          defaultValue.workId = formWork.workId;
+          defaultValue.esquisseIds = formWork.esquisseIds;
+          defaultValue.title = formWork.title;
+          defaultValue.concept = formWork.concept;
+          defaultValue.tags = formWork.tags;
         }
+
+        if (esquisseId && status === 'esquisseUpdate') {
+          const esquisse = await getEsquisse({ esquisseId });
+          if (esquisse) {
+            defaultValue.date = esquisse.createdAt;
+            defaultValue.topImage = esquisse.topImage;
+            defaultValue.additionalImages = esquisse.additionalImages;
+            defaultValue.subject = esquisse.subject;
+            defaultValue.description = esquisse.description;
+            defaultValue.chatIds = esquisse.chatIds;
+          }
+        }
+
+        reset(defaultValue);
       };
       fetchEsquisse();
     }
