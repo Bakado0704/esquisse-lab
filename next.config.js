@@ -2,16 +2,27 @@
 
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  extendDefaultRuntimeCaching: true,
   workboxOptions: {
     runtimeCaching: [
       {
         urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-        handler: 'StaleWhileRevalidate',
+        handler: 'CacheFirst',
         options: {
           cacheName: 'static-image-assets',
           expiration: {
-            maxEntries: 64,
             maxAgeSeconds: 30 * 24 * 60 * 60,
+          },
+        },
+      },
+      {
+        urlPattern: /\/_next\/image\?url=.+$/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'next-image',
+          expiration: {
+            maxAgeSeconds: 24 * 60 * 60,
           },
         },
       },
