@@ -37,6 +37,7 @@
   transition-delay: 0.5s;
   transition: all 1s ease;
   border-radius: 2rem;
+  border: var(--w1) 3px solid;
   overflow: hidden;
 
   &.open {
