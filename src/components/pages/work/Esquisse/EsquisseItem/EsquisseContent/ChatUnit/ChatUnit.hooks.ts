@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/router';
-
 import { useAuthContext } from '@/contexts/auth.context';
 import { useEsquisseContext } from '@/contexts/esquisse.context';
 import { useLoadingContext } from '@/contexts/loading.context';
@@ -14,7 +12,6 @@ import { User } from '@/types/application/user.types';
 type ChatUnitProps = { userId?: string; chat: Chat };
 
 export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
-  const router = useRouter();
   const { setLoading } = useLoadingContext();
   const { user } = useAuthContext();
   const { setEsquisses } = useEsquisseContext();
@@ -72,17 +69,10 @@ export const useChatUnit = ({ userId, chat }: ChatUnitProps) => {
     }
   };
 
-  const handleUser = () => {
-    if (userId) {
-      router.push(`/user/${userId}`);
-    }
-  };
-
   return {
     userName,
     iconImageUrl,
     isHostUser,
     onDeleteChat,
-    handleUser,
   };
 };
