@@ -9,11 +9,10 @@ import { ChatUnitProps } from './ChatUnit.types';
 import { PostIcon } from './PostIcon';
 
 const ChatUnit = ({ chat, userId, workId }: ChatUnitProps) => {
-  const { userName, iconImageUrl, isHostUser, onDeleteChat, handleUser } =
-    useChatUnit({
-      userId,
-      chat,
-    });
+  const { userName, iconImageUrl, isHostUser, onDeleteChat } = useChatUnit({
+    userId,
+    chat,
+  });
 
   return (
     <FlexBox
@@ -61,12 +60,7 @@ const ChatUnit = ({ chat, userId, workId }: ChatUnitProps) => {
         )}
       >
         <PostIcon iconImageUrl={iconImageUrl} />
-        <FlexBox
-          gap='0.4rem'
-          flexDirection='column'
-          className={classNames(styles.userContainer)}
-          onClick={handleUser}
-        >
+        <FlexBox gap='0.4rem' flexDirection='column'>
           <Typography ellipsis fontSize='1.4rem' fontWeight={600}>
             {userName}
           </Typography>
