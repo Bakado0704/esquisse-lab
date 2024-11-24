@@ -78,7 +78,6 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'api.ts'],
   webpack: (config, { isServer, dev }) => {
-    config.cache = false;
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
