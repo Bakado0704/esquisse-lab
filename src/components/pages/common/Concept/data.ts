@@ -11,7 +11,7 @@ export const conceptList: {
     iconName: 'support',
     title: 'エスキスのサポート',
     description_top: '作品を投稿する・エスキスをする場として、',
-    description_middle: 'クリエイティブな想像の場を提供します。',
+    description_middle: 'クリエイティブな創造の場を提供します。',
   },
   {
     iconName: 'document',
