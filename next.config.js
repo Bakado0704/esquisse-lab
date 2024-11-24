@@ -72,16 +72,35 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   },
 });
 const { withSuperjson } = require('next-superjson');
+const WebpackObfuscator = require('webpack-obfuscator');
 const nextConfig = {
   optimizeFonts: false,
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'api.ts'],
-  webpack: (config) => {
-    config.cache = false;
+  webpack: (config, { isServer, dev }) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     });
+
+    if (!isServer && !dev) {
+      config.module.rules.push({
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        enforce: 'post',
+        use: [
+          {
+            loader: WebpackObfuscator.loader,
+            options: {
+              compact: true,
+              rotateStringArray: true,
+              stringArray: true,
+              stringArrayThreshold: 0.75,
+            },
+          },
+        ],
+      });
+    }
     return config;
   },
   images: {
